@@ -25,13 +25,13 @@ export class CheckoutComponent implements OnInit {
     items: this.fb.array([]),
   });
 
-  constructor(private cart: CartFacade, private fb: FormBuilder) {}
+  constructor(private cart: CartFacade, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.mockCheckout.valueChanges.subscribe((isMock) => {
       if (isMock) {
         this.order.name = 'John Doe';
-        this.order.email = 'alexander.pajer@integrations.at';
+        this.order.email = 'alexander.kastil@integrations.at';
         this.order.address = '123 Main St';
         this.order.payment = 'PayPal, abcd...';
         this.checkoutForm.patchValue(this.order);

@@ -44,7 +44,6 @@ export const demoRoutes: Routes = [
             { path: 'spy', component: SpyHostComponent },
             { path: 'ngrx-mock-store', component: NgrxMockstoreComponent },
             { path: 'ngrx-reducers', component: NgrxReducersComponent },
-
         ],
     }
 ];

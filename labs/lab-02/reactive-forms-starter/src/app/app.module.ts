@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -12,24 +12,17 @@ import { AboutComponent } from "./about/about.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material.module";
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    SidebarComponent,
-    MainComponent,
-    HomeComponent,
-    AboutComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavbarComponent,
+        SidebarComponent,
+        MainComponent,
+        HomeComponent,
+        AboutComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MaterialModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

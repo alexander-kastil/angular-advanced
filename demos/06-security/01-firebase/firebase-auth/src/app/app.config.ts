@@ -20,10 +20,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
     provideAnimations(),
-    // Firebase
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    // Markdown
     importProvidersFrom(
-      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-      provideAuth(() => getAuth()),
       MarkdownModule.forRoot(),
     ),
     // NgRx

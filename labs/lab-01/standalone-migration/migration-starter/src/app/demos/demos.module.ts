@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -53,62 +53,56 @@ const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline',
 };
 
-@NgModule({
-  declarations: [
-    DemoContainerComponent,
-    ReactiveFormsComponent,
-    FormBuilderComponent,
-    ContentProjectionComponent,
-    FormControlComponent,
-    FormArrayComponent,
-    ReactiveValidationComponent,
-    ReactiveCascadeComponent,
-    ActionStreamsComponent,
-    ReactiveNestedComponent,
-    ControlValueAccessorComponent,
-    NumberPickerComponent,
-    ReactiveTypedComponent,
-    TypedNonnullableComponent,
-    ReactiveExplicitTypedComponent,
-    GetRawValueComponent,
-    BootstrapStandaloneComponent,
-    HostBindingListenerComponent,
-    TemplateVsContainerComponent,
-    ViewChildComponent,
-    ContentChildComponent,
-    ExpanderComponent,
-    ClockComponent,
-    ExpanderTemplateComponent,
-    BindingComponent,
-    HoverListenerDirective,
-    ProjectorComponent,
-    ReactiveTypedValidationComponent,
-    FormErrorsComponent,
-    ErrStateMatcherComponent,
-    DirectiveCompositionComponent,
-    SplitPopupComponent,
-    ContainerPresenterComponent,
-    PresenterListComponent,
-    PresenterEditComponent,
-    DynamicComponentsComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DemoRoutingModule,
-    MaterialModule,
-    HttpClientModule,
-    MarkdownRendererModule,
-    StandaloneComponent,
-    UxLibModule
-  ],
-  providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: appearance,
-    },
-  ],
-})
+@NgModule({ declarations: [
+        DemoContainerComponent,
+        ReactiveFormsComponent,
+        FormBuilderComponent,
+        ContentProjectionComponent,
+        FormControlComponent,
+        FormArrayComponent,
+        ReactiveValidationComponent,
+        ReactiveCascadeComponent,
+        ActionStreamsComponent,
+        ReactiveNestedComponent,
+        ControlValueAccessorComponent,
+        NumberPickerComponent,
+        ReactiveTypedComponent,
+        TypedNonnullableComponent,
+        ReactiveExplicitTypedComponent,
+        GetRawValueComponent,
+        BootstrapStandaloneComponent,
+        HostBindingListenerComponent,
+        TemplateVsContainerComponent,
+        ViewChildComponent,
+        ContentChildComponent,
+        ExpanderComponent,
+        ClockComponent,
+        ExpanderTemplateComponent,
+        BindingComponent,
+        HoverListenerDirective,
+        ProjectorComponent,
+        ReactiveTypedValidationComponent,
+        FormErrorsComponent,
+        ErrStateMatcherComponent,
+        DirectiveCompositionComponent,
+        SplitPopupComponent,
+        ContainerPresenterComponent,
+        PresenterListComponent,
+        PresenterEditComponent,
+        DynamicComponentsComponent
+    ], imports: [CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DemoRoutingModule,
+        MaterialModule,
+        MarkdownRendererModule,
+        StandaloneComponent,
+        UxLibModule], providers: [
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: appearance,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class DemosModule { }

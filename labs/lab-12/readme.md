@@ -8,7 +8,7 @@ Open project `container-starter` and add the following `Dockerfile`:
 
 ```dockerfile
 FROM node:16 as node
-LABEL author="Alexander Pajer"
+LABEL author="Alexander Kastil"
 WORKDIR /app
 COPY package.json package.json
 RUN npm install
