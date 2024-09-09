@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +24,6 @@ import { OrdersStore } from './orders.store';
     MatButtonModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
-    HttpClientModule
   ],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
