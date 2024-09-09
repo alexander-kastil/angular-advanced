@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,7 +27,6 @@ import { SwUpdate } from '@angular/service-worker';
     MatSlideToggleModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    HttpClientModule
   ],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
