@@ -36,10 +36,13 @@
 -   Provide the firebase services in `app.config.ts`:
 
     ```typescript
-    importProvidersFrom(
-      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-      provideAuth(() => getAuth())
-    )
+    export const appConfig: ApplicationConfig = {
+      providers: [
+        ...
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth())
+      ]
+    };
     ```
 
 -   Review `firebase-auth.service.ts` and add the following to `app.component.ts`:

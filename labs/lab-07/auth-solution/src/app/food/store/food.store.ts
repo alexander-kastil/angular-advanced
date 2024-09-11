@@ -22,7 +22,7 @@ const initialState: FoodState = {
 const logError = (error: Error) => console.error("error: ", error);
 
 export const foodStore = signalStore(
-    { providedIn: 'root' },
+    { providedIn: 'root', protectedState: false },
     withState(initialState),
     withComputed((store) => ({
         count: computed(() => store.food().length),
