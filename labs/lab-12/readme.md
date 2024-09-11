@@ -69,7 +69,7 @@ Connect to the container by navigating to http://localhost:5052/
 Download and start an existing .NET Api as a container:
 
 ```bash
-docker run -d --rm -p 5051:80 arambazamba/food-catalog-api:1.1.0
+docker run -d --rm -p 5051:80 alexander-kastil/food-catalog-api:1.1.0
 ```
 
 Test the api by navigating to http://localhost:5051/

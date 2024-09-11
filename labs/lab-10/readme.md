@@ -21,8 +21,8 @@ In this lab we will create a simple PWA using Angular and .NET Core. We will use
 - A `skills-api` container is available at Docker Hub: 
 
   ```bash
-  docker pull arambazamba/skills-api
-  docker run -it --rm -p 5051:80 arambazamba/skills-api
+  docker pull alexander-kastil/skills-api
+  docker run -it --rm -p 5051:80 alexander-kastil/skills-api
   ```
 
 - Create a new Angular project and add PWA support:

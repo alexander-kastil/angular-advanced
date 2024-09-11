@@ -49,7 +49,7 @@ Add a library project from the root of the nx workspace:
 nx g @nrwl/angular:lib ux-controls 
 ```
 
-> Note: you can replace `arambazamba` with your own npm or github scope
+> Note: you can replace `alexander-kastil` with your own npm or github scope
 
 Show a project graph in from separate terminal and keep it open:
 
