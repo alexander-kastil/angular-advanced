@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,27 +14,20 @@ import { SidemenuComponent } from './shared/sidemenu/sidemenu.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { CenteredDirective } from './shared/formatting/formatting-directives';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    SidemenuComponent,
-    MainComponent,
-    HomeComponent,
-    AboutComponent,
-    LoadingComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    CenteredDirective
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavbarComponent,
+        SidemenuComponent,
+        MainComponent,
+        HomeComponent,
+        AboutComponent,
+        LoadingComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        CenteredDirective], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

@@ -1,7 +1,4 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { environment } from 'src/environments/environment';
 import {
@@ -14,6 +11,7 @@ import {
 import { FoodItem } from './food.model';
 import { FoodService } from './food.service';
 import { foodUpdateItem, foodUpdatedItem } from './food.mocks';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('Service - HttpTestingController', () => {
   let fs: FoodService;
@@ -21,9 +19,9 @@ describe('Service - HttpTestingController', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [FoodService],
-    });
+    imports: [],
+    providers: [FoodService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     fs = TestBed.inject(FoodService);
     controller = TestBed.inject(HttpTestingController);

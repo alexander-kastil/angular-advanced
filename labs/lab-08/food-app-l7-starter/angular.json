@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "food-app-l7-starter:build:production"
+              "buildTarget": "food-app-l7-starter:build:production"
             },
             "development": {
-              "browserTarget": "food-app-l7-starter:build:development"
+              "buildTarget": "food-app-l7-starter:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "food-app-l7-starter:build"
+            "buildTarget": "food-app-l7-starter:build"
           }
         },
         "test": {
@@ -112,6 +112,7 @@
   "cli": {
     "cache": {
       "enabled": false
-    }
+    },
+    "analytics": false
   }
 }

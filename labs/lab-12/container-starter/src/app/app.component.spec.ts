@@ -2,7 +2,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SidemenuComponent } from './shared/sidemenu/sidemenu.component';
@@ -13,19 +13,19 @@ import { MatListModule } from '@angular/material/list';
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientModule,
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        SidemenuComponent
+    ],
+    imports: [RouterTestingModule,
         MatSidenavModule,
         NoopAnimationsModule,
         MatToolbarModule,
         MatIconModule,
         MatListModule],
-      declarations: [
-        AppComponent,
-        NavbarComponent,
-        SidemenuComponent],
-    }).compileComponents();
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+}).compileComponents();
   }));
 
   it('should create the app', () => {
