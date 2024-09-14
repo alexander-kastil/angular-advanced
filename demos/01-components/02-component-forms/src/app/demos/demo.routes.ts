@@ -23,10 +23,11 @@ import { SelectFilterHostComponent } from './samples/select-filter-host/select-f
 import { StandaloneComponent } from './samples/standalone/standalone.component';
 import { ReactiveValidationComponent } from './samples/state-validators/reactive-validation.component';
 import { TemplateVsContainerComponent } from './samples/template-vs-container/template-vs-container.component';
-import { TypedNonnullableComponent } from './samples/typed-nonnullable/typed-nonnullable.component';
+import { TypedNonNullableComponent } from './samples/typed-nonnullable/typed-nonnullable.component';
 import { ReactiveTypedComponent } from './samples/typed/reactive-typed.component';
 import { ReactiveTypedValidationComponent } from './samples/validaton-intro/reactive-typed-validaton.component';
 import { ViewChildComponent } from './samples/view-child/view-child.component';
+import { ControlEventsComponent } from './samples/control-events/control-events.component';
 
 export const demoRoutes: Routes = [
   {
@@ -56,6 +57,7 @@ export const demoRoutes: Routes = [
       { path: 'custom-controls', component: SelectFilterHostComponent },
       { path: 'form-builder', component: FormBuilderComponent },
       { path: 'form-control', component: FormControlComponent },
+      { path: 'control-events', component: ControlEventsComponent },
       { path: 'form-array', component: FormArrayComponent },
       { path: 'form-errors', component: FormErrorsComponent },
       { path: 'err-state-matcher', component: ErrStateMatcherComponent },
@@ -68,7 +70,7 @@ export const demoRoutes: Routes = [
         path: 'raw-value',
         component: GetRawValueComponent,
       },
-      { path: 'typed-non-nullable', component: TypedNonnullableComponent },
+      { path: 'typed-non-nullable', component: TypedNonNullableComponent },
       {
         path: 'directives-composition',
         component: DirectiveCompositionComponent,

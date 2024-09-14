@@ -33,6 +33,10 @@
       "title": "FormControl"
     },
     {
+      "url": "control-events",
+      "title": "Control Events"
+    },
+    {
       "url": "reactive-forms",
       "title": "Reactive Forms"
     },

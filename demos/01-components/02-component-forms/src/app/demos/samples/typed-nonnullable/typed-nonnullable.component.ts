@@ -34,7 +34,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     MatButton,
   ],
 })
-export class TypedNonnullableComponent implements OnInit {
+export class TypedNonNullableComponent implements OnInit {
   ps: PersonService = inject(PersonService);
   person: Person = new Person();
   wealthOpts = wealthOptsValues;
