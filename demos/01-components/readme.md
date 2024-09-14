@@ -9,6 +9,7 @@
 - Content Projection 
 - Templates TemplateRef, *ngTemplateOutlet
 - Comparison: ng-template vs ng-content - pro / cons
+- ng-content default-content
 - ViewChild, -Children, ContentChild, -Children
 - HostBinding & HostListener
 - Recap Reactive Forms Revisited (FormGroup, Form Builder, FormControl, FormArray)
