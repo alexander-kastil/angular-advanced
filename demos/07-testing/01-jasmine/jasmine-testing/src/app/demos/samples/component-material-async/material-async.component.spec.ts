@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MarkdownModule } from 'ngx-markdown';
 import { MaterialAsyncComponent } from './material-async.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MaterialAsyncComponent', () => {
   let fixture: ComponentFixture<MaterialAsyncComponent>;
@@ -13,6 +14,7 @@ describe('MaterialAsyncComponent', () => {
         imports: [
           NoopAnimationsModule,
           MaterialAsyncComponent,
+          HttpClientModule,
           MarkdownModule.forRoot(),
         ],
       }).compileComponents();
