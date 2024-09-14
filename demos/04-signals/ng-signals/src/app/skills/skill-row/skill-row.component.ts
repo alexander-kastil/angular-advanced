@@ -4,7 +4,8 @@ import {
   EventEmitter,
   Output,
   SimpleChanges,
-  input
+  input,
+  output
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -26,20 +27,8 @@ import { Skill } from '../skill.model';
 })
 export class SkillRowComponent {
   skill = input.required<Skill>();
-  @Output() itemDeleted: EventEmitter<Skill> = new EventEmitter<Skill>();
-  @Output() itemCompleted: EventEmitter<Skill> = new EventEmitter<Skill>();
-
-  ngDoCheck(): void {
-    if (environment.logChangeDetection) {
-      console.log(`SkillRowComponent - ngDoCheck: ${this.skill.name}`);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (environment.logChanges) {
-      console.log(`SkillRowComponent - ngOnChanges: ${this.skill.name}`);
-    }
-  }
+  itemDeleted = output<Skill>();
+  itemCompleted = output<Skill>();
 
   deleteItem(item: Skill): void {
     this.itemDeleted.emit(item);

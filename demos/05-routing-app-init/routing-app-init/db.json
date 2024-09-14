@@ -11,6 +11,11 @@
       "id": 1
     },
     {
+      "url": "app-init",
+      "title": "App Init",
+      "id": 2
+    },
+    {
       "url": "multi-interceptor",
       "title": "Interceptors",
       "id": 8
@@ -49,6 +54,11 @@
       "url": "ngrx-router-actions",
       "title": "NgRx Router Actions",
       "id": 211
+    },
+    {
+      "url": "view-transitions",
+      "title": "View Transitions",
+      "id": 99
     }
   ],
   "skills":[

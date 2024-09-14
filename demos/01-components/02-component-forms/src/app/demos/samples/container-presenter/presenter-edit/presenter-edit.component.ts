@@ -8,16 +8,20 @@ import { ColumnDirective } from '../../../../shared/ux-lib/formatting/formatting
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
 
 @Component({
-    selector: 'app-presenter-edit',
-    templateUrl: './presenter-edit.component.html',
-    styleUrls: ['./presenter-edit.component.scss'],
-    standalone: true,
-    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, FormsModule, ColumnDirective, ReactiveFormsModule, MatFormField, MatInput, MatCardActions, MatButton]
+  selector: 'app-presenter-edit',
+  templateUrl: './presenter-edit.component.html',
+  styleUrls: ['./presenter-edit.component.scss'],
+  standalone: true,
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, FormsModule, ColumnDirective, ReactiveFormsModule, MatFormField, MatInput, MatCardActions, MatButton]
 })
 export class PresenterEditComponent {
   @Input({ required: true }) person: Person = new Person();
+  @Input() set allowSaveString(value: string) { //input transform
+    this.allowSave = value === 'true';
+  }
   @Output() savePerson: EventEmitter<Person> = new EventEmitter<Person>();
 
+  allowSave = true;
   fb = inject(FormBuilder);
 
   personForm: FormGroup = this.fb.group({
