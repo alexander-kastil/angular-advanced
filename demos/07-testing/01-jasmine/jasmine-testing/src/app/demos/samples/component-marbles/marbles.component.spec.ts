@@ -6,6 +6,7 @@ import { EMPTY, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MaterialAsyncComponent', () => {
   let fixture: ComponentFixture<MarblesComponent>;
@@ -21,7 +22,12 @@ describe('MaterialAsyncComponent', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [MarblesComponent, MarkdownModule.forRoot(), BrowserAnimationsModule],
+      imports: [
+        MarblesComponent,
+        HttpClientModule,
+        MarkdownModule.forRoot(),
+        BrowserAnimationsModule
+      ],
       providers: [
         { provide: PersonService, useValue: spy }
       ],

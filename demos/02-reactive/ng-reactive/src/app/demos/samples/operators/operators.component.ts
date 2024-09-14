@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { from, interval, of } from 'rxjs';
