@@ -91,10 +91,6 @@
     {
       "url": "err-state-matcher",
       "title": "ErrorStateMatcher"
-    },
-    {
-      "url": "container-presenter",
-      "title": "Container & Required Inputs"
     }
   ],
   "skills": [
