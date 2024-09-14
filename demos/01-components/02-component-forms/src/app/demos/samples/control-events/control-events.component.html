@@ -4,6 +4,8 @@
   <input matInput type="text" placeholder="Name" [formControl]="name" />
 </mat-form-field>
 
-@for (entry of events.entries(); track $index) {
-    <div>{{ entry[0] }}: {{ entry[1] }}</div>
-}
+<div boxed>
+    @for (entry of events.entries(); track $index) {
+        <div>{{ entry[0] }}: {{ entry[1] }}</div>
+    }    
+</div>

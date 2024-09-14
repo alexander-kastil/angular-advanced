@@ -14,7 +14,7 @@
     },
     {
       "url": "standalone-bootstrap",
-      "title": "Boot Standalone Comp."
+      "title": "Load Standalone Comp."
     },
     {
       "url": "directives-composition",
