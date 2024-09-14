@@ -8,6 +8,7 @@ import { SelectSignalComponent } from './samples/select-signal/select-signal.com
 import { SignalInputsComponent } from './samples/signal-inputs/signal-inputs.component';
 import { ContainerPresenterSignalsComponent } from './samples/container-presenter/container-presenter-signals.component';
 import { ModelInputsComponent } from './samples/model-inputs/model-inputs.component';
+import { SignalEffectsComponent } from './samples/signal-effects/signal-effects.component';
 
 export const demoRoutes: Routes = [
   {
@@ -15,6 +16,7 @@ export const demoRoutes: Routes = [
     component: DemoContainerComponent,
     children: [
       { path: 'signals-basics', component: SignalsBasicsComponent },
+      { path: 'signals-effects', component: SignalEffectsComponent },
       { path: 'rxjs-interop', component: RxjsInteropComponent },
       { path: 'signal-inputs', component: SignalInputsComponent },
       { path: 'model-inputs', component: ModelInputsComponent },

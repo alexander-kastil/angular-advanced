@@ -21,7 +21,7 @@ export class ContainerPresenterSignalsComponent {
   ps = inject(PersonService);
 
   persons = toSignal(this.ps.getPersons(), { initialValue: [] });
-  current = signal<Person | null>(null);
+  current = signal<Person | undefined>(undefined);
 
   onPersonSelected(p: Person) {
     console.log('Person selected:', p);
@@ -36,7 +36,7 @@ export class ContainerPresenterSignalsComponent {
     } else {
       this.persons().push(p);
     }
-    this.current.set(null);
+    this.current.set(undefined);
     console.log('Persons array after save', this.persons);
   }
 }

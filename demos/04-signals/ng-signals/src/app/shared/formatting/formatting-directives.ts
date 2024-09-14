@@ -78,7 +78,7 @@ export class HeightDirective {
 
 @Directive({
   selector: '[full-width]',
-  host: { style: 'width:100%;' },
+  host: { style: 'width: calc(100%-1rem);' },
   hostDirectives: [HeightDirective],
   standalone: true,
 })
@@ -90,8 +90,7 @@ export class WidthDirective {
   standalone: true,
   hostDirectives: [
     FontBoldDirective,
-    WidthDirective,
-    BorderDirective
+    WidthDirective
   ],
 })
 export class BoxedDirective {

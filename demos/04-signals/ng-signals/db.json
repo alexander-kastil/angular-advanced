@@ -5,6 +5,10 @@
       "title": "Signals Basics"
     },
     {
+      "url": "signals-effects",
+      "title": "Signals Effects"
+    },
+    {
       "url": "rxjs-interop",
       "title": "RxJS Interop"
     },

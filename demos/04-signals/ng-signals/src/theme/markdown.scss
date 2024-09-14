@@ -2,9 +2,13 @@ markdown p {
   line-height: 1.8rem;
 }
 
-markdown li{
+markdown li {
   margin-left: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--gap-small);
+
+  & > ul > li {
+    margin-top: var(--gap-small);
+  }
 }
 
 code:not([class])  {
