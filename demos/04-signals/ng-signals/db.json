@@ -35,6 +35,10 @@
     {
       "url": "ngrx-signals",
       "title": "@ngrx/signals"
+    },
+    { 
+      "url": "zoneless-change-detection",
+      "title": "Zoneless Change Detection"
     }
   ],
   "skills": [

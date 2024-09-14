@@ -1,0 +1,1 @@
+Zoneless Change Detection is an optimization technique that allows Angular to perform Change Detection outside of the Angular Zone, reducing the number of change detection cycles and improving performance.
