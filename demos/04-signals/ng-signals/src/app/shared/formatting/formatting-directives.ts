@@ -69,7 +69,7 @@ export class FontBoldDirective {
 
 @Directive({
   selector: '[height-medium]',
-  host: { 'style': 'height:100px;' },
+  host: { 'style': 'min-height:70px;' },
   standalone: true,
   hostDirectives: [BorderDirective]
 })
@@ -78,7 +78,7 @@ export class HeightDirective {
 
 @Directive({
   selector: '[full-width]',
-  host: { style: 'width:100%;' },
+  host: { style: 'width: calc(100%-1rem);' },
   hostDirectives: [HeightDirective],
   standalone: true,
 })
@@ -90,9 +90,16 @@ export class WidthDirective {
   standalone: true,
   hostDirectives: [
     FontBoldDirective,
-    WidthDirective,
-    BorderDirective
+    WidthDirective
   ],
 })
 export class BoxedDirective {
+}
+
+@Directive({
+  selector: '[clickable]',
+  standalone: true,
+  host: { 'style': 'cursor:pointer;' },
+})
+export class ClickableDirective {
 }

@@ -5,6 +5,10 @@
       "title": "Signals Basics"
     },
     {
+      "url": "signals-effects",
+      "title": "Signals Effects"
+    },
+    {
       "url": "rxjs-interop",
       "title": "RxJS Interop"
     },
@@ -31,6 +35,10 @@
     {
       "url": "ngrx-signals",
       "title": "@ngrx/signals"
+    },
+    { 
+      "url": "zoneless-change-detection",
+      "title": "Zoneless Change Detection"
     }
   ],
   "skills": [

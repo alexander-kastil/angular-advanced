@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Skill } from './skill.model';
@@ -8,12 +8,15 @@ import { Skill } from './skill.model';
   providedIn: 'root',
 })
 export class SkillsService {
-
   http = inject(HttpClient);
   private url = `${environment.api}skills`;
 
   getSkills(): Observable<Skill[]> {
     return this.http.get<Skill[]>(this.url);
+  }
+
+  getSkillsByCompletion(completed: boolean): Observable<Skill[]> {
+    return this.http.get<Skill[]>(`${this.url}?completed=${completed}`);
   }
 
   getSkill(id: number): Observable<Skill | undefined> {

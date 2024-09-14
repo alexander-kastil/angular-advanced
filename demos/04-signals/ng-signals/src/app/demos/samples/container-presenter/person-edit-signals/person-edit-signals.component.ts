@@ -22,7 +22,7 @@ import { Person } from '../person.model';
   styleUrl: './person-edit-signals.component.scss'
 })
 export class PersonEditSignalsComponent {
-  person = input<Person | null>(new Person());
+  person = input<Person | undefined>();
   onSavePerson = output<Person>();
 
   personForm = new FormGroup({
