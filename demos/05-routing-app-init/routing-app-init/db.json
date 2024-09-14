@@ -42,7 +42,7 @@
     },
     {
       "url": "ngrx-resolver",
-      "title": "NgRx Resolver",
+      "title": "NgRx Data Preload",
       "id": 311
     },
     {
@@ -59,10 +59,10 @@
   ],
   "customers": [
     {
-      "id": 1, "name": "Fritzi"
+      "id": 1, "name": "John"
     },
     {
-      "id": 2, "name": "Mimi"
+      "id": 2, "name": "Bernie"
     }
   ],
   "top-links": [

@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(
             withInterceptors([
                 authInterceptor,
-                httpErrorInterceptor
+                // httpErrorInterceptor
             ])
         ),
         provideRouter(appRoutes, withComponentInputBinding()),
@@ -68,10 +68,11 @@ export const appConfig: ApplicationConfig = {
             useFactory: configFactory,
             deps: [ConfigService],
             multi: true,
-        },
-        {
-            provide: ErrorHandler,
-            useClass: GlobalErrorHandler,
-        },
+        }
+        // ,
+        // {
+        //     provide: ErrorHandler,
+        //     useClass: GlobalErrorHandler,
+        // },
     ]
 };
