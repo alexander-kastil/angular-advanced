@@ -1,7 +1,7 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_INITIALIZER, ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
@@ -28,10 +28,14 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(
             withInterceptors([
                 authInterceptor,
-                // httpErrorInterceptor
+                httpErrorInterceptor
             ])
         ),
-        provideRouter(appRoutes, withComponentInputBinding()),
+        provideRouter(
+            appRoutes,
+            withComponentInputBinding(),
+            withViewTransitions()
+        ),
         provideAnimations(),
         importProvidersFrom(
             MarkdownModule.forRoot(),
@@ -69,10 +73,10 @@ export const appConfig: ApplicationConfig = {
             deps: [ConfigService],
             multi: true,
         }
-        // ,
-        // {
-        //     provide: ErrorHandler,
-        //     useClass: GlobalErrorHandler,
-        // },
+        ,
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler,
+        },
     ]
 };

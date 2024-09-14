@@ -16,6 +16,7 @@ import { RouterAnimationsComponent } from './samples/router-animations/router-an
 import { RouterBindingComponent } from './samples/router-binding/router-binding.component';
 import { RoutingTargetComponent } from './samples/routing/routing-target/routing-target.component';
 import { RoutingComponent } from './samples/routing/routing/routing.component';
+import { ViewTransitionsComponent } from './samples/view-transitions/view-transitions.component';
 
 export const demoRoutes: Routes = [
     {
@@ -42,6 +43,10 @@ export const demoRoutes: Routes = [
             {
                 path: 'ngrx-resolver',
                 component: PreloadingNgrxComponent,
+            },
+            {
+                path: 'view-transitions',
+                component: ViewTransitionsComponent,
             },
             {
                 path: 'ngrx-router-actions',
