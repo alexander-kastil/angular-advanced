@@ -2,38 +2,35 @@
   "demos": [
     {
       "url": "signals-basics",
-      "title": "Signals Basics",
-      "id": 1
+      "title": "Signals Basics"
     },
     {
       "url": "rxjs-interop",
-      "title": "RxJS Interop",
-      "id": 2
-    },
-    {
-      "url": "container-presenter",
-      "title": "Container Presenter",
-      "id": 3
-    },
-    {
-      "url": "signals-event-bus",
-      "title": "Signals EventBus",
-      "id": 4
+      "title": "RxJS Interop"
     },
     {
       "url": "signal-inputs",
-      "title": "Signal Inputs",
-      "id": 6
+      "title": "Inputs / Outputs"
+    },
+    { 
+      "url": "model-inputs",
+      "title": "Model Inputs"
+    },
+    {
+      "url": "container-presenter",
+      "title": "Container Presenter"
+    },
+    {
+      "url": "signals-event-bus",
+      "title": "Signals EventBus"
     },
     {
       "url": "select-signal",
-      "title": "NgRx Interop",
-      "id": 4
+      "title": "NgRx Interop"
     },
     {
       "url": "ngrx-signals",
-      "title": "@ngrx/signals",
-      "id": 5
+      "title": "@ngrx/signals"
     }
   ],
   "skills": [
