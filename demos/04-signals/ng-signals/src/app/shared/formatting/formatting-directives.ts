@@ -69,7 +69,7 @@ export class FontBoldDirective {
 
 @Directive({
   selector: '[height-medium]',
-  host: { 'style': 'height:100px;' },
+  host: { 'style': 'min-height:70px;' },
   standalone: true,
   hostDirectives: [BorderDirective]
 })
@@ -94,4 +94,12 @@ export class WidthDirective {
   ],
 })
 export class BoxedDirective {
+}
+
+@Directive({
+  selector: '[clickable]',
+  standalone: true,
+  host: { 'style': 'cursor:pointer;' },
+})
+export class ClickableDirective {
 }
