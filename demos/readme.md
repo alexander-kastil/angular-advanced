@@ -27,7 +27,6 @@ Publishing Angular Apps to the Cloud using Containers and Config Injection
 
 Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Module werden die erlernten Inhalte als Lab in eine durchgängige Anwendung integriert, welches am Ende in die Cloud publiziert werden kann. 
 
-
 ## Standalone Components: Concepts & Migration
 
 - Standalone Components vs Modules
@@ -41,16 +40,12 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Using & Migrating to Control Flow Syntax
 - Deferred Loading
 - Standalone Directives & Directives Composition Api
-- Components and Required Inputs
 - Content Projection 
-- Templates TemplateRef, *ngTemplateOutlet
-- Comparison: ng-template vs ng-content - pro / cons
 - HostBinding & HostListener
-- Reactive Forms Revisited (FormGroup, Form Builder, FormControl, FormArray)
-- Unified Form Events
+- Reactive Forms (FormGroup, Form Builder, FormControl, FormArray)
 - Typed Forms Nullability, NonNullableFormBuilder, GetRawValue
 - Partial Values, Optional Controls, Dynamic Groups and FormRecord
-- Form Control State Change Events
+- Unified Form Events
 - Cascading Form Controls
 - Implementing Custom Controls using ControlValueAccessor
 - Typed Forms Validation & Custom Validators
@@ -60,9 +55,10 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 
 - Introduction to RxJS
 - Observables, Observers & Use Cases
-- Imperative vs Declarative Reactive Programming
+- Imperative vs Declarative Reactivity
 - Data- vs Action-Streams
 - Mouse & DOM Events as Observables
+- Subject Types & Stateful Services
 - Unsubscribing DestroyRef & takeUntilDestroyed
 - Base Operators: Mapping, Filtering, Merging, 
 - Understanding Marble Diagrams & Debugging Observables
@@ -87,10 +83,10 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 ## Mastering Reactivity using Signals
 
 - Introduction to Signals (WritableSignal, Computed, Effects)
-- Signals vs Observables: Synchronous  & Asynchronous Reactive Programming
-- Signal Queries: viewChild, -Children, contentChild, -Children
-- Signals & Ngrx Interoperability
+- Signals vs Observables
+- Signals & Observables Interoperability
 - Nesting Components using Signals, input, output & model
+- View Queries: viewChild, -Children, contentChild, -Children
 - Communication between Components using Event Bus Pattern
 - Creating a Signals Store using @ngrx/signals
 - Side Effects using rxMethod
