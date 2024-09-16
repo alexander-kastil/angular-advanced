@@ -1,6 +1,6 @@
 # Food App - Standalone Components
 
-In this lab we will create a new Angular 17 project and we will create a navbar component and a sidebar component. We will use Angular Material for the navbar. We will also use json-server to create a fake backend. We will use the standalone configuration for the project.
+In this lab we will create a new Angular standalone project and we will create a navbar component and a sidebar component. We will use Angular Material for the navbar. We will also use json-server to create a fake backend. 
 
 ## Guide
 

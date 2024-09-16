@@ -1,4 +1,4 @@
 # Components Labs
 
-- Create Food App - Standalone Components
-- Migrate an existing app to standalone components
+- Migrate an existing app to Standalone Components
+- Create a new project `Food App` based on Standalone Components
