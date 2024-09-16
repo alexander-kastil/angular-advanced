@@ -34,7 +34,7 @@ In this lab we will create a new Angular standalone project and we will create a
     ng g environments
     ```
 
--   Modify the environment.development.ts file to reflect the base url of `json-server`:
+-   Modify the `environment.ts` and `environment.development.ts` file to reflect the base url of `json-server`:
 
     ```bash
     export const environment = {
@@ -69,8 +69,13 @@ In this lab we will create a new Angular standalone project and we will create a
     json-server --watch db.json
     ```    
 
--   Go to `src/main.ts` and `src/app` and notice the standalone configuration, especially `app.config.ts` and `app.routes.ts`. Examine this files. Also notice tha `app.module.ts` is not present.
+-   Go to `src/main.ts` and `src/app` and notice the standalone configuration, especially `app.config.ts` and `app.routes.ts`. Examine this files. Also notice tha `app.module.ts` is not present. Add the provider function for `HttpClient` in `app.config.ts`:
 
+    ```typescript
+    export const appConfig: ApplicationConfig = {
+    providers: [
+        provideHttpClient(),
+    ```
 -   Create a navbar component in the shared folder. Notice that with a project that was create with Angular 17 all components are created as standalone components by default.
 
     ```bash
