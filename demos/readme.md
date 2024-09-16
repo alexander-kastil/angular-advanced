@@ -149,7 +149,7 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Understanding and Implementing Schematics
 - Implementing Web Components using Angular Elements and Standalone Components
 
-## Implementing a Real Time connected Micro-Frontend as a Progressive Web App
+## Real Time, Micro-Frontends & Progressive Web Apps
 
 - Introduction to Micro-Frontend and Event Driven Architecture (EDA)
 - Implementing a Real Time connected Micro-Frontend listening to Cloud Events

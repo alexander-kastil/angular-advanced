@@ -1,6 +1,6 @@
 # Labs: Food App
 
-- Lab 1: Theming
+- Lab 1: Standalone Apps
 - Lab 2: Reactive Forms
 - Lab 3: Reactive Programming
 - Lab 4: Client Side State with NgRx
