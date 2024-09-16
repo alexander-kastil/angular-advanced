@@ -7,7 +7,8 @@ import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-dire
 @Component({
   selector: 'app-control-flow',
   standalone: true,
-  imports: [MarkdownRendererComponent,
+  imports: [
+    MarkdownRendererComponent,
     MatSlideToggleModule,
     ReactiveFormsModule,
     BoxedDirective
@@ -16,7 +17,6 @@ import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-dire
   styleUrl: './control-flow.component.scss'
 })
 export class ControlFlowComponent {
-
   fcDisplay = new FormControl(true);
   dogs: string[] = []
 
@@ -25,5 +25,4 @@ export class ControlFlowComponent {
       this.dogs = ["Flora", "Cleo", "Soi", "Giro"]
     }, 3000);
   }
-
 }

@@ -2,21 +2,13 @@
 
 In this walkthrough we will migrate an existing application to standalone components. This migration process will consist of the following steps:
 
-- Upgrade the application to Angular 17 and do basic standalone migration
+- Migrate and Application to Standalone Components
 - Implement `app.config.ts` and `app.routes.ts`
 - Cleanup and migrate remaining (lazy loaded) modules
 
-## Upgrade the application to Angular 17 and do basic standalone migration
+## Migrate and Application to Standalone Components
 
 - Use [migration-starter](/migration-starter/) project to migrate an existing Angular app to standalone. [migration-solution](/migration-solution/) is the result of this walkthrough.
-
-- If you have not done so execute the following command to upgrade the application to Angular 17:
-
-    ```bash
-    ng update @angular/core@17 @angular/cli@17
-    ```
-
-    >Note: If you have other libraries that are not compatible with Angular 17 you might have to update them as well. For example this project was migrated using: `ng update @angular/cli @angular/core @angular/material @angular/cdk @ngrx/store ngx-markdown marked@9.0.0 --allow-dirty --force`. If you are less experienced with Angular migration you should not use the `--allow-dirty` flags and always work with clean repos and commit after each successful step. The `--force` flag sometimes is necessary to force the update of a library that is not compatible with Angular 17 and allow you basic installation in combination with `npm i --force`.   
 
 - Execute the migration schematic 
 

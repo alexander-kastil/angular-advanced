@@ -34,7 +34,9 @@
         <!-- <div class="gdLoading">
         <app-loading *ngIf="isLoading | async"></app-loading>
       </div> -->
-      <div class="gdWorkbench"><router-outlet></router-outlet></div>
+      <div class="gdWorkbench">
+        <router-outlet></router-outlet>
+      </div>
       @if (showMdEditor | async) {
         <div class="gdEditor">
           <app-markdown-editor></app-markdown-editor>

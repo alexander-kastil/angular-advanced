@@ -1,10 +1,6 @@
 {
   "demos": [
     {
-      "url": "control-flow",
-      "title": "Control Flow"
-    },
-    {
       "url": "standalone",
       "title": "Standalone Component"
     },
@@ -15,6 +11,10 @@
     {
       "url": "standalone-bootstrap",
       "title": "Load Standalone Comp."
+    },
+    {
+      "url": "control-flow",
+      "title": "Control Flow"
     },
     {
       "url": "directives-composition",
