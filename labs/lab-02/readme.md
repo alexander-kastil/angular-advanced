@@ -32,7 +32,7 @@ In this lab we will solve the following tasks:
 
 - Open `main.ts` and use `F1: Visual Studio Code - Organize Imports` to clean up the imports
 
-- To add the routing configuration create a new file `app/app.routes.ts` and add the following content:
+- To add the routing configuration create a new file `app/app.routes.ts` and add the following content. Replace the existing lazy loading of the food `food-routing.module.ts` with component lazy loading in the routes configuration:
 
     ```typescript
     import { Routes } from '@angular/router';
@@ -80,15 +80,42 @@ In this lab we will solve the following tasks:
 
 -   Inject FormBuilder to `food-edit.component.ts` using the `inject()` token and initialize the `foodForm : FormGroup`. Add a `minLength` validator to the name field and a min validator to the price field.
 
+    ```typescript
+    fb = inject(FormBuilder);
+    ```
+
 -   Initialize `@Input()` food with a `new FoodItem()` in `food-edit.component.ts`
 
--   Add a readonly form field for the id in `food-edit.component.html`
+    ```typescript
+    @Input() food: FoodItem = new FoodItem();
+    ```
 
--   Replace the ngModel bindings with formControlName bindings in `food-edit.component.html`
+-   Add a form field for the id in `food-edit.component.html`
 
--   Add a from tag below the mat-card-content tag in `food-edit.component.html` and attach a
+    ```html
+    <mat-form-field>
+        <input matInput type="number" formControlName="id" />
+    </mat-form-field>
+    ```
 
--   Add mat-error elements to display validation errors in `food-edit.component.html`
+-   Replace the ngModel bindings with formControlName bindings in `food-edit.component.html`. Example:
+
+    ```html
+        <mat-error
+        *ngIf="
+            foodForm.controls['name'].touched &&
+            foodForm.controls['name'].errors != undefined
+        "
+        > Name is required & must be more than 3 chars
+        </mat-error>
+    ```
+
+-   Add a from tag below the mat-card-content tag in `food-edit.component.html` and attach a formGroup directive to it
+
+    ```html
+    <mat-card-content>
+    <form [formGroup]="foodForm" novalidate class="column">
+    ```
 
 -   Add the following ngOnChanges method to `food-edit.component.ts`
 
