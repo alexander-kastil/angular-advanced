@@ -51,6 +51,7 @@ In this lab we will solve the following tasks:
     ```typescript
     export const appConfig: ApplicationConfig = {
         providers: [
+            ...
             provideRouter(routes),
             provideHttpClient(withInterceptorsFromDi()),
             provideAnimations()

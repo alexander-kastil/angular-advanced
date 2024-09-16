@@ -74,9 +74,10 @@ In this lab we will create a new Angular standalone project and we will create a
     ```typescript
     export const appConfig: ApplicationConfig = {
     providers: [
+        ...
         provideHttpClient(),
     ```
--   Create a navbar component in the shared folder. Notice that with a project that was create with Angular 17 all components are created as standalone components by default.
+-   Create a navbar component in the shared folder. Notice that with a project that was create with Angular 17+ all components are created as standalone components by default.
 
     ```bash
     ng g c shared/navbar
@@ -254,7 +255,7 @@ In this lab we will create a new Angular standalone project and we will create a
         { path: "about", component: AboutComponent }
     ];
     ```
-    
+
 - Just for your understanding review that `appConfig` is used in `main.ts`:
 
     ```typescript
