@@ -61,7 +61,7 @@
         @if(personForm.valid==false) {
           <button mat-raised-button color="primary">Save for later</button>
         }
-        <button mat-raised-button color="primary" type="submit" [disabled]="personForm.valid==false" >Submit</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid" >Submit</button>
       </form>
     </mat-card-content>
   </mat-card>

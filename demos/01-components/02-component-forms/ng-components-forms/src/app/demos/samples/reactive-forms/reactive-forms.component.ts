@@ -46,10 +46,21 @@ export class ReactiveFormsComponent implements OnInit {
     // with name params are supplied using comma as separator
     // with email we are using an object to supply the validators
     id: new FormControl(this.person.id),
-    name: new FormControl(this.person.name, [Validators.required, Validators.minLength(3)], []),
+    name: new FormControl(
+      this.person.name, // initial value
+      [Validators.required, Validators.minLength(3)], // sync validators
+      [] // async validators
+    ),
     lastname: new FormControl(this.person.lastName, Validators.required),
     age: new FormControl(this.person.age),
-    email: new FormControl(this.person.email, { updateOn: 'change', validators: [], asyncValidators: [] }),
+    email: new FormControl(
+      this.person.email, // initial value
+      { // configuration object
+        updateOn: 'change',
+        validators: [Validators.required],
+        nonNullable: true,
+      }
+    ),
     gender: new FormControl(this.person.gender),
     wealth: new FormControl(this.person.wealth),
   });
