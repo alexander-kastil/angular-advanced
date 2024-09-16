@@ -254,19 +254,7 @@ In this lab we will create a new Angular standalone project and we will create a
         { path: "about", component: AboutComponent }
     ];
     ```
-
--   Open `app.config.ts` and add the `provideHttpClient()` to the providers array. Also add the `provideRouter(routes)` and `provideAnimations()`:
-
-    ```bash
-    export const appConfig: ApplicationConfig = {
-        providers: [
-            provideHttpClient(),
-            provideRouter(routes),
-            provideAnimations()
-        ]
-    };
-    ```
-
+    
 - Just for your understanding review that `appConfig` is used in `main.ts`:
 
     ```typescript
