@@ -1,4 +1,5 @@
-import { Component, forwardRef, input, Input } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { Component, forwardRef, input } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -7,7 +8,6 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({

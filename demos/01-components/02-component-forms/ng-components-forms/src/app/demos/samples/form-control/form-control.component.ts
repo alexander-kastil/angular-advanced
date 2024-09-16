@@ -31,7 +31,7 @@ export class FormControlComponent implements OnInit {
   name = new FormControl('',
     [Validators.required, Validators.minLength(3)],
     []);
-  postal = new UntypedFormControl('3544', [Validators.minLength(4)]);
+  postal = new UntypedFormControl('3544', [Validators.minLength(4)]); //just to show
   city = new FormControl<string>('Idolsberg', [Validators.maxLength(15)]);
 
   ngOnInit() {
@@ -39,6 +39,7 @@ export class FormControlComponent implements OnInit {
   }
 
   subscribeNameChanges() {
+    // classic control events -> replaced with unified control events in Angular 18
     this.name.valueChanges.subscribe((data) =>
       console.log('Form values changed', data)
     );

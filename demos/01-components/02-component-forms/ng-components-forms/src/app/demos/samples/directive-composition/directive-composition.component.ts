@@ -7,7 +7,15 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     templateUrl: './directive-composition.component.html',
     styleUrls: ['./directive-composition.component.scss'],
     standalone: true,
-    imports: [MarkdownRendererComponent, FontBoldDirective, HeightDirective, WidthDirective, BorderDirective, BoxedDirective, ColumnDirective]
+    imports: [
+        MarkdownRendererComponent,
+        FontBoldDirective,
+        HeightDirective,
+        WidthDirective,
+        BorderDirective,
+        BoxedDirective,
+        ColumnDirective
+    ]
 })
 export class DirectiveCompositionComponent {
 

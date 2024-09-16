@@ -4,8 +4,7 @@
   </mat-card-header>
   <mat-card-content>
     <div column>
-      <mat-form-field>
-        
+      <mat-form-field>        
         <input matInput type="text" placeholder="Name" [formControl]="name" />
         @if (!name.valid) {
           <mat-error>

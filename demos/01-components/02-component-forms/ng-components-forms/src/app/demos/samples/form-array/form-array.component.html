@@ -17,10 +17,10 @@
       @if (skillForm.controls.name.value) {
       <div>
         <h6>Add your skills:</h6>
-        @for (skill of skillForm.controls.skills.controls; track skill; let i =
-        $index) {
+        @for (skill of skillForm.controls.skills.controls; track skill) {
         <div formArrayName="skills">
-          <div [formGroupName]="i" class="row">
+          <!-- $index is provided by control flow -->
+          <div [formGroupName]="$index" class="row"> 
             <mat-form-field>
               <input
                 matInput
@@ -34,7 +34,7 @@
             <div>
               <button
                 mat-raised-button
-                (click)="removeSkill(i)"
+                (click)="removeSkill($index)"
                 color="primary"
               >
                 Remove
