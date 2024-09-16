@@ -17,7 +17,7 @@ export class PersonService {
   }
 
   getPerson() {
-    return this.http.get<Person>(`${environment.api}persons/1`);
+    return this.http.get<Person>(`${environment.api}persons/1`).pipe(delay(2000));
   }
 
   save(form: NgForm) {

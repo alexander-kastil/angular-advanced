@@ -46,12 +46,12 @@ export class ReactiveValidationComponent implements OnInit {
     ],
     age: [this.person.age, [Validators.min(18), Validators.max(99)]],
     gender: [this.person.gender],
-    email: [this.person.email,
-    {
-      validators: [Validators.required, Validators.email],
-      asyncValidators: [this.mailExistsValidator],
-      updateOn: 'blur'
-    }
+    email: ['',
+      {
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [this.mailExistsValidator],
+        updateOn: 'blur'
+      }
     ],
     wealth: [this.person.wealth],
   });

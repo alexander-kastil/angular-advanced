@@ -68,11 +68,12 @@
         >
           Validate
         </button>
+        <!-- valid is false by default when using async validators -->
         <button
           mat-raised-button
           type="submit"
           color="primary"
-          [disabled]="!personForm.valid"
+          [disabled]="!personForm.valid" 
         >
           Submit
         </button>
@@ -97,15 +98,15 @@
 
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>Control State - "Age" Field</mat-card-title>
+    <mat-card-title>Control State - "E-Mail" Field</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    Age Fld is dirty: {{ personForm.controls["age"].dirty }}<br />
-    Age Fld is pristine: {{ personForm.controls["age"].pristine }}<br />
-    Age Fld is valid: {{ personForm.controls["age"].valid }}<br />
-    Age Fld is invalid: {{ personForm.controls["age"].invalid }}<br />
-    Age Fld is touched: {{ personForm.controls["age"].touched }}<br />
-    Age Fld is untouched: {{ personForm.controls["age"].untouched }}
+    E-Mail is dirty: {{ personForm.controls["email"].dirty }}<br />
+    E-Mail is pristine: {{ personForm.controls["email"].pristine }}<br />
+    E-Mail is valid: {{ personForm.controls["email"].valid }}<br />
+    E-Mail is invalid: {{ personForm.controls["email"].invalid }}<br />
+    E-Mail is touched: {{ personForm.controls["email"].touched }}<br />
+    E-Mail is untouched: {{ personForm.controls["email"].untouched }}
   </mat-card-content>
 </mat-card>
 
