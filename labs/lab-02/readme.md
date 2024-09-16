@@ -1,4 +1,4 @@
-# Food App Project - Components & Forms
+# Food App Project - Implementing Reactive Forms
 
 In this lab we will solve the following tasks:
 

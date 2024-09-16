@@ -1,7 +1,7 @@
 # Labs: Food App
 
-- Lab 1: Standalone Apps
-- Lab 2: Reactive Forms
+- Lab 1: Creating & Migrating Standalone Apps
+- Lab 2: Implementing Reactive Forms
 - Lab 3: Reactive Programming
 - Lab 4: Client Side State with NgRx
 - Lab 5: Using Using @ngrx/signal in Angular Apps
