@@ -30,10 +30,11 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 ## Standalone Components: Concepts & Migration
 
 - Standalone Components vs Modules
-- Creation, Bootstrapping 
-- Registering Providers & Dependency Injection
-- Routing & Lazy Loading
-- Migration to Standalone Components
+- Creating Standalone Components and Converting existing Components
+- Understanding the Angular Bootstraping Process
+- Registering Providers in app.config.ts
+- Routing & Lazy Loading app.routes.ts
+- Migration an existing Project to Standalone Components
 
 ## Components & Forms Deep Dive
 
