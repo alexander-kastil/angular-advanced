@@ -4,5 +4,9 @@ mat-form-field {
 
 button
 {
-  margin-right: 1rem;
+  margin-right: var(--gap-medium);
+}
+
+h3 {
+  margin-bottom: var(--gap-medium);
 }

@@ -49,16 +49,13 @@ export class ReactiveCascadeComponent {
 
   selects: string[] = [];
 
-  // Type the form using type inference
-  skillsGrp = this.fb.nonNullable.group({
-    techType: [''],
-    techValues: [''],
-  });
-
   profileForm = this.fb.group({
     firstName: [''],
     lastName: [''],
-    skills: this.fb.array([this.skillsGrp]),
+    skills: this.fb.array([this.fb.nonNullable.group({
+      techType: [''],
+      techValues: [''],
+    })]),
   });
 
   saveProfileForm() {
@@ -75,6 +72,9 @@ export class ReactiveCascadeComponent {
   }
 
   addSkill() {
-    this.profileForm.controls.skills.push(this.skillsGrp);
+    this.profileForm.controls.skills.push(this.fb.nonNullable.group({
+      techType: [''],
+      techValues: [''],
+    }));
   }
 }
