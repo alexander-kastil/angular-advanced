@@ -94,4 +94,8 @@ In this lab we will implement a responsive Side Menu using [Angular Material Sid
   .sidenav{
     height: 80vh;
   }
+
+  .mat-drawer-container {
+    height: 100%;
+  } 
   ```
