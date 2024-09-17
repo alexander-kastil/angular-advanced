@@ -111,7 +111,7 @@ export interface Skill {
   };
   ```
 
-Create the EntityDataService in `skills/skills-entity.service.ts`. If you do not want to override the methods, that is all you will have to do in order to load entity data.
+- Create the EntityDataService in `skills/skills-entity.service.ts`. If you do not want to override the methods, that is all you will have to do in order to load entity data.
 
   ```typescript
   @Injectable({
