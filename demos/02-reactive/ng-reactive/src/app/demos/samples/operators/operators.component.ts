@@ -84,13 +84,13 @@ export class OperatorsComponent implements OnInit {
       .pipe(
         tap((el) => {
           //logging
-          (el = el * 2), console.log('tapping:', el);
+          (el = el * 2), console.log('tap:', el);
           //side effect
           // call rest service with value to do distributed logging
           // enable / disable spinner
         })
       )
-      .subscribe((val) => console.log('logging', val));
+      .subscribe((val) => console.log('subscribe', val));
   }
 
   // JavaScript Array.find - not an observable operator

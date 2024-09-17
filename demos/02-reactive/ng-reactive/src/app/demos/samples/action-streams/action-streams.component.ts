@@ -21,11 +21,11 @@ import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-dir
 export class ActionStreamsComponent {
   ds = inject(DemoService);
   demos$ = this.ds.getItems();
-  filter$ = new FormControl<string>('', { nonNullable: true });
+  filter = new FormControl<string>('', { nonNullable: true });
 
   vm$ = combineLatest([
     this.demos$,
-    this.filter$.valueChanges.pipe(startWith('')),
+    this.filter.valueChanges.pipe(startWith('')),
   ]).pipe(
     map(([demos, filter]) => {
       return filter != ''

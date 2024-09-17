@@ -7,18 +7,18 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-simple-observable',
-    templateUrl: './creating-observable.component.html',
-    styleUrls: ['./creating-observable.component.scss'],
-    standalone: true,
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-    ],
+  selector: 'app-simple-observable',
+  templateUrl: './creating-observable.component.html',
+  styleUrls: ['./creating-observable.component.scss'],
+  standalone: true,
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+  ],
 })
 export class CreatingObservableComponent {
   onErr = (err: any) => console.log(err);
@@ -29,7 +29,7 @@ export class CreatingObservableComponent {
       data => console.log('current marble: ', data)
     );
     let arr = [2, 5, 9, 12, 22];
-    of(arr).subscribe(val => console.log(val)); // -> 1 marble
+    of(arr).subscribe(val => console.log('array marble: ', val)); // -> 1 marble
 
   }
 
