@@ -83,11 +83,6 @@
       "completed": true
     },
     {
-      "id": "3",
-      "name": "Angular",
-      "completed": false
-    },
-    {
       "id": "4",
       "name": "TypeScript",
       "completed": true
@@ -113,8 +108,8 @@
       "completed": true
     },
     {
-      "id": "2",
-      "name": "NgRx",
+      "id": "3",
+      "name": "Angular",
       "completed": false
     }
   ],
