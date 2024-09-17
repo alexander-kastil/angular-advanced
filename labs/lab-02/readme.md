@@ -16,8 +16,6 @@ In this lab we will solve the following tasks:
 
 ## Convert the project to bootstrap and use standalone components
 
->Note: You might want to commit your changes between the different steps
-
 - Convert the project to use standalone components by running the following command two times:    
 
     ```bash
