@@ -53,9 +53,9 @@ In this lab we will implement a responsive Side Menu using [Angular Material Sid
         <mat-sidenav #sidenav class="sidenav"
         [opened]="ms.sideNavVisible | async"
         [mode]="mode">
-          <app-sidemenu></app-sidemenu>
+          <app-sidebar></app-sidebar>
         </mat-sidenav>
-        <mat-sidenav-content [ngStyle]="getWorbenchStyle()">
+        <mat-sidenav-content [ngStyle]="getWorkbenchStyle()">
           <router-outlet></router-outlet>
         </mat-sidenav-content>
       </mat-sidenav-container>
