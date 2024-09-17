@@ -57,10 +57,17 @@ export class LangFeaturesComponent {
       ],
     };
 
+    const skilsArray = ['JavaScript', 'TypeScript', 'Angular'];
+
     //does this create a shallow copy or a deep copy?
     const spreadClonedPerson = { ...father };
     spreadClonedPerson.children[0].name = 'Giro';
     console.log('After Change:', father.children[0].name);
+
+    //cloning an array    
+    const arr = [1, 2, 3];
+    const notAnArray = { ...arr };
+    const clonedArray = [...arr];
 
     //object composition -> no change detection
     const copiedPerson = Object.assign(father, { job: 'Construction Guy' });
@@ -70,10 +77,6 @@ export class LangFeaturesComponent {
     const clonedPerson = Object.assign({}, father, languages);
     console.log('After Change:', father);
     console.log('After Change:', clonedPerson);
-
-    const arr = [1, 2, 3];
-    const notAnArray = { ...arr };
-    const clonedArray = [...arr];
   }
 
   deepCloning() {

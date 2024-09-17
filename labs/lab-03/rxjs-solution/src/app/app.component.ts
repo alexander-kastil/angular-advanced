@@ -31,7 +31,7 @@ export class AppComponent {
     this.changeDetector.detectChanges();
   }
 
-  getWorbenchStyle() {
+  getWorkbenchStyle() {
     let result = {};
     this.ms.sideNavVisible.subscribe((visible) => {
       result = visible

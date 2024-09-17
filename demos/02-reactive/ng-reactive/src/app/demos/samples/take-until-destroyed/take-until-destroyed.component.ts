@@ -23,10 +23,10 @@ export class TakeUntilDestroyedComponent {
   city = new FormControl<string>('Idolsberg', [Validators.maxLength(15)]);
 
   ngOnInit() {
-    this.name.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((data) =>
+    this.name.valueChanges.pipe(takeUntilDestroyed()).subscribe((data) =>
       console.log('Form values changed', data)
     );
-    this.name.statusChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((data) =>
+    this.name.statusChanges.pipe(takeUntilDestroyed()).subscribe((data) =>
       console.log('Form status changed', data)
     );
     this.postal.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((data) =>

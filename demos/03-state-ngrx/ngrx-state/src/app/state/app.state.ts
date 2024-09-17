@@ -2,8 +2,6 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { appActions } from './app.actions';
 
-export const appFeatureKey = 'app';
-
 export interface AppState {
   IsMockAuthenticated: boolean;
   sideNavVisible: boolean;
@@ -17,7 +15,7 @@ export const initialAppState: AppState = {
 };
 
 export const appState = createFeature({
-  name: appFeatureKey,
+  name: 'app',
   reducer: createReducer(initialAppState,
     on(appActions.toggleSideNav, (state) => (
       {
