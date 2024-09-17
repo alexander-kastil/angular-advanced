@@ -1,4 +1,6 @@
-- Examine `customers feature` and `demos feature`. They both provide feature state slices that are also registered in `app.config.ts`. `customersState` also provides `extraSelectors`. The default selectors are created automatically by the `createFeature()` function.
+- Examine `customers feature` and `demos feature`. 
+
+- They both provide feature state slices that are also registered in `app.config.ts`. 
 
 ```typescript
 export const customerState = createFeature({

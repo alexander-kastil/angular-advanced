@@ -20,14 +20,15 @@
     "@angular/platform-browser": "^18.2.3",
     "@angular/platform-browser-dynamic": "^18.2.3",
     "@angular/router": "^18.2.3",
-    "@ngrx/data": "^17.2.0",
-    "@ngrx/effects": "^17.2.0",
-    "@ngrx/entity": "^17.2.0",
-    "@ngrx/store": "^17.2.0",
+    "@ngrx/data": "^18.0.2",
+    "@ngrx/effects": "^18.0.2",
+    "@ngrx/entity": "^18.0.2",
+    "@ngrx/store": "^18.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10",
-    "@ngrx/store-devtools": "^17.2.0"
+    "@ngrx/store-devtools": "^18.0.2",
+    "@ngrx/operators": "^18.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.3",

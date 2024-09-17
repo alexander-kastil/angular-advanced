@@ -16,24 +16,29 @@
       "id": "3"
     },
     {
-      "url": "feature-modules-state",
-      "title": "Feature Module State",
-      "id": "5"
-    },
-    {
       "url": "effects",
       "title": "Effects",
       "id": "16"
     },
     {
-      "url": "respond-effects",
-      "title": "Respond to Effects",
-      "id": "18"
+      "url": "feature-modules-state",
+      "title": "Feature Module State",
+      "id": "5"
+    },
+    {
+      "url": "selectors",
+      "title": "Selectors",
+      "id": "88"
     },
     {
       "url": "facades",
       "title": "Facades",
       "id": "15"
+    },
+    {
+      "url": "respond-effects",
+      "title": "Respond to Effects",
+      "id": "18"
     },
     {
       "url": "ngrx-entity",
@@ -110,6 +115,11 @@
     {
       "id": "2",
       "name": "NgRx",
+      "completed": false
+    },
+    {
+      "id": "3",
+      "name": "Angulari",
       "completed": false
     }
   ],

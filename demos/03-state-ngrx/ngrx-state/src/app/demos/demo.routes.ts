@@ -15,6 +15,7 @@ import { NgrxSignalsComponent } from './samples/ngrx-signals/ngrx-signals.compon
 import { CreateFeatureComponent } from './samples/create-feature/create-feature.component';
 import { DispatchActionComponent } from './samples/dispatch-action/dispatch-action.component';
 import { RespondToEffectsComponent } from './samples/respond-to-effects/respond-to-effects.component';
+import { SelectorsComponent } from './samples/selectors/selectors.component';
 
 export const demoRoutes: Routes = [
   {
@@ -27,6 +28,7 @@ export const demoRoutes: Routes = [
       { path: 'ngrx-entity', component: NgrxEntityComponent, title: 'Demos - Ngrx Entity' },
       { path: 'feature-modules-state', component: FeatureModuleStateComponent, title: 'Demos - Feature Modules State' },
       { path: 'create-feature', component: CreateFeatureComponent, title: 'Demos - createFeature' },
+      { path: 'selectors', component: SelectorsComponent, title: 'Demos - Selectors' },
       { path: 'effects', component: EffectsComponent, title: 'Demos - Effects' },
       { path: 'facades', component: FacadesComponent, title: 'Demos - Facades' },
       { path: 'ngrx-data', component: NgrxDataComponent, title: 'Demos - Ngrx Data' },
