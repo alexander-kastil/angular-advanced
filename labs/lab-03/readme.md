@@ -1,12 +1,12 @@
 # Food App - State
 
-In this lab we will solve the following tasks:
-
-- Implement a responsive Side Menu
+In this lab we will implement a responsive Side Menu using [Angular Material SideNav](https://material.angular.io/components/sidenav/overview) and a Stateful Service using BehaviorSubjects. To handle reactivity of the screen width we will use the [BreakpointObserver](https://material.angular.io/cdk/layout/overview) from Angular Material.
 
 ## Implement a responsive Side Menu:
 
-![menu](_images/menu.jpg)
+- You can take the [demo.container](../../demos/03-state-ngrx/ngrx-state/src/app/demos/demo-container/demo-container.component.ts) and the [sidenav.service.ts](../../demos/03-state-ngrx/ngrx-state/src/app/shared/sidenav/sidenav.service.ts) as a reference.
+
+  ![menu](_images/menu.jpg)
 
 - Implement a sidenav.service.ts as a Stateful Service using BehaviorSubjects with the two properties:
 
@@ -95,5 +95,3 @@ In this lab we will solve the following tasks:
     height: 80vh;
   }
   ```
-
-- Take the [demo.container](../../demos/03-state-ngrx/ngrx-state/src/app/demos/demo-container/demo-container.component.ts) and the [sidenav.service.ts](../../demos/03-state-ngrx/ngrx-state/src/app/shared/sidenav/sidenav.service.ts) as a reference.

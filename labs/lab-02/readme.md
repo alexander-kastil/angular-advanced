@@ -4,15 +4,15 @@ In this lab we will solve the following tasks:
 
 - Convert the project to bootstrap and use standalone components
 
-- Refactor `food-edit.component` to be implemented as a Reactive Form using FormBuilder.
+- Refactor `food-edit.component` to be implemented as a Reactive Form using [FormBuilder](FormBuilder).
 
-    Note: You can take the following components as a [reference](../../demos/01-components/02-component-forms/src/app/demos/samples/forms-builder/):
+    >Note: You can take the following components as a [reference](../../demos/01-components/02-component-forms/ng-components-forms/src/app/demos/samples/forms-builder/):
 
 - Implement Validation for the name filed to be required with min length of 3 and the price filed to be positive
 
     ![edit-form](_images/edit-form.png)
 
-    > Note: You can take the following components as a [reference](../../demos/01-components/02-component-forms/src/app/demos/samples/validaton-intro):
+    > Note: You can take the following components as a [reference](../../demos/01-components/02-component-forms/ng-components-forms/src/app/demos/samples/validaton-intro):
 
 ## Convert the project to bootstrap and use standalone components
 
@@ -118,14 +118,14 @@ In this lab we will solve the following tasks:
     <form [formGroup]="foodForm" novalidate class="column">
     ```
 
--   Add the following ngOnChanges method to `food-edit.component.ts`
+-   Add the following [ngOnChanges](https://angular.dev/guide/components/lifecycle#ngonchanges) lifecycle event to `food-edit.component.ts`
 
     ```typescript
     ngOnChanges(changes: SimpleChanges): void {
-    if (changes['food']) {
-      this.foodForm.setValue(changes['food'].currentValue);
+        if (changes['food']) {
+        this.foodForm.setValue(changes['food'].currentValue);
+        }
     }
-  }
     ```
 
 -   Implement the onSubmit method in food-edit.component.ts
@@ -158,4 +158,3 @@ In this lab we will solve the following tasks:
         }
     }
     ```
-
