@@ -1,42 +1,52 @@
 {
   "demos": [
     {
+      "id": 1,
       "url": "signals-basics",
       "title": "Signals Basics"
     },
     {
+      "id": 2,
       "url": "signals-effects",
       "title": "Signals Effects"
     },
     {
+      "id": 3,
       "url": "rxjs-interop",
       "title": "RxJS Interop"
     },
     {
+      "id": 4,
       "url": "signal-inputs",
       "title": "Inputs / Outputs"
     },
     { 
+      "id": 5,
       "url": "model-inputs",
       "title": "Model Inputs"
     },
     {
+      "id": 6,
       "url": "container-presenter",
       "title": "Container Presenter"
     },
     {
+      "id": 7,
       "url": "signals-event-bus",
       "title": "Signals EventBus"
     },
     {
+      "id": 8,
       "url": "select-signal",
       "title": "NgRx Interop"
     },
     {
+      "id": 9,
       "url": "ngrx-signals",
       "title": "@ngrx/signals"
     },
     { 
+      "id": 10,
       "url": "zoneless-change-detection",
       "title": "Zoneless Change Detection"
     }

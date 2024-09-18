@@ -8,7 +8,7 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-@for (sk of skills() ; track sk) {
+@for (sk of skills(); track sk) {
   <app-skill-row
     [skill]="sk"
     (itemDeleted)="deleteItem($event)"

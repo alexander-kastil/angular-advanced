@@ -32,12 +32,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class SkillsContainerComponent {
   service = inject(SkillsEntityService);
   fcToggle = new FormControl(true);
-  skills = toSignal(this.service.entities$.pipe(
-    combineLatestWith(this.fcToggle.valueChanges.pipe(startWith(true))),
-    map(([skills, showAll]) => {
-      return showAll ? skills : skills.filter((sk: Skill) => sk.completed === showAll);
-    })
-  ));
+  skills = toSignal(
+    this.service.entities$.pipe(
+      combineLatestWith(this.fcToggle.valueChanges.pipe(startWith(true))),
+      map(([skills, showAll]) => {
+        return showAll ? skills : skills.filter((sk: Skill) => sk.completed === showAll);
+      })
+    ));
 
   ngOnInit(): void {
     this.service.loaded$.subscribe((loaded) => {

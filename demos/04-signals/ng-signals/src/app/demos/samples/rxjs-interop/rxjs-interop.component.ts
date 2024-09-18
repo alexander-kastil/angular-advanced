@@ -28,7 +28,7 @@ export class RxjsInteropComponent {
   // an alternative could to subscribe the observable and create a writeable signal
   createWriteAmount = effect(() => {
     this.writeableAmount.set(this.amount());
-  });
+  }, { allowSignalWrites: true });
 
   updateAmount() {
     // this.amount.set(this.writeAmount());
