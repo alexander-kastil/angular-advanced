@@ -154,8 +154,6 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
   }))
   ```
 
-  > Note: If we have set up @ngrx/data we could have used the `getAll()` method instead of `getFood()`.
-
 - To make sure that loadFood is called we will use withHooks() and call it in the `onInit()` hook:
 
   ```typescript
@@ -187,7 +185,7 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
   ng g c food/food-edit
   ```
 
-- Food list should look like this. You can take the lab result from the previous module as a reference and solve it yourself or follow the step by step guie
+- Food list should look like this. You can take the lab result from the previous module as a reference and solve it yourself or follow the step by step guide.
 
   ![Food List](_images/food-list.png)
 
@@ -274,7 +272,7 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
   }
   ```
 
-- Food edit should look like this. You can take the lab from the previous module as a referenceand and solve it yourself or follow the step by step guie
+- Food edit should look like this. You can take the lab from the previous module as a reference and solve it yourself or follow the step by step guide.
 
 
   ![Food edit](_images/food-edit.png)
@@ -470,7 +468,7 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
 
 - Replace the mat-toolbar in food-container.component.html with the following:
 
-  ```html
+    ```html
     <mat-toolbar>
         <mat-toolbar-row class="addRow">
             <div>Items in SignalStore: {{ store.count() }}</div>
@@ -481,17 +479,17 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
- ```
+    ```
 
 - Add the following css to `food-container.component.scss`:
 
-  ```css
-  .addRow{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  }
-  ```
+    ```css
+    .addRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    ```
 
 ### Implement the Save and Delete functionality for food-edit and food-container
 
