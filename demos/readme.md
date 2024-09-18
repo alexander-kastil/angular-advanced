@@ -68,19 +68,6 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Retry & Error Handling Strategies
 - Implementing & Testing Custom Observable Operators
 
-## Advanced State Management using NgRx
-
-- Overview State Management Patterns
-- Introduction to the Redux Pattern & NgRx
-- Feature State and ActionReducerMap
-- Implementing NgRx Store, Reducers & Selectors using createFeature
-- Actions & createActionGroup
-- Debugging NgRx using Redux Dev Tools
-- Effects, Facades, @ngrx/entity adapters
-- Simplifying Data Access with @ngrx/data
-- Implementing a reactive View Model
-- Using @ngrx/component-store
-
 ## Mastering Reactivity using Signals
 
 - Introduction to Signals (WritableSignal, Computed, Effects)
@@ -89,9 +76,19 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Nesting Components using Signals, input, output & model
 - View Queries: viewChild, -Children, contentChild, -Children
 - Communication between Components using Event Bus Pattern
+- Zoneless Change Detection using Signals
+
+## Advanced State Management using NgRx
+
+- Overview State Management Patterns
+- Introduction to the Classic NgRx & Redux Pattern
+- Implementing NgRx Store, Reducers & Selectors using createFeature
+- Actions & createActionGroup
+- Effects, Facades, @ngrx/entity & @ngrx/data
 - Creating a Signals Store using @ngrx/signals
 - Side Effects using rxMethod
-- Zoneless Change Detection using Signals
+- Signal Store Plugins
+- Signals Store, Entity & Custom Data Services
 
 ## Advanced Routing and App Initialization
 
@@ -137,23 +134,21 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Introduction to End-2-End Testing using Cypress
 - Cypress Component Tests
 
-## Reusability with Libraries, Nx, Schematics & Angular Elements
+## Reusability with Libraries, Nx & Angular Elements
 
 - Angular Building Blocks: Workspace, Apps, Libraries
 - Reusable Artifacts using Angular Libraries
 - Implementing, Publishing and Consuming Libraries to / from GitHub Packages
 - Introduction to Nx Workspaces
-- Understanding and Implementing Schematics
-- Implementing Web Components using Angular Elements and Standalone Components
+- Reusable Web Components using Angular Elements and Standalone Components
 
 ## Real Time, Micro-Frontends & Progressive Web Apps
 
-- Introduction to Micro-Frontend and Event Driven Architecture (EDA)
-- Implementing a Real Time connected Micro-Frontend listening to Cloud Events
+- Introduction to Micro-Frontends 
+- Real Time connected Micro-Frontends with Cloud Events or Large Language Models
 - Introduction to Progressive Web Apps
 - Understanding and Configuring Service Workers & Manifests
 - Installing & Updating Progressive Web Apps
-- Introduction to Module Federation
 
 ## Optimizing & Publishing Containerized Applications
 
