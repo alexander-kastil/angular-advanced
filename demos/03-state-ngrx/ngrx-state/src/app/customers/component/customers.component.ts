@@ -6,13 +6,14 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { CustomersFacade } from '../state/customers.facade';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
   standalone: true,
-  imports: [MatToolbar, MatToolbarRow, FormsModule, ReactiveFormsModule, AsyncPipe]
+  imports: [MatToolbar, MatInputModule, MatToolbarRow, FormsModule, ReactiveFormsModule, AsyncPipe]
 })
 export class CustomersComponent implements OnInit {
   // store = inject(Store<CustomersState>)
