@@ -72,8 +72,7 @@ export const appConfig: ApplicationConfig = {
             useFactory: configFactory,
             deps: [ConfigService],
             multi: true,
-        }
-        ,
+        },
         {
             provide: ErrorHandler,
             useClass: GlobalErrorHandler,
