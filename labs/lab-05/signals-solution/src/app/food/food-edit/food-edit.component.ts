@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -21,14 +21,14 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class FoodEditComponent {
   fb = inject(FormBuilder)
-  @Input({ required: true }) food: FoodItem | null = null;
-  @Output() onFoodSaved: EventEmitter<FoodItem> = new EventEmitter<FoodItem>();
+  food = input<FoodItem | null>();
+  onFoodSaved = output<FoodItem>();
 
   foodForm: FormGroup = this.fb.group({
-    id: [this.food?.id],
-    name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
-    price: [this.food?.price, [Validators.required, Validators.min(1)]],
-    calories: this.food?.calories,
+    id: [this.food()?.id],
+    name: [this.food()?.name, [Validators.required, Validators.minLength(3)]],
+    price: [this.food()?.price, [Validators.required, Validators.min(1)]],
+    calories: this.food()?.calories,
   });
 
   ngOnChanges(changes: SimpleChanges): void {

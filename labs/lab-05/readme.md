@@ -200,25 +200,25 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
       styleUrl: './food-list.component.scss'
   })
   export class FoodListComponent {
-      @Input({ required: true }) food !: FoodItem[];
-      @Output() onFoodSelected: EventEmitter<FoodItem> = new EventEmitter<FoodItem>();
+    food = input.required<FoodItem[]>();
+    onFoodSelected = output<FoodItem>();
 
-      displayedColumns: string[] = ['id', 'name', 'price', 'calories'];
-      dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource<FoodItem>([]);
+    displayedColumns: string[] = ['id', 'name', 'price', 'calories'];
+    dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource<FoodItem>([]);
 
-      ngOnChanges(changes: SimpleChanges) {
-          if (changes['food']) {
-          this.dataSource = new MatTableDataSource(changes['food'].currentValue);
-          }
-      }
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['food']) {
+        this.dataSource = new MatTableDataSource(changes['food'].currentValue);
+        }
+    }
 
-      applyFilter(filterValue: string) {
-          this.dataSource.filter = filterValue.trim().toLowerCase();
-      }
+    applyFilter(filterValue: string) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
 
-      selectFood(p: FoodItem) {
-          this.onFoodSelected.emit(p);
-      }
+    selectFood(p: FoodItem) {
+        this.onFoodSelected.emit(p);
+    }
   }
   ```
 
@@ -279,43 +279,43 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
 
 - Add the following to the `food-edit.component.ts`:
 
-  ```typescript
-  @Component({
-      selector: 'app-food-edit',
-      standalone: true,
-      imports: [
-          MatCardModule,
-          MatInputModule,
-          MatButtonModule,
-          ReactiveFormsModule,
-          ColumnDirective
-      ],
-      templateUrl: './food-edit.component.html',
-      styleUrl: './food-edit.component.scss'
-  })
-      export class FoodEditComponent {
-      fb = inject(FormBuilder)
-      @Input({ required: true }) food: FoodItem | null = null;
-      @Output() onFoodSaved: EventEmitter<FoodItem> = new EventEmitter<FoodItem>();
+    ```typescript
+    @Component({
+        selector: 'app-food-edit',
+        standalone: true,
+        imports: [
+            MatCardModule,
+            MatInputModule,
+            MatButtonModule,
+            ReactiveFormsModule,
+            ColumnDirective
+        ],
+        templateUrl: './food-edit.component.html',
+        styleUrl: './food-edit.component.scss'
+    })
+    export class FoodEditComponent {
+        fb = inject(FormBuilder)
+        food = input<FoodItem | null>();
+        onFoodSaved = output<FoodItem>();
 
-      foodForm: FormGroup = this.fb.group({
-          id: [this.food?.id],
-          name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
-          price: [this.food?.price, [Validators.required, Validators.min(1)]],
-          calories: this.food?.calories,
-      });
+        foodForm: FormGroup = this.fb.group({
+            id: [this.food?.id],
+            name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
+            price: [this.food?.price, [Validators.required, Validators.min(1)]],
+            calories: this.food?.calories,
+        });
 
-      ngOnChanges(changes: SimpleChanges): void {
-          if (changes['food']) {
-          this.foodForm.setValue(changes['food'].currentValue);
-          }
-      }
+        ngOnChanges(changes: SimpleChanges): void {
+            if (changes['food']) {
+            this.foodForm.setValue(changes['food'].currentValue);
+            }
+        }
 
-      saveForm(): void {
-          this.onFoodSaved.emit(this.foodForm.value);
-      }
-  }
-  ```
+        saveForm(): void {
+            this.onFoodSaved.emit(this.foodForm.value);
+        }
+    }
+    ```
 
 - Add the following code to `food-container.component.ts`. This time you will have to add the imports by yourself:
 
