@@ -1,20 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { foodStore } from '../store/food.store';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressBarModule } from '@angular/material/progress-bar'
-import { FoodListComponent } from '../food-list/food-list.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FoodEditComponent } from '../food-edit/food-edit.component';
+import { FoodListComponent } from '../food-list/food-list.component';
 import { FoodItem } from '../food.model';
+import { foodStore } from '../store/food.store';
 
 @Component({
-  selector: 'app-food',
+  selector: 'app-food-container',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatProgressBarModule, FoodListComponent, FoodEditComponent],
-  templateUrl: './food.component.html',
-  styleUrl: './food.component.scss'
+  imports: [MatToolbarModule, MatButtonModule, MatProgressBarModule, FoodEditComponent, FoodListComponent],
+  templateUrl: './food-container.component.html',
+  styleUrl: './food-container.component.scss'
 })
-export class FoodComponent {
+export class FoodContainerComponent {
   store = inject(foodStore)
 
   selectFood(item: FoodItem) {
