@@ -206,18 +206,16 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
     displayedColumns: string[] = ['id', 'name', 'price', 'calories'];
     dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource<FoodItem>([]);
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes['food']) {
-        this.dataSource = new MatTableDataSource(changes['food'].currentValue);
-        }
-    }
+    initMatTableSource = effect(() => {
+        this.dataSource = new MatTableDataSource(this.food());
+    });
 
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    selectFood(p: FoodItem) {
-        this.onFoodSelected.emit(p);
+    selectFood(item: FoodItem) {
+        this.onFoodSelected.emit(item);
     }
   }
   ```
@@ -305,11 +303,12 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
             calories: this.food?.calories,
         });
 
-        ngOnChanges(changes: SimpleChanges): void {
-            if (changes['food']) {
-            this.foodForm.setValue(changes['food'].currentValue);
+        updateForm = effect(() => {
+            const foodItem = this.food();
+            if (foodItem) {
+            this.foodForm.setValue(foodItem);
             }
-        }
+        });
 
         saveForm(): void {
             this.onFoodSaved.emit(this.foodForm.value);
@@ -375,11 +374,12 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
         calories: this.food?.calories,
     });
 
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes['food']) {
-        this.foodForm.setValue(changes['food'].currentValue);
+    updateForm = effect(() => {
+        const foodItem = this.food();
+        if (foodItem) {
+        this.foodForm.setValue(foodItem);
         }
-    }
+    });
 
     saveForm(): void {
         this.onFoodSaved.emit(this.foodForm.value);

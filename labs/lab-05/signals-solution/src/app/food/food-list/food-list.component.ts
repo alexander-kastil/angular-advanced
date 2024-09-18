@@ -1,4 +1,4 @@
-import { Component, input, output, SimpleChanges } from '@angular/core';
+import { Component, effect, input, output, SimpleChanges } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -20,11 +20,9 @@ export class FoodListComponent {
   displayedColumns: string[] = ['id', 'name', 'price', 'calories', 'delete', 'select'];
   dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource<FoodItem>([]);
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['food']) {
-      this.dataSource = new MatTableDataSource(changes['food'].currentValue);
-    }
-  }
+  initMatTableSource = effect(() => {
+    this.dataSource = new MatTableDataSource(this.food());
+  });
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

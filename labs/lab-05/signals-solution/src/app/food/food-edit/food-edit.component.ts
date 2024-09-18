@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, inject, input, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -31,11 +31,12 @@ export class FoodEditComponent {
     calories: this.food()?.calories,
   });
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['food']) {
-      this.foodForm.setValue(changes['food'].currentValue);
+  updateForm = effect(() => {
+    const foodItem = this.food();
+    if (foodItem) {
+      this.foodForm.setValue(foodItem);
     }
-  }
+  });
 
   saveForm(): void {
     this.onFoodSaved.emit(this.foodForm.value);
