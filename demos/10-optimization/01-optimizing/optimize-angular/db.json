@@ -6,11 +6,6 @@
       "id": "5957"
     },
     {
-      "url": "esbuild",
-      "title": "ES Build",
-      "id": "efc1"
-    },
-    {
       "url": "optimize-bundles",
       "title": "Optimize Bundles",
       "id": "440f"

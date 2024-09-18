@@ -155,32 +155,21 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Installing & Updating Progressive Web Apps
 - Introduction to Module Federation
 
-## Building & Optimizing Applications
+## Optimizing & Publishing Containerized Applications
 
 - Using Chrome Dev Tools & Lighthouse for Performance Optimization
-- Analyzing and Optimizing Bundles & Modules
 - Understanding & Using Page Traces
-- Optimizing Images using NgOptimizedImage 
+- Analyzing and Optimizing Bundles 
 - Logging NgRx to custom destinations using Meta-Reducers 
 - Virtual- & Infinite Scrolling
 - Understanding, Profiling & Optimizing Angular Change Detection
 - Understanding & Optimizing Angular Change Detection
 - Introduction to Zoneless Change Detection
+- Optimizing Images using NgOptimizedImage 
 - Using Linting and Autoformat with Prettier
 - Accessibility A11y: Best Practices & Linting
 - Introduction to Server Side Rendering (SSR) and Non-destructive hydration
-- Why Server Side Rendering
 - Configure Server Side Rendering & Pre-rendering
-
-## Publishing Angular App using Containers and Config Injection
-
-- Deployment Overview & Cloud Hosting Options
-  -  Using ng deploy to publish to Firebase
-  -  Deploy to Azure Static Webapp 
 - Configuration Management and Config Injection Options
-  - Using a config service
-  - Creating an Angular Multi-Stage Docker Image
-  - Overriding config in containers using environment variables
-- Deploy to a Cloud Container Host (Azure Container Apps)
-  - Azure Container Apps Overview
-  - Publish & Configure Api & Angular UI Containers
+- Creating an Angular Multi-Stage Docker Image
+- Overriding config in containers using environment variables
