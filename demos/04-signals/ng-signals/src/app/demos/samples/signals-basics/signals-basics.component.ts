@@ -37,6 +37,7 @@ export class SignalsBasicsComponent {
     });
   }
 
+  // exotic use case
   logLikes() {
     effect(() => {
       console.log('there was a like', this.topic());

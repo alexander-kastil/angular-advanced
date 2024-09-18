@@ -25,7 +25,7 @@ export class ContainerPresenterSignalsComponent {
 
   onPersonSelected(p: Person) {
     console.log('Person selected:', p);
-    this.current.set({ ...p });
+    this.current.set(p);
   }
 
   onPersonSaved(p: Person) {
