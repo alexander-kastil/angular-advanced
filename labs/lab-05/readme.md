@@ -2,7 +2,7 @@
 
 In this lab we will re-build the classic Angular solution from `lab-02` to `lab-04` and solve the following tasks:
 
-- Take the `standalone app` from `lab-01` and setup a basic `SignalStore`
+- Take the `signals-starter` and setup a basic `SignalStore`
 - Provide CRUD and loading for food using `@ngrx/signal` and its `SignalStore`
 - Implement a container presenter pattern for `food-container`, `food-list` and `food-edit` using `input` and `output`
 - Implement an Add Item button on top of the page
