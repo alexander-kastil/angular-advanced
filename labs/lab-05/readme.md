@@ -297,10 +297,10 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
         onFoodSaved = output<FoodItem>();
 
         foodForm: FormGroup = this.fb.group({
-            id: [this.food?.id],
-            name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
-            price: [this.food?.price, [Validators.required, Validators.min(1)]],
-            calories: this.food?.calories,
+            id: [this.food()?.id],
+            name: [this.food()?.name, [Validators.required, Validators.minLength(3)]],
+            price: [this.food()?.price, [Validators.required, Validators.min(1)]],
+            calories: this.food()?.calories,
         });
 
         updateForm = effect(() => {
@@ -368,12 +368,12 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
     onFoodSelected = output<FoodItem>();
 
     foodForm: FormGroup = this.fb.group({
-        id: [this.food?.id],
-        name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
-        price: [this.food?.price, [Validators.required, Validators.min(1)]],
-        calories: this.food?.calories,
+        id: [this.food()?.id],
+        name: [this.food()?.name, [Validators.required, Validators.minLength(3)]],
+        price: [this.food()?.price, [Validators.required, Validators.min(1)]],
+        calories: this.food()?.calories,
     });
-
+    
     updateForm = effect(() => {
         const foodItem = this.food();
         if (foodItem) {
