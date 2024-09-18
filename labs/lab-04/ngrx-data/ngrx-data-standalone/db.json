@@ -1,32 +1,27 @@
 {
   "skills": [
     {
-      "id": 1,
+      "id": "1",
       "name": "RxJs",
       "completed": false
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "NgRx",
       "completed": false
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Angular",
       "completed": true
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "TypeScript",
       "completed": true
     },
     {
-      "id": 5,
-      "name": "@ngrx/data",
-      "completed": false
-    },
-    {
-      "id": 6,
+      "id": "6",
       "name": "Signals",
       "completed": false
     }

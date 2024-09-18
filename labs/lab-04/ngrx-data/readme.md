@@ -11,8 +11,10 @@
 - Copy `db.json` to the root folder. Make sure json-server is installed globally:
 
   ```bash
-  npm i -g json-server
+  npm i -g json-server@0.8.23
   ```
+
+  >Note: Higher versions of json-server have a known issue with integer based ids. Until this is fixed, we will use version 0.8.23.
 
 - Run json-server in a separate terminal:
 
@@ -26,7 +28,7 @@
   ng g environments
   ```
 
-- Add the default url to environment.ts and environment.development.ts:
+- Add the default url to `environment.ts` and `environment.development.ts`:
 
   ```typescript
   export const environment = {

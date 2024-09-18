@@ -20,6 +20,7 @@ export const customerState = createFeature({
       customers: action.customers,
     })),
     on(customersActions.loadCustomersFailure, (state, action) => ({
+      // handle error
       ...state,
     })),
     on(customersActions.setFilter, (state, action) => ({

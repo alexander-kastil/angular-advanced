@@ -14,7 +14,7 @@ export class CustomersFacade {
     }
 
     getCustomers() {
-        this.store.select(customerState.selectFilteredUsers);
+        return this.store.select(customerState.selectFilteredUsers);
     }
 
     setFilter(filter: string) {
