@@ -1,6 +1,6 @@
 # Using @ngrx/signals and Signals Store
 
-In this lab we will re-build the classic Angular solution from `lab-02` to `lab-04` and solve the following tasks:
+In this lab we will re-build the classic Angular solution from `lab-02` to `lab-04` using `Signals` and solve the following tasks:
 
 - Take the `signals-starter` and setup a basic `SignalStore`
 - Provide CRUD and loading for food using `@ngrx/signal` and its `SignalStore`
