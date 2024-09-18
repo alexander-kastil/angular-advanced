@@ -1,4 +1,4 @@
-# Using @ngrx/signals in Angular Apps
+# Using @ngrx/signals and Signals Store
 
 In this lab we will re-build the classic Angular solution from `lab-02` to `lab-04` and solve the following tasks:
 
