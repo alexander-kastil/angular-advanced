@@ -1,11 +1,12 @@
 # Using @ngrx/signals in Angular Apps
 
-In this lab we will solve the following tasks:
+In this lab we will re-build the classic Angular solution from `lab-02` to `lab-04` and solve the following tasks:
 
 - Take the `standalone app` from `lab-01` and setup a basic `SignalStore`
-- Re-build the classic Angular solution from `lab-02` to `lab-04`
-- Provide CRUD and loading for food using `@ngrx/signal`
-- Implement a `container presenter pattern`
+- Provide CRUD and loading for food using `@ngrx/signal` and its `SignalStore`
+- Implement a container presenter pattern for `food-container`, `food-list` and `food-edit` using `input` and `output`
+- Implement an Add Item button on top of the page
+- Implement the Save functionality for `food-edit` and `food-container`
 - Enhance our app by using `rxMethod` and persist data to the server
 
 ### Setup a basic Signal Store
@@ -177,9 +178,9 @@ In this lab we will solve the following tasks:
   </div>
   ```
 
-### Implement a container presenter pattern using signals and `input signals`
+### Implement a container presenter pattern for `food-container`, `food-list` and `food-edit`
 
-- Next lets add a food-list and a food-edit component:
+- Add a `food-list` and a `food-edit` component:
 
   ```typescript
   ng g c food/food-list
@@ -317,11 +318,35 @@ In this lab we will solve the following tasks:
   }
   ```
 
+- Add the following code to `food-container.component.ts`. This time you will have to add the imports by yourself:
+
+  ```typescript
+  export class FoodComponent {
+      ...
+
+      selectFood(item: FoodItem) {
+          this.store.selectFood(item.id);
+      }
+
+      saveFood(item: FoodItem) {
+          if (item.id) {
+                  this.store.updateFood(item);
+          } else {
+              this.store.addFood(item);
+          }
+          this.store.clearSelected();
+      }
+  }
+  ```
+
 - Next you can add the food-list to the food-container:
 
-  ```html
-  <app-food-list [food]="store.food()"></app-food-list>
-  ```
+    ```html
+    <app-food-list
+    [food]="store.food()"
+    (onFoodSelected)="selectFood($event)"
+    ></app-food-list>
+    ```
 
 - Add the following code to food-edit.ts. Add the imports by yourself:
 
@@ -340,26 +365,26 @@ In this lab we will solve the following tasks:
   styleUrl: './food-edit.component.scss'
   })
   export class FoodEditComponent {
-  fb = inject(FormBuilder)
-  @Input({ required: true }) food: FoodItem | null = null;
-  @Output() onFoodSaved: EventEmitter<FoodItem> = new EventEmitter<FoodItem>();
+    fb = inject(FormBuilder)
+    food = input.required<FoodItem[]>();
+    onFoodSelected = output<FoodItem>();
 
-  foodForm: FormGroup = this.fb.group({
-      id: [this.food?.id],
-      name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
-      price: [this.food?.price, [Validators.required, Validators.min(1)]],
-      calories: this.food?.calories,
-  });
+    foodForm: FormGroup = this.fb.group({
+        id: [this.food?.id],
+        name: [this.food?.name, [Validators.required, Validators.minLength(3)]],
+        price: [this.food?.price, [Validators.required, Validators.min(1)]],
+        calories: this.food?.calories,
+    });
 
-  ngOnChanges(changes: SimpleChanges): void {
-      if (changes['food']) {
-      this.foodForm.setValue(changes['food'].currentValue);
-      }
-  }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['food']) {
+        this.foodForm.setValue(changes['food'].currentValue);
+        }
+    }
 
-  saveForm(): void {
-      this.onFoodSaved.emit(this.foodForm.value);
-  }
+    saveForm(): void {
+        this.onFoodSaved.emit(this.foodForm.value);
+    }
   }
   ```
 
@@ -414,15 +439,48 @@ In this lab we will solve the following tasks:
   </mat-card>
   ```
 
-- Import `FoodEdit` to `FoodContainer`. Last but not least we will hook the container / presenter pattern by replacing the temporary html in `food-container.component.html`:
+- Import `FoodEditComponent` to `food-container.component.ts`. Last but not least we will hook the container / presenter pattern by replacing the temporary html in `food-container.component.html`:
 
   ```html
   <app-food-list  [food]="store.food()" (onFoodSelected)="selectFood($event)"></app-food-list>
 
   @if (store.selectedFood()!=null) {
-      <app-food-edit [food]="store.selectedFood()" (onFoodSaved)="saveFood($event)" ></app-food-edit>
+      <app-food-edit [food]="store.selectedFood()"></app-food-edit>
   }
   ```
+
+### Implement an Add Item button on top of the page
+
+- In the store add a new method `addNew()` to the `withMethods` section:
+
+    ```typescript
+    addNew() {
+        patchState(store, { selectedFood: { id: 0, name: '', price: 0, calories: 0 } })
+    },
+    ```
+
+- In food.container.component.ts add the following method:
+
+  ```typescript
+  addFood() {
+    this.store.selectFood(0);
+  }
+  ```
+
+- Replace the mat-toolbar in food-container.component.html with the following:
+
+  ```html
+    <mat-toolbar>
+        <mat-toolbar-row class="addRow">
+            <div>Items in SignalStore: {{ store.count() }}</div>
+            <div>
+            <button mat-flat-button color="primary" (click)="addFood()">
+                Add item
+            </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+ ```
 
 - Add the following css to `food-container.component.scss`:
 
@@ -434,26 +492,86 @@ In this lab we will solve the following tasks:
   }
   ```
 
-- Add the following code to `food-container.component.ts`. This time you will have to add the imports by yourself:
+### Implement the Save and Delete functionality for food-edit and food-container
 
-  ```typescript
-  export class FoodComponent {
-      store = inject(foodStore)
+- Ensure that the following method is present in `food.list.component.ts`:
 
-      selectFood(item: FoodItem) {
-          this.store.selectFood(item.id);
-      }
+    ```typescript
+    onFoodDeleted = output<FoodItem>();
 
-      saveFood(item: FoodItem) {
-          if (item.id) {
-                  this.store.updateFood(item);
-          } else {
-              this.store.addFood(item);
-          }
-          this.store.clearSelected();
-      }
-  }
-  ```
+    ...
+
+    selectFood(food: FoodItem) {
+        this.onFoodSelected.emit(food);
+    }
+
+    deleteFood(food: FoodItem) {
+        this.onFoodDeleted.emit(food);
+    }
+
+    ```
+
+- Update `food-container.component.html` below the calories column and update the `displayedColumns`:
+
+    ```html
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" clickable>
+        <a (click)="deleteFood(element)">
+            <mat-icon class="mat-18" matTooltip="Delete">delete</mat-icon>
+        </a>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" clickable>
+        <a (click)="selectFood(element)">
+            <mat-icon class="mat-18" matTooltip="Edit">edit</mat-icon>
+        </a>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    ```
+
+- Ensure that the following methods are present in food.container.component.ts:
+
+    ```typescript
+    saveFood(item: FoodItem) {
+        if (item.id) {
+            this.store.updateFood(item);
+        } else {
+            this.store.addFood(item);
+        }
+        this.store.clearSelected();
+    }
+
+    deleteFood(item: FoodItem) {
+        this.store.removeFood(item.id);
+        this.store.clearSelected();
+    }
+    ```
+
+- Hook the in the presenter components:
+
+    ```html
+    <app-food-list
+        [food]="store.food()"
+        (onFoodSelected)="selectFood($event)"
+        (onFoodDeleted)="deleteFood($event)"
+    ></app-food-list>
+
+    @if (store.selectedFood()!=null) {
+        <app-food-edit
+            [food]="store.selectedFood()"
+            (onFoodSaved)="saveFood($event)"
+        ></app-food-edit>
+    }
+    ```
+
+- By now you should be able to add, edit and delete items from the list but the changes are not persisted to the server. We will do this in the next step.
 
 ### Enhance our app by using `rxMethod` and persist data to the server
 
