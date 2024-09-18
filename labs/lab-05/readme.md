@@ -187,7 +187,7 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
   ng g c food/food-edit
   ```
 
-- Food list should look like this. You can take the lab result from the previous module as a reference:
+- Food list should look like this. You can take the lab result from the previous module as a reference and solve it yourself or follow the step by step guie
 
   ![Food List](_images/food-list.png)
 
@@ -274,7 +274,8 @@ In this lab we will re-build the classic Angular solution from `lab-02` to `lab-
   }
   ```
 
-- Food edit should look like this. You can take the lab from the previous module as a reference:
+- Food edit should look like this. You can take the lab from the previous module as a referenceand and solve it yourself or follow the step by step guie
+
 
   ![Food edit](_images/food-edit.png)
 
