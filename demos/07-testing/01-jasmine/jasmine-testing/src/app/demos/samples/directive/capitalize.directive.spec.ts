@@ -9,8 +9,8 @@ describe('Component - Directive - CapitalizeDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MatCardModule, DirectiveComponent, CapitalizeDirective],
-});
+      imports: [MatCardModule, CapitalizeDirective, DirectiveComponent],
+    });
 
     fixture = TestBed.createComponent(DirectiveComponent);
     component = fixture.componentInstance;
@@ -22,11 +22,9 @@ describe('Component - Directive - CapitalizeDirective', () => {
 
   it('should capitalize text when initially clicked', () => {
     const debugEl: HTMLElement = fixture.debugElement.nativeElement;
-
     const div: HTMLElement = debugEl.querySelector('#divDirective') as HTMLElement;
     div.click();
     fixture.detectChanges();
-
     expect(div.style.textTransform).toBe('uppercase');
   });
 
@@ -36,8 +34,6 @@ describe('Component - Directive - CapitalizeDirective', () => {
     fixture.autoDetectChanges();
     div.click();
     div.click();
-    // fixture.detectChanges();
-
     expect(div.style.textTransform).toBe('lowercase');
   });
 });

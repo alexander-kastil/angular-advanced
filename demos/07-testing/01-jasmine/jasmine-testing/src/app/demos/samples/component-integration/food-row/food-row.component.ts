@@ -1,28 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FoodItem } from '../../food/food.model';
+import { Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { FoodItem } from '../../food/food.model';
 
 @Component({
-    selector: 'app-food-row',
-    templateUrl: './food-row.component.html',
-    styleUrls: ['./food-row.component.scss'],
-    standalone: true,
-    imports: [MatIcon],
+  selector: 'app-food-row',
+  templateUrl: './food-row.component.html',
+  styleUrls: ['./food-row.component.scss'],
+  standalone: true,
+  imports: [MatIcon],
 })
-export class FoodRowComponent implements OnInit {
-  @Input() food: FoodItem | null = null;
-  @Output() delete: EventEmitter<FoodItem> = new EventEmitter();
-  @Output() edit: EventEmitter<FoodItem> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit() { }
+export class FoodRowComponent {
+  food = input.required<FoodItem>();
+  delete = output<FoodItem>();
+  edit = output<FoodItem>();
 
   deleteFood() {
-    if (this.food != null) this.delete.emit(this.food);
+    if (this.food != null) {
+      this.delete.emit(this.food())
+    };
   }
 
   editFood() {
-    if (this.food != null) this.edit.emit(this.food);
+    if (this.food != null) {
+      this.edit.emit(this.food())
+    };
   }
 }

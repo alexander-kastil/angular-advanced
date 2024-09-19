@@ -15,7 +15,7 @@ describe('food-list-container', () => {
     pending();
   });
 
-  it('should select thte correct food item', () => {
+  it('should select the correct food item', () => {
     pending();
   });
 

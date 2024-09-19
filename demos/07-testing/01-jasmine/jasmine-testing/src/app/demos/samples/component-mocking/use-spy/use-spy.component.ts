@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { AuthService } from '../auth.service';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-use-spy',

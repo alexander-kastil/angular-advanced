@@ -1,7 +1,6 @@
-import { ElementRef } from '@angular/core';
+import { ElementRef, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RatingPipe } from '../../pipe/rating.pipe';
 import { FoodRowComponent } from './food-row.component';
 
 describe('Component -Integration Test - Food Row', () => {
@@ -14,13 +13,13 @@ describe('Component -Integration Test - Food Row', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [FoodRowComponent],
-});
+      imports: [FoodRowComponent],
+    });
     fixture = TestBed.createComponent(FoodRowComponent);
     component = fixture.componentInstance;
     deleteFld = fixture.debugElement.query(By.css('#deleteFld'));
     editFld = fixture.debugElement.query(By.css('#editFld'));
-    fixture.componentInstance.food = food;
+    fixture.componentRef.setInput('food', food);
     fixture.detectChanges();
   });
 
@@ -40,8 +39,8 @@ describe('Component -Integration Test - Food Row', () => {
     ).toContain('Pad Thai');
   });
 
-  it('should render the food namen when food is changed', () => {
-    component.food = { id: 2, name: 'Wiener Schnitzel', rating: 5 };
+  it('should render the food name when food is changed', () => {
+    fixture.componentRef.setInput('food', { id: 2, name: 'Wiener Schnitzel', rating: 5 });
     fixture.detectChanges();
     // Do one of the tests below
     expect(fixture.nativeElement.querySelector('#itemName').textContent

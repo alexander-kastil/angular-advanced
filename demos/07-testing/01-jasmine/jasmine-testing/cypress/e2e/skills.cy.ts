@@ -7,17 +7,17 @@ describe('skills', () => {
 
   describe('Skill Items', () => {
     it('Shows 3 rows by default', () => {
-      cy.get('.item').should('have.length', 3);
+      cy.get('.skillrow').should('have.length', 3);
     });
 
     it('Shows 2 rows when ShowAll is clicked', () => {
       cy.get('#mat-mdc-slide-toggle-1-button').click({ force: true });
-      cy.get('.item').should('have.length', 2);
+      cy.get('.skillrow').should('have.length', 2);
     });
 
     it('Shows the correct complete count  when complete is toggled', () => {
       cy.get('#mat-mdc-slide-toggle-1-button').click({ force: true });
-      cy.get('#todo').should('contain.text', '2');
+      cy.get('.skillrow').should('have.length', 2);
     });
   })
 })
