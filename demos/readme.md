@@ -1,42 +1,52 @@
 # Advanced Angular Development
 
-Im Seminar "Advanced Angular Development" bringen wir Ihre Angular Kenntnisse auf Experten-Level. Großes Augenmerk legen wir darauf, in den Demos & Labs aktuelle Coding-Styles & Patterns zu verwenden. Wir besprechen mögliche Refactorings & Schematics für die Migration bestehender Lösungen und setzen dies fallweise in Form von Live-Coding & AI assisted Coding um.
-
-Wir beginnen mit Standalone Components sowie, deren Konzepte und Migration bilden den Einstieg ins Module Components & Forms Deep Dive. 
-
-Ein Schwerpunkt des Kurses ist der Themenblock Reactive Programming und State Management mit RxJS, NgRx & Signals, sowie Advanced Routing und App Initialization. 
-
-Wir diskutieren die Implementierung von Authentifizierung mit Cloud Identities und Tests mit Jasmine, Jest, Cypress. Zusätzlich behandeln wir die Themen Reusability mit Libraries, Schematics, Nx & Angular Elements und Optimierung von Anwendungen, Server Side Rendering, sowie A11y.
-
-Zum Abschluss implementieren wir ein Real Time connected Micro-Frontend als Progressive Web App und publizieren Angular Apps in die Cloud mittels Containern und Enterprise-ready Config Management.
-
-Nach Abschluss des Kurses haben die Teilnehmer Kenntnisse zu folgenden Themen:
+This is a workshop for experienced Angular developers who want to deepen their knowledge and skills in Angular development. It consists of 10 modules each covering different advanced topics in Angular development. The workshop is designed to be hands-on and interactive, with a mix of lectures, demos, and exercises.
 
 Standalone Components: Concepts & Migration
+This module introduces the concept of standalone components and contrasts them with traditional Angular modules. You’ll learn how to create and convert components, understand the Angular bootstrapping process, and manage providers in the new configuration files. The module also covers the use of app.config.ts and app.routes.ts for configuration and routing. Finally, it provides a comprehensive guide to migrating existing projects to use standalone components.
+
 Components & Forms Deep Dive
-Mastering Reactive Programming using RxJs
-Advanced State Management using NgRx
+Dive deep into Angular’s component and form capabilities. This module explores advanced topics such as control flow syntax, deferred loading, and standalone directives. You’ll master reactive forms, including typed forms, custom controls, and validation techniques, ensuring robust and dynamic form handling. Additionally, it covers content projection, HostBinding, and HostListener for more flexible component design. The module also addresses handling form errors and using the ErrorStateMatcher.
+
+Mastering Reactive Programming using RxJS
+Gain a comprehensive understanding of RxJS and its role in Angular applications. This module introduces observables, operators, and marble diagrams, helping you visualize and debug reactive streams. You’ll learn to handle reactivity declaratively, manage stateful services, and implement custom observable operators. The module also covers imperative vs. declarative reactivity and the use of data- and action-streams. Finally, it includes strategies for retry and error handling in reactive programming.
+
 Mastering Reactivity using Signals
+Explore the new Signals API in Angular, comparing it with observables and understanding their interoperability. This module covers component communication, zoneless change detection, and advanced view queries. You’ll learn to use signals for nesting components, handling inputs and outputs, and implementing the event bus pattern. The module also addresses the use of writable signals, computed signals, and effects for managing reactivity. Additionally, it covers the use of viewChild, viewChildren, contentChild, and contentChildren for querying the view.
+
+Advanced State Management using NgRx
+Master state management with NgRx, from classic patterns to the new Signal Store. The module includes an overview of state management patterns and the differences between NgRx Classic and Signal Store. It covers NgRx classic store implementation using createFeature, createActionGroup. The focus of this module is the @ngrx/signal Signal Store, with it's basic concepts and how to implement and use it. The module also covers side effects using rxMethod, usage of Store Features like Entity and Data Services as well as the implementation of custom store features.
+
 Advanced Routing and App Initialization
+Delve into advanced routing techniques and app initialization strategies. This module covers dependency injection, global error handling, lazy loading, and dynamic components. You’ll also learn about preloading strategies, route guards, and router animations, optimizing your application’s navigation and initialization. The module includes the use of APP_INITIALIZER, forwardRef, and functional resolvers for preloading component data. Additionally, it covers the use of auxiliary routes, router animations, and visual feedback indicators.
+
 Securing Angular using Cloud Identities
-Advanced Testing with Jasmine, Jest, Cypress and NgRx
-Reusability with Libraries, Schematics, Nx & Angular Elements
-Optimizing Applications & Server Side Rendering & A11y
-Implementing & publishing a Real Time connected Micro-Frontend as a Progressive Web App
-Publishing Angular Apps to the Cloud using Containers and Config Injection
+Learn to secure your Angular applications using JWT, OAuth 2.0, and OpenID Connect. This module covers token-based authentication with NgRx, implementing an AuthModule, and optimizing application flow for authentication. You’ll also explore authentication using Microsoft Entra ID. The module includes the use of a facade service, components, guards, and interceptors for managing authentication. Additionally, it covers the recap of JWT, OAuth 2.0, and OpenID Connect for securing Angular applications.
 
-Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Module werden die erlernten Inhalte als Lab in eine durchgängige Anwendung integriert, welches am Ende in die Cloud publiziert werden kann. 
+Advanced Testing with Jasmine, Cypress, and NgRx
+Enhance your testing skills with advanced techniques for Angular applications. This module covers testing tools like Jasmine, Karma, Jest, and Cypress. You’ll learn to test classes, services, components, and complex forms, as well as perform end-to-end testing and marble testing for observables. The module includes the use of HttpClientTestingModule and HttpTestingController for testing services. Additionally, it covers the use of mock store, mock selectors, reducers, effects, and facades for testing NgRx.
 
-## Standalone Components: Concepts & Migration
+Reusability with Libraries, Nx & Angular Elements
+Focus on creating reusable Angular artifacts. This module covers building and consuming Angular libraries, using Nx workspaces, and implementing Angular Elements. You’ll learn to publish libraries to GitHub Packages and create reusable web components, promoting code reuse and modularity. The module includes the use of Angular building blocks like workspace, apps, and libraries. Additionally, it covers the implementation of reusable web components using Angular Elements and standalone components.
+
+Real-Time Micro-Frontends & Progressive Web Apps
+Explore the world of micro-frontends and progressive web apps (PWAs). This module covers real-time connectivity, service workers, and PWA configuration. You’ll learn to install, update, and optimize PWAs, ensuring a seamless and responsive user experience. The module includes the introduction to micro-frontends and their real-time connectivity using cloud events or large language models responses. Additionally, it covers the understanding and configuring of service workers and manifests for PWAs.
+
+Optimizing & Publishing Containerized Applications
+Optimize and publish your Angular applications using containerization. This module covers performance optimization with Chrome Dev Tools and Lighthouse, bundle analysis, and change detection profiling. The module includes the use of virtual- and infinite scrolling for optimizing performance. Additionally, it covers the use of NgOptimizedImage for optimizing images and the introduction to zoneless change detection. You’ll also learn about accessibility best practices, linting, and autoformatting with Prettier. Finally it introduces the concepts of server-side rendering, Docker image creation, and configuration management for containerized deployments. 
+
+## Modules
+
+### Standalone Components: Concepts & Migration
 
 - Standalone Components vs Modules
 - Creating Standalone Components and Converting existing Components
-- Understanding the Angular Bootstraping Process
+- Understanding the Angular Bootstrapping Process
+- app.config.ts & app.routes.ts
 - Registering Providers in app.config.ts
-- Routing & Lazy Loading app.routes.ts
 - Migration an existing Project to Standalone Components
 
-## Components & Forms Deep Dive
+### Components & Forms Deep Dive
 
 - Using & Migrating to Control Flow Syntax
 - Deferred Loading
@@ -52,7 +62,7 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Typed Forms Validation & Custom Validators
 - Handling FormErrors & ErrorStateMatcher
 
-## Mastering Reactive Programming using RxJS
+### Mastering Reactive Programming using RxJS
 
 - Introduction to RxJS
 - Observables, Observers & Use Cases
@@ -68,7 +78,7 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Retry & Error Handling Strategies
 - Implementing & Testing Custom Observable Operators
 
-## Mastering Reactivity using Signals
+### Mastering Reactivity using Signals
 
 - Introduction to Signals (WritableSignal, Computed, Effects)
 - Signals vs Observables
@@ -78,38 +88,37 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Communication between Components using Event Bus Pattern
 - Zoneless Change Detection using Signals
 
-## Advanced State Management using NgRx
+### Advanced State Management using NgRx
 
 - Overview State Management Patterns
+- NgRx Classic vs Signal Store
 - Introduction to the Classic NgRx & Redux Pattern
 - Implementing NgRx Store, Reducers & Selectors using createFeature
 - Actions & createActionGroup
 - Effects, Facades, @ngrx/entity & @ngrx/data
 - Creating a Signals Store using @ngrx/signals
 - Side Effects using rxMethod
-- Signal Store Plugins
 - Signals Store, Entity & Custom Data Services
+- Implementing and using Custom Store Features
 
-## Advanced Routing and App Initialization
+### Advanced Routing and App Initialization
 
 - Dependency Injection in Depth: Resolution modifiers and Dependency providers
 - Using Constructor vs inject for DI
 - APP_INITIALIZER, Injection & forwardRef
 - Implementing Global Error Handling and Retry-Patterns
-- Modules & Code Splitting
-- Introduction to @ngrx/router-store
-- Routing using NgRx Actions
+- Lazy Loading & Dynamic Components
+- Using Preloading Strategies
 - Binding Router-Params to Component Inputs
+- Preloading Component Data using Functional Resolvers
 - Route Redirect Functions
 - Functional Route Guards & Interceptors
 - View Transition Api
 - Auxiliary Routes: Common use cases
-- Preloading Component Data from NgRx using Functional Resolvers
-- Using Preloading Strategies
 - Router Animations & Anchor Scrolling
 - Introduction to Visual Feedback (Loading-, Saving-, ...-Indicator)
 
-## Securing Angular using Cloud Identities
+### Securing Angular using Cloud Identities
 
 - Recap Jwt, OAuth 2.0 & OpenID Connect
 - Token based Authentication in Angular with NgRx
@@ -117,7 +126,7 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Optimizing Application Flow for Authentication
 - Authentication using Microsoft Entra ID
 
-## Advanced Testing with Jasmine, Cypress and NgRx
+### Advanced Testing with Jasmine, Cypress and NgRx
 
 - Introduction Angular Testing Tools (Jasmine, Karma, Jest & Cypress)
 - Testing Classes, Pipes, Directives
@@ -134,7 +143,7 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Introduction to End-2-End Testing using Cypress
 - Cypress Component Tests
 
-## Reusability with Libraries, Nx & Angular Elements
+### Reusability with Libraries, Nx & Angular Elements
 
 - Angular Building Blocks: Workspace, Apps, Libraries
 - Reusable Artifacts using Angular Libraries
@@ -142,15 +151,15 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Introduction to Nx Workspaces
 - Reusable Web Components using Angular Elements and Standalone Components
 
-## Real Time, Micro-Frontends & Progressive Web Apps
+### Real Time Micro-Frontends & Progressive Web Apps
 
 - Introduction to Micro-Frontends 
-- Real Time connected Micro-Frontends with Cloud Events or Large Language Models
+- Real Time connected using Cloud Events or Large Language Models Responses
 - Introduction to Progressive Web Apps
 - Understanding and Configuring Service Workers & Manifests
 - Installing & Updating Progressive Web Apps
 
-## Optimizing & Publishing Containerized Applications
+### Optimizing & Publishing Containerized Applications
 
 - Using Chrome Dev Tools & Lighthouse for Performance Optimization
 - Understanding & Using Page Traces
