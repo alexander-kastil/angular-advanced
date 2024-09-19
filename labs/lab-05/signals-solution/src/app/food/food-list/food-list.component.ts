@@ -1,4 +1,4 @@
-import { Component, effect, input, output, SimpleChanges } from '@angular/core';
+import { Component, effect, input, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';

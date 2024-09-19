@@ -2,7 +2,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { environment } from '../../../../environments/environment.prod';
 import { FoodServiceBS } from './food.service-bs';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('Service - HttpTest -FoodService', () => {
   let service: FoodServiceBS;
@@ -16,9 +16,13 @@ describe('Service - HttpTest -FoodService', () => {
     ]),
 
       TestBed.configureTestingModule({
-    imports: [],
-    providers: [FoodServiceBS, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+        imports: [],
+        providers: [
+          FoodServiceBS,
+          provideHttpClient(),
+          provideHttpClientTesting()
+        ]
+      });
 
     service = TestBed.inject(FoodServiceBS);
     controller = TestBed.inject(HttpTestingController);
@@ -45,7 +49,6 @@ describe('Service - HttpTest -FoodService', () => {
 
   it('should create a post in an array', () => {
     service.addFood({ id: 3, name: 'Cannelloni', rating: 4 },);
-
     service.getFood().subscribe((items) => {
       expect(items.length).toEqual(3);
     });
@@ -54,7 +57,6 @@ describe('Service - HttpTest -FoodService', () => {
   it('should return the correct amount of items', () => {
     service.addFood({ id: 1, name: 'Pad Thai', rating: 5 });
     service.addFood({ id: 2, name: 'Butter Chicken', rating: 5 });
-
     service.getFood().subscribe((items) => {
       expect(items.length).toEqual(4);
       expect(items[1].name).toEqual('Butter Chicken');
@@ -63,7 +65,6 @@ describe('Service - HttpTest -FoodService', () => {
 
   it('should have the correct number of items after delete', (done) => {
     service.deleteFood({ id: 1, name: 'Pad Thai', rating: 5 });
-
     service.getFood().subscribe((items) => {
       expect(items.length).toEqual(1);
       expect(items).toEqual([{ id: 2, name: 'Butter Chicken', rating: 5 }]);

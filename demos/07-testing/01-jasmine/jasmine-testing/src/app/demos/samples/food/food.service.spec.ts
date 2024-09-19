@@ -1,9 +1,9 @@
+import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { FoodService } from './food.service';
-import { FoodItem } from './food.model';
 import { environment } from '../../../../environments/environment.prod';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { FoodItem } from './food.model';
+import { FoodService } from './food.service';
 
 describe('Service - HttpTest -FoodService', () => {
   let service: FoodService;
@@ -18,9 +18,13 @@ describe('Service - HttpTest -FoodService', () => {
     ];
 
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [FoodService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+      imports: [],
+      providers: [
+        FoodService,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
 
     service = TestBed.inject(FoodService);
     controller = TestBed.inject(HttpTestingController);
