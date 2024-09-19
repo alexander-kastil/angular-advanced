@@ -1,6 +1,6 @@
 export class FoodItem {
-  id: number = 0;
-  name: string = "";
-  rating: number = 0;
+  id = 0;
+  name = "";
+  rating = 0;
   discontinued?: boolean;
 }

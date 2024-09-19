@@ -25,8 +25,8 @@ describe('ComponentEventsComponent', () => {
   });
 
   it('should increment the count - triggerEventHandler', () => {
-    const divClick = fixture.debugElement.query(By.css('[data-testid=btnIncrement]'));
-    divClick.triggerEventHandler('click', {});
+    const btnClick = fixture.debugElement.query(By.css('[data-testid=btnIncrement]'));
+    btnClick.triggerEventHandler('click', {});
 
     expect(fixture.componentInstance.count()).toBe(1);
     fixture.detectChanges();
@@ -36,12 +36,12 @@ describe('ComponentEventsComponent', () => {
   });
 
   it('should increment the count - native Api', () => {
-    const divClick = fixture.debugElement.query(By.css('[data-testid=btnIncrement]'));
-    divClick.nativeElement.click();
-    divClick.nativeElement.click();
+    const btnClick = fixture.debugElement.query(By.css('[data-testid=btnIncrement]'));
+    btnClick.nativeElement.click();
+    btnClick.nativeElement.click();
 
     expect(fixture.componentInstance.count()).toBe(2);
-    fixture.detectChanges();
+    fixture.autoDetectChanges();
 
     const divResult = fixture.debugElement.query(By.css('[data-testid=result]'));
     expect(divResult.nativeElement.innerText).toContain('2');
