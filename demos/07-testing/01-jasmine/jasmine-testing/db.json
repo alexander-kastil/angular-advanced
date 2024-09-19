@@ -89,6 +89,11 @@
       "url": "ngrx-reducers",
       "title": "NgRx Reducers",
       "id": 59
+    },
+    {
+      "url": "cypress",
+      "title": "Cypress",
+      "id": 54
     }
   ],
   "food": [

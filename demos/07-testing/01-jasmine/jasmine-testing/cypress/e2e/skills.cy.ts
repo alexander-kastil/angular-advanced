@@ -15,7 +15,7 @@ describe('skills', () => {
       cy.get('.item').should('have.length', 2);
     });
 
-    it('Shows the correct complete count  when complete is toogled', () => {
+    it('Shows the correct complete count  when complete is toggled', () => {
       cy.get('#mat-mdc-slide-toggle-1-button').click({ force: true });
       cy.get('#todo').should('contain.text', '2');
     });

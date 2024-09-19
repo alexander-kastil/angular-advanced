@@ -11,7 +11,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "cy:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -29,16 +30,17 @@
     "@ngrx/data": "^18.0.2",
     "@ngrx/effects": "^18.0.2",
     "@ngrx/entity": "^18.0.2",
+    "@ngrx/operators": "^18.0.0",
     "@ngrx/store": "^18.0.2",
-    "lodash": "^4.17.21",
+    "cypress": "^13.14.2",
     "firebase": "^10.13.1",
+    "lodash": "^4.17.21",
     "marked": "9.1.6",
     "ngx-markdown": "^18.0.0",
     "prismjs": "^1.29.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.10",
-    "@ngrx/operators": "^18.0.0"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.3",
