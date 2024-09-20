@@ -53,7 +53,7 @@ Test the app using Jest (default)
 nx test tutorial-app
 ```
 
-Update the `apps/tutorial-app/src/appapp.component.spec.ts` to allow the test to pass and re-run the test:
+Update the `apps/tutorial-app/src/app.component.spec.ts` to allow the test to pass and re-run the test:
 
 ```typescript
 it('should render title', () => {
@@ -83,8 +83,6 @@ nx graph --watch
 Check the tutorial-app and ux-lib project in the graph.
 
 ![nx-graph](_images/nx-graph.jpg)
-
-At the moment the graph is empty, even if you select the `tutorial-app` and `ux-helpers` lib. In the next step we will add the content from `Module 02 - Components` to the library and the use it in the app. Navigate to app/shared/ux-lib and examine the split component. 
 
 Next we will create a component in the nx-mono-repo:
 
