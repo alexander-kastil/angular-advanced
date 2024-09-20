@@ -24,7 +24,7 @@ npm i -g nx
 Create a workspace tutorial-app-ws using the Angular preset:
 
 ```bash
-npx create-nx-workspace nx-mono-repo --preset=angular-monorepo --standaloneApi false --appName tutorial-app --routing true --style scss
+npx create-nx-workspace nx-monorepo --preset=angular-monorepo --appName tutorial-app --routing true --style scss --ssr false --bundler esbuild --e2eTestRunner cypress --nxCloud skip
 ```
 
 ![nx-scaffold](_images/nx-scaffold.jpg)
@@ -42,7 +42,6 @@ Build & run the app `tutorial-app`:
 ```bash
 nx build --project tutorial-app
 nx build tutorial-app
-nx serve --project tutorial-app -o
 nx serve tutorial-app -o
 ```
 
@@ -72,13 +71,13 @@ it('should render title', () => {
 Add a library project from the root of the nx workspace:
 
 ```bash
-nx g @nrwl/angular:lib ux-lib --style scss
+nx generate @nx/angular:library --name=ux-library --directory=libs/ux-library --projectNameAndRootFormat=as-provided --style=scss
 ```
 
 Show a project graph in from separate terminal and keep it open:
 
 ```bash
-npx nx graph --watch
+nx graph --watch
 ```
 
 Check the tutorial-app and ux-lib project in the graph.
@@ -90,7 +89,7 @@ At the moment the graph is empty, even if you select the `tutorial-app` and `ux-
 Next we will create a component in the nx-mono-repo:
 
 ```bash
-nx g @nrwl/angular:component ux-split --project ux-lib --export --selector ux-split --style scss
+nx generate @nx/angular:component --name=ux-split --directory=libs/ux-library/src/layout --nameAndDirectoryFormat=as-provided
 ```
 
 Notice that Nx registers the component in the `ux-lib.module.ts` and exports it in the index.ts. You can now copy the content of `Module 02 - Components` from `ux-split.component.ts` and `ux-split.component.html` and `*.scss` files. 
@@ -150,20 +149,20 @@ Update `ux-split.component.html`:
 </div>
 ```
 
-Use the app.component.ts in the main app. In app.module.ts import the `UxLibModule` and notice how the dependency graph is updated:
+Use the `ux-split-component.ts` in the main app in app.component.ts. In `libs/ux-library/index.ts` notice the export of the `ux-split-component`:
 
 ```typescript
-@NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-    UxLibModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
+export * from './layout/ux-split.component';
+```
+
+Import ux-split-component in app.component.ts of the tutorial-app:
+
+```typescript
+import { UxSplitComponent } from '@nx-monorepo/ux-library';
+
+@Component({
+  standalone: true,
+  imports: [NxWelcomeComponent, RouterModule, UxSplitComponent],
 ```
 
 In app.component.html delete the default content and use the component:
@@ -181,10 +180,16 @@ In app.component.html delete the default content and use the component:
 </ux-split>
 ```
 
+Check the dependency graph again:
+
+```bash
+nx graph --watch
+```
+
 To create the buttons execute:
 
 ```typescript
-nx g @nrwl/angular:component ux-button --project ux-lib --export --selector ux-button --style scss
+nx generate @nx/angular:component --name=ux-button --directory=libs/ux-library/src/commands --nameAndDirectoryFormat=as-provided
 ```
 
 Add Angular Material to the workspace to use it in the `ux-lib` project because it is a dependency of the `ux-button` component:
@@ -193,144 +198,67 @@ Add Angular Material to the workspace to use it in the `ux-lib` project because 
 npm i -S @angular/material @angular/cdk
 ```
 
-You now can update the imports in the ux-lib.module.ts and implement the ux-button. Again you can take the code from `Module 02 - Components` and copy it to the `ux-button.component.ts` as a reference.
+Import MatButton and MatIcon to ux-button.component.ts:
 
 ```typescript
-@NgModule({
-  imports: [CommonModule, MatIconModule, MatButtonModule],
-  declarations: [UxSplitComponent, UxButtonComponent],
-  exports: [UxSplitComponent, UxButtonComponent],
-})
-export class UxLibModule { }
-```
+...
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 
-Add Material to tutorial-app. Select a theme of your choice, enable typography and animations:
-
-
-```bash
-nx g @angular/material:ng-add --project=tutorial-app
-```
-
-![nx-material](_images/add-material.jpg)
-
-Implement an reusable Button:
-
-```bash
-nx g @nrwl/angular:component uxButton --project ux-controls --export 
-```
-
-Update ux-button.component.ts & ux-button.component.html:
-
-```typescript
 @Component({
-  selector: 'ux-button',
+  selector: 'lib-ux-button',
+  standalone: true,
+  imports: [CommonModule, MatButton, MatIcon],
   templateUrl: './ux-button.component.html',
-  styleUrls: ['./ux-button.component.scss'],
+  styleUrl: './ux-button.component.scss',
 })
 export class UxButtonComponent {
-  @Input() disabled = false;
-  @Input() label = '';
-  @Input() icon = '';
-  @Output() onClicked = new EventEmitter<string>();
+  disabled = input<boolean>(false);
+  label = input<string>('');
+  icon = input<string>('');
+  onClick = output<void>();
 
   buttonClicked() {
-    this.onClicked.emit("you clicked the button");
+    this.onClick.emit();
   }
 }
 ```
 
+Implement the button in `ux-button.component.html`:
+
 ```html
-<button mat-raised-button (click)="buttonClicked()" [disabled]="disabled">
-  <mat-icon>{{ icon }}</mat-icon>
-  <span>{{ label }}</span>
+<button mat-raised-button (click)="buttonClicked()" [disabled]="disabled()">
+    <mat-icon fontIcon="{{ icon() }}"></mat-icon>
+    <span>{{ label() }}</span>
 </button>
 ```
 
-Use the Button in the `tutorial-app-project` and add it to `app.component.html` and `app.component.ts`:
+Add css for the button:
+
+```css
+button {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+span {
+  @media only screen and (max-width: 960px) {
+    display: none;
+  }
+}
+```
+
+Export the button in index.ts:
+
+```typescript
+export * from './commands/ux-button.component';
+```
+
+- Add the button to the app.component.ts in the tutorial-app and use it in the app.component.html
 
 ```html
 <div class="sidebar">
-  <ux-button
-      [icon]="'keyboard_arrow_right'"
-      [label]="'Go Back'">
-      [disabled]="true"
-    </ux-button>
-    <ux-button
-      [label]="'Bearbeiten'"
-      [icon]="'edit'"
-      (onClicked)="handleClick($event)"
-    ></ux-button>
+  <lib-ux-button label="Go back" icon="arrow_back">
+  </lib-ux-button>
 </div>
 ```
-
-```typescript
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'angular-repo-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-})
-export class AppComponent {
-  title = 'tutorial-app';
-
-  handleClick(evt: any) {
-    console.log('msg from the button', evt);
-  }
-}
-```
-
-Your project should look like this:
-
-![with-button](_images/with-button.jpg)
-
->Note: If you want you can also at the formatting directives to ux-lib and test them in the app.
-
-## Second app and dependency graph
-
-Add a second app used for dependency graph later on:
-
-```bash
-nx generate @nrwl/angular:app ng-otherapp --routing --style=scss
-```
-
->Note: Choose to use a standalone component and delete app.component.html
-
-Import the `UxLibModule` in the standalone component and update app.component.ts:
-
-```typescript 
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { UxLibModule } from '@nx-mono-repo/ux-lib';
-
-@Component({
-  standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, UxLibModule],
-  selector: 'nx-mono-repo-root',
-  template: `
-  <div>
-    <h1>Welcome to {{ title }}!</h1>
-    <ux-button label="Click Me" (onClicked)="clicked($event)"></ux-button>
-  </div>`
-  ,
-  styleUrls: ['./app.component.scss'],
-})
-export class AppComponent {
-  title = 'ng-otherapp';
-
-  clicked(evt: any) {
-    console.log('msg from the button in other app:', evt);
-  }
-}
-```
-
-Check the dependency graph:
-
-```bash
-nx dep-graph
-```
-
-You should see something similar:
-
-![dep-graph](_images/dep-graph.png)
