@@ -263,10 +263,11 @@ export * from './commands/ux-button.component';
 
 - Add the link to the material fonts stylesheet to the header of index.html of the tutorial-app:
 
-```html
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-```
+  ```
+  html
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  ```
 
 - Check your work by running the app:
 
