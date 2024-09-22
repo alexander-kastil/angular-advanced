@@ -1,0 +1,18 @@
+# Optimizing & Publishing Containerized Applications
+
+- Using Chrome Dev Tools & Lighthouse for Performance Optimization
+- Analyzing and Optimizing Bundles & Modules
+- Understanding & Using Page Traces
+- Optimizing Images using NgOptimizedImage 
+- Logging NgRx to custom destinations using Meta-Reducers 
+- Virtual- & Infinite Scrolling
+- Understanding, Profiling & Optimizing Angular Change Detection
+- Understanding & Optimizing Angular Change Detection
+- Using Linting and Autoformat with Prettier
+- Accessibility A11y: Best Practices & Linting
+- Introduction to Server Side Rendering (SSR) and Non-destructive hydration
+- Why Server Side Rendering
+- Configure Server Side Rendering & Pre-rendering
+- Using Cloud Identities for Authentication
+- Configuration Management
+- Building & Deploying Angular Applications with Docker
