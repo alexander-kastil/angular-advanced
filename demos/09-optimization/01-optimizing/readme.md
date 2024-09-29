@@ -2,6 +2,8 @@
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
+[Core Web Vitals](https://web.dev/explore/learn-core-web-vitals)
+
 [Angular AOT Compiler](https://angular.io/guide/aot-compiler)
 
 [Angular Debug Statements](https://angular.io/api/core/global)

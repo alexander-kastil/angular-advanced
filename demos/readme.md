@@ -110,7 +110,7 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Introduction to Nx Workspaces
 - Reusable Web Components using Angular Elements and Standalone Components
 
-### Real Time Micro-Frontends & Progressive Web Apps
+### Real Time, Micro-Frontends & Progressive Web Apps
 
 - Introduction to Micro-Frontends 
 - Real Time connected using Cloud Events or Large Language Models Responses
@@ -118,21 +118,16 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Understanding and Configuring Service Workers & Manifests
 - Installing & Updating Progressive Web Apps
 
-### Optimizing & Publishing Containerized Applications
+# Optimizing Applications
 
 - Using Chrome Dev Tools & Lighthouse for Performance Optimization
-- Analyzing and Optimizing Bundles & Modules
-- Understanding & Using Page Traces
+- Understanding & Using Page Traces & Web Vitals
+- Analyzing and Optimizing Bundles & Components
 - Optimizing Images using NgOptimizedImage 
-- Logging NgRx to custom destinations using Meta-Reducers 
-- Virtual- & Infinite Scrolling
+- Data-Loading Strategies, Virtual- & Infinite Scrolling, 
 - Understanding, Profiling & Optimizing Angular Change Detection
 - Understanding & Optimizing Angular Change Detection
-- Using Linting and Autoformat with Prettier
-- Accessibility A11y: Best Practices & Linting
 - Introduction to Server Side Rendering (SSR) and Non-destructive hydration
-- Why Server Side Rendering
-- Configure Server Side Rendering & Pre-rendering
-- Using Cloud Identities for Authentication
-- Configuration Management
-- Building & Deploying Angular Applications with Docker
+- Accessibility A11y: Best Practices & Linting
+- Using Linting and Autoformat with Prettier
+- Configuration Management & Containers
