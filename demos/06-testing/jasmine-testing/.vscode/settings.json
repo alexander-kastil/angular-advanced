@@ -1,7 +1,7 @@
 {
     "github.copilot.chat.experimental.codeGeneration.instructions": [
         {
-            "file": ".angular.copilot.instatuctions.md"
+            "file": ".angular.copilot.md"
         }
     ]
 }
