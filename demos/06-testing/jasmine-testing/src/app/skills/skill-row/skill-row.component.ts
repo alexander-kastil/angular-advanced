@@ -9,8 +9,8 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { Skill } from '../skill.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-skill-row',

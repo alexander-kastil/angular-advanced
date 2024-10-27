@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Food Component - Click to remove</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    @for (f of food; track f) {
+      <div (click)="deleteFood(f)" class="foodrow">
+        {{ f.name }}
+      </div>
+    }
+  </mat-card-content>
+</mat-card>
