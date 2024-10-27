@@ -1,9 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '../../../../environments/environment.prod';
 import { FoodItem } from './food.model';
 import { FoodService } from './food.service';
+import { environment } from '../../../../environments/environment';
 
 describe('Service - HttpTest -FoodService', () => {
   let service: FoodService;
@@ -45,7 +45,7 @@ describe('Service - HttpTest -FoodService', () => {
     });
 
     //check that the correct url was called with the correct method
-    const url = `${environment.apiUrl}food`;
+    const url = `${environment.api}food`;
     const req = controller.expectOne(url);
     expect(req.request.method).toEqual('GET');
 
@@ -64,7 +64,7 @@ describe('Service - HttpTest -FoodService', () => {
     });
 
     //check that the correct url was called with the correct method
-    const url = `${environment.apiUrl}food`;
+    const url = `${environment.api}food`;
     const req = controller.expectOne(url);
     expect(req.request.method).toEqual('GET');
 

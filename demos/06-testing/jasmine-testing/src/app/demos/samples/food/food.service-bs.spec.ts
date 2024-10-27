@@ -1,8 +1,8 @@
+import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 import { FoodServiceBS } from './food.service-bs';
-import { provideHttpClient } from '@angular/common/http';
 
 describe('Service - HttpTest -FoodService', () => {
   let service: FoodServiceBS;
@@ -27,7 +27,7 @@ describe('Service - HttpTest -FoodService', () => {
     service = TestBed.inject(FoodServiceBS);
     controller = TestBed.inject(HttpTestingController);
     // setup the service mock
-    const url = `${environment.apiUrl}food`;
+    const url = `${environment.api}food`;
     const req = controller.expectOne(url);
     expect(req.request.method).toEqual('GET');
     // flushing down mock data
