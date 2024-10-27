@@ -3,6 +3,7 @@ import { DemoContainerComponent } from './demo-container/demo-container.componen
 import { AsyncComponent } from './samples/component-async/async.component';
 import { ComponentClassComponent } from './samples/component-class/component-class.component';
 import { ComponentEventsComponent } from './samples/component-events/component-events.component';
+import { ComponentInputSignalsComponent } from './samples/component-input-signals/component-input-signals.component';
 import { IntegrationTestComponent } from './samples/component-integration/integration-test.component';
 import { MarblesComponent } from './samples/component-marbles/marbles.component';
 import { MaterialAsyncComponent } from './samples/component-material-async/material-async.component';
@@ -28,6 +29,7 @@ export const demoRoutes: Routes = [
             { path: 'testing-intro', component: UnitTestingComponent },
             { path: 'component-events', component: ComponentEventsComponent },
             { path: 'component-write', component: ComponentWriteComponent },
+            { path: 'component-input-signals', component: ComponentInputSignalsComponent },
             { path: 'pipe', component: TestPipeComponent },
             { path: 'directive', component: DirectiveHostComponent },
             { path: 'simple-service', component: SimpleServiceComponent },

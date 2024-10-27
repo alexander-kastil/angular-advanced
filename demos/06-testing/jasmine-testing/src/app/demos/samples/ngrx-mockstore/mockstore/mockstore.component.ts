@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
-import { getAllDemos } from 'src/app/demos/state/demos.state';
+import { getAllDemos } from '../../../state/demos.state';
 
 @Component({
   selector: 'app-mockstore',

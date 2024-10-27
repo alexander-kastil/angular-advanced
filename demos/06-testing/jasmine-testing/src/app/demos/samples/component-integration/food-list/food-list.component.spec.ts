@@ -47,7 +47,7 @@ describe('Component - Integration Test', () => {
 
     const rows = fixture.debugElement.queryAll(By.directive(FoodRowComponent));
     expect(rows.length).toEqual(4);
-    expect(rows[0].componentInstance.food.name).toEqual('Pad Thai');
+    expect(rows[0].componentInstance.food().name).toEqual('Pad Thai');
   });
 
   it('should have three rows when an item is deleted', fakeAsync(() => {

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { DemoState } from '../../../state/demos.state';
 import { MockstoreComponent } from './mockstore.component';
 import { mockstoreData } from './mockstore.data';
-import { DemoState } from 'src/app/demos/state/demos.state';
 
 
 describe('MockstoreComponent', () => {

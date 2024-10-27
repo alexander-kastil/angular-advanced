@@ -7,7 +7,7 @@ describe('Class - Hello world Test', () => {
     sc = new SimpleClass();
   });
 
-  it('contains 12 charactes', () => {
+  it('contains 12 characters', () => {
     expect(sc.sayHelloWorld().length).toEqual(12)
   });
 

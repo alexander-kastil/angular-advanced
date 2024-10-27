@@ -1,8 +1,8 @@
 export const environment = {
     authEnabled: false,
     title: 'Jasmine Testing',
-    logChangeDetection: false,
-    logChanges: false,
+    logChangeDetection: true,
+    logChanges: true,
     markdownPath: 'markdown/',
-    api: 'http://localhost:3000/',
+    api: 'http://localhost:3000/'
 };
