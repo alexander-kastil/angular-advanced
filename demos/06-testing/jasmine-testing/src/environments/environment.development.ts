@@ -1,6 +1,6 @@
 export const environment = {
     authEnabled: false,
-    title: 'ngReactiveForms',
+    title: 'Jasmine Testing',
     logChangeDetection: true,
     logChanges: true,
     markdownPath: 'markdown/',
