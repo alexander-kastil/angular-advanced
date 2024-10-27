@@ -2,12 +2,12 @@ import { VoucherValidator } from './voucher-validator';
 import { Voucher } from './voucher.mode';
 
 describe('Class - VoucherValidator', () => {
-  let goodvoucher: Voucher;
-  let badvoucher: Voucher;
+  let goodVoucher: Voucher;
+  let badVoucher: Voucher;
   let nullVoucher: Voucher;
 
   beforeEach(() => {
-    goodvoucher = {
+    goodVoucher = {
       ID: 2,
       Text: 'BP Tankstelle',
       Date: '2016-11-15T00:00:00',
@@ -35,7 +35,7 @@ describe('Class - VoucherValidator', () => {
       ],
     };
 
-    badvoucher = {
+    badVoucher = {
       ID: 2,
       Text: 'BP Tankstelle',
       Date: '2016-11-15T00:00:00',
@@ -75,9 +75,9 @@ describe('Class - VoucherValidator', () => {
   });
 
   it('returns true when correct data is passed', () =>
-    expect(VoucherValidator.validate(goodvoucher)).toEqual(true));
+    expect(VoucherValidator.validate(goodVoucher)).toEqual(true));
   it('returns false when bad data is passed', () =>
-    expect(VoucherValidator.validate(badvoucher)).toEqual(false));
+    expect(VoucherValidator.validate(badVoucher)).toEqual(false));
 
   it('returns false when null is passed as Details', () =>
     expect(VoucherValidator.validate(nullVoucher)).toEqual(false));
