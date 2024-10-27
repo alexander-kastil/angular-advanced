@@ -1,1 +1,0 @@
-- Examine `component-write.component.ts` to learn about component read/write.
