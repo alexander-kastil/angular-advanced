@@ -9,6 +9,8 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { RendererStateService } from '../markdown-renderer/renderer-state.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+
+
 @Component({
   selector: 'app-side-panel',
   templateUrl: './side-panel.component.html',

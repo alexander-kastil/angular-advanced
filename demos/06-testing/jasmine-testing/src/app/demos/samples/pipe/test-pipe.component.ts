@@ -1,26 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { PhonenumberPipe } from './phonenumber.pipe';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { Component } from '@angular/core';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { PhonenumberPipe } from './phonenumber.pipe';
 
 @Component({
-    selector: 'app-test-pipe',
-    templateUrl: './test-pipe.component.html',
-    styleUrls: ['./test-pipe.component.scss'],
-    standalone: true,
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        PhonenumberPipe,
-    ],
+  selector: 'app-test-pipe',
+  templateUrl: './test-pipe.component.html',
+  styleUrls: ['./test-pipe.component.scss'],
+  standalone: true,
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    PhonenumberPipe,
+  ],
 })
-export class TestPipeComponent implements OnInit {
-  constructor() { }
-
+export class TestPipeComponent {
   phone = "3333333333";
-
-  ngOnInit() { }
 }

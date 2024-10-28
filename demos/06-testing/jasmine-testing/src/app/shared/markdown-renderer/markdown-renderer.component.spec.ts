@@ -1,11 +1,11 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MarkdownComponent, MarkdownModule } from 'ngx-markdown';
+import { environment } from '../../../environments/environment';
 import { MarkdownRendererComponent } from './markdown-renderer.component';
 import { RendererStateService } from './renderer-state.service';
-import { MarkdownComponent, MarkdownModule } from 'ngx-markdown';
-import { MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
-import { environment } from '../../../environments/environment';
-import { provideHttpClient } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MarkdownRendererComponent', () => {
     let component: MarkdownRendererComponent;
