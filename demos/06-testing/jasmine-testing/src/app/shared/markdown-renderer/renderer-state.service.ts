@@ -4,14 +4,19 @@ import { Injectable, computed, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class RendererStateService {
-  private editorVisible = signal<boolean>(true);
+  private contentVisible = signal<boolean>(true);
 
   getVisible() {
-    return computed(() => this.editorVisible());
+    console.log('visible', this.contentVisible());
+    return computed(() => this.contentVisible());
   }
 
-  toggleVisible(visible: boolean) {
-    this.editorVisible.set(visible);
+  setVisibility(visible: boolean) {
+    this.contentVisible.set(visible);
+  }
+
+  toggleVisibility() {
+    this.contentVisible.set(!this.contentVisible());
   }
 
 }
