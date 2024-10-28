@@ -13,6 +13,8 @@ import { demoState } from './demos/state/demos.state';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
 import { appState } from './state/app.state';
+import * as editorEffects from './shared/markdown-editor/state/editor.effects';
+import { editorState } from './shared/markdown-editor/state/editor.state';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -26,8 +28,9 @@ export const appConfig: ApplicationConfig = {
         provideStore(),
         provideState(appState),
         provideState(demoState),
-        provideEffects(demoEffects), // Add demoEffects to the provideEffects function call
-        // NgRx Data -> Skills
+        provideState(editorState),
+        provideEffects(demoEffects),
+        provideEffects(editorEffects),
         provideEntityData(skillsEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: skillsDataServiceConfig },
         //NgRx DevTools
