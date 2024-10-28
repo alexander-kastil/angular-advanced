@@ -15,13 +15,13 @@ import * as customerEffects from './customers/state/customers.effects';
 import { customerState } from './customers/state/customers.state';
 import * as demoEffects from './demos/state/demos.effects';
 import { demoState } from './demos/state/demos.state';
-import { GlobalErrorHandler } from './error/error.handler';
 import { httpErrorInterceptor } from './error/http-error.interceptor';
 import { authInterceptor } from './interceptors/auth.interceptor';
 import { authState } from './mock-auth/state/auth.state';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
 import { appState } from './state/app.state';
+import { globalErrorHandler } from './error/error.handler';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -75,7 +75,7 @@ export const appConfig: ApplicationConfig = {
         },
         {
             provide: ErrorHandler,
-            useClass: GlobalErrorHandler,
+            useValue: globalErrorHandler,
         },
     ]
 };
