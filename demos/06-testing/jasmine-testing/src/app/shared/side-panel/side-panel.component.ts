@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -8,6 +8,8 @@ import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { RendererStateService } from '../markdown-renderer/renderer-state.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+
 
 @Component({
   selector: 'app-side-panel',
@@ -47,4 +49,13 @@ export class SidePanelComponent {
   toggleInfo() {
     this.rendererState.toggleVisibility();
   }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === 'i') {
+      this.toggleInfo();
+      event.preventDefault();
+    }
+  }
+
 }

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideHttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MarkdownModule } from 'ngx-markdown';
 import { ComponentInputSignalsComponent } from './component-input-signals.component';
 
 describe('ComponentInputSignalsComponent', () => {
@@ -8,9 +10,16 @@ describe('ComponentInputSignalsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ComponentInputSignalsComponent]
+      imports: [
+        MarkdownModule.forRoot(),
+        BrowserAnimationsModule,
+        ComponentInputSignalsComponent
+      ],
+      providers: [
+        provideHttpClient()
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ComponentInputSignalsComponent);
     component = fixture.componentInstance;
