@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
-  ViewChild,
+  viewChild,
   inject
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,11 +18,11 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements AfterViewInit {
   router = inject(Router);
   dialog = inject(MatDialog);
-  @ViewChild('dialog') template: TemplateRef<any> | null = null;
+  template = viewChild('dialog', { read: TemplateRef });
 
   ngAfterViewInit() {
-    if (this.template) {
-      const ref = this.dialog.open(this.template, {
+    if (this.template()) {
+      const ref = this.dialog.open(this.template(), {
         width: '350px',
       });
 
