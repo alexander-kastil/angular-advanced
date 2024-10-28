@@ -54,7 +54,6 @@ mat-toolbar {
 
 .mat-drawer-container {
   background-color: var(--color-fg);
-  color: var(--color-darkfont);
 }
 
 .mat-sidenav-container {
@@ -63,7 +62,7 @@ mat-toolbar {
 
 .mat-sidenav {
   width: 250px;
-  background-color: var(--color-fg);
+  background-color: var(--color-accent);
 }
 
 .sidenav-menu {
