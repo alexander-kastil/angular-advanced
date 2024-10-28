@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -47,4 +47,13 @@ export class SidePanelComponent {
   toggleInfo() {
     this.rendererState.toggleVisibility();
   }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === 'i') {
+      this.toggleInfo();
+      event.preventDefault();
+    }
+  }
+
 }
