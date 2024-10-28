@@ -27,7 +27,7 @@ import { metaReducers, reducers } from './state';
 import { retryInterceptor } from './interceptors/retry-interceptor.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
-import { GlobalErrService } from './error/global-err-handler';
+import { globalErrorHandler } from './error/error.handler';
 
 @NgModule({
   declarations: [
@@ -89,7 +89,7 @@ import { GlobalErrService } from './error/global-err-handler';
     },
     {
       provide: ErrorHandler,
-      useClass: GlobalErrService,
+      useValue: globalErrorHandler,
     },
     {
       provide: HTTP_INTERCEPTORS,
