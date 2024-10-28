@@ -1,6 +1,6 @@
-import { ErrorHandler, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 export function globalErrorHandler(error: Error | HttpErrorResponse) {
   const router = inject(Router);
