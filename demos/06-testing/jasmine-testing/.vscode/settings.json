@@ -3,5 +3,11 @@
         {
             "file": ".angular.copilot.md"
         }
-    ]
+    ],
+    "github.copilot.chat.experimental.setupTests.enabled"   : true,
+    "github.copilot.chat.experimental.setupTests.instructions": [
+        
+    ],
+    "github.copilot.chat.experimental.startDebugging.enabled": true,
+    "chat.commandCenter.enabled": true,
 }
