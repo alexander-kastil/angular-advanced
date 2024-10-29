@@ -1,9 +1,9 @@
 export const environment = {
   authEnabled: false,
-  title: 'State & NgRx',
+  title: 'NgRx State',
   logChangeDetection: false,
   logChanges: false,
   logLoading: true,
-  markdownPath: '/assets/markdown/',
+  markdownPath: 'markdown/',
   api: 'http://localhost:3000/'
 };
