@@ -4,7 +4,6 @@ import { AppStateComponent } from './samples/app-state/app-state.component';
 import { ChangeDetectionProfileComponent } from './samples/change-detection-profile/change-detection-profile.component';
 import { ChangeDetectionComponent } from './samples/change-detection/change-detection.component';
 import { ChangeDetectorRefComponent } from './samples/change-detector-ref/change-detector-ref.component';
-import { ComponentStoreComponent } from './samples/component-store/component-store.component';
 import { ContainerPresenterNgrxComponent } from './samples/container-presenter-ngrx/container-presenter-ngrx.component';
 import { EffectsComponent } from './samples/effects/effects.component';
 import { FacadesComponent } from './samples/facades/facades.component';
@@ -35,7 +34,6 @@ export const demoRoutes: Routes = [
       { path: 'ngrx-signals', component: NgrxSignalsComponent, title: 'Demos - Ngrx Signals' },
       { path: 'cd-intro', component: ChangeDetectionComponent, title: 'Demos - Change Detection' },
       { path: 'cd-profile', component: ChangeDetectionProfileComponent, title: 'Demos - Change Detection Profile' },
-      { path: 'component-store', component: ComponentStoreComponent, title: 'Demos - Component Store' },
       { path: 'presenter-ngrx', component: ContainerPresenterNgrxComponent, title: 'Demos - Container Presenter Ngrx' },
       {
         path: 'change-detector-ref',

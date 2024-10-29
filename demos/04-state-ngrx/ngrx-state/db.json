@@ -64,11 +64,6 @@
       "url": "cd-profile",
       "title": "Profile Change Detection",
       "id": "41"
-    },
-    {
-      "url": "component-store",
-      "title": "@ngrx/component-store",
-      "id": "44"
     }
   ],
   "skills": [

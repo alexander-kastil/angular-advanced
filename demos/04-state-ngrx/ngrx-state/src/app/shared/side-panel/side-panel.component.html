@@ -1,12 +1,12 @@
 <mat-toolbar color="accent">
   <mat-toolbar-row >
-    <button mat-mini-fab (click)="toogleSideNav()">
+    <button mat-mini-fab matTooltip="Toggle the SideNav" (click)="toggleSideNav()">
       <mat-icon>menu</mat-icon>
     </button>
-    <button mat-mini-fab (click)="showUpload()">
-      <mat-icon>cloud_upload</mat-icon>
+    <button mat-mini-fab matTooltip="Toggle Info-Pane visibility. Use Ctrl+i to toggle" (click)="toggleInfo()">
+      <mat-icon>info</mat-icon>
     </button>
-    <button mat-mini-fab (click)="toggleEditor()">
+    <button mat-mini-fab matTooltip="Show the markdown editor" (click)="toggleEditor()">
       <mat-icon>{{icon}}</mat-icon>
     </button>
   </mat-toolbar-row>

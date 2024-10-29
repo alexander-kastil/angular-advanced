@@ -1,12 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { AppState, appState } from 'src/app/state/app.state';
-import { Store } from '@ngrx/store';
-import { appActions } from 'src/app/state/app.actions';
 import { AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
-import { AuthFacade } from 'src/app/state/auth.facade';
+import { AuthFacade } from '../../../state/auth.facade';
 
 @Component({
   selector: 'app-facades',
