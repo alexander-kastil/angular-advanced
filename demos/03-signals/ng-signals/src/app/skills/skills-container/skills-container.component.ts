@@ -25,8 +25,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     FormsModule,
     ReactiveFormsModule,
     SkillRowComponent,
-    SkillsKpiComponent,
-    AsyncPipe,
+    SkillsKpiComponent
   ],
 })
 export class SkillsContainerComponent {

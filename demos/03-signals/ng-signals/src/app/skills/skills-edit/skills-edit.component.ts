@@ -25,9 +25,7 @@ import { SkillsEntityService } from '../skills-entity.service';
     ReactiveFormsModule,
     MatSlideToggle,
     MatCardActions,
-    MatButton,
-    AsyncPipe,
-    JsonPipe,
+    MatButton
   ],
 })
 export class SkillsEditComponent {

@@ -1,2 +1,0 @@
-- `SignalState` is contained in the local demos.
-- `SignalStore` is provided in the lab as step by step guide. The solution will be used to explain the concepts.

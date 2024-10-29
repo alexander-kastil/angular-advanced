@@ -40,11 +40,6 @@
       "url": "select-signal",
       "title": "NgRx Interop"
     },
-    {
-      "id": 9,
-      "url": "ngrx-signals",
-      "title": "@ngrx/signals"
-    },
     { 
       "id": 10,
       "url": "zoneless-change-detection",

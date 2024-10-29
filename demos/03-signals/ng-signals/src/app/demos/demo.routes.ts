@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { ContainerPresenterSignalsComponent } from './samples/container-presenter/container-presenter-signals.component';
 import { ModelInputsComponent } from './samples/model-inputs/model-inputs.component';
-import { NgrxSignalsComponent } from './samples/ngrx-signals/ngrx-signals.component';
 import { RxjsInteropComponent } from './samples/rxjs-interop/rxjs-interop.component';
 import { SelectSignalComponent } from './samples/select-signal/select-signal.component';
 import { SignalEffectsComponent } from './samples/signal-effects/signal-effects.component';
@@ -23,7 +22,6 @@ export const demoRoutes: Routes = [
       { path: 'model-inputs', component: ModelInputsComponent },
       { path: 'signals-event-bus', component: SignalsEventBusComponent },
       { path: 'select-signal', component: SelectSignalComponent },
-      { path: 'ngrx-signals', component: NgrxSignalsComponent },
       { path: 'container-presenter', component: ContainerPresenterSignalsComponent },
       { path: 'zoneless-change-detection', component: ZonelessChangeDetectionComponent }
     ],
