@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <mat-form-field>
+    <input
+      matInput
+      [formControl]="fcFilter"
+      placeholder="Filter"
+      />
+    </mat-form-field>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  @for (c of customers | async; track c) {
+    <div>
+      {{ c.name }}
+    </div>
+  }
+  
