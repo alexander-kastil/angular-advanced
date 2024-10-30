@@ -23,6 +23,7 @@ import { Skill } from '../skill.model';
 })
 export class SkillRowComponent {
   skill = input.required<Skill>();
+  editEnabled = input(false, { transform: (v) => v === 'true' ? true : false });
   itemDeleted = output<Skill>();
   itemCompleted = output<Skill>();
 

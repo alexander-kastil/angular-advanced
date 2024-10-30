@@ -1,4 +1,4 @@
 - This component is used to demonstrate the signal. Learn about the following concepts:
-  - Signals & how to use them in the template
-  - Computed Signals
-  - Effects that run when a signal changes
+  - Signals & how to the contribute to the reactivity system
+  - Computed Signals are read-only and derive their value from other signals
+  - Effects that run when a Signal changes an are used to perform side effects
