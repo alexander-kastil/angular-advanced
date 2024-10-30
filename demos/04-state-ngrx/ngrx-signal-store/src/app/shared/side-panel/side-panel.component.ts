@@ -27,9 +27,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
+  sidenav = inject(SideNavService);
   rendererState = inject(RendererStateService);
   editorDisplayed = false;
-  sidenav = inject(SideNavService);
   icon = "create";
 
   toggleEditor() {

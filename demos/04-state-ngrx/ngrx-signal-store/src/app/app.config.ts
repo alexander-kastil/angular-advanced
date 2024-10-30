@@ -19,7 +19,7 @@ import { editorState } from './shared/markdown-editor/state/editor.state';
 import { SkillsDataService } from './skills/skills-data.service';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
-import { appState } from './state/app.state';
+// import { appState } from './state/app.state';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -32,7 +32,7 @@ export const appConfig: ApplicationConfig = {
         provideEffects(customerEffects),
         provideEffects(editorEffects),
         // State Slices
-        provideState(appState),
+        // provideState(appState),
         provideState(demoState),
         provideState(customerState),
         provideState(editorState),

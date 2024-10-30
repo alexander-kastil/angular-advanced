@@ -9,12 +9,7 @@
       "url": "create-feature",
       "title": "createFeature",
       "id": "2"
-    },
-    {
-      "url": "dispatch-action",
-      "title": "Dispatch Action",
-      "id": "3"
-    },
+    },    
     {
       "url": "effects",
       "title": "Effects",
@@ -29,11 +24,6 @@
       "url": "selectors",
       "title": "Selectors",
       "id": "88"
-    },
-    {
-      "url": "facades",
-      "title": "Facades",
-      "id": "15"
     },
     {
       "url": "respond-effects",

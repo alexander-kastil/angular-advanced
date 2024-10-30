@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav [opened]="sidenavVisible | async" [mode]="(sidenavMode | async) ?? 'side' ">
+  <mat-sidenav #sidenav [opened]="sidenavVisible()" [mode]="sidenavMode()">
     <mat-toolbar color="accent">
       <mat-toolbar-row>
         {{ title }}
@@ -17,7 +17,7 @@
   <mat-sidenav-content>
     <div
       class="gdSidenavContent"
-      [ngStyle]="workbenchMargin | async"
+      [ngStyle]="workbenchMargin()"
       >
       <div class="gdToolbar">
         <mat-toolbar color="accent">
@@ -32,7 +32,7 @@
         }
       </div>
       <div class="gdWorkbench"><router-outlet></router-outlet></div>
-      @if (showMdEditor) {
+      @if (showMdEditor()) {
         <div class="gdEditor">
           <app-editor-container></app-editor-container>
         </div>

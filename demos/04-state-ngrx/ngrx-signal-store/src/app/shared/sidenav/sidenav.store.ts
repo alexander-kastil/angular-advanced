@@ -1,6 +1,6 @@
-In this demo the classic ngrx app state is replaced with as state using signalStore. For simplicity we have removed the auth-flag and for clarity we have renamed the file to `sidenav.store.ts`. 
+import { MatDrawerMode } from '@angular/material/sidenav';
+import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 
-```typescript
 type SideNavState = {
   sideNavVisible: boolean;
   sideNavPosition: MatDrawerMode;
@@ -26,10 +26,3 @@ export const sideNavStore = signalStore(
     }
   })),
 );
-```
-
-The response to a possible change in screen width is handled by `sidenav.service.ts` which will replace the facade and acts as a mediator between the store and the component. It is used in the following components:
-
-- `demo-container.component.ts`
-- `navbar.component.ts`
-- `side-panel.component.ts`
