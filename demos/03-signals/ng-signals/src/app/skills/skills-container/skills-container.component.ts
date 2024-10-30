@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
 import { AsyncPipe } from '@angular/common';
@@ -11,6 +10,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-skills-container',

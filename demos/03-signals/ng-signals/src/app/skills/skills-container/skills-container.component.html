@@ -11,7 +11,8 @@
 @for (sk of skills(); track sk) {
   <app-skill-row
     [skill]="sk"
-    (itemDeleted)="deleteItem($event)"
+    [editEnabled]="'true'"
+    (itemDeleted)="deleteItem($event)"    
     (itemCompleted)="toggleItemComplete($event)"
   ></app-skill-row>
 }

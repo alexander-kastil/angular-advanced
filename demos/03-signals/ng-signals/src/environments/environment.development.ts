@@ -4,6 +4,6 @@ export const environment = {
   logChangeDetection: false,
   logChanges: false,
   logLoading: true,
-  markdownPath: '/assets/markdown/',
+  markdownPath: 'markdown/',
   api: 'http://localhost:3000/'
 };

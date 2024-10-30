@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/internal/operators/map';
-import { BoxedDirective, ClickableDirective } from 'src/app/shared/formatting/formatting-directives';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
-import { SkillsService } from 'src/app/skills/skills.service';
+import { BoxedDirective, ClickableDirective } from '../../../shared/formatting/formatting-directives';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { SkillsService } from '../../../skills/skills.service';
 
 @Component({
   selector: 'app-zoneless-change-detection',

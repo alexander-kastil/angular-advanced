@@ -6,5 +6,10 @@
 }
 
 button{
-  margin: 0 0.5rem ;
+  margin-right: var(--gap-small);
+}
+
+.mat-mdc-unelevated-button{
+  margin-bottom: var(--gap-small);
+  min-width: 80px;
 }

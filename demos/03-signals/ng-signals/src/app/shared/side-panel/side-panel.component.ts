@@ -1,36 +1,36 @@
-import { Component, inject } from '@angular/core';
-import { SideNavFacade } from 'src/app/state/sidenav.facade';
+import { Component, HostListener, inject } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
-import { ThemeService } from '../theme/theme.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
+import { SideNavService } from '../sidenav/sidenav.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
+import { RendererStateService } from '../markdown-renderer/renderer-state.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+
 
 @Component({
-    selector: 'app-side-panel',
-    templateUrl: './side-panel.component.html',
-    styleUrls: ['./side-panel.component.scss'],
-    standalone: true,
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatMiniFabButton,
-        MatIcon,
-    ],
+  selector: 'app-side-panel',
+  templateUrl: './side-panel.component.html',
+  styleUrls: ['./side-panel.component.scss'],
+  standalone: true,
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatMiniFabButton,
+    MatIcon,
+    MatTooltipModule
+  ],
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
-  ts = inject(ThemeService);
+  rendererState = inject(RendererStateService);
   editorDisplayed = false;
-  sidenav = inject(SideNavFacade);
+  sidenav = inject(SideNavService);
   icon = "create";
-
-  toggleTheme() {
-    this.ts.toggleTheme();
-  }
 
   toggleEditor() {
     if (this.editorDisplayed) {
@@ -46,7 +46,16 @@ export class SidePanelComponent {
     this.sidenav.toggleMenuVisibility();
   }
 
-  showUpload() {
-    this.sns.displayAlert('Info', 'Not implemented - just a Demo');
+  toggleInfo() {
+    this.rendererState.toggleVisibility();
   }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === 'i') {
+      this.toggleInfo();
+      event.preventDefault();
+    }
+  }
+
 }

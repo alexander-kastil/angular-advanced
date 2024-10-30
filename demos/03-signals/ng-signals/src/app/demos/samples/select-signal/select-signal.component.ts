@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { customersActions } from 'src/app/customers/state/customers.actions';
-import { CustomersState, customerState } from 'src/app/customers/state/customers.state';
-import { BorderDirective } from 'src/app/shared/formatting/formatting-directives';
-import { MarkdownRendererModule } from 'src/app/shared/markdown-renderer/markdown-renderer.module';
+import { customersActions } from '../../../customers/state/customers.actions';
+import { CustomersState, customerState } from '../../../customers/state/customers.state';
+import { BorderDirective } from '../../../shared/formatting/formatting-directives';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
   selector: 'app-select-signal',
   standalone: true,
-  imports: [MarkdownRendererModule, BorderDirective],
+  imports: [MarkdownRendererComponent, BorderDirective],
   templateUrl: './select-signal.component.html',
   styleUrl: './select-signal.component.scss'
 })
