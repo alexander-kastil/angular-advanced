@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { DetailCardModelComponent } from './detail-card-model/detail-card-model.component';
 
 @Component({

@@ -1,16 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
-  SimpleChanges,
   input,
   output
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { Skill } from '../skill.model';
 
 @Component({

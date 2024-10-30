@@ -3,8 +3,8 @@ import { Component, effect, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { of } from 'rxjs';
-import { BorderDirective, CenteredDirective } from 'src/app/shared/formatting/formatting-directives';
-import { MarkdownRendererModule } from 'src/app/shared/markdown-renderer/markdown-renderer.module';
+import { BorderDirective, CenteredDirective } from '../../../shared/formatting/formatting-directives';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
   selector: 'app-rxjs-interop',
@@ -12,7 +12,7 @@ import { MarkdownRendererModule } from 'src/app/shared/markdown-renderer/markdow
   imports: [
     AsyncPipe,
     MatButtonModule,
-    MarkdownRendererModule,
+    MarkdownRendererComponent,
     BorderDirective,
     CenteredDirective
   ],

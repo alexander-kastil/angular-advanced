@@ -1,10 +1,10 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { BoxedDirective } from 'src/app/shared/formatting/formatting-directives';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { SkillsService } from 'src/app/skills/skills.service';
-import { Skill } from 'src/app/skills/skill.model';
+import { BoxedDirective } from '../../../shared/formatting/formatting-directives';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { Skill } from '../../../skills/skill.model';
+import { SkillsService } from '../../../skills/skills.service';
 @Component({
   selector: 'app-signal-effects',
   standalone: true,

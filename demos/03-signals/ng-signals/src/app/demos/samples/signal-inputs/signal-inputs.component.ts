@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
   selector: 'app-signal-inputs',
