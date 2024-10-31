@@ -17,6 +17,6 @@ export class TopicListComponent {
   topics = this.store.entities;
 
   toggleCompleted(topic: Topic) {
-    topic.completed = !topic.completed;
+    this.store.updateTopic({ ...topic, completed: !topic.completed });
   }
 }
