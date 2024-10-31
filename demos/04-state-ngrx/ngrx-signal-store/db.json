@@ -138,5 +138,32 @@
       "url": "customers",
       "id": "68c7"
     }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "name": "NgRx",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "name": "Signals",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "name": "Material",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "name": "Copilot Dev",
+      "completed": false
+    }
   ]
 }
