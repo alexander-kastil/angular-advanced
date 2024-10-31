@@ -11,8 +11,8 @@
       "id": "2"
     },
     {
-      "url": "store-entities",
-      "title": "Store Entities",
+      "url": "store-entities-datasource",
+      "title": "Store Entities & DataSource",
       "id": "16"
     },
     {
@@ -24,21 +24,6 @@
       "url": "custom-store-features",
       "title": "Custom Store Features",
       "id": "88"
-    },
-    {
-      "url": "respond-effects",
-      "title": "Respond to Effects",
-      "id": "18"
-    },
-    {
-      "url": "ngrx-entity",
-      "title": "@ngrx/entity",
-      "id": "4"
-    },
-    {
-      "url": "ngrx-data",
-      "title": "@ngrx/data",
-      "id": "6"
     },
     {
       "url": "presenter-ngrx",

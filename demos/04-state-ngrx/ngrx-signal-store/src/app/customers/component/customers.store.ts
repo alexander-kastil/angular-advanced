@@ -1,9 +1,9 @@
-import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { Customer } from '../customer.model';
 import { pipe, switchMap } from 'rxjs';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { CustomersService } from '../customers.service';
 
 export interface CustomersState {
@@ -58,6 +58,10 @@ export const customersStore = signalStore(
                     );
                 })
             )),
+    })),
+    withComputed((store) => ({
+        count: computed(() => store.customers().length),
+        nextId: computed(() => store.customers().reduce((max, p) => p.id > max ? p.id : max, 0) + 1),
     })),
     withHooks({
         onInit({ fetchCustomers }) {
