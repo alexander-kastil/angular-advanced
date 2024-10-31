@@ -1,16 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
   SimpleChanges,
-  input
+  effect,
+  input,
+  output
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { Skill } from '../skill.model';
 import { environment } from '../../../environments/environment';
+import { Skill } from '../skill.model';
 
 @Component({
   selector: 'app-skill-row',
@@ -26,8 +26,8 @@ import { environment } from '../../../environments/environment';
 })
 export class SkillRowComponent {
   skill = input.required<Skill>();
-  @Output() itemDeleted: EventEmitter<Skill> = new EventEmitter<Skill>();
-  @Output() itemCompleted: EventEmitter<Skill> = new EventEmitter<Skill>();
+  itemDeleted = output<Skill>();
+  itemCompleted = output<Skill>();
 
   ngDoCheck(): void {
     if (environment.logChangeDetection) {
@@ -35,11 +35,9 @@ export class SkillRowComponent {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (environment.logChanges) {
-      console.log(`SkillRowComponent - ngOnChanges: ${this.skill.name}`);
-    }
-  }
+  onNewSkill = effect(() => {
+    console.log('ngOnChanges mock - new skill:', this.skill);
+  })
 
   deleteItem(item: Skill): void {
     this.itemDeleted.emit(item);

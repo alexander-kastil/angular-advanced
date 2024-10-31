@@ -6,23 +6,23 @@
       "id": "1"
     },
     {
-      "url": "create-feature",
-      "title": "createFeature",
+      "url": "store-crud",
+      "title": "Store CRUD",
       "id": "2"
-    },    
+    },
     {
-      "url": "effects",
-      "title": "Effects",
+      "url": "store-entities",
+      "title": "Store Entities",
       "id": "16"
     },
     {
-      "url": "feature-modules-state",
-      "title": "Feature Module State",
+      "url": "ngrx-interop",
+      "title": "NgRx Interop",
       "id": "5"
     },
     {
-      "url": "selectors",
-      "title": "Selectors",
+      "url": "custom-store-features",
+      "title": "Custom Store Features",
       "id": "88"
     },
     {
@@ -116,8 +116,8 @@
   ],
   "customers": [
     {
-      "id": "1",
-      "name": "Cleo"
+      "name": "Cleo",
+      "id": "1"
     },
     {
       "id": "2",

@@ -5,14 +5,11 @@ import { ChangeDetectionProfileComponent } from './samples/change-detection-prof
 import { ChangeDetectionComponent } from './samples/change-detection/change-detection.component';
 import { ChangeDetectorRefComponent } from './samples/change-detector-ref/change-detector-ref.component';
 import { ContainerPresenterNgrxComponent } from './samples/container-presenter-ngrx/container-presenter-ngrx.component';
-import { EffectsComponent } from './samples/effects/effects.component';
-import { FeatureModuleStateComponent } from './samples/feature-module-state/feature-module-state.component';
 import { NgrxDataComponent } from './samples/ngrx-data/ngrx-data.component';
-import { NgrxEntityComponent } from './samples/ngrx-entity/ngrx-entity.component';
 import { NgrxSignalsComponent } from './samples/ngrx-signals/ngrx-signals.component';
-import { CreateFeatureComponent } from './samples/create-feature/create-feature.component';
-import { RespondToEffectsComponent } from './samples/respond-to-effects/respond-to-effects.component';
-import { SelectorsComponent } from './samples/selectors/selectors.component';
+import { StoreCrudComponent } from './samples/store-crud/store-crud.component';
+import { StoreEntitiesComponent } from './samples/store-entities/store-entities.component';
+import { NgrxInteropComponent } from './samples/ngrx-interop/ngrx-interop.component';
 
 export const demoRoutes: Routes = [
   {
@@ -20,12 +17,9 @@ export const demoRoutes: Routes = [
     component: DemoContainerComponent,
     children: [
       { path: 'app-state', component: AppStateComponent, title: 'Demos - App State' },
-      { path: 'respond-effects', component: RespondToEffectsComponent, title: 'Demos - Respond Effects' },
-      { path: 'ngrx-entity', component: NgrxEntityComponent, title: 'Demos - Ngrx Entity' },
-      { path: 'feature-modules-state', component: FeatureModuleStateComponent, title: 'Demos - Feature Modules State' },
-      { path: 'create-feature', component: CreateFeatureComponent, title: 'Demos - createFeature' },
-      { path: 'selectors', component: SelectorsComponent, title: 'Demos - Selectors' },
-      { path: 'effects', component: EffectsComponent, title: 'Demos - Effects' },
+      { path: 'store-crud', component: StoreCrudComponent, title: 'Demos - CRUD withMethods' },
+      { path: 'store-entities', component: StoreEntitiesComponent, title: 'Demos - Entities' },
+      { path: 'ngrx-interop', component: NgrxInteropComponent, title: 'Demos - NgRx Interop' },
       { path: 'ngrx-data', component: NgrxDataComponent, title: 'Demos - Ngrx Data' },
       { path: 'ngrx-signals', component: NgrxSignalsComponent, title: 'Demos - Ngrx Signals' },
       { path: 'cd-intro', component: ChangeDetectionComponent, title: 'Demos - Change Detection' },

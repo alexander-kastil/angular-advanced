@@ -1,4 +1,4 @@
-In this demo the classic ngrx app state is replaced with as state using signalStore. For simplicity we have removed the auth-flag and for clarity we have renamed the file to `sidenav.store.ts`. 
+In this demo the Classic NgRx `AppState` is replaced with as state using `signalStore`. Note that it will not be persisted. For simplicity we have removed the auth-flag and for clarity we have renamed the file to `sidenav.store.ts`. 
 
 ```typescript
 type SideNavState = {
