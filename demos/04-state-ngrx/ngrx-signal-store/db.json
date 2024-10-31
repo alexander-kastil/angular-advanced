@@ -3,42 +3,42 @@
     {
       "url": "app-state",
       "title": "App State",
-      "id": "1"
+      "id": 1
     },
     {
       "url": "store-crud",
       "title": "Store CRUD",
-      "id": "2"
+      "id": 2
     },
     {
-      "url": "store-entities-datasource",
-      "title": "Store Entities & DataSource",
-      "id": "16"
+      "url": "store-entities",
+      "title": "Store Entities",
+      "id": 16
     },
     {
       "url": "ngrx-interop",
       "title": "NgRx Interop",
-      "id": "5"
+      "id": 5
     },
     {
       "url": "custom-store-features",
       "title": "Custom Store Features",
-      "id": "88"
+      "id": 88
     },
     {
       "url": "presenter-ngrx",
       "title": "Container Presenter NgRx",
-      "id": "13"
+      "id": 13
     },
     {
       "url": "cd-intro",
       "title": "Change Detection Intro",
-      "id": "42"
+      "id": 42
     },
     {
       "url": "cd-profile",
       "title": "Profile Change Detection",
-      "id": "41"
+      "id": 41
     }
   ],
   "skills": [
@@ -102,18 +102,18 @@
   "customers": [
     {
       "name": "Cleo",
-      "id": "1"
+      "id": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Soi"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Giro"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Flora"
     }
   ],
@@ -137,7 +137,13 @@
       "label": "Customers",
       "url": "customers",
       "id": "68c7"
+    },
+    {
+      "label": "Topics",
+      "url": "topics",
+      "id": "68c7"
     }
+
   ],
   "topics": [
     {

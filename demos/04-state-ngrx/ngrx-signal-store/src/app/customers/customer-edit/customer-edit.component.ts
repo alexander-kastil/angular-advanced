@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { Customer } from '../../customer.model';
+import { Customer } from '../customer.model';
 import { customersStore } from '../customers.store';
 
 @Component({

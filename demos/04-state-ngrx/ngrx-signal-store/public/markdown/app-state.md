@@ -1,4 +1,6 @@
-In this demo the Classic NgRx `AppState` is replaced with as state using `signalStore`. Note that it will not be persisted. For simplicity we have removed the auth-flag and for clarity we have renamed the file to `sidenav.store.ts`. 
+In this demo the Classic NgRx `AppState` is replaced with as state using `signalStore`. For simplicity we have removed the auth-flag and for clarity we have renamed the file to `sidenav.store.ts`. The store can be provides using Angular's dependency injection system or by using `providedIn`. The store is used to manage the state of the side navigation. The state is defined in `sidenav.store.ts` and is used in the following components:
+
+`withState` defines the state and `withMethods` defines the methods that do not persist the state. 
 
 ```typescript
 type SideNavState = {

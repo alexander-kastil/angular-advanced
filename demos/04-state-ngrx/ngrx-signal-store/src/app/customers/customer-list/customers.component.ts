@@ -8,7 +8,11 @@ import { customersStore } from '../customers.store';
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
   standalone: true,
-  imports: [MatButton, RouterLink]
+  imports: [
+    MatButton,
+    RouterLink
+  ],
+  providers: [customersStore]
 })
 export class CustomersComponent {
   store = inject(customersStore);

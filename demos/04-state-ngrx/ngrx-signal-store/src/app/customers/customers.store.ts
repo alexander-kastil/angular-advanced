@@ -1,18 +1,18 @@
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
-import { Customer } from '../customer.model';
+import { Customer } from './customer.model';
 import { pipe, switchMap } from 'rxjs';
 import { computed, inject } from '@angular/core';
-import { CustomersService } from '../customers.service';
+import { CustomersService } from './customers.service';
 
-export interface CustomersState {
+type CustomersState = {
     customers: Customer[];
     loading: boolean;
     filter: string;
 }
 
-export const initialCustomersState: CustomersState = {
+const initialCustomersState: CustomersState = {
     customers: [],
     loading: false,
     filter: '',
@@ -21,7 +21,6 @@ export const initialCustomersState: CustomersState = {
 const logError = (error: Error) => console.error("error: ", error);
 
 export const customersStore = signalStore(
-    { providedIn: 'root', protectedState: false },
     withState(initialCustomersState),
     withMethods((store, service = inject(CustomersService)) => ({
         fetchCustomers: rxMethod<void>(

@@ -17,7 +17,7 @@ export const demoRoutes: Routes = [
     children: [
       { path: 'app-state', component: AppStateComponent, title: 'Demos - App State' },
       { path: 'store-crud', component: StoreCrudComponent, title: 'Demos - CRUD withMethods' },
-      { path: 'store-entities-datasource', component: StoreEntitiesComponent, title: 'Demos - Entities' },
+      { path: 'store-entities', component: StoreEntitiesComponent, title: 'Demos - Entities' },
       { path: 'ngrx-interop', component: NgrxInteropComponent, title: 'Demos - NgRx Interop' },
       { path: 'custom-store-features', component: CustomStoreFeaturesComponent, title: 'Demos - Custom Store Features' },
       { path: 'cd-intro', component: ChangeDetectionComponent, title: 'Demos - Change Detection' },

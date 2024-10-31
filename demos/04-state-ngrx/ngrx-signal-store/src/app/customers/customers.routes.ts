@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { CustomersComponent } from './component/customer-list/customers.component';
-import { CustomerEditComponent } from './component/customer-edit/customer-edit.component';
+import { CustomersComponent } from './customer-list/customers.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 
 export const customerRoutes: Routes = [
     {
