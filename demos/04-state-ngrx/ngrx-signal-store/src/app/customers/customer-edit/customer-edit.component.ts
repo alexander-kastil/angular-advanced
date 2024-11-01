@@ -26,7 +26,8 @@ export class CustomerEditComponent {
 
   constructor() {
     effect(() => {
-      this.customer = this.store.getById(this.id());
+      const id = Number(this.id());
+      this.customer = this.store.getById(id);
       if (this.customer) {
         this.customersForm.patchValue(this.customer);
       }

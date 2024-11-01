@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, type, withHooks, withMethods, withState } from '@ngrx/signals';
-import { entityConfig, setEntities, updateEntity, withEntities } from '@ngrx/signals/entities';
+import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
+import { setEntities, updateEntity, withEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 import { Topic } from './topic.model';
@@ -16,12 +16,6 @@ type topicsState = {
 const initialTopicsState: topicsState = {
     loading: false,
 };
-
-const todoConfig = entityConfig({
-    entity: type<Topic>(),
-    collection: 'topics',
-    selectId: (topic) => topic.id
-});
 
 export const topicsStore = signalStore(
     withState(initialTopicsState),
@@ -41,11 +35,9 @@ export const topicsStore = signalStore(
                 })
             )),
         updateTopic: (topic: Topic) => {
-            return service.updateTopic(topic).pipe(
-                tapResponse({
-                    next: (topic) => patchState(store, updateEntity({ id: topic.id, changes: topic })),
-                    error: logError,
-                })
+            service.updateTopic(topic).subscribe((updatedTopic) => {
+                patchState(store, updateEntity({ id: updatedTopic.id, changes: updatedTopic }));
+            }
             );
         },
     })),

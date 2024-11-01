@@ -11,11 +11,9 @@ import { customersStore } from '../customers.store';
   imports: [
     MatButton,
     RouterLink
-  ],
-  providers: [customersStore]
+  ]
 })
 export class CustomersComponent {
   store = inject(customersStore);
   customers = this.store.customers;
-
 }

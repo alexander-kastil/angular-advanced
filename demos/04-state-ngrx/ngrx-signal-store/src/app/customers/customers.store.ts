@@ -21,6 +21,7 @@ const initialCustomersState: CustomersState = {
 const logError = (error: Error) => console.error("error: ", error);
 
 export const customersStore = signalStore(
+    { providedIn: 'root', protectedState: false },
     withState(initialCustomersState),
     withMethods((store, service = inject(CustomersService)) => ({
         fetchCustomers: rxMethod<void>(
@@ -37,6 +38,7 @@ export const customersStore = signalStore(
                 })
             )),
         getById: (id: number) => {
+            console.log("store.customers(): ", store.customers());
             return store.customers().find(c => c.id === id)
         },
         updateCustomer: rxMethod<Customer>(

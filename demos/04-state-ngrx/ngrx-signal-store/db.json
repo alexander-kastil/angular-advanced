@@ -143,13 +143,12 @@
       "url": "topics",
       "id": "68c7"
     }
-
   ],
   "topics": [
     {
       "id": 1,
       "name": "Angular",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
