@@ -5,7 +5,7 @@ import { AsyncPipe } from '@angular/common';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { SideNavFacade } from '../../state/sidenav.facade';
+import { SideNavService } from '../sidenav/sidenav.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +22,7 @@ import { SideNavFacade } from '../../state/sidenav.facade';
   ],
 })
 export class NavbarComponent {
-  nav = inject(SideNavFacade);
+  nav = inject(SideNavService);
   ms = inject(NavbarService);
   sns = inject(SnackbarService);
   menuItems = this.ms.getTopItems();

@@ -1,0 +1,1 @@
+NgRx SignalStore also allows you to create custom features that are not provided out of the box to enable reusability.

@@ -11,6 +11,11 @@
       "title": "Signals Effects"
     },
     {
+      "id": 11,
+      "url": "deep-signals",
+      "title": "Deep Signals"
+    },
+    {
       "id": 3,
       "url": "rxjs-interop",
       "title": "RxJS Interop"

@@ -16,7 +16,7 @@
 
 ```typescript
 export class SkillRowComponent {
-  @Input() skill: Skill = new Skill();
-  @Output() itemDeleted: EventEmitter<Skill> = new EventEmitter<Skill>();
-  @Output() itemCompleted: EventEmitter<Skill> = new EventEmitter<Skill>();
+  skill = input.required<Skill>();
+  itemDeleted = output<Skill>();
+  itemCompleted = output<Skill>();
 ```

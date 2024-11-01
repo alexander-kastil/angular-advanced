@@ -12,4 +12,8 @@ export class CustomersService {
   getCustomers() {
     return this.http.get<Customer[]>(environment.api + 'customers');
   }
+
+  updateCustomer(customer: Customer) {
+    return this.http.put<Customer>(environment.api + 'customers/' + customer.id, customer);
+  }
 }

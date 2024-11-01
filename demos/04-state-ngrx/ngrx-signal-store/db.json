@@ -3,67 +3,42 @@
     {
       "url": "app-state",
       "title": "App State",
-      "id": "1"
+      "id": 1
     },
     {
-      "url": "create-feature",
-      "title": "createFeature",
-      "id": "2"
+      "url": "store-crud",
+      "title": "Store CRUD",
+      "id": 2
     },
     {
-      "url": "dispatch-action",
-      "title": "Dispatch Action",
-      "id": "3"
+      "url": "store-entities",
+      "title": "Store Entities",
+      "id": 16
     },
     {
-      "url": "effects",
-      "title": "Effects",
-      "id": "16"
+      "url": "ngrx-interop",
+      "title": "NgRx Interop",
+      "id": 5
     },
     {
-      "url": "feature-modules-state",
-      "title": "Feature Module State",
-      "id": "5"
-    },
-    {
-      "url": "selectors",
-      "title": "Selectors",
-      "id": "88"
-    },
-    {
-      "url": "facades",
-      "title": "Facades",
-      "id": "15"
-    },
-    {
-      "url": "respond-effects",
-      "title": "Respond to Effects",
-      "id": "18"
-    },
-    {
-      "url": "ngrx-entity",
-      "title": "@ngrx/entity",
-      "id": "4"
-    },
-    {
-      "url": "ngrx-data",
-      "title": "@ngrx/data",
-      "id": "6"
+      "url": "custom-store-features",
+      "title": "Custom Store Features",
+      "id": 88
     },
     {
       "url": "presenter-ngrx",
       "title": "Container Presenter NgRx",
-      "id": "13"
+      "id": 13
     },
     {
       "url": "cd-intro",
       "title": "Change Detection Intro",
-      "id": "42"
+      "id": 42
     },
     {
       "url": "cd-profile",
       "title": "Profile Change Detection",
-      "id": "41"
+      "id": 41
     }
   ],
   "skills": [
@@ -126,19 +101,19 @@
   ],
   "customers": [
     {
-      "id": "1",
-      "name": "Cleo"
+      "name": "Cleo",
+      "id": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Soi"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Giro"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Flora"
     }
   ],
@@ -162,6 +137,38 @@
       "label": "Customers",
       "url": "customers",
       "id": "68c7"
+    },
+    {
+      "label": "Topics",
+      "url": "topics",
+      "id": "68c7"
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "name": "NgRx",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "name": "Signals",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "name": "Material",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "name": "Copilot Dev",
+      "completed": false
     }
   ]
 }
