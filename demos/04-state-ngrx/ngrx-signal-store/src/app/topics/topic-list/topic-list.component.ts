@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { Topic } from '../topic.model';
@@ -7,7 +8,11 @@ import { topicsStore } from '../topics.store';
 @Component({
   selector: 'app-topic-list',
   standalone: true,
-  imports: [MatTableModule, MatSlideToggleModule],
+  imports: [
+    MatTableModule,
+    MatSlideToggleModule,
+    MatProgressBarModule
+  ],
   templateUrl: './topic-list.component.html',
   styleUrls: ['./topic-list.component.scss'],
   providers: [topicsStore]
