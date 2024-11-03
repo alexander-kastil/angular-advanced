@@ -16,7 +16,7 @@ export class TopicsService {
 
   updateTopic(topic: Topic) {
     return this.client.put<Topic>(environment.api + 'topics/' + topic.id, topic).pipe(
-      delay(500)
+      delay(1000)
     );
   }
 }
