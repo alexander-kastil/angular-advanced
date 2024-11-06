@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base  
+  
+# Install Node.js 22  
+RUN apt-get update && apt-get install -y curl && \  
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \  
+    apt-get install -y nodejs && \  
+    apt-get clean && rm -rf /var/lib/apt/lists/*  
+
+LABEL name="Angular dev environment" \
+      description="This image can be used to create a dev environment for building Angular." \
+      vendor="angular" \
+      version="1.0"
+
+EXPOSE 3000 4200 4433 5000 8080 5001
+
+
+# Switch to `root` (CircleCI images use `circleci` as the user).
+USER root
+
+
+# Configure `Node.js`/`npm`.
+RUN npm config --global set user root
