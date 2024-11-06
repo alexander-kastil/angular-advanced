@@ -1,13 +1,10 @@
 {
-    "github.copilot.chat.experimental.codeGeneration.instructions": [
+    "github.copilot.chat.codeGeneration.instructions": [
         {
             "file": ".angular.copilot.md"
         }
     ],
-    "github.copilot.chat.experimental.setupTests.enabled"   : true,
-    "github.copilot.chat.experimental.setupTests.instructions": [
-        
-    ],
-    "github.copilot.chat.experimental.startDebugging.enabled": true,
-    "chat.commandCenter.enabled": true,
+    "github.copilot.chat.setupTests.enabled"   : true,    
+    "github.copilot.chat.startDebugging.enabled": true,
+    "chat.commandCenter.enabled": true,   
 }

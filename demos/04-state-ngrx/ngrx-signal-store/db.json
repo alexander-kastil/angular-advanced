@@ -2,43 +2,38 @@
   "demos": [
     {
       "url": "app-state",
-      "title": "App State",
+      "title": "SignalStore App State",
       "id": 1
     },
     {
       "url": "store-crud",
-      "title": "Store CRUD",
+      "title": "SignalStore CRUD",
       "id": 2
     },
     {
-      "url": "store-entities",
-      "title": "Store Entities",
-      "id": 16
+      "url": "ngrx-interop",
+      "title": "NgRx Classic Interop",
+      "id": 3
     },
     {
-      "url": "ngrx-interop",
-      "title": "NgRx Interop",
-      "id": 5
-    },
+      "url": "store-entities",
+      "title": "SignalStore Entities",
+      "id": 4
+    },    
     {
       "url": "custom-store-features",
       "title": "Custom Store Features",
-      "id": 88
+      "id": 5
     },
     {
       "url": "presenter-ngrx",
       "title": "Container Presenter NgRx",
-      "id": 13
+      "id": 6
     },
     {
-      "url": "cd-intro",
-      "title": "Change Detection Intro",
-      "id": 42
-    },
-    {
-      "url": "cd-profile",
-      "title": "Profile Change Detection",
-      "id": 41
+      "url": "deep-signals",
+      "title": "Deep Signals",
+      "id": 7
     }
   ],
   "skills": [
