@@ -1,4 +1,4 @@
-# Advanced State Management using NgRx
+# State Management using NgRx Classic & NgRx SignalStore
 
 [NgRx Docs](https://ngrx.io/docs)
 
@@ -7,18 +7,14 @@
 ## Demos
 
 - Overview State Management Patterns
-- Introduction to the Redux Pattern & NgRx
-- Feature State and ActionReducerMap
+- NgRx Classic vs Signal Store
+- Introduction to the Classic NgRx & Redux Pattern
 - Implementing NgRx Store, Reducers & Selectors using createFeature
 - Actions & createActionGroup
-- Debugging NgRx using Redux Dev Tools
-- Effects, Facades, @ngrx/entity adapters
-- Simplifying Data Access with @ngrx/data
-- NgRx Container Presenter Best Practices
+- Effects, Facades, @ngrx/entity & @ngrx/data
+- Creating a Signals Store using @ngrx/signals
 - NgRx and Signals Interoperability
-- @ngrx/component-store vs classic NgRx Store
-- Using @ngrx/component-store
-
-## Optional tutorial with step by step guide
-
-- ngrx-data with EntityService
+- Side Effects using rxMethod
+- Implementing View Models using Deep Signals
+- Signals Store, Entity & Custom Data Services
+- Implementing and using Custom Store Features

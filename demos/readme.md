@@ -56,7 +56,7 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Communication between Components using Event Bus Pattern
 - Zoneless Change Detection using Signals
 
-### Advanced State Management using NgRx
+### State Management using NgRx Classic & NgRx SignalStore
 
 - Overview State Management Patterns
 - NgRx Classic vs Signal Store
@@ -65,7 +65,9 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Actions & createActionGroup
 - Effects, Facades, @ngrx/entity & @ngrx/data
 - Creating a Signals Store using @ngrx/signals
+- NgRx and Signals Interoperability
 - Side Effects using rxMethod
+- Implementing View Models using Deep Signals
 - Signals Store, Entity & Custom Data Services
 - Implementing and using Custom Store Features
 
@@ -113,7 +115,7 @@ This is a workshop for experienced Angular developers who want to deepen their k
 ### Real Time, Micro-Frontends, Progressive Web Apps
 
 - Introduction to Micro-Frontends 
-- Real Time connected using Cloud Events or Large Language Models Responses
+- Real Time connected Micro-Frontend processing Cloud Events
 - Introduction to Progressive Web Apps
 - Understanding and Configuring Service Workers & Manifests
 - Installing & Updating Progressive Web Apps
