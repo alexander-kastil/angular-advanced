@@ -52,6 +52,7 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Signals & Observables Interoperability
 - Nesting Components using Signals, input, output & model
 - View Queries: viewChild, -Children, contentChild, -Children
+- Creating View Models using Deep Signals
 - Communication between Components using Event Bus Pattern
 - Zoneless Change Detection using Signals
 
@@ -106,11 +107,10 @@ This is a workshop for experienced Angular developers who want to deepen their k
 
 - Angular Building Blocks: Workspace, Apps, Libraries
 - Reusable Artifacts using Angular Libraries
-- Implementing, Publishing and Consuming Libraries to / from GitHub Packages
 - Introduction to Nx Workspaces
-- Reusable Web Components using Angular Elements and Standalone Components
+- Creating a reusable AI Chat Component using Angular Elements
 
-### Real Time, Micro-Frontends & Progressive Web Apps
+### Real Time, Micro-Frontends, Progressive Web Apps
 
 - Introduction to Micro-Frontends 
 - Real Time connected using Cloud Events or Large Language Models Responses
