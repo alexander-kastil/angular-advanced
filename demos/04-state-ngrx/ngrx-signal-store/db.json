@@ -13,22 +13,27 @@
     {
       "url": "ngrx-interop",
       "title": "NgRx Classic Interop",
-      "id": 5
+      "id": 3
     },
     {
       "url": "store-entities",
       "title": "SignalStore Entities",
-      "id": 16
+      "id": 4
     },    
     {
       "url": "custom-store-features",
       "title": "Custom Store Features",
-      "id": 88
+      "id": 5
     },
     {
       "url": "presenter-ngrx",
       "title": "Container Presenter NgRx",
-      "id": 13
+      "id": 6
+    },
+    {
+      "url": "deep-signals",
+      "title": "Deep Signals",
+      "id": 7
     }
   ],
   "skills": [
