@@ -1,14 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { DemoService } from '../../demo-base/demo.service';
 import { AsyncPipe } from '@angular/common';
-import { BorderDirective, CenteredDirective } from '../../../shared/formatting/formatting-directives';
+import { Component, inject } from '@angular/core';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { DemoService } from '../../demo-base/demo.service';
 
 @Component({
-    selector: 'app-di-inject',
-    templateUrl: './di-inject.component.html',
-    styleUrls: ['./di-inject.component.scss'],
-    imports: [MarkdownRendererComponent, BorderDirective, CenteredDirective, AsyncPipe]
+  selector: 'app-di-inject',
+  templateUrl: './di-inject.component.html',
+  styleUrls: ['./di-inject.component.scss'],
+  imports: [MarkdownRendererComponent]
 })
 export class DiInjectComponent {
   service = inject(DemoService);
