@@ -50,6 +50,8 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Introduction to Signals (WritableSignal, Computed, Effects)
 - Signals vs Observables
 - Signals & Observables Interoperability
+- Deep Signals & Linked Signals
+- Async Signals using resource() and rxResource()
 - Nesting Components using Signals, input, output & model
 - View Queries: viewChild, -Children, contentChild, -Children
 - Creating View Models using Deep Signals

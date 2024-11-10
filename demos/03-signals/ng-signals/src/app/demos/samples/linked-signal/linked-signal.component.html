@@ -1,1 +1,20 @@
 <app-markdown-renderer [md]="'linked-signal'"></app-markdown-renderer>
+
+<div boxed>
+    @for (p of products(); track $index) {
+        <div clickable (click)="setSelected(p)">{{p.name}}</div>
+    }
+</div>
+
+<div boxed column>
+    <div>Product: {{ selectedProduct()?.name}}</div>
+    <div>Price: {{ selectedProduct()?.price}}</div>
+    <div>Quantity: {{ quantity() }}</div>
+    <div>Total: {{ total() }}</div>
+    @if (selectedProduct()) {
+        <div>
+            <button (click)="updateQuantity(1)">+</button>
+            <button (click)="updateQuantity(-1)">-</button>
+        </div>
+    }
+</div>
