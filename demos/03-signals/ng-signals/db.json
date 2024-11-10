@@ -42,8 +42,13 @@
     },
     {
       "id": 8,
-      "url": "select-signal",
-      "title": "NgRx Interop"
+      "url": "async-requests",
+      "title": "Async Requests"
+    },
+    {
+      "id": 9,
+      "url": "linked-signals",
+      "title": "Linked Signals"
     },
     { 
       "id": 10,

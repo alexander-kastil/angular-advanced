@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-signals-event-bus',
     templateUrl: './signals-event-bus.component.html',
     styleUrls: ['./signals-event-bus.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class SignalsEventBusComponent { }

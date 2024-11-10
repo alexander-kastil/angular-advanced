@@ -7,15 +7,14 @@ import { Person } from './person.model';
 import { PersonService } from './person.service';
 
 @Component({
-  selector: 'app-container-presenter-signals',
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    PersonListSignalsComponent,
-    PersonEditSignalsComponent
-  ],
-  templateUrl: './container-presenter-signals.component.html',
-  styleUrl: './container-presenter-signals.component.scss'
+    selector: 'app-container-presenter-signals',
+    imports: [
+        MarkdownRendererComponent,
+        PersonListSignalsComponent,
+        PersonEditSignalsComponent
+    ],
+    templateUrl: './container-presenter-signals.component.html',
+    styleUrl: './container-presenter-signals.component.scss'
 })
 export class ContainerPresenterSignalsComponent {
   ps = inject(PersonService);
