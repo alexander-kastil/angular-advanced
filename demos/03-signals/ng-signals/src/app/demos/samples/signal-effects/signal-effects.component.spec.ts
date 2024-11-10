@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignalEffectsComponent } from './signal-effects.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideMarkdown } from 'ngx-markdown';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SignalEffectsComponent', () => {
   let component: SignalEffectsComponent;
@@ -8,9 +11,16 @@ describe('SignalEffectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SignalEffectsComponent]
+      imports: [
+        SignalEffectsComponent,
+        NoopAnimationsModule
+      ],
+      providers: [
+        provideHttpClient(),
+        provideMarkdown()
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SignalEffectsComponent);
     component = fixture.componentInstance;
