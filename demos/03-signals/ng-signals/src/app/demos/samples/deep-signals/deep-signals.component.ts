@@ -1,9 +1,9 @@
+import { JsonPipe } from '@angular/common';
 import { Component, effect, signal } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import { deepComputed } from '@ngrx/signals';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
-import { customersRoutes } from '../../../customers/customer.routes';
-import { MatButton } from '@angular/material/button';
-import { JsonPipe } from '@angular/common';
+import { CenteredDirective } from '../../../shared/formatting/formatting-directives';
 
 @Component({
     selector: 'app-deep-signals',
@@ -11,7 +11,8 @@ import { JsonPipe } from '@angular/common';
     imports: [
         MarkdownRendererComponent,
         MatButton,
-        JsonPipe
+        JsonPipe,
+        CenteredDirective
     ],
     templateUrl: './deep-signals.component.html',
     styleUrls: ['./deep-signals.component.scss']

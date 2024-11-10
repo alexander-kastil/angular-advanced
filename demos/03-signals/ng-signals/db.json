@@ -16,14 +16,14 @@
       "title": "RxJS Interop"
     },
     {
-      "id": 9,
-      "url": "linked-signals",
-      "title": "Linked Signals"
-    },
-    {
       "id": 11,
       "url": "deep-signals",
       "title": "Deep Signals"
+    },
+    {
+      "id": 9,
+      "url": "linked-signals",
+      "title": "Linked Signals"
     },
     {
       "id": 8,
