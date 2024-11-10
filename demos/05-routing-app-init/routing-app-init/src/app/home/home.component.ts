@@ -3,11 +3,10 @@ import { AuthFacade } from '../mock-auth/state/auth.facade';
 import { IntroComponent } from '../shared/intro/intro.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  standalone: true,
-  imports: [IntroComponent],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    imports: [IntroComponent]
 })
 export class HomeComponent {
   auth = inject(AuthFacade);

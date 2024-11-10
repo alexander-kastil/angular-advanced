@@ -6,19 +6,18 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-multi-interceptor',
-  templateUrl: './multi-interceptor.component.html',
-  styleUrls: ['./multi-interceptor.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatCardActions,
-    MatButton,
-  ],
+    selector: 'app-multi-interceptor',
+    templateUrl: './multi-interceptor.component.html',
+    styleUrls: ['./multi-interceptor.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatCardActions,
+        MatButton,
+    ]
 })
 export class MultiInterceptorComponent {
   service = inject(DemoService);

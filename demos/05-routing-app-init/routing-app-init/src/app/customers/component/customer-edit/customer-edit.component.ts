@@ -5,11 +5,10 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
 import { customerState } from '../../state/customers.state';
 
 @Component({
-  selector: 'app-customer-edit',
-  templateUrl: './customer-edit.component.html',
-  styleUrls: ['./customer-edit.component.scss'],
-  standalone: true,
-  imports: [AsyncPipe, JsonPipe]
+    selector: 'app-customer-edit',
+    templateUrl: './customer-edit.component.html',
+    styleUrls: ['./customer-edit.component.scss'],
+    imports: [AsyncPipe, JsonPipe]
 })
 export class CustomerEditComponent {
   id = input.required<number>();

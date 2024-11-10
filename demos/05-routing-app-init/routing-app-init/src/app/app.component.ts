@@ -4,11 +4,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { environment } from '../environments/environment';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [NavbarComponent, RouterOutlet],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [NavbarComponent, RouterOutlet]
 })
 export class AppComponent {
 

@@ -14,20 +14,19 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
 
 @Component({
-  selector: 'sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    MatFormField,
-    MatInput,
-    MatDialogActions,
-    MatButton,
-    RouterLink
-  ],
+    selector: 'sign-in',
+    templateUrl: './sign-in.component.html',
+    styleUrls: ['./sign-in.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatDialogTitle,
+        MatDialogContent,
+        MatFormField,
+        MatInput,
+        MatDialogActions,
+        MatButton,
+        RouterLink
+    ]
 })
 export class SignInComponent implements AfterViewInit {
   router = inject(Router);

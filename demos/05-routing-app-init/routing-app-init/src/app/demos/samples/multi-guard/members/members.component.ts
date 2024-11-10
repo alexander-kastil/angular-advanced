@@ -5,7 +5,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-members',
     templateUrl: './members.component.html',
     styleUrls: ['./members.component.scss'],
-    standalone: true,
     imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent]
 })
 export class MembersComponent {

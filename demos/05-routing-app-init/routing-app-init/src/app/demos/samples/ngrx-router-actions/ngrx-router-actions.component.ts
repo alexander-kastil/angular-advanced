@@ -7,11 +7,10 @@ import { DemoState } from '../../state/demos.state';
 import { BoxedDirective } from '../../../shared/formatting/formatting-directives';
 
 @Component({
-  selector: 'app-ngrx-router-actions',
-  templateUrl: './ngrx-router-actions.component.html',
-  styleUrls: ['./ngrx-router-actions.component.scss'],
-  standalone: true,
-  imports: [MarkdownRendererComponent, MatButton, BoxedDirective]
+    selector: 'app-ngrx-router-actions',
+    templateUrl: './ngrx-router-actions.component.html',
+    styleUrls: ['./ngrx-router-actions.component.scss'],
+    imports: [MarkdownRendererComponent, MatButton, BoxedDirective]
 })
 export class NgrxRouterActionsComponent {
   store = inject(Store<DemoState>) as Store<DemoState>;

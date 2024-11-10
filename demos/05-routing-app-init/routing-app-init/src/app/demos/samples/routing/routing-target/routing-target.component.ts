@@ -7,16 +7,15 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { getRouterInfo } from '../../../../state/router.reducer';
 
 @Component({
-  selector: 'app-routing-target',
-  templateUrl: './routing-target.component.html',
-  styleUrls: ['./routing-target.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardContent,
-    AsyncPipe,
-    JsonPipe,
-  ],
+    selector: 'app-routing-target',
+    templateUrl: './routing-target.component.html',
+    styleUrls: ['./routing-target.component.scss'],
+    imports: [
+        MatCard,
+        MatCardContent,
+        AsyncPipe,
+        JsonPipe,
+    ]
 })
 export class RoutingTargetComponent {
   store = inject(Store) as Store<RouterReducerState>;

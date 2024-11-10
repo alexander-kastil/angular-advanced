@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-router-binding',
     templateUrl: './router-binding.component.html',
     styleUrls: ['./router-binding.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class RouterBindingComponent {

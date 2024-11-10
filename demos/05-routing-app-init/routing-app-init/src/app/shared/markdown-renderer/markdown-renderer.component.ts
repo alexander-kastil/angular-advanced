@@ -5,16 +5,15 @@ import { environment } from '../../../environments/environment';
 import { RendererStateService } from './renderer-state.service';
 
 @Component({
-  selector: 'app-markdown-renderer',
-  templateUrl: './markdown-renderer.component.html',
-  styleUrls: ['./markdown-renderer.component.scss'],
-  standalone: true,
-  imports: [
-    MatExpansionPanel,
-    MatExpansionPanelHeader,
-    MatExpansionPanelTitle,
-    MarkdownComponent,
-  ],
+    selector: 'app-markdown-renderer',
+    templateUrl: './markdown-renderer.component.html',
+    styleUrls: ['./markdown-renderer.component.scss'],
+    imports: [
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        MarkdownComponent,
+    ]
 })
 export class MarkdownRendererComponent {
   state = inject(RendererStateService);
