@@ -1,4 +1,3 @@
-
 //mat-card
 .mat-mdc-card {
   background-color: var(--color-fg);
@@ -16,7 +15,7 @@
 
 .mat-mdc-card-title{
   margin-top: var(--gap-small);
-  color: var(--color-font)
+  color: var(--color-font);
 }
 
 .mat-mdc-card-subtitle{
@@ -38,6 +37,7 @@
 //buttons
 button.mat-mdc-raised-button{
   margin: var(--gap-small) 0;
+  color: var(--color-fg)!important;
   :hover{
     text-decoration: underline;
   }
@@ -55,7 +55,6 @@ button.mat-mdc-raised-button{
 mat-dialog-container {
   .form-container {
     padding: 0 10px;
-    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
     .mat-form-field-flex:first-child {
       padding-top: 10px;
     }
@@ -75,6 +74,7 @@ mat-expansion-panel-header:hover{
 mat-expansion-panel-header {
   height: var(--toolbar-medium);
   background-color: var(--color-primary) !important;
+  color: var(--color-fg);
 }
 
 .mat-expansion-panel-header.mat-expanded {

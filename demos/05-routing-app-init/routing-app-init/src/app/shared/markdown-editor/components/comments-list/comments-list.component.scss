@@ -14,3 +14,8 @@
   flex: 1;
   text-align: right;
 }
+
+.mat-mdc-unelevated-button{
+  margin-bottom: var(--gap-small);
+  min-width: 80px;
+}

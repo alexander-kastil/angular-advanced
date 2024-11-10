@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { demoActions } from '../../state/demos.actions';
 import { DemoState } from '../../state/demos.state';
-import { BoxedDirective } from 'src/app/shared/formatting/formatting-directives';
+import { BoxedDirective } from '../../../shared/formatting/formatting-directives';
 
 @Component({
   selector: 'app-ngrx-router-actions',

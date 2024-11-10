@@ -20,7 +20,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, 
     ],
 })
 export class IntroComponent {
-  @Input() title: string = '';
-  @Input() subtitle: string = '';
-  @Input() img: string = '';
+  @Input() title = '';
+  @Input() subtitle = '';
+  @Input() img = '';
 }

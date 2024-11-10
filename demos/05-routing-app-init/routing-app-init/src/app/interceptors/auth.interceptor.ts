@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { AuthFacade } from '../mock-auth/state/auth.facade';
+import { environment } from '../../environments/environment';
 
 // json-server is not configured to handle authentication. To avoid errors we add: 
 // req.url.includes(environment.api) == false

@@ -22,6 +22,7 @@ $app-theme: mat.m2-define-light-theme((
   --color-accent: #B0BEC5;
   --color-warn: red;
   --color-font: white;
+  --color-fg: #e5eff5;
   --gap-small: 0.5rem;
   --gap-medium: 0.8rem;
   --gap-big: 1rem;
@@ -42,4 +43,3 @@ $app-theme: mat.m2-define-light-theme((
 @import "tables.scss";
 @import "forms.scss";
 @import "markdown.scss";
-@import "view-transition.scss";

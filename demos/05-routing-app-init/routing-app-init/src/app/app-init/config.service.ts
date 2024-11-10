@@ -15,7 +15,7 @@ export class ConfigService {
 
   loadConfig() {
     return this.http
-      .get<AppConfig>('/assets/config.json')
+      .get<AppConfig>('config.json')
       .pipe(
         catchError((err: Error) => {
           this.sbs.displayAlert('Startup Err', 'config.json not found');

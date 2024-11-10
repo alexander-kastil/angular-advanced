@@ -1,42 +1,42 @@
+import { AsyncPipe, NgStyle } from '@angular/common';
 import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatListItem, MatNavList } from '@angular/material/list';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map, tap } from 'rxjs/operators';
-import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
-import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
-import { SideNavFacade } from 'src/app/state/sidenav.facade';
-import { environment } from 'src/environments/environment';
-import { LoadingService } from '../../shared/loading/loading.service';
-import { DemoFacade } from '../state/demo.facade';
-import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
-import { EditorContainerComponent } from '../../shared/markdown-editor/components/editor-container/editor-container.component';
+import { environment } from '../../../environments/environment';
 import { LoadingComponent } from '../../shared/loading/loading.component';
-import { NgStyle, AsyncPipe } from '@angular/common';
-import { MatNavList, MatListItem } from '@angular/material/list';
-import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import { LoadingService } from '../../shared/loading/loading.service';
+import { EditorContainerComponent } from '../../shared/markdown-editor/components/editor-container/editor-container.component';
+import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
+import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
+import { SidePanelService } from '../../shared/side-panel/sidepanel.service';
+import { SideNavFacade } from '../../state/sidenav.facade';
+import { DemoFacade } from '../state/demo.facade';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    standalone: true,
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        LoadingComponent,
-        RouterOutlet,
-        EditorContainerComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ],
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  standalone: true,
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    NgStyle,
+    LoadingComponent,
+    RouterOutlet,
+    EditorContainerComponent,
+    SidePanelComponent,
+    AsyncPipe,
+  ],
 })
 export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);

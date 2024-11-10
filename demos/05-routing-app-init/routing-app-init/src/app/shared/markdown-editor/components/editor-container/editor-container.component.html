@@ -15,14 +15,13 @@
       </app-comment-edit>
     }
   </mat-card-content>
-
   <mat-card-actions align="end">
     @if (editorEdit) {
-      <button mat-raised-button (click)="saveComment()" color="primary">
+      <button mat-flat-button (click)="saveComment()" color="primary">
         Save
       </button>
       <button
-        mat-raised-button
+        mat-flat-button
         (click)="editorEdit = !editorEdit"
         color="primary"
         >
@@ -30,7 +29,7 @@
       </button>
     }
     @if (!editorEdit) {
-      <button mat-raised-button (click)="addComment()" color="primary">
+      <button mat-flat-button (click)="addComment()" color="primary">
         Add
       </button>
     }

@@ -67,6 +67,22 @@
     { "id": 3, "name": "JavaScript", "hours": 10, "completed": false },
     { "id": 4, "name": "Angular", "hours": 20, "completed": false }
   ],
+  "comments": [
+    {
+      "id": 1,
+      "url": "",
+      "title": "Using @ngrx/store",
+      "comment": "To use @ngrx/store, we need to install it first.",
+      "saved": "2020-09-16T20:10:06.925Z"
+    },
+    {
+      "id": 2,
+      "url": "",
+      "title": "Optimizing change detection",
+      "comment": "In order to optimize change detection, we need to use OnPush strategy.",
+      "saved": "2020-09-16T20:10:06.925Z"
+    }
+  ],
   "customers": [
     {
       "id": 1, "name": "John"

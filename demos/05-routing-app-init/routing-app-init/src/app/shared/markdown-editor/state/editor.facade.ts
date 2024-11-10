@@ -1,42 +1,35 @@
-import { Injectable, OnDestroy, inject } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ofType } from '@ngrx/effects';
 import { ActionsSubject, Store } from '@ngrx/store';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { CommentItem } from '../comment.model';
 import { MarkdownEditorActions } from './editor.actions';
-import { getComments, hasLoaded } from './editor.selectors';
+import { EditorState, editorState } from './editor.state';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EditorFacade implements OnDestroy {
-  store = inject(Store);
+export class EditorFacade {
+  store = inject(Store) as Store<EditorState>;
   actions = inject(ActionsSubject);
-  subs = new Subscription();
-  private callCompletedSub = new Subject<boolean>();
-  callCompleted$ = this.callCompletedSub.asObservable();
+  destroyRef = inject(DestroyRef);
+  effectCompleted = new Subject<boolean>();
+  effectCompleted$ = this.effectCompleted.asObservable();
 
   constructor() {
-    //Could be used to respond to effects completion to trigger an action in the UI
-    //As an alternative you could also hook into the loading indicator
-    this.subs = this.actions
-      .pipe(
-        ofType(
-          MarkdownEditorActions.saveCommentsSuccess,
-          MarkdownEditorActions.saveCommentsFailure,
-          MarkdownEditorActions.deleteCommentsSuccess,
-          MarkdownEditorActions.deleteCommentsFailure
-        )
+    this.actions.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      ofType(
+        MarkdownEditorActions.saveCommentSuccess,
+        MarkdownEditorActions.saveCommentFailure,
+        MarkdownEditorActions.deleteCommentSuccess,
+        MarkdownEditorActions.deleteCommentFailure
       )
-      .subscribe((data) => {
-        console.log('action complete', data);
-        this.callCompletedSub.next(true);
-      });
-  }
-
-  ngOnDestroy() {
-    this.subs.unsubscribe();
+    ).subscribe(() => {
+      this.effectCompleted.next(true);
+    });
   }
 
   init() {
@@ -44,18 +37,18 @@ export class EditorFacade implements OnDestroy {
   }
 
   hasLoaded() {
-    return this.store.select(hasLoaded).pipe(take(1));
+    return this.store.select(editorState.selectLoaded).pipe(take(1));
   }
 
   getComments() {
-    return this.store.select(getComments);
+    return this.store.select(editorState.selectComments);
   }
 
   saveComment(item: CommentItem) {
-    this.store.dispatch(MarkdownEditorActions.saveComments({ item }));
+    this.store.dispatch(MarkdownEditorActions.saveComment({ item }));
   }
 
   deleteComment(item: CommentItem) {
-    this.store.dispatch(MarkdownEditorActions.deleteComments({ item }));
+    this.store.dispatch(MarkdownEditorActions.deleteComment({ item }));
   }
 }
