@@ -1,1 +1,13 @@
 <app-markdown-renderer [md]="'async-requests'"></app-markdown-renderer>
+
+<div column>
+    <button mat-flat-button color="accent" (click)="selectProduct(1)">Select Coffee</button>
+    <button mat-flat-button color="accent" (click)="selectProduct(3)">Select Protein</button>
+    <button mat-flat-button color="accent" (click)="updateProductMemory()">Update in Memory</button>   
+    <button mat-flat-button color="accent" (click)="updateProduct()">Update in DB</button>   
+</div>
+
+<div class="result">
+    <div>Name: {{ product.value()?.name }}</div>
+    <div>Price: {{ product.value()?.price }}</div>
+</div>

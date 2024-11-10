@@ -9,7 +9,7 @@
       "id": 2,
       "url": "signals-effects",
       "title": "Signals Effects"
-    },   
+    },
     {
       "id": 3,
       "url": "rxjs-interop",
@@ -34,8 +34,8 @@
       "id": 4,
       "url": "signal-inputs",
       "title": "Inputs / Outputs"
-    },    
-    { 
+    },
+    {
       "id": 5,
       "url": "model-inputs",
       "title": "Model Inputs"
@@ -50,7 +50,7 @@
       "url": "signals-event-bus",
       "title": "Signals EventBus"
     },
-    { 
+    {
       "id": 10,
       "url": "zoneless-change-detection",
       "title": "Zoneless Change Detection"
@@ -142,7 +142,7 @@
     {
       "id": 2,
       "name": "Wine",
-      "price": 4.20,
+      "price": 4.2,
       "quantity": 5
     },
     {

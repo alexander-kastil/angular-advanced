@@ -4,7 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '../../../../environments/environment';
 import { BoxedDirective, ClickableDirective, ColumnDirective } from '../../../shared/formatting/formatting-directives';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
-import { Product } from './product.type';
+import { Product } from '../product/product.type';
 
 @Component({
   selector: 'app-linked-signal',

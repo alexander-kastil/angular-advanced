@@ -10,7 +10,8 @@ describe('LinkedSignalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LinkedSignalComponent,
+      imports: [
+        LinkedSignalComponent,
         NoopAnimationsModule
       ],
       providers: [
