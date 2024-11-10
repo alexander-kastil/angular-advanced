@@ -1,1 +1,10 @@
 <app-markdown-renderer [md]="'deep-signals'"></app-markdown-renderer>
+
+<div>
+  <button mat-raised-button color="primary" (click)="moveTo(-1)">Back</button>
+  <button mat-raised-button color="primary" (click)="moveTo(1)">Forward</button>
+</div>
+
+<div>
+  {{ pagination() | json }}
+</div>
