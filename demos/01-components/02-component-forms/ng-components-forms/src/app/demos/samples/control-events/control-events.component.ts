@@ -10,7 +10,6 @@ import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-dire
   standalone: true,
   imports: [
     MatFormField,
-    MatLabel,
     MatInput,
     ReactiveFormsModule,
     MarkdownRendererComponent,

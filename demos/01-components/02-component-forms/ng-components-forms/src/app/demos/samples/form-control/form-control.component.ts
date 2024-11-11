@@ -29,10 +29,12 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
   ],
 })
 export class FormControlComponent implements OnInit {
-  name = new FormControl('',
-    [Validators.required, Validators.minLength(3)],
-    []);
-  postal = new UntypedFormControl('3544', [Validators.minLength(4)]); //just to show
+  name = new FormControl(
+    '', //initial value
+    [Validators.required, Validators.minLength(3)], //validators
+    [] //async validators
+  );
+  postal = new FormControl('3544', [Validators.minLength(4)]); //just to show
   city = new FormControl<string>('Idolsberg', [Validators.maxLength(15)]);
 
   ngOnInit() {

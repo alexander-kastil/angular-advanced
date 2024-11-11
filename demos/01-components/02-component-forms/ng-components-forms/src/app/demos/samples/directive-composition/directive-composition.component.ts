@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FontBoldDirective, HeightDirective, WidthDirective, BorderDirective, BoxedDirective, ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { BorderDirective, BoxedDirective, ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
     selector: 'app-directive-composition',
@@ -9,12 +9,9 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     standalone: true,
     imports: [
         MarkdownRendererComponent,
-        FontBoldDirective,
-        HeightDirective,
-        WidthDirective,
         BorderDirective,
         BoxedDirective,
-        ColumnDirective
+        ColumnDirective,
     ]
 })
 export class DirectiveCompositionComponent {
