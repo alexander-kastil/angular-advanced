@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { SnackbarService } from '../shared/snackbar/snackbar.service';
 import { of } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,8 @@ export class ConfigService {
         catchError((err: Error) => {
           this.sbs.displayAlert('Startup Err', 'config.json not found');
           // Return default config to resume - mock
-          const defaultConfig = new AppConfig();
+          const cfg = environment;
+          const defaultConfig = { ...new AppConfig(), ...cfg };
           return of(defaultConfig);
         })
       )
