@@ -19,7 +19,9 @@ export class ConfigService {
       .pipe(
         catchError((err: Error) => {
           this.sbs.displayAlert('Startup Err', 'config.json not found');
-          return of(true);
+          // Return default config to resume - mock
+          const defaultConfig = new AppConfig();
+          return of(defaultConfig);
         })
       )
       .subscribe((config: any) => {
