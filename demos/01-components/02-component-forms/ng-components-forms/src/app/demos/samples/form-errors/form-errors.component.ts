@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
@@ -30,7 +30,7 @@ import { RowDirective } from '../../../shared/ux-lib/formatting/formatting-direc
     RowDirective,
     MatCardActions,
     MatButton,
-    JsonPipe,
+    JsonPipe
   ],
 })
 export class FormErrorsComponent {

@@ -44,12 +44,12 @@ export class FormBuilderComponent implements OnInit {
   genderPattern = '^(male|female|diverse)';
 
   personForm = this.fb.group({
-    id: [this.person.id],
-    name: [this.person.name, { validators: [Validators.required] }],
-    age: [this.person.age, { validators: [Validators.min(1)] }],
+    id: this.person.id,
+    name: [this.person.name, [Validators.required], []],
+    age: [this.person.age, { validators: [Validators.min(1)], asyncValidators: [], updateOn: 'blur' }],
     email: [this.person.email, { validators: [Validators.email] }],
     gender: [this.person.gender, { validators: [Validators.pattern(this.genderPattern)] }],
-    wealth: [this.person.wealth],
+    wealth: this.person.wealth,
   });
 
   ngOnInit() {

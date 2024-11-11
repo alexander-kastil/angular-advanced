@@ -62,7 +62,7 @@ export class ReactiveCascadeComponent {
     console.log(this.profileForm.value);
   }
 
-  getCriteria(type: any) {
+  getTechValuesCascade(type: any) {
     const select = this.selectValues.find((tech) => tech.type == type);
     return select ? select.values : select;
   }

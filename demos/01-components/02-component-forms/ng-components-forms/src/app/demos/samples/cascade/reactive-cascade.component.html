@@ -48,8 +48,8 @@
                   <mat-option value="0" disabled selected
                     >Select an Option</mat-option
                   >
-                  @for ( techType of getCriteria(
-                  (profileForm.controls.skills.value)[$index] .techType ) ; track
+                  @for ( techType of getTechValuesCascade(
+                  (profileForm.controls.skills.value)[$index].techType ) ; track
                   techType) {
                   <mat-option value="{{ techType }}">{{ techType }}</mat-option>
                   }

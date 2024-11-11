@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, forwardRef, input } from '@angular/core';
+import { Component, forwardRef, Input, input } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -30,8 +30,11 @@ import { MatIcon } from '@angular/material/icon';
   imports: [MatIcon, DecimalPipe],
 })
 export class NumberPickerComponent implements ControlValueAccessor, Validator {
-  increment = input<number>(1);
-  label = input<string>('');
+  // Value
+  increment = input<number>(1); // @Input() increment = 1;
+
+  // Metadata
+  label = input<string>(''); // @Input() label = '';
   quantity = 0;
 
   //A callback function that is called when the control's value changes in the UI.

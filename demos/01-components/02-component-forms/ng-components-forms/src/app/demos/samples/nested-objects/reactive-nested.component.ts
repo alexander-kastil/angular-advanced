@@ -40,6 +40,7 @@ export class ReactiveNestedComponent {
   ps: PersonService = inject(PersonService);
   person: Person = new Person();
   wealthOpts = wealthOptsValues;
+
   personForm = this.fb.group({
     id: [this.person.id],
     name: [this.person.name, Validators.required],
