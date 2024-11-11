@@ -14,7 +14,7 @@ export class ConfigService {
   cfg: AppConfig = new AppConfig();
 
   loadConfig() {
-    return this.http
+    this.http
       .get<AppConfig>('config.json')
       .pipe(
         catchError((err: Error) => {
@@ -22,11 +22,9 @@ export class ConfigService {
           return of(true);
         })
       )
-      .toPromise()
-      .then(
-        (config: any) => {
-          this.cfg = config;
-        }
-      );
+      .subscribe((config: any) => {
+        this.cfg = config;
+        console.log('Config loaded', this.cfg);
+      });
   }
 }
