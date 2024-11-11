@@ -8,12 +8,11 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     selector: 'app-demo-row',
     templateUrl: './demo-row.component.html',
     styleUrls: ['./demo-row.component.scss'],
-    standalone: true,
     imports: [
         MatSlideToggle,
         MatButton,
         MatIcon,
-    ],
+    ]
 })
 export class DemoRowComponent {
   @Input() item = new DemoItem();

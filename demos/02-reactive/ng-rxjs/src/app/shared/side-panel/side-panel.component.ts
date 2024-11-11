@@ -10,16 +10,15 @@ import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-side-panel',
-  templateUrl: './side-panel.component.html',
-  styleUrls: ['./side-panel.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatToolbarRow,
-    MatMiniFabButton,
-    MatIcon,
-  ],
+    selector: 'app-side-panel',
+    templateUrl: './side-panel.component.html',
+    styleUrls: ['./side-panel.component.scss'],
+    imports: [
+        MatToolbar,
+        MatToolbarRow,
+        MatMiniFabButton,
+        MatIcon,
+    ]
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);

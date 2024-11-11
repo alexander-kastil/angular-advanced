@@ -12,19 +12,18 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-  selector: 'app-custom-operators',
-  templateUrl: './custom-operators.component.html',
-  styleUrls: ['./custom-operators.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    MarkdownRendererComponent,
-    BoxedDirective
-  ],
+    selector: 'app-custom-operators',
+    templateUrl: './custom-operators.component.html',
+    styleUrls: ['./custom-operators.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton,
+        MarkdownRendererComponent,
+        BoxedDirective
+    ]
 })
 export class CustomOperatorsComponent {
   http = inject(HttpClient);

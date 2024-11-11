@@ -9,7 +9,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-responsive-screen',
     templateUrl: './responsive-screen.component.html',
     styleUrls: ['./responsive-screen.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent, NgClass, AsyncPipe, JsonPipe]
 })
 export class ResponsiveScreenComponent {

@@ -8,22 +8,21 @@ import { debounceTime, tap } from 'rxjs/operators';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-debounced-search',
-  templateUrl: './debounced-search.component.html',
-  styleUrls: ['./debounced-search.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    MatInput,
-    FormsModule,
-    ReactiveFormsModule,
-    AsyncPipe,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-debounced-search',
+    templateUrl: './debounced-search.component.html',
+    styleUrls: ['./debounced-search.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatFormField,
+        MatInput,
+        FormsModule,
+        ReactiveFormsModule,
+        AsyncPipe,
+        MarkdownRendererComponent
+    ]
 })
 export class DebouncedSearchComponent {
   searchTerm: FormControl = new FormControl('');

@@ -15,18 +15,17 @@ import { Voucher } from '../../vouchers/voucher.model';
 import { VouchersService } from '../../vouchers/voucher.service';
 
 @Component({
-  selector: 'app-err-handling',
-  templateUrl: './err-handling.component.html',
-  styleUrls: ['./err-handling.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-err-handling',
+    templateUrl: './err-handling.component.html',
+    styleUrls: ['./err-handling.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton,
+        MarkdownRendererComponent
+    ]
 })
 export class ErrHandlingComponent {
   vs = inject(VouchersService);

@@ -12,23 +12,22 @@ import { TaskItem } from '../../tasks/task-item.model';
 import { TaskService } from '../../tasks/task.service';
 
 @Component({
-  selector: 'app-async-pipe',
-  templateUrl: './async-pipe.component.html',
-  styleUrls: ['./async-pipe.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatProgressBar,
-    MatFormField,
-    MatInput,
-    FormsModule,
-    AsyncPipe,
-    JsonPipe,
-  ],
+    selector: 'app-async-pipe',
+    templateUrl: './async-pipe.component.html',
+    styleUrls: ['./async-pipe.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatProgressBar,
+        MatFormField,
+        MatInput,
+        FormsModule,
+        AsyncPipe,
+        JsonPipe,
+    ]
 })
 export class AsyncPipeComponent implements OnInit {
   ts = inject(TaskService);
