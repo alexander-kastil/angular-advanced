@@ -8,25 +8,24 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
 
 
 @Component({
-  selector: 'app-form-control',
-  templateUrl: './form-control.component.html',
-  styleUrls: ['./form-control.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    ColumnDirective,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    FormsModule,
-    ReactiveFormsModule,
-    MatError,
-    MatCardActions,
-    MatButton,
-  ],
+    selector: 'app-form-control',
+    templateUrl: './form-control.component.html',
+    styleUrls: ['./form-control.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        ColumnDirective,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        FormsModule,
+        ReactiveFormsModule,
+        MatError,
+        MatCardActions,
+        MatButton,
+    ]
 })
 export class FormControlComponent implements OnInit {
   name = new FormControl(

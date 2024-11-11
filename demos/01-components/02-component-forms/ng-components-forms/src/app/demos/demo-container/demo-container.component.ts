@@ -1,24 +1,23 @@
+import { AsyncPipe, NgStyle } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
+import { MatListItem, MatNavList } from '@angular/material/list';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
-import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
+import { MarkdownEditorComponent } from '../../shared/markdown-editor/markdown-editor.component';
+import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
+import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
+import { SidePanelService } from '../../shared/side-panel/sidepanel.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
 import { DemoService } from '../demo-base/demo.service';
-import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
-import { MarkdownEditorComponent } from '../../shared/markdown-editor/markdown-editor.component';
-import { NgStyle, AsyncPipe } from '@angular/common';
-import { MatNavList, MatListItem } from '@angular/material/list';
-import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-demo-container',
     templateUrl: './demo-container.component.html',
     styleUrls: ['./demo-container.component.scss'],
-    standalone: true,
     imports: [
         MatSidenavContainer,
         MatSidenav,
@@ -33,7 +32,7 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
         MarkdownEditorComponent,
         SidePanelComponent,
         AsyncPipe,
-    ],
+    ]
 })
 export class DemoContainerComponent {
   destroyRef = inject(DestroyRef);

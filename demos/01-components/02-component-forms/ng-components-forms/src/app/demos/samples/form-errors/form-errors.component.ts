@@ -11,27 +11,26 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { RowDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-  selector: 'app-form-errors',
-  templateUrl: './form-errors.component.html',
-  styleUrls: ['./form-errors.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatError,
-    RowDirective,
-    MatCardActions,
-    MatButton,
-    JsonPipe
-  ],
+    selector: 'app-form-errors',
+    templateUrl: './form-errors.component.html',
+    styleUrls: ['./form-errors.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        MatError,
+        RowDirective,
+        MatCardActions,
+        MatButton,
+        JsonPipe
+    ]
 })
 export class FormErrorsComponent {
   fb: FormBuilder = inject(FormBuilder);

@@ -8,29 +8,28 @@ import { asyncMailExistsValidator } from './asyncMailExistsValidator';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
-import { ColumnDirective } from 'src/app/shared/ux-lib/formatting/formatting-directives';
 import { PersonService } from '../person/person.service';
 import { Person } from '../person/person.model';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-  selector: 'app-reactive-validation',
-  templateUrl: './reactive-validation.component.html',
-  styleUrls: ['./reactive-validation.component.scss'],
-  standalone: true,
-  imports: [
-    MatCardModule,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatRadioModule,
-    MatButtonModule,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-reactive-validation',
+    templateUrl: './reactive-validation.component.html',
+    styleUrls: ['./reactive-validation.component.scss'],
+    imports: [
+        MatCardModule,
+        FormsModule,
+        ColumnDirective,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatRadioModule,
+        MatButtonModule,
+        MarkdownRendererComponent
+    ]
 })
 export class ReactiveValidationComponent implements OnInit {
   ps = inject(PersonService);

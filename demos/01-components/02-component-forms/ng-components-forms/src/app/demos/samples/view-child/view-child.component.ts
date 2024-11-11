@@ -10,19 +10,18 @@ import { AlertComponent } from './alert/alert.component';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-view-child',
-  templateUrl: './view-child.component.html',
-  styleUrls: ['./view-child.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButtonModule,
-    AlertComponent
-  ],
+    selector: 'app-view-child',
+    templateUrl: './view-child.component.html',
+    styleUrls: ['./view-child.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButtonModule,
+        AlertComponent
+    ]
 })
 export class ViewChildComponent {
   nbrLiters = viewChild.required('liters', { read: ElementRef });

@@ -1,25 +1,23 @@
 import { Component, inject } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-form-array',
-  templateUrl: './form-array.component.html',
-  styleUrls: ['./form-array.component.scss'],
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-form-array',
+    templateUrl: './form-array.component.html',
+    styleUrls: ['./form-array.component.scss'],
+    imports: [
+        ReactiveFormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MarkdownRendererComponent
+    ]
 })
 export class FormArrayComponent {
   fb: FormBuilder = inject(FormBuilder);

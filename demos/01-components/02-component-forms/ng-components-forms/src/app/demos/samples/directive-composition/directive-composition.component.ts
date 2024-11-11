@@ -6,7 +6,6 @@ import { BorderDirective, BoxedDirective, ColumnDirective } from '../../../share
     selector: 'app-directive-composition',
     templateUrl: './directive-composition.component.html',
     styleUrls: ['./directive-composition.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         BorderDirective,

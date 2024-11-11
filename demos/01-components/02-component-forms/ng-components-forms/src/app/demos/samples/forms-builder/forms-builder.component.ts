@@ -13,28 +13,27 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-forms-builder',
-  templateUrl: './forms-builder.component.html',
-  styleUrls: ['./forms-builder.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatSelect,
-    MatOption,
-    MatRadioGroup,
-    MatRadioButton,
-    MatButton,
-  ],
+    selector: 'app-forms-builder',
+    templateUrl: './forms-builder.component.html',
+    styleUrls: ['./forms-builder.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        FormsModule,
+        ColumnDirective,
+        ReactiveFormsModule,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        MatSelect,
+        MatOption,
+        MatRadioGroup,
+        MatRadioButton,
+        MatButton,
+    ]
 })
 export class FormBuilderComponent implements OnInit {
   fb: FormBuilder = inject(FormBuilder);

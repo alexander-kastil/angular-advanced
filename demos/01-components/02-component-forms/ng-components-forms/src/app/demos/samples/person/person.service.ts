@@ -4,7 +4,7 @@ import { Person } from './person.model';
 import { delay } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

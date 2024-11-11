@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
-import { MatSelectFilterComponent } from 'src/app/shared/ux-lib/select-filter/mat-select-filter.component';
-import { FilterItem } from './filter-item.model';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSelectFilterComponent } from '../../../shared/ux-lib/select-filter/mat-select-filter.component';
+import { FilterItem } from './filter-item.model';
 
 @Component({
-  selector: 'app-select-filter-host',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatSelectFilterComponent,
-    MatSelectModule,
-    MatFormFieldModule,
-    NgFor
-  ],
-  templateUrl: './select-filter-host.component.html',
-  styleUrl: './select-filter-host.component.scss'
+    selector: 'app-select-filter-host',
+    imports: [
+        ReactiveFormsModule,
+        MatSelectFilterComponent,
+        MatSelectModule,
+        MatFormFieldModule,
+        NgFor
+    ],
+    templateUrl: './select-filter-host.component.html',
+    styleUrl: './select-filter-host.component.scss'
 })
 export class SelectFilterHostComponent {
 

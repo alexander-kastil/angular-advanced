@@ -12,15 +12,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'ux-select-filter',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    NgStyle,
-    NgIf
-  ],
-  template: `
+    selector: 'ux-select-filter',
+    imports: [
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        NgStyle,
+        NgIf
+    ],
+    template: `
   <form [formGroup]="searchForm" class="mat-filter" [ngStyle]="{'background-color': color ? color : 'white'}">
   <div>
   <input #input class="mat-filter-input" matInput placeholder="{{placeholder}}" formControlName="value" (keydown)="handleKeydown($event)">
@@ -32,7 +31,7 @@ import { Subscription } from 'rxjs';
 </div>
 </form>
   `,
-  styleUrls: ['./mat-select-filter.component.scss']
+    styleUrls: ['./mat-select-filter.component.scss']
 })
 export class MatSelectFilterComponent implements OnInit, OnDestroy {
   private searchFormValueChangesSubscription: Subscription | undefined;

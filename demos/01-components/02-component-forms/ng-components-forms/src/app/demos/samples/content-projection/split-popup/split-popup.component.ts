@@ -6,8 +6,7 @@ import { uxSplitComponent } from '../../../../shared/ux-lib/ux-split/ux-split.co
     selector: 'app-split-popup',
     templateUrl: './split-popup.component.html',
     styleUrls: ['./split-popup.component.scss'],
-    standalone: true,
-    imports: [uxSplitComponent, uxButtonComponent],
+    imports: [uxSplitComponent, uxButtonComponent]
 })
 export class SplitPopupComponent {
   isDisabled = true;

@@ -13,28 +13,27 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-get-raw-value',
-  templateUrl: './get-raw-value.component.html',
-  styleUrls: ['./get-raw-value.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatSelect,
-    MatOption,
-    MatRadioGroup,
-    MatRadioButton,
-    MatButton,
-  ],
+    selector: 'app-get-raw-value',
+    templateUrl: './get-raw-value.component.html',
+    styleUrls: ['./get-raw-value.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        FormsModule,
+        ColumnDirective,
+        ReactiveFormsModule,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        MatSelect,
+        MatOption,
+        MatRadioGroup,
+        MatRadioButton,
+        MatButton,
+    ]
 })
 export class GetRawValueComponent implements OnInit {
   fb: FormBuilder = inject(FormBuilder);
