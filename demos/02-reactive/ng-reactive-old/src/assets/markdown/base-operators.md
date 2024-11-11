@@ -1,1 +1,0 @@
-- Get to know the basic operators in RxJS
