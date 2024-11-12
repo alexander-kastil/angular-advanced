@@ -10,23 +10,23 @@ import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
-    selector: 'app-side-panel',
-    templateUrl: './side-panel.component.html',
-    styleUrls: ['./side-panel.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatMiniFabButton,
-        MatIcon,
-    ]
+  selector: 'app-side-panel',
+  templateUrl: './side-panel.component.html',
+  styleUrls: ['./side-panel.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatMiniFabButton,
+    MatIcon,
+  ]
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
   ts = inject(ThemeService);
-  ds = inject(StatefulDemoService);
+  statefulDS = inject(StatefulDemoService);
   editorDisplayed = false;
-  sidenav = inject(SideNavService);
+  sideNav = inject(SideNavService);
   icon = "create";
 
   toggleTheme() {
@@ -44,7 +44,7 @@ export class SidePanelComponent {
   }
 
   toggleSideNav() {
-    this.sidenav.toggleMenuVisibility();
+    this.sideNav.toggleMenuVisibility();
   }
 
   showUpload() {
@@ -59,6 +59,6 @@ export class SidePanelComponent {
       "sortOrder": 0,
       "visible": true,
     };
-    this.ds.addDemo(newDemo);
+    this.statefulDS.addDemo(newDemo);
   }
 }

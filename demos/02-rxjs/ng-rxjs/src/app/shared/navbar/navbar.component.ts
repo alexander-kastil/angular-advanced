@@ -7,25 +7,25 @@ import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatIcon,
-        RouterLinkActive,
-        RouterLink,
-        AsyncPipe,
-    ]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatIcon,
+    RouterLinkActive,
+    RouterLink,
+    AsyncPipe,
+  ]
 })
 export class NavbarComponent {
-  ms = inject(SideNavService);
+  sideNav = inject(SideNavService);
   sns = inject(SnackbarService);
-  menuItems = this.ms.getTopItems();
+  menuItems = this.sideNav.getTopItems();
 
   toggleMenu() {
-    this.ms.toggleMenuVisibility();
+    this.sideNav.toggleMenuVisibility();
   }
 
   toggleApps() {

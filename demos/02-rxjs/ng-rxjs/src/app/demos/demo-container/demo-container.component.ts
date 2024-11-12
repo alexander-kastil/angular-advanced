@@ -16,31 +16,31 @@ import { SidePanelActions } from '../../shared/side-panel/side-panel.actions';
 import { SidePanelService } from '../../shared/side-panel/side-panel.service';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        RouterOutlet,
-        MarkdownEditorComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ]
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    NgStyle,
+    RouterOutlet,
+    MarkdownEditorComponent,
+    SidePanelComponent,
+    AsyncPipe,
+  ]
 })
 export class DemoContainerComponent {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
   route = inject(ActivatedRoute);
   ds = inject(DemoService);
-  nav = inject(SideNavService);
+  sideNav = inject(SideNavService);
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
 
@@ -50,8 +50,8 @@ export class DemoContainerComponent {
 
   isLoading = false;
 
-  sidenavMode = this.nav.getSideNavPosition();
-  sidenavVisible = this.nav.getSideNavVisible();
+  sidenavMode = this.sideNav.getSideNavPosition();
+  sidenavVisible = this.sideNav.getSideNavVisible();
 
   workbenchMargin = this.sidenavVisible.pipe(
     map((visible: boolean) => { return visible ? { 'margin-left': '5px' } : {} })

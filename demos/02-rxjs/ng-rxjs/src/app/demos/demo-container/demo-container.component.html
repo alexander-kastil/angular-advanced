@@ -14,9 +14,9 @@
         <span>Please select:</span>
       </mat-toolbar>
       @for (item of demos | async; track item) {
-      <mat-list-item role="listitem" [routerLink]="['./' + item.url]">{{
-        item.title
-      }}</mat-list-item>
+        <mat-list-item role="listitem" [routerLink]="['./' + item.url]">{{
+          item.title
+        }}</mat-list-item>
       }
     </mat-nav-list>
   </mat-sidenav>

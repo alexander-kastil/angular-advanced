@@ -4,7 +4,7 @@ In this lab we will implement a responsive Side Menu using [Angular Material Sid
 
 ## Implement a responsive Side Menu:
 
-- You can take the [demo.container](../../demos/03-state-ngrx/ngrx-state/src/app/demos/demo-container/demo-container.component.ts) and the [sidenav.service.ts](../../demos/03-state-ngrx/ngrx-state/src/app/shared/sidenav/sidenav.service.ts) as a reference.
+- You can take the [demo.container](../../demos/02-rxjs/ng-rxjs/src/app/demos/demo-container/demo-container.component.ts) and the [sidenav.service.ts](../../demos/02-rxjs/ng-rxjs/src/app/shared/sidenav/sidenav.service.ts) as a reference.
 
   ![menu](_images/menu.jpg)
 

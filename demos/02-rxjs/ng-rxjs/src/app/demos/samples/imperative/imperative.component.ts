@@ -37,8 +37,7 @@ export class ImperativeComponent implements OnInit {
   view: Skill[] = [];
 
   ngOnInit(): void {
-    this.service
-      .getSkills()
+    this.service.getSkills()
       //takeUntilDestroyed will unsubscribe from the stream when the destroy$ Subject emits a value
       .pipe(takeUntilDestroyed(this.destroy))
       .subscribe((skills) => {
