@@ -30,8 +30,8 @@ export class ImperativeComponent implements OnInit {
   @Input() showMD = true;
   destroy = inject(DestroyRef)
 
-  filter$ = new FormControl('', { nonNullable: true });
   service = inject(SkillsService);
+  filter$ = new FormControl('', { nonNullable: true });
   //local vars for values taken out of the stream
   skills: Skill[] = [];
   view: Skill[] = [];
