@@ -6,6 +6,10 @@
     }
 </div>
 
+<div>
+    <button mat-flat-button (click)="addProduct()">Add Product</button>
+</div>
+
 <div boxed column>
     <div>Product: {{ selectedProduct()?.name}}</div>
     <div>Price: {{ selectedProduct()?.price}}</div>
@@ -17,4 +21,5 @@
             <button (click)="updateQuantity(-1)">-</button>
         </div>
     }
+
 </div>

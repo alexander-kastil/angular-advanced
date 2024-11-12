@@ -7,16 +7,16 @@ import { BorderDirective, CenteredDirective } from '../../../shared/formatting/f
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-rxjs-interop',
-    imports: [
-        AsyncPipe,
-        MatButtonModule,
-        MarkdownRendererComponent,
-        BorderDirective,
-        CenteredDirective
-    ],
-    templateUrl: './rxjs-interop.component.html',
-    styleUrl: './rxjs-interop.component.scss'
+  selector: 'app-rxjs-interop',
+  imports: [
+    AsyncPipe,
+    MatButtonModule,
+    MarkdownRendererComponent,
+    BorderDirective,
+    CenteredDirective
+  ],
+  templateUrl: './rxjs-interop.component.html',
+  styleUrl: './rxjs-interop.component.scss'
 })
 export class RxjsInteropComponent {
   amount$ = of(10);

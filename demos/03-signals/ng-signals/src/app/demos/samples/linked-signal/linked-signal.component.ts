@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { BoxedDirective, ClickableDirective, ColumnDirective } from '../../../shared/formatting/formatting-directives';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { Product } from '../product/product.type';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-linked-signal',
@@ -12,14 +13,17 @@ import { Product } from '../product/product.type';
     MarkdownRendererComponent,
     BoxedDirective,
     ClickableDirective,
-    ColumnDirective
+    ColumnDirective,
+    MatButton
   ],
   templateUrl: './linked-signal.component.html',
   styleUrl: './linked-signal.component.scss'
 })
 export class LinkedSignalComponent {
   http = inject(HttpClient);
-  products = linkedSignal(toSignal(this.http.get<Product[]>(`${environment.api}products`)));
+
+  products = linkedSignal(toSignal(this.http.get<Product[]>(`${environment.api}products`), { initialValue: [] }));
+
   selectedProduct = signal<Product | null>(null);
   price = computed(() => this.selectedProduct()?.price ?? 0);
 
@@ -40,5 +44,11 @@ export class LinkedSignalComponent {
 
   updateQuantity(qty: number) {
     this.quantity.update(curr => curr + qty);
+  }
+
+  addProduct() {
+    this.products.update(curr => {
+      return [...curr, { id: curr.length + 1, name: 'New Product', price: 0 }];
+    });
   }
 }

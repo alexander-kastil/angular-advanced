@@ -22,8 +22,8 @@ export class AsyncRequestsComponent {
   resource = inject(ProductsResourceService);
   products = this.resource.getProducts();
   selectedProductId = signal<number | null>(null);
-  product = this.resource.getCurrentProduct(this.selectedProductId);
 
+  product = this.resource.getCurrentProduct(this.selectedProductId);
 
   selectProduct(id: number) {
     this.selectedProductId.set(id);

@@ -1,4 +1,4 @@
-export class Topic {
-    name = '';
-    likes = 0;
-}
+export type Topic = {
+    name: string;
+    likes: number;
+};

@@ -15,12 +15,12 @@ export class SkillsService {
     return this.http.get<Skill[]>(this.url);
   }
 
-  getSkillsByCompletion(completed: boolean): Observable<Skill[]> {
-    return this.http.get<Skill[]>(`${this.url}?completed=${completed}`);
-  }
-
   getSkill(id: number): Observable<Skill | undefined> {
     return this.http.get<Skill>(`${this.url}/${id}`)
+  }
+
+  getSkillsByCompletion(completed: boolean): Observable<Skill[]> {
+    return this.http.get<Skill[]>(`${this.url}?completed=${completed}`);
   }
 
   addSkill(skill: Skill): Observable<Skill> {
