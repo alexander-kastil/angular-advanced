@@ -34,7 +34,7 @@
       <div class="gdWorkbench">
         <router-outlet></router-outlet>
       </div>
-      @if (showMdEditor) {
+      @if (showMdEditor()) {
         <div class="gdEditor">
           <app-editor-container></app-editor-container>
         </div>

@@ -1,16 +1,14 @@
-import { Injectable, computed, signal } from '@angular/core';
-import { SidebarActions } from './sidebar.actions';
-
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SidePanelService {
-  private commands = signal<SidebarActions>(SidebarActions.HIDE_MARKDOWN);
+  #visible = signal(false);
 
-  getCommands() {
-    return computed(() => this.commands());
+  getVisible() {
+    return this.#visible;
   }
 
-  triggerCmd(action: SidebarActions) {
-    this.commands.set(action);
+  toggleEditorVisibility() {
+    this.#visible.set(!this.#visible());
   }
 }

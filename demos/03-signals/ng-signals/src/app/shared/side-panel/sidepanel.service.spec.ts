@@ -15,13 +15,13 @@ describe('SidePanelService', () => {
     });
 
     it('should initialize with HIDE_MARKDOWN action', () => {
-        const commands = service.getCommands();
+        const commands = service.getVisible();
         expect(commands()).toBe(SidebarActions.HIDE_MARKDOWN);
     });
 
     it('should trigger a command', () => {
-        service.triggerCmd(SidebarActions.SHOW_MARKDOWN);
-        const commands = service.getCommands();
+        service.toggleEditorVisibility(SidebarActions.SHOW_MARKDOWN);
+        const commands = service.getVisible();
         expect(commands()).toBe(SidebarActions.SHOW_MARKDOWN);
     });
 });

@@ -12,33 +12,28 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
-    selector: 'app-side-panel',
-    templateUrl: './side-panel.component.html',
-    styleUrls: ['./side-panel.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatMiniFabButton,
-        MatIcon,
-        MatTooltipModule
-    ]
+  selector: 'app-side-panel',
+  templateUrl: './side-panel.component.html',
+  styleUrls: ['./side-panel.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatMiniFabButton,
+    MatIcon,
+    MatTooltipModule
+  ]
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);
-  eb = inject(SidePanelService);
+  sidePanelService = inject(SidePanelService);
   rendererState = inject(RendererStateService);
   editorDisplayed = false;
   sidenav = inject(SideNavService);
   icon = "create";
 
   toggleEditor() {
-    if (this.editorDisplayed) {
-      this.eb.triggerCmd(SidebarActions.HIDE_MARKDOWN);
-    } else {
-      this.eb.triggerCmd(SidebarActions.SHOW_MARKDOWN);
-    }
-    this.editorDisplayed = !this.editorDisplayed;
-    this.icon = this.editorDisplayed ? "close" : "create";
+    this.sidePanelService.toggleEditorVisibility();
+    this.icon = this.sidePanelService.getVisible()() ? "close" : "create";
   }
 
   toggleSideNav() {

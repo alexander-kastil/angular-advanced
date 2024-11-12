@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
@@ -17,25 +17,25 @@ import { environment } from '../../../environments/environment';
 import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        LoadingComponent,
-        RouterOutlet,
-        EditorContainerComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ]
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    NgStyle,
+    LoadingComponent,
+    RouterOutlet,
+    EditorContainerComponent,
+    SidePanelComponent,
+    AsyncPipe,
+  ]
 })
 export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);
@@ -58,14 +58,10 @@ export class DemoContainerComponent implements OnInit {
     map(visible => { return visible ? { 'margin-left': '5px' } : {} })
   );
 
-  currentCMD = this.sidePanel.getCommands();
-  showMdEditor: boolean = false;
-
+  // currentCMD = this.sidePanel.getCommands();
+  // showMdEditor: boolean = false;
+  showMdEditor = this.sidePanel.getVisible();
   constructor() {
-    effect(() => {
-      this.showMdEditor = this.currentCMD() === SidebarActions.HIDE_MARKDOWN ? false : true;
-    });
-
     this.ls.getLoading().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       Promise.resolve(null).then(() => { this.isLoading = value });
     });
