@@ -1,4 +1,4 @@
 # Managing State with NgRx
 
-- [Migrate Stateful Service to NgRx](./stateful-to-ngrx/)
-- [Loading Data by replacing FoodService with @ngrx/data](./ngrx-data/)
+- [Using @ngrx/data in a new app](./ngrx-data/)
+- [Migrate Stateful Service to NgRx and add @ngrx/data to existing app](./stateful-to-ngrx/)
