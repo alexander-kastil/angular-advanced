@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,22 +9,21 @@ import { Skill } from '../../skills/skills';
 import { SkillsService } from '../../skills/skills.service';
 
 @Component({
-    selector: 'app-imperative',
-    templateUrl: './imperative.component.html',
-    styleUrls: ['./imperative.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        FormsModule,
-        ReactiveFormsModule,
-        JsonPipe,
-    ]
+  selector: 'app-imperative',
+  templateUrl: './imperative.component.html',
+  styleUrls: ['./imperative.component.scss'],
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
 export class ImperativeComponent implements OnInit {
   @Input() title = 'ImperativeProgramming';
