@@ -6,16 +6,16 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-    selector: 'app-control-events',
-    imports: [
-        MatFormField,
-        MatInput,
-        ReactiveFormsModule,
-        MarkdownRendererComponent,
-        BoxedDirective
-    ],
-    templateUrl: './control-events.component.html',
-    styleUrl: './control-events.component.scss'
+  selector: 'app-control-events',
+  imports: [
+    MatFormField,
+    MatInput,
+    ReactiveFormsModule,
+    MarkdownRendererComponent,
+    BoxedDirective
+  ],
+  templateUrl: './control-events.component.html',
+  styleUrl: './control-events.component.scss'
 })
 export class ControlEventsComponent implements OnInit {
   name = new FormControl(
@@ -28,7 +28,6 @@ export class ControlEventsComponent implements OnInit {
 
   ngOnInit() {
     this.name.events.subscribe((event: ControlEvent) => {
-      console.log('Form event:', event);
       if (event instanceof ValueChangeEvent) {
         this.events.set('ValueChangeEvent', event.value);
       }
