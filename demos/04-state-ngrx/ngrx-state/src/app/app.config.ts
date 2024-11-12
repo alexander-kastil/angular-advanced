@@ -26,17 +26,18 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(withInterceptorsFromDi()),
         provideRouter(appRoutes, withComponentInputBinding()),
         provideAnimations(),
-        //NgRx
+        // NgRx Root Store
         provideStore(),
-        provideEffects(demoEffects),
-        provideEffects(customerEffects),
-        provideEffects(editorEffects),
-        // State Slices
+        // NgRx State Slices
         provideState(appState),
         provideState(demoState),
         provideState(customerState),
         provideState(editorState),
-        // NgRx Data
+        // NgRx Effects
+        provideEffects(demoEffects),
+        provideEffects(customerEffects),
+        provideEffects(editorEffects),
+        // NgRx Data Entity CRUD -> Skills
         provideEntityData(skillsEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: skillsDataServiceConfig },
         // Registration of a custom EntityDataService - if you do not need it skip it

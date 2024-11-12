@@ -1,15 +1,13 @@
 import { Component, HostListener, inject } from '@angular/core';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SideNavFacade } from '../../state/sidenav.facade';
+import { RendererStateService } from '../markdown-renderer/renderer-state.service';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
-import { SideNavService } from '../sidenav/sidenav.service';
-import { MatIcon } from '@angular/material/icon';
-import { MatMiniFabButton } from '@angular/material/button';
-import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { RendererStateService } from '../markdown-renderer/renderer-state.service';
-import { MatTooltipModule } from '@angular/material/tooltip';
-
-
 
 @Component({
   selector: 'app-side-panel',
@@ -29,7 +27,7 @@ export class SidePanelComponent {
   eb = inject(SidePanelService);
   rendererState = inject(RendererStateService);
   editorDisplayed = false;
-  sidenav = inject(SideNavService);
+  sidenav = inject(SideNavFacade);
   icon = "create";
 
   toggleEditor() {
@@ -57,5 +55,4 @@ export class SidePanelComponent {
       event.preventDefault();
     }
   }
-
 }
