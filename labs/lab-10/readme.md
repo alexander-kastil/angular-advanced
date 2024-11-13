@@ -1,135 +1,132 @@
-# Progressive Web Apps
+# Optimizing Angular Apps
 
-In this lab we will create a simple PWA using Angular and .NET Core. We will use the `@angular/pwa` package to add PWA support to our Angular app. We will also use `ngrok` to serve our app over https and test the PWA functionality. Finally we will use `Docker` to containerize our .NET Core skills service and serve it from a container.
+-   Server Side Rendering (SSR)
+-   Build more accessible Angular apps
 
-## Implementation
+## Server Side Rendering (SSR)
 
-- Allow Edge to use self signed localhost certs:
+-   Create a new Angular project. Starting with Angular 17 SSR is enabled by default. To disable it use `--ssr=false`. So you could basically skip the `--ssr=true` option. To add it to an existing project use `ng add @angular/ssr`:
 
-  ```
-  edge://flags/#allow-insecure-localhost
-  ```
+    ```
+    ng new food-shop-ssr --routing --style=scss --ssr=true
+    cd food-shop-ssr
+    ```
 
-  >Note: For some reason Chrome has removed this setting in Dec 2023.
+-   Examine `package.json` and note the `@angular/ssr`and `express` dependencies. Also note the `serve:ssr:food-shop-ssr` script. It starts the Node Express server and runs the Angular app in SSR mode.
 
-- [ngrok](https://ngrok.com/) is a tool that provides an `https-secured tunnel` to `localhost` that enables testing your PWAs. Requires registration but is free. After creating your free account copy ngrok.exe to a folder of your choice (`C:\Program Files\ngrok`) and set a path variable to it. Next grab the auth token from your ngrok user info and add it to your machine config:
+-   Add Angular Material:
 
-  ```
-  ngrok config add-authtoken <your-token>
-  ```
+    ```
+    ng add @angular/material
+    ```
 
-- A `skills-api` container is available at Docker Hub: 
+-   Add the following html to app.component.html and also add the required imports:
 
-  ```bash
-  docker pull alexander-kastil/skills-api
-  docker run -it --rm -p 5051:80 alexander-kastil/skills-api
-  ```
+    ```html
+    <mat-toolbar>
+        <mat-toolbar-row>
+            Food SSR Shop
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    ```
 
-- Create a new Angular project and add PWA support:
+-   Add a script to track First Contentful Paint (FCP) to the `<head>` of `index.html`:
 
-  ```bash
-  ng new skills-pwa --routing --style=scss
-  cd skills-pwa
-  ng add @angular/pwa --project skills-pwa
-  ```
-
-- Add environment config:
-
-  ```bash
-  ng g environments
-  ```
-
-- Add the api url to `environment.ts`: 
-
-  ```typescript
-  export const environment = {
-      api: 'https://localhost:5051/api/'
-  };
-  ```
-
-- Copy the implementation for `skills` and `hello` from the [artifacts](./skills-pwa-artifacts/) and add it to your project.
-
-  ```html
-  <div class="card">
-    <div class="container">
-      <app-hello [greeting]="msgGreeting"></app-hello>
-      <app-skills></app-skills>
-    </div>
-  </div>
-  ```
-
-- Test the app - see if it works
-
-## Serving your app using ngrok & install the PWA
-
-- To serve the build you need an http-server. Use `angular-http-server`:
-
-  ```bash
-  npm install -g angular-http-server
-  ng build -c production
-  cd .\dist\skills-pwa\
-  angular-http-server
-  ```
-
-- Start ngrok:
-
-  ```
-  ngrok.exe http 8080
-  ```
-
-- Open the Url provided by ngrok in your browser:
-
-  ![ngrok](_images/ngrok.png)
-
-- Now you can install the PWA:
-
-  ![install](_images/install.png)
-
-- Note that there is an update handler in app.component.ts:
-
-  ```typescript
-  ngOnInit() {
-    this.attachUpdateHandler();
-  }
-
-  private attachUpdateHandler() {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.subscribe(() => {
-        if (confirm('New version available. Load New Version?')) {
-          window.location.reload();
+    ```javascript
+    <script>
+        // Log first contentful paint
+        // https://web.dev/fcp/#measure-fcp-in-javascript
+        const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntriesByName("first-contentful-paint")) {
+            console.log("FCP: ", entry.startTime);
+            observer.disconnect();
         }
-      });
-    }
-  }
-  ```
+        });
+        observer.observe({ type: "paint", buffered: true });
+    </script>
+    ```
 
-- Preloading / Fetching can be fine tuned in `ngsw-config.json`:
+    > Note: Reade more about [PerformanceObserver](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver) on MDN and on [web.dev](https://web.dev/articles/user-centric-performance-metrics).
 
-  ```json
-  "assetGroups": [
-      {
-        "name": "app",
-        "installMode": "prefetch",
-        "resources": {
-          "files": [
-            "/favicon.ico",
-            "/index.html",
-            "/manifest.webmanifest",
-            "/*.css",
-            "/*.js"
-          ]
+-   Execute Client and note the `First Contentful Paint (FCP)` value in the console:
+
+    ```bash
+    ng s -o
+    ```
+
+-     
+
+-   Execute Node Express on `http://localhost:4000` and compare `First Contentful Paint (FCP)` values and examine the html source. Also create Lighthouse Audit and compare time used for `Scripting`
+
+    ```bash
+    ng build
+    npm run serve:ssr:food-shop-ssr
+    ```
+
+    >Note: If you get a warning that the maximum bundle size is exceeded, you can increase it by setting ` "maximumWarning": "550kb",` in `angular.json`.
+
+## Use Pre-rendering
+
+- To save some time you will provided with the [artifacts](./food-shop-ssr-artifacts/) of this app:
+
+    -   Add `food/food-model.ts` from artifacts folder
+    -   Add `food/food.service.ts` from artifacts folder
+    -   Add `food/shop-item.component.ts` from artifacts folder
+    -   Add `food/food-list.component.ts` from artifacts folder
+    -   Add `food/food-details.component.ts` from artifacts folder
+    -   Add `shared/number-picker.component.ts` from artifacts folder. The number picker is custom component that allows to be used as a form control because it implements `ControlValueAccessor` interface. To read more about it check [this article](https://blog.angular-university.io/angular-custom-form-controls/).
+    -   Add `shared/euro.pipe.ts` from artifacts folder
+
+    > Note: After adding each file review the code and make sure you understand it.
+
+-   Run this simple mock shopping site to get familiar to it
+
+-   Add routes to `app.routes.ts`:
+
+    ```typescript
+    export const foodRoutes: Routes = [
+        {
+            path: '',
+            component: FoodListComponent,
+        },
+        {
+            path: 'food/:id',
+            component: FoodDetailsComponent,
         }
-      },
-      {
-        "name": "assets",
-        "installMode": "lazy",
-        "updateMode": "prefetch",
-        "resources": {
-          "files": [
-            "/assets/**",
-            "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
-          ]
-        }
-      }
-    ]
-  ```
+    ];
+    ```
+
+-   Create `routes.txt` in the root folder. It defines routes to pre-render:
+
+```
+/food/1
+/food/2
+/food/3
+```
+
+-   To configure pre-rendered pages open `angular.json` and replace the following to the `architect` section:
+
+    ```json
+    "prerender": true,
+    ```
+
+    with:
+
+    ```json
+    "prerender": {
+        "routesFile": "routes.txt"
+    },
+    ```
+
+-   Execute pre-rendering:
+
+    ```bash
+    ng build -c production
+    ```
+
+-   Examine `dist\food-list-ssr\browser\food\...`
+
+## Build more accessible Angular apps
+
+[Lab: Angular A11y](https://codelabs.developers.google.com/angular-a11y)

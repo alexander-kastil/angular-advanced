@@ -1,132 +1,134 @@
-# Optimizing Angular Apps
+# Injecting Configuration into Docker Containers
 
--   Server Side Rendering (SSR)
--   Build more accessible Angular apps
+In this lab we will create a simple Angular app and containerize it using Docker. We will also inject configuration from environment variables into the container.
 
-## Server Side Rendering (SSR)
+## Build the container
 
--   Create a new Angular project. Starting with Angular 17 SSR is enabled by default. To disable it use `--ssr=false`. So you could basically skip the `--ssr=true` option. To add it to an existing project use `ng add @angular/ssr`:
+Open project `container-starter` and add the following `Dockerfile`:
 
-    ```
-    ng new food-shop-ssr --routing --style=scss --ssr=true
-    cd food-shop-ssr
-    ```
+```dockerfile
+FROM node:16 as node
+LABEL author="Alexander Kastil"
+WORKDIR /app
+COPY package.json package.json
+RUN npm install
+COPY . .
+RUN npm run build -- -c production
 
--   Examine `package.json` and note the `@angular/ssr`and `express` dependencies. Also note the `serve:ssr:food-shop-ssr` script. It starts the Node Express server and runs the Angular app in SSR mode.
-
--   Add Angular Material:
-
-    ```
-    ng add @angular/material
-    ```
-
--   Add the following html to app.component.html and also add the required imports:
-
-    ```html
-    <mat-toolbar>
-        <mat-toolbar-row>
-            Food SSR Shop
-        </mat-toolbar-row>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-    ```
-
--   Add a script to track First Contentful Paint (FCP) to the `<head>` of `index.html`:
-
-    ```javascript
-    <script>
-        // Log first contentful paint
-        // https://web.dev/fcp/#measure-fcp-in-javascript
-        const observer = new PerformanceObserver((list) => {
-        for (const entry of list.getEntriesByName("first-contentful-paint")) {
-            console.log("FCP: ", entry.startTime);
-            observer.disconnect();
-        }
-        });
-        observer.observe({ type: "paint", buffered: true });
-    </script>
-    ```
-
-    > Note: Reade more about [PerformanceObserver](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver) on MDN and on [web.dev](https://web.dev/articles/user-centric-performance-metrics).
-
--   Execute Client and note the `First Contentful Paint (FCP)` value in the console:
-
-    ```bash
-    ng s -o
-    ```
-
--     
-
--   Execute Node Express on `http://localhost:4000` and compare `First Contentful Paint (FCP)` values and examine the html source. Also create Lighthouse Audit and compare time used for `Scripting`
-
-    ```bash
-    ng build
-    npm run serve:ssr:food-shop-ssr
-    ```
-
-    >Note: If you get a warning that the maximum bundle size is exceeded, you can increase it by setting ` "maximumWarning": "550kb",` in `angular.json`.
-
-## Use Pre-rendering
-
-- To save some time you will provided with the [artifacts](./food-shop-ssr-artifacts/) of this app:
-
-    -   Add `food/food-model.ts` from artifacts folder
-    -   Add `food/food.service.ts` from artifacts folder
-    -   Add `food/shop-item.component.ts` from artifacts folder
-    -   Add `food/food-list.component.ts` from artifacts folder
-    -   Add `food/food-details.component.ts` from artifacts folder
-    -   Add `shared/number-picker.component.ts` from artifacts folder. The number picker is custom component that allows to be used as a form control because it implements `ControlValueAccessor` interface. To read more about it check [this article](https://blog.angular-university.io/angular-custom-form-controls/).
-    -   Add `shared/euro.pipe.ts` from artifacts folder
-
-    > Note: After adding each file review the code and make sure you understand it.
-
--   Run this simple mock shopping site to get familiar to it
-
--   Add routes to `app.routes.ts`:
-
-    ```typescript
-    export const foodRoutes: Routes = [
-        {
-            path: '',
-            component: FoodListComponent,
-        },
-        {
-            path: 'food/:id',
-            component: FoodDetailsComponent,
-        }
-    ];
-    ```
-
--   Create `routes.txt` in the root folder. It defines routes to pre-render:
-
-```
-/food/1
-/food/2
-/food/3
+##### Stage 2 - Create the run-time-image
+FROM nginx:alpine
+VOLUME /var/cache/nginx
+# Copy from build-image to nginx base folder
+COPY --from=node /app/dist/food-app /usr/share/nginx/html
+# Copy nginx config
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
--   To configure pre-rendered pages open `angular.json` and replace the following to the `architect` section:
+Add the nginx config file `nginx.conf` to a config folder that you create in the root of the project. It provides URL rewriting for the Angular app:
 
-    ```json
-    "prerender": true,
-    ```
+```nginx
+server {
+    listen 0.0.0.0:80;
+    listen [::]:80;
+    default_type application/octet-stream;
 
-    with:
+    gzip                    on;
+    gzip_comp_level         6;
+    gzip_vary               on;
+    gzip_min_length         1000;
+    gzip_proxied            any;
+    gzip_types              text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_buffers            16 8k;
+    client_max_body_size    256M;
 
-    ```json
-    "prerender": {
-        "routesFile": "routes.txt"
-    },
-    ```
+    root /usr/share/nginx/html;
 
--   Execute pre-rendering:
+    location / {
+        try_files $uri $uri/ /index.html =404;
+    }
+}
+```
 
-    ```bash
-    ng build -c production
-    ```
 
--   Examine `dist\food-list-ssr\browser\food\...`
+Build the container using the following command:
 
-## Build more accessible Angular apps
+```bash
+docker build -t food-app .
+```
 
-[Lab: Angular A11y](https://codelabs.developers.google.com/angular-a11y)
+Run the container using the following command:
+
+```bash
+docker run -d --rm -p 5052:80 food-app
+```
+
+Connect to the container by navigating to http://localhost:5052/
+
+## Inject config from environment variables
+
+Download and start an existing .NET Api as a container:
+
+```bash
+docker run -d --rm -p 5051:80 alexander-kastil/food-catalog-api:1.1.0
+```
+
+Test the api by navigating to http://localhost:5051/
+
+To be able to inject the URL to the front-end container we will update `environment.ts`:
+
+```typescript
+declare global {
+  interface Window {
+    env: any;
+  }
+}
+export const environment = {
+  production: true,
+  api: window['env'].API_URL,
+};
+```
+
+The container environments variables that you will provide will be processed by two files located in the assets folder:
+
+env.js:
+
+```javascript
+(function (window) {
+  window["env"] = window["env"] || {};
+  window["env"].API_URL = "http://localhost:3000/";
+})(this);
+```
+
+env.template.js:
+
+```javascript
+(function (window) {
+  window["env"] = window["env"] || {};
+  window["env"].API_URL = "${ENV_API_URL}";
+})(this);
+```
+
+Reference env.js file in the index.html:
+
+```html
+<head>
+  <meta charset="utf-8">
+  <title>Food App</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  ...
+  <script src="assets/env.js"></script>
+</head>
+```
+
+Add the following line to the end of the dockerfile. It will trigger processing of the injected environment variables:
+  
+```dockerfile 
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+```
+
+Rebuild the container and run it again by providing the environment variable for ENV_API_URL:
+
+```bash
+docker run -d --rm -p 5052:80 --env ENV_API_URL="http://localhost:5051/" food-app
+```
