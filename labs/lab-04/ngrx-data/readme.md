@@ -1,4 +1,4 @@
-# NgRx Data
+# Using @ngrx/data in a new app
 
 ## Scaffold and Preparation
 

@@ -1,4 +1,4 @@
-# Migrate Stateful Service to NgRx
+# Migrate Stateful Service to NgRx and add @ngrx/data to existing app
 
 In this lab we will solve the following tasks:
 
