@@ -1,4 +1,4 @@
-# Using @ngrx/data in a new app
+# Using @ngrx/data in the skills new app
 
 ## Scaffold and Preparation
 
@@ -111,6 +111,13 @@ export interface Skill {
       sortComparer: sortByName,
     },
   };
+
+  const pluralNames = {};
+
+  export const entityConfig: EntityDataModuleConfig = {
+    entityMetadata,
+    pluralNames
+  };
   ```
 
 - Create the EntityDataService in `skills/skills-entity.service.ts`. If you do not want to override the methods, that is all you will have to do in order to load entity data.
@@ -206,7 +213,7 @@ export class SkillsComponent {
   }
   ```
 
-- The custom URL generator needs to be registered in `app.module.ts`:
+- The custom URL generator needs to be registered in `app.config.ts`:
 
   ```typescript
   providers: [
