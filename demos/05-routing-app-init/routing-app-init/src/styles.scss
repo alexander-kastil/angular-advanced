@@ -1,9 +1,9 @@
 @use "resets.scss";
-@use "mixins.scss";
 @use "mat-overrides.scss";
 @use "tables.scss";
 @use "forms.scss";
 @use "markdown.scss";
+@use "view-transition.scss";
 
 @use '@angular/material' as mat;
 @include mat.elevation-classes();
