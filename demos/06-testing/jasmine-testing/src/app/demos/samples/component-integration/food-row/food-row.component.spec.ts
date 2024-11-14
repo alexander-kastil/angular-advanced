@@ -1,4 +1,4 @@
-import { ElementRef, input } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FoodRowComponent } from './food-row.component';
@@ -41,7 +41,7 @@ describe('Component -Integration Test - Food Row', () => {
 
   it('should render the food name when food is changed', () => {
     fixture.componentRef.setInput('food', { id: 2, name: 'Wiener Schnitzel', rating: 5 });
-    fixture.detectChanges();
+    fixture.autoDetectChanges();
     // Do one of the tests below
     expect(fixture.nativeElement.querySelector('#itemName').textContent
     ).toContain('Wiener Schnitzel');

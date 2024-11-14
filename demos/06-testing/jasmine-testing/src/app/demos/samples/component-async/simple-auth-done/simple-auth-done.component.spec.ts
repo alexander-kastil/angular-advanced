@@ -25,7 +25,7 @@ describe('Component - AsyncTest - done', () => {
   });
 
   it('returns false when the user is not authenticated', (done: DoneFn) => {
-    fixture.detectChanges();
+    fixture.autoDetectChanges();
     expect(
       fixture.debugElement
         .query(By.css('span'))
