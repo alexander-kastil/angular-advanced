@@ -64,6 +64,7 @@ export const appConfig: ApplicationConfig = {
         {
             provide: ErrorHandler,
             useValue: globalErrorHandler,
-        }, provideAnimationsAsync(),
+        },
+        provideAnimationsAsync(),
     ]
 };

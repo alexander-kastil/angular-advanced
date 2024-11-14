@@ -13,5 +13,20 @@ describe('Class - Hello world Test', () => {
 
   it('says Hello World!', () =>
     expect(sc.sayHelloWorld()).toEqual('Hello World!'));
+
+  it('should create an instance of SimpleClass', () => {
+    expect(sc).toBeTruthy();
+  });
+
+  it('should return a string from sayHelloWorld method', () => {
+    const result = sc.sayHelloWorld();
+    expect(typeof result).toBe('string');
+  });
+
+  it('should return "Hello World!" from sayHelloWorld method', () => {
+    const result = sc.sayHelloWorld();
+    expect(result).toBe('Hello World!');
+  });
 });
+
 

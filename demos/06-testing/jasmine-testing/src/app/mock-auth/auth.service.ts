@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   createUser(email: string, password: string) {
-    this.authFacade.setFakeUserAndToken(email);
+    this.authFacade.setFakeUserAndToken(email, "fakeToken");
     return this.authFacade.getAuthResult()
   };
 
@@ -22,7 +22,7 @@ export class AuthService {
     email: string,
     password: string
   ) {
-    this.authFacade.setFakeUserAndToken(email);
+    this.authFacade.setFakeUserAndToken(email, "fakeToken");
     return this.authFacade.getAuthResult()
   };
 

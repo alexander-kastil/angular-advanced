@@ -1,18 +1,18 @@
-import { Component, Input, inject, input } from '@angular/core';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import { Component, inject, input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { mergeMap } from 'rxjs';
-import { AsyncPipe, JsonPipe } from '@angular/common';
 import { customerState } from '../../state/customers.state';
 
 @Component({
-    selector: 'app-customer-edit',
-    templateUrl: './customer-edit.component.html',
-    styleUrls: ['./customer-edit.component.scss'],
-    imports: [AsyncPipe, JsonPipe]
+  selector: 'app-customer-edit',
+  templateUrl: './customer-edit.component.html',
+  styleUrls: ['./customer-edit.component.scss'],
+  imports: [AsyncPipe, JsonPipe]
 })
 export class CustomerEditComponent {
   id = input.required<number>();
-  @Input() readonly?: boolean;
+  readonly = input<boolean>(false);
 
   store = inject(Store);
   customer = this.store.select(customerState.selectCustomers).pipe(

@@ -1,7 +1,5 @@
-import { CapitalizeDirective } from './capitalize.directive';
-import { DirectiveComponent } from './directive.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatCardModule } from '@angular/material/card';
+import { DirectiveComponent } from './directive.component';
 
 describe('Component - Directive - CapitalizeDirective', () => {
   let component: DirectiveComponent;
@@ -9,7 +7,7 @@ describe('Component - Directive - CapitalizeDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatCardModule, CapitalizeDirective, DirectiveComponent],
+      imports: [DirectiveComponent],
     });
 
     fixture = TestBed.createComponent(DirectiveComponent);

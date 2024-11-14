@@ -11,11 +11,6 @@
       "id": 1
     },
     {
-      "url": "app-init",
-      "title": "App Init",
-      "id": 2
-    },
-    {
       "url": "multi-interceptor",
       "title": "Interceptors",
       "id": 8

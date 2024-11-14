@@ -1,75 +1,83 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { environment } from '../../../../environments/environment';
 import { FoodItem } from './food.model';
 import { FoodService } from './food.service';
-import { environment } from '../../../../environments/environment';
 
-describe('Service - HttpTest -FoodService', () => {
+
+describe('FoodService', () => {
   let service: FoodService;
-  let controller: HttpTestingController;
-  let data: FoodItem[] = [];
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    data = [
-      { id: 1, name: 'Pad Thai', rating: 5 },
-      { id: 2, name: 'Butter Chicken', rating: 5 },
-      { id: 9, name: 'Germknödl', rating: 5, discontinued: true },
-    ];
-
     TestBed.configureTestingModule({
-      imports: [],
       providers: [
         FoodService,
         provideHttpClient(),
         provideHttpClientTesting()
       ]
     });
-
     service = TestBed.inject(FoodService);
-    controller = TestBed.inject(HttpTestingController);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
-  // Verify that there are no pending HTTP requests
   afterEach(() => {
-    controller.verify();
+    httpMock.verify();
   });
 
-  it('should return the expected data', () => {
-    service.getFood().subscribe((items) => {
-      expect(items).toBeTruthy();
-      expect(items.length).toEqual(3);
+  it('should retrieve food items from the API via GET', () => {
+    const dummyFoodItems: FoodItem[] = [
+      { id: 1, name: 'Apple', rating: 5, discontinued: false },
+      { id: 2, name: 'Banana', rating: 3, discontinued: true }
+    ];
 
-      const germ = items.find((i) => i.id === 9);
-      expect(germ?.name).toBe('Germknödl');
+    service.getFood().subscribe(foodItems => {
+      expect(foodItems.length).toBe(2);
+      expect(foodItems).toEqual(dummyFoodItems);
     });
 
-    //check that the correct url was called with the correct method
-    const url = `${environment.api}food`;
-    const req = controller.expectOne(url);
-    expect(req.request.method).toEqual('GET');
-
-    //flush the mock data
-    req.flush(data);
-
+    const req = httpMock.expectOne(`${environment.api}food`);
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyFoodItems);
   });
 
-  it('should return only items that are not discontinued', () => {
-    service.getAvailableFood().subscribe((items) => {
-      expect(items).toBeTruthy();
-      expect(items.length).toEqual(2);
+  it('should filter out discontinued food items', () => {
+    const dummyFoodItems: FoodItem[] = [
+      { id: 1, name: 'Apple', rating: 5, discontinued: false },
+      { id: 2, name: 'Banana', rating: 3, discontinued: true }
+    ];
 
-      const germ = items.find((i) => i.id === 9);
-      expect(germ).toBeUndefined();
+    service.getAvailableFood().subscribe(foodItems => {
+      expect(foodItems.length).toBe(1);
+      expect(foodItems[0].name).toBe('Apple');
     });
 
-    //check that the correct url was called with the correct method
-    const url = `${environment.api}food`;
-    const req = controller.expectOne(url);
-    expect(req.request.method).toEqual('GET');
-
-    //flush the mock data
-    req.flush(data);
+    const req = httpMock.expectOne(`${environment.api}food`);
+    req.flush(dummyFoodItems);
   });
 
+  it('should delete a food item via DELETE', () => {
+    const dummyFoodItem: FoodItem = { id: 1, name: 'Apple', rating: 5, discontinued: false };
+
+    service.deleteFood(dummyFoodItem).subscribe(response => {
+      expect(response).toBeNull();
+    });
+
+    const req = httpMock.expectOne(`${environment.api}food/1`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
+  });
+
+  it('should add a food item via PUT', () => {
+    const dummyFoodItem: FoodItem = { id: 1, name: 'Apple', rating: 5, discontinued: false };
+
+    service.addFood(dummyFoodItem).subscribe(foodItem => {
+      expect(foodItem).toEqual(dummyFoodItem);
+    });
+
+    const req = httpMock.expectOne(`${environment.api}food`);
+    expect(req.request.method).toBe('PUT');
+    req.flush(dummyFoodItem);
+  });
 });

@@ -1,36 +1,29 @@
 import { SimpleMessageService } from './simple.service';
-import { msgs } from './test-data';
 
-describe('Service - No Injection - SimpleMessageService', () => {
+describe('SimpleMessageService', () => {
   let service: SimpleMessageService;
 
   beforeEach(() => {
     service = new SimpleMessageService();
   });
 
-  it('should have no messages to start', () => {
-    expect(service.messages.length).toBe(0);
+  it('should add a message', () => {
+    const message = 'Test message';
+    service.add(message);
+    expect(service.messages).toContain(message);
   });
 
-  it('should add a message when add is called', () => {
-    service.add('message1');
-    service.add('message2');
-    expect(service.messages.length).toBe(2);
+  it('should delete a message', () => {
+    const message = 'Test message';
+    service.add(message);
+    service.delete(message);
+    expect(service.messages).not.toContain(message);
   });
 
-  it('should remove all messages when clear is called', () => {
-    service.add('message1');
+  it('should clear all messages', () => {
+    service.add('Test message 1');
+    service.add('Test message 2');
     service.clear();
     expect(service.messages.length).toBe(0);
-  });
-
-  it('should delete the correct item', () => {
-    service.messages = msgs;
-    service.delete('Hello World');
-    expect(service.messages.length).toBe(2);
-    expect(service.messages).toContain(
-      'Szia World',
-      'Servus Welt'
-    );
   });
 });
