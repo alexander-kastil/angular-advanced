@@ -1,5 +1,5 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, OnInit, computed, effect, inject } from '@angular/core';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
@@ -55,9 +55,7 @@ export class DemoContainerComponent implements OnInit {
 
   sidenavMode = this.nav.getSideNavPosition();
   sidenavVisible = this.nav.getSideNavVisible();
-  workbenchMargin = this.sidenavVisible.pipe(
-    map(visible => { return visible ? { 'margin-left': '5px' } : {} })
-  );
+  workbenchMargin = computed(() => this.sidenavVisible() ? { 'margin-left': '5px' } : { 'margin-left': '0px' });
 
   currentCMD = this.eb.getCommands();
   showMdEditor: boolean = false;
