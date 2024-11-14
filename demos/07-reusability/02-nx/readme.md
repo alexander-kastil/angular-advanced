@@ -71,7 +71,7 @@ it('should render title', () => {
 Add a library project from the root of the nx workspace:
 
 ```bash
-nx generate @nx/angular:library --name=ux-library --directory=libs/ux-library --projectNameAndRootFormat=as-provided --style=scss
+nx generate @nx/angular:library --name=ux-library --directory=libs/ux-library --style=scss
 ```
 
 Show a project graph in from separate terminal and keep it open:
