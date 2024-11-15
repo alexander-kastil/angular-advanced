@@ -10,9 +10,9 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MarkdownModule } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { globalErrorHandler } from './shared/error/error.handler';
+import { httpErrorInterceptor } from './shared/error/http-error.interceptor';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
-import { httpErrorInterceptor } from './shared/error/http-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [

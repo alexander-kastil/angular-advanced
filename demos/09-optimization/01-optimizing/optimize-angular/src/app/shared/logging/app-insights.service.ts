@@ -1,13 +1,11 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import { Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AILoggerService implements OnDestroy {
-  private routerSubscription!: Subscription;
+export class ApplicationInsightsService {
   private static logger: ApplicationInsights;
 
   static getInstance(): ApplicationInsights {
@@ -16,7 +14,7 @@ export class AILoggerService implements OnDestroy {
   }
 
   constructor() {
-    AILoggerService.initAppInsights();
+    ApplicationInsightsService.initAppInsights();
   }
 
   static loggingEnabled(): boolean {
@@ -27,7 +25,7 @@ export class AILoggerService implements OnDestroy {
   }
 
   static initAppInsights() {
-    if (AILoggerService.loggingEnabled()) {
+    if (ApplicationInsightsService.loggingEnabled()) {
       this.logger = new ApplicationInsights({
         config: {
           instrumentationKey: environment.appInsightsKey,
@@ -35,17 +33,13 @@ export class AILoggerService implements OnDestroy {
         },
       });
       this.logger.loadAppInsights();
-      this.logger.trackEvent({ name: 'app instance started' });
+      this.logger.trackEvent({ name: 'Application Insights configured' });
     }
   }
 
-  ngOnDestroy(): void {
-    this.routerSubscription.unsubscribe();
-  }
-
   logEvent(name: string, properties?: { [key: string]: any }) {
-    if (AILoggerService.loggingEnabled()) {
-      AILoggerService.logger.trackEvent({ name, properties });
+    if (ApplicationInsightsService.loggingEnabled()) {
+      ApplicationInsightsService.logger.trackEvent({ name, properties });
     } else {
       console.log('logging is not enabled');
     }

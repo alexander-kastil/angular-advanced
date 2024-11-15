@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { AILoggerService } from 'src/app/shared/logging/ailogger.service';
+import { ApplicationInsightsService } from 'src/app/shared/logging/app-insights.service';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
@@ -21,7 +21,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 })
 export class LoggerComponent {
   ngxLogger = inject(NGXLogger);
-  appInsights = inject(AILoggerService);
+  appInsights = inject(ApplicationInsightsService);
 
   logNgx() {
     this.ngxLogger.debug('Entering LoggerComponent');

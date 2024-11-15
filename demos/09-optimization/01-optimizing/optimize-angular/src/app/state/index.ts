@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { appReducer, AppState } from './app.reducer';
 import { RouterStateUrl } from './router.reducer';
 import { customerReducer, CustomersState } from '../customers/state/customers.reducer';
-import { AILoggerService } from '../shared/logging/ailogger.service';
+import { ApplicationInsightsService } from '../shared/logging/app-insights.service';
 
 // State
 export interface State {
@@ -17,7 +17,7 @@ export function logNgRX(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
     console.log('ngrx logging:', action);
     if (environment.appInsights) {
-      const ai = AILoggerService.getInstance()
+      const ai = ApplicationInsightsService.getInstance()
       ai.trackEvent({ name: 'ngrx logging', properties: { action: action.type, state: state } });
 
     }
