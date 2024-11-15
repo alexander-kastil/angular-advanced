@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
+import { JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [JsonPipe]
 })
 export class AppComponent {
   http = inject(HttpClient);
   title = 'ng-config-env';
-  apiUrl = environment.apiUrl;
+  apiUrl = environment.api;
   cfg: any;
 
   ngOnInit(): void {

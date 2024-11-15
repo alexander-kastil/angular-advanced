@@ -23,7 +23,7 @@ export class ChangeDetectorRefComponent implements AfterViewInit {
   handleErr = true;
 
   ngAfterViewInit(): void {
-    let childVal = this.child?.childData;
+    const childVal = this.child?.childData;
     if (this.handleErr) {
       this.cd.detectChanges();
     }

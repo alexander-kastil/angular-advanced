@@ -1,5 +1,5 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, OnChanges } from '@angular/core';
 import { FormBuilder, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
@@ -30,8 +30,8 @@ import { SkillsEntityService } from '../skills-entity.service';
     JsonPipe,
   ],
 })
-export class SkillsEditComponent {
-  @Input({ required: true }) id: number = 0;
+export class SkillsEditComponent implements OnChanges {
+  @Input({ required: true }) id = 0;
   route = inject(ActivatedRoute);
   router = inject(Router);
   service = inject(SkillsEntityService);

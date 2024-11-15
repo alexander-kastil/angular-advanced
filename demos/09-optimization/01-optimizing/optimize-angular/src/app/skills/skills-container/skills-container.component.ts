@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, DoCheck } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -29,7 +29,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     AsyncPipe,
   ],
 })
-export class SkillsContainerComponent {
+export class SkillsContainerComponent implements OnInit, DoCheck {
   service = inject(SkillsEntityService);
   fcToggle = new FormControl(true);
   skills = toSignal(this.service.entities$.pipe(

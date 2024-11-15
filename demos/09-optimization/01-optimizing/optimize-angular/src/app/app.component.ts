@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { RouterOutlet } from '@angular/router';
@@ -11,7 +11,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     standalone: true,
     imports: [NavbarComponent, RouterOutlet],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(private titleService: Title) {
     console.log('AppComponent constructor');
   }

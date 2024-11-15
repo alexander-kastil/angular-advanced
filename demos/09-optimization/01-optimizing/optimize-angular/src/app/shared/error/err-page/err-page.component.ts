@@ -3,7 +3,7 @@ import { JsonPipe } from '@angular/common';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 // ambient declaration for window
-declare var window: Window;
+declare let window: Window;
 
 @Component({
   selector: 'app-err-page',

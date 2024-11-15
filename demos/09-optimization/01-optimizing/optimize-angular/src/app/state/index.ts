@@ -1,15 +1,12 @@
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { ApplicationInsightsService } from '../shared/logging/app-insights.service';
 import { appReducer, AppState } from './app.reducer';
 import { RouterStateUrl } from './router.reducer';
-import { customerReducer, CustomersState } from '../customers/state/customers.reducer';
-import { ApplicationInsightsService } from '../shared/logging/app-insights.service';
 
-// State
 export interface State {
   app: AppState;
-  customers: CustomersState;
   routerReducer: RouterReducerState<RouterStateUrl>;
 }
 
@@ -27,7 +24,6 @@ export function logNgRX(reducer: ActionReducer<any>): ActionReducer<any> {
 
 export const reducers: ActionReducerMap<State> = {
   app: appReducer,
-  customers: customerReducer,
   routerReducer: routerReducer,
 };
 

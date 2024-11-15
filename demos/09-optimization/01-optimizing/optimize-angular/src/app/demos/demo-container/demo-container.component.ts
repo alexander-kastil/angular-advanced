@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
@@ -38,7 +38,7 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
         AsyncPipe,
     ],
 })
-export class DemoContainerComponent {
+export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
   route = inject(ActivatedRoute);

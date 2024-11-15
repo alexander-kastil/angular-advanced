@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Output,
   SimpleChanges,
-  input
+  input, DoCheck, OnChanges
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -24,7 +24,7 @@ import { Skill } from '../skill.model';
     MatIcon,
   ],
 })
-export class SkillRowComponent {
+export class SkillRowComponent implements DoCheck, OnChanges {
   skill = input.required<Skill>();
   @Output() itemDeleted: EventEmitter<Skill> = new EventEmitter<Skill>();
   @Output() itemCompleted: EventEmitter<Skill> = new EventEmitter<Skill>();
