@@ -26,7 +26,7 @@ export const demoRoutes: Routes = [
             { path: 'virtual-scroll', component: VirtualScrollComponent, title: 'Demos - Virtual Scroll' },
             { path: 'a11y', component: A11yComponent, title: 'Demos - A11y' },
             { path: 'eslint', component: EslintComponent, title: 'Demos - ESLint' },
-            { path: 'ng-optimized-img', component: NgOptimizedImageComponent },
+            { path: 'ng-optimized-img', component: NgOptimizedImageComponent, title: 'Demos - Optimized Image' },
         ],
     },
 ];

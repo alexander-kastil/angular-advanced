@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
@@ -12,13 +12,21 @@ import { appRoutes } from './app.routes';
 import { globalErrorHandler } from './shared/error/error.handler';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
+import { httpErrorInterceptor } from './shared/error/http-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         [
-            provideHttpClient(),
+            provideHttpClient(
+                withInterceptors(
+                    [httpErrorInterceptor]
+                )
+            ),
             provideAnimations(),
-            provideRouter(appRoutes, withComponentInputBinding()),
+            provideRouter(
+                appRoutes,
+                withComponentInputBinding()
+            ),
             importProvidersFrom(
                 MarkdownModule.forRoot(),
                 LoggerModule.forRoot({
