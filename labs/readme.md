@@ -11,4 +11,5 @@
 - Lab 9: Reusability
 - Lab 10: Progressive Web App
 - Lab 11: Server Side Rendering
+- Lab 12: Build more accessible Angular apps
 - Lab 12: Container
