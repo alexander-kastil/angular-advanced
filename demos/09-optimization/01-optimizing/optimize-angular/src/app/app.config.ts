@@ -1,16 +1,17 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { appRoutes } from './app.routes';
-import { MarkdownModule } from 'ngx-markdown';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { provideEntityData, withEffects, DefaultDataServiceConfig } from '@ngrx/data';
-import { skillsDataServiceConfig } from './skills/skills-data.service.config';
-import { skillsEntityConfig } from './skills/skills.metadata';
+import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
+import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideEffects } from '@ngrx/effects';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { MarkdownModule } from 'ngx-markdown';
+import { appRoutes } from './app.routes';
+import { globalErrorHandler } from './shared/error/error.handler';
+import { skillsDataServiceConfig } from './skills/skills-data.service.config';
+import { skillsEntityConfig } from './skills/skills.metadata';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -34,6 +35,10 @@ export const appConfig: ApplicationConfig = {
             { provide: DefaultDataServiceConfig, useValue: skillsDataServiceConfig },
             // Redux DevTools
             provideStoreDevtools({ maxAge: 25 }),
+            {
+                provide: ErrorHandler,
+                useValue: globalErrorHandler,
+            },
         ]
     ]
 };   

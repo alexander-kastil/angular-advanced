@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { ErrPageComponent } from './shared/error/err-page/err-page.component';
 
 export const appRoutes: Routes = [
     {
@@ -16,5 +17,9 @@ export const appRoutes: Routes = [
         path: 'skills',
         loadChildren: () =>
             import('./skills/skills.routes').then((m) => m.skillRoutes),
+    },
+    {
+        path: 'error',
+        component: ErrPageComponent,
     },
 ];
