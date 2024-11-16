@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TopicListComponent } from './topic-list.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('TopicListComponent', () => {
   let component: TopicListComponent;
@@ -8,9 +8,10 @@ describe('TopicListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TopicListComponent]
+      imports: [TopicListComponent],
+      providers: [provideHttpClient()]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TopicListComponent);
     component = fixture.componentInstance;

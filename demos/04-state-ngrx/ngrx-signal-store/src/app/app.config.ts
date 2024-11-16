@@ -8,8 +8,6 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
-import * as demoEffects from './demos/state/demos.effects';
-import { demoState } from './demos/state/demos.state';
 import { LoadingInterceptor } from './shared/loading/loading-interceptor';
 import { LoadingService } from './shared/loading/loading.service';
 import * as editorEffects from './shared/markdown-editor/state/editor.effects';
@@ -25,10 +23,8 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         //NgRx
         provideStore(),
-        provideEffects(demoEffects),
         provideEffects(editorEffects),
         // State Slices
-        provideState(demoState),
         provideState(editorState),
         // NgRx Data
         provideEntityData(skillsEntityConfig, withEffects()),

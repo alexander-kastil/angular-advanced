@@ -29,10 +29,12 @@ export const topicsStore = signalStore(
             )),
         updateTopic: (topic: Topic) => {
             patchState(store, setPending());
-            service.updateTopic(topic).subscribe((updatedTopic) => {
-                patchState(store, updateEntity({ id: updatedTopic.id, changes: updatedTopic }));
-                patchState(store, setFulfilled())
-            }
+            return service.updateTopic(topic).pipe(
+                tapResponse({
+                    next: (updatedTopic) => patchState(store, updateEntity({ id: updatedTopic.id, changes: updatedTopic })),
+                    error: logError,
+                    finalize: () => patchState(store, setFulfilled()),
+                })
             );
         },
     })),
