@@ -1,7 +1,9 @@
 <mat-expansion-panel 
+  [expanded]="contentVisible()"
   (mousedown)="onMouseDown($event)" 
   (mousemove)="onMouseMove($event)" 
-  (mouseup)="onMouseUp($event)">
+  (mouseup)="onMouseUp($event)"
+  >
   <mat-expansion-panel-header>
     <mat-panel-title>Instructions</mat-panel-title>
   </mat-expansion-panel-header>
