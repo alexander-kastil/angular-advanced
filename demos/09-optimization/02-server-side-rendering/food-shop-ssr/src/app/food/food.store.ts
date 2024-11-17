@@ -38,6 +38,17 @@ export const foodStore = signalStore(
         ),
         addToCart: (item: FoodCartItem) => {
             patchState(store, state => {
+                const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
+                if (existingItem) {
+                    return {
+                        ...state,
+                        cart: state.cart.map(cartItem =>
+                            cartItem.id === item.id
+                                ? { ...cartItem, quantity: item.quantity }
+                                : cartItem
+                        )
+                    };
+                }
                 return {
                     ...state,
                     cart: [...state.cart, item]
@@ -46,9 +57,25 @@ export const foodStore = signalStore(
         },
         removeFromCart: (item: FoodCartItem) => {
             patchState(store, state => {
+                const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
+                if (!existingItem) return state;
+
+                const newQuantity = Math.max(0, existingItem.quantity - item.quantity);
+
+                if (newQuantity === 0) {
+                    return {
+                        ...state,
+                        cart: state.cart.filter(cartItem => cartItem.id !== item.id)
+                    };
+                }
+
                 return {
                     ...state,
-                    cart: state.cart.filter(cartItem => cartItem.id !== item.id)
+                    cart: state.cart.map(cartItem =>
+                        cartItem.id === item.id
+                            ? { ...cartItem, quantity: newQuantity }
+                            : cartItem
+                    )
                 };
             });
         }

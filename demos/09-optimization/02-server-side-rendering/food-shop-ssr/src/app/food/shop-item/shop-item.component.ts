@@ -4,7 +4,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { EuroPipe } from '../../shared/euro.pipe';
 import { NumberPickerComponent } from '../../shared/number-picker/number-picker.component';
 import { FoodItem } from '../food.model';
 import { FoodCartItem } from './food-cart-item.model';
@@ -30,7 +29,7 @@ export class ShopItemComponent {
   nbrPicker: FormControl = new FormControl(0);
 
   handleAmountChange(amount: any) {
-    const item: FoodCartItem = { ...this.food(), quantity: amount };
+    const item: FoodCartItem = { id: this.food().id, quantity: amount };
     this.itemChanged.emit(item);
   }
 }
