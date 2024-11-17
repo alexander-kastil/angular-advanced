@@ -1,13 +1,13 @@
+import { isPlatformBrowser } from '@angular/common';
+import { computed, inject, PLATFORM_ID } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { setEntities, withEntities } from '@ngrx/signals/entities';
-import { tapResponse } from '@ngrx/operators';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { FoodCartItem } from './shop-item/food-cart-item.model';
-import { FoodItem } from './food.model';
-import { computed, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { FoodService } from './food.service';
 import { pipe, switchMap } from 'rxjs';
+import { FoodItem } from './food.model';
+import { FoodService } from './food.service';
+import { FoodCartItem } from './shop-item/food-cart-item.model';
 
 const logError = (error: Error) => console.error("error: ", error);
 
