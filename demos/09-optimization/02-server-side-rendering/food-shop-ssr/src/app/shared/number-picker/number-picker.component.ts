@@ -1,4 +1,5 @@
-import { Component, forwardRef, input, signal } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { Component, forwardRef, input } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -25,15 +26,15 @@ import { MatIcon } from '@angular/material/icon';
       useExisting: forwardRef(() => NumberPickerComponent),
     },
   ],
-  imports: [MatIcon]
+  imports: [MatIcon, DecimalPipe]
 })
 export class NumberPickerComponent implements ControlValueAccessor, Validator {
-  // Values
-  quantity = signal(0);
+  // Metadata
+  quantity = 0;
 
   //A callback function that is called when the control's value changes in the UI.
-  private onChange: Function = (newQuantity: number) => {
-    this.quantity.set(newQuantity);
+  private onChange: Function = (quantity: number) => {
+    this.quantity = quantity;
   };
 
   // a callback function that is called by the forms API on initialization to update the form model on blur
@@ -42,14 +43,13 @@ export class NumberPickerComponent implements ControlValueAccessor, Validator {
   };
 
   touched = false;
-
   disabled = false;
 
   // Increments the quantity and calls onChange
   onAdd() {
     this.markAsTouched();
     if (!this.disabled) {
-      this.quantity.update(old => old + 1);
+      this.quantity += 1;
       this.onChange(this.quantity);
     }
   }
@@ -58,14 +58,14 @@ export class NumberPickerComponent implements ControlValueAccessor, Validator {
   onRemove() {
     this.markAsTouched();
     if (!this.disabled) {
-      this.quantity.update(old => old - 1);
+      this.quantity -= 1;
       this.onChange(this.quantity);
     }
   }
 
   // Updates the quantity.
-  writeValue(newQuantity: number) {
-    this.quantity.set(newQuantity);
+  writeValue(quantity: number) {
+    this.quantity = quantity;
   }
 
   // Registers a callback for when the value changes

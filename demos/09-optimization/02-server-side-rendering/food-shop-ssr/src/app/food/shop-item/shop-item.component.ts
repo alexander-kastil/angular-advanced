@@ -20,7 +20,6 @@ import { FoodCartItem } from './food-cart-item.model';
     RouterModule,
     MatIconModule,
     NgOptimizedImage,
-    EuroPipe,
     NumberPickerComponent
   ]
 })
@@ -28,12 +27,7 @@ export class ShopItemComponent {
   food = input.required<FoodItem>();
   inCart = input<number>(0);
   itemChanged = output<FoodCartItem>();
-
   nbrPicker: FormControl = new FormControl(0);
-
-  ngOnChanges() {
-    this.nbrPicker.setValue(this.inCart);
-  }
 
   handleAmountChange(amount: any) {
     const item: FoodCartItem = { ...this.food(), quantity: amount };
