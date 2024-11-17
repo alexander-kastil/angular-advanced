@@ -5,7 +5,9 @@
         <div>
           <mat-slide-toggle
             class="example-margin"
-            [checked]="cartPersisted">
+            [checked]="cartPersisted"
+            (change)="toggleCartPersisted()"
+            >
             Persist Cart
         </mat-slide-toggle>
         </div>

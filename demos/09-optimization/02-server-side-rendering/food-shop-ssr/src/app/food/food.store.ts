@@ -4,7 +4,8 @@ import { tapResponse } from '@ngrx/operators';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { FoodCartItem } from './shop-item/food-cart-item.model';
 import { FoodItem } from './food.model';
-import { computed, inject } from '@angular/core';
+import { computed, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { FoodService } from './food.service';
 import { pipe, switchMap } from 'rxjs';
 
@@ -24,64 +25,81 @@ export const foodStore = signalStore(
     { providedIn: 'root', protectedState: false },
     withState(initialFoodState),
     withEntities<FoodItem>(),
-    withMethods((store, service = inject(FoodService)) => ({
-        fetchFood: rxMethod<void>(
-            pipe(
-                switchMap(() => {
-                    return service.getFood().pipe(
-                        tapResponse({
-                            next: (demos) => patchState(store, setEntities(demos)),
-                            error: logError,
-                            finalize: () => { }
-                        }),
-                    )
-                })
-            )
-        ),
-        addToCart: (item: FoodCartItem) => {
-            patchState(store, state => {
-                const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
-                if (existingItem) {
+    withMethods((
+        store,
+        service = inject(FoodService),
+        platformId = inject(PLATFORM_ID)) => ({
+            fetchFood: rxMethod<void>(
+                pipe(
+                    switchMap(() => {
+                        return service.getFood().pipe(
+                            tapResponse({
+                                next: (demos) => patchState(store, setEntities(demos)),
+                                error: logError,
+                                finalize: () => { }
+                            }),
+                        )
+                    })
+                )
+            ),
+            addToCart: (item: FoodCartItem) => {
+                patchState(store, state => {
+                    const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
+                    if (existingItem) {
+                        return {
+                            ...state,
+                            cart: state.cart.map(cartItem =>
+                                cartItem.id === item.id
+                                    ? { ...cartItem, quantity: item.quantity }
+                                    : cartItem
+                            )
+                        };
+                    }
+                    return {
+                        ...state,
+                        cart: [...state.cart, item]
+                    };
+                });
+            },
+            removeFromCart: (item: FoodCartItem) => {
+                patchState(store, state => {
+                    const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
+                    if (!existingItem) return state;
+
+                    const newQuantity = Math.max(0, existingItem.quantity - item.quantity);
+
+                    if (newQuantity === 0) {
+                        return {
+                            ...state,
+                            cart: state.cart.filter(cartItem => cartItem.id !== item.id)
+                        };
+                    }
+
                     return {
                         ...state,
                         cart: state.cart.map(cartItem =>
                             cartItem.id === item.id
-                                ? { ...cartItem, quantity: item.quantity }
+                                ? { ...cartItem, quantity: newQuantity }
                                 : cartItem
                         )
                     };
-                }
-                return {
+                });
+            },
+            togglePersistence: () => {
+                patchState(store, (state) => ({
                     ...state,
-                    cart: [...state.cart, item]
-                };
-            });
-        },
-        removeFromCart: (item: FoodCartItem) => {
-            patchState(store, state => {
-                const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
-                if (!existingItem) return state;
-
-                const newQuantity = Math.max(0, existingItem.quantity - item.quantity);
-
-                if (newQuantity === 0) {
-                    return {
-                        ...state,
-                        cart: state.cart.filter(cartItem => cartItem.id !== item.id)
-                    };
+                    persistCart: !state.persistCart
+                }));
+            },
+            checkPersistence: () => {
+                if (isPlatformBrowser(platformId)) {
+                    const storageState = JSON.parse(localStorage.getItem('foodState') || '{}') as FoodState;
+                    if (storageState.persistCart) {
+                        patchState(store, storageState);
+                    }
                 }
-
-                return {
-                    ...state,
-                    cart: state.cart.map(cartItem =>
-                        cartItem.id === item.id
-                            ? { ...cartItem, quantity: newQuantity }
-                            : cartItem
-                    )
-                };
-            });
-        }
-    })),
+            },
+        })),
     withComputed(({ cart }) => ({
         cartItems: computed(() => cart().reduce((acc, item) => acc + item.quantity, 0) || 0),
         cartTotal: computed(() => cart().reduce((acc, item) => acc + item.quantity * item.price, 0) || 0)
