@@ -11,7 +11,7 @@
     <div class="actionsContainer" style="grid-area: actions;">
       <app-number-picker (amountChanged)="handleAmountChange($event)" [formControl]="nbrPicker">      
       </app-number-picker>
-      <button [routerLink]="['/food', food().id]">
+      <button [routerLink]="['', food().id]">
       <mat-icon>edit</mat-icon>
       </button>
     </div>
