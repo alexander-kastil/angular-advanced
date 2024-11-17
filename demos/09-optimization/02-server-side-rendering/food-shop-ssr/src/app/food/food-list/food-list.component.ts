@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FoodService } from '../food.service';
+import { foodStore } from '../food.store';
 import { ShopItemComponent } from '../shop-item/shop-item.component';
-import { FoodCartItem } from '../shop-item/food-cart-item.model';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-food-list',
@@ -14,11 +13,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent {
-  foodService = inject(FoodService);
-  food = toSignal(this.foodService.getFood());
-  cart: FoodCartItem[] = []
+  store = inject(foodStore);
+  food = this.store.entities;
 
   updateCart(cartItem: any) {
-    console.log("updateCart: ", cartItem);
+    this.store.addToCart(cartItem);
   }
 }

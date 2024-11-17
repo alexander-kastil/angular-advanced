@@ -55,6 +55,17 @@
   ng add @angular/material
   ```
 
+- Add the following packages for NgRx SignalStore:
+
+    ```bash
+    nmp i @ngrx/signal-store @ngrx/signals
+    ```
+
+- To save some time you will provided with the [artifacts](./food-shop-ssr-artifacts/) of this app:
+
+
+  > Note: After adding each file review the code and make sure you understand it.
+
 - Add the following html to app.component.html and also add the required imports for MatToolbarModule:
 
   ```html
@@ -75,7 +86,7 @@
             component: FoodListComponent,
         },
         {
-            path: 'food/:id',
+            path: ':id',
             component: FoodDetailsComponent,
         }
     ];
@@ -119,18 +130,6 @@
   > Note: If you get a warning that the maximum bundle size is exceeded, you can increase it by setting ` "maximumWarning": "550kb",` in `angular.json`.
 
 ## Use Pre-rendering
-
-- To save some time you will provided with the [artifacts](./food-shop-ssr-artifacts/) of this app:
-
-  - Add `food/food-model.ts` from artifacts folder
-  - Add `food/food.service.ts` from artifacts folder
-  - Add `food/shop-item.component.ts` from artifacts folder
-  - Add `food/food-list.component.ts` from artifacts folder
-  - Add `food/food-details.component.ts` from artifacts folder
-  - Add `shared/number-picker.component.ts` from artifacts folder. The number picker is custom component that allows to be used as a form control because it implements `ControlValueAccessor` interface. To read more about it check [this article](https://blog.angular-university.io/angular-custom-form-controls/).
-  - Add `shared/euro.pipe.ts` from artifacts folder
-
-  > Note: After adding each file review the code and make sure you understand it.
 
 - Run this simple mock shopping site to get familiar to it
 
