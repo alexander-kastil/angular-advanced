@@ -12,10 +12,12 @@ const logError = (error: Error) => console.error("error: ", error);
 
 type FoodState = {
     cart: FoodCartItem[];
+    persistCart: boolean;
 };
 
 export const initialFoodState: FoodState = {
-    cart: []
+    cart: [],
+    persistCart: false
 };
 
 export const foodStore = signalStore(
@@ -81,7 +83,8 @@ export const foodStore = signalStore(
         }
     })),
     withComputed(({ cart }) => ({
-        cartItems: computed(() => cart.length)
+        cartItems: computed(() => cart().reduce((acc, item) => acc + item.quantity, 0) || 0),
+        cartTotal: computed(() => cart().reduce((acc, item) => acc + item.quantity * item.price, 0) || 0)
     })),
     withHooks({
         onInit({ fetchFood }) {

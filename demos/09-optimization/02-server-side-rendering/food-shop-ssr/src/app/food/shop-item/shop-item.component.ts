@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NumberPickerComponent } from '../../shared/number-picker/number-picker.component';
 import { FoodItem } from '../food.model';
 import { FoodCartItem } from './food-cart-item.model';
+import { EuroPipe } from '../../shared/euro.pipe';
 
 @Component({
   selector: 'app-shop-item',
@@ -19,7 +20,8 @@ import { FoodCartItem } from './food-cart-item.model';
     RouterModule,
     MatIconModule,
     NgOptimizedImage,
-    NumberPickerComponent
+    NumberPickerComponent,
+    EuroPipe
   ]
 })
 export class ShopItemComponent {
@@ -29,7 +31,7 @@ export class ShopItemComponent {
   nbrPicker: FormControl = new FormControl(0);
 
   handleAmountChange(amount: any) {
-    const item: FoodCartItem = { id: this.food().id, quantity: amount };
+    const item: FoodCartItem = { id: this.food().id, quantity: amount, price: this.food().price };
     this.itemChanged.emit(item);
   }
 }
