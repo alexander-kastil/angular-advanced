@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, forwardRef, input, signal } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -12,84 +7,91 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { MatIconModule } from "@angular/material/icon";
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-number-picker',
   templateUrl: './number-picker.component.html',
   styleUrls: ['./number-picker.component.scss'],
-  standalone: true,
-  imports: [MatIconModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: NumberPickerComponent,
+      useExisting: forwardRef(() => NumberPickerComponent),
     },
     {
       provide: NG_VALIDATORS,
       multi: true,
-      useExisting: NumberPickerComponent,
+      useExisting: forwardRef(() => NumberPickerComponent),
     },
   ],
+  imports: [MatIcon]
 })
 export class NumberPickerComponent implements ControlValueAccessor, Validator {
-  @Input() increment: number = 1;
-  @Output() amountChanged: EventEmitter<number> = new EventEmitter<number>();
-  quantity = 0;
+  // Values
+  quantity = signal(0);
 
-  onChange = (quantity: number) => {
-    console.log('onChange', quantity);
+  //A callback function that is called when the control's value changes in the UI.
+  private onChange: Function = (newQuantity: number) => {
+    this.quantity.set(newQuantity);
   };
 
-  onTouched = () => { };
+  // a callback function that is called by the forms API on initialization to update the form model on blur
+  private onTouched: Function = () => {
+    this.markAsTouched();
+  };
 
   touched = false;
 
   disabled = false;
 
+  // Increments the quantity and calls onChange
   onAdd() {
     this.markAsTouched();
     if (!this.disabled) {
-      this.quantity += this.increment;
+      this.quantity.update(old => old + 1);
       this.onChange(this.quantity);
-      this.amountChanged.emit(this.quantity);
     }
   }
 
+  // Decrements the quantity and calls onChange
   onRemove() {
     this.markAsTouched();
-    if (!this.disabled && this.quantity > 0) {
-      this.quantity -= this.increment;
+    if (!this.disabled) {
+      this.quantity.update(old => old - 1);
       this.onChange(this.quantity);
-      this.amountChanged.emit(this.quantity);
     }
   }
 
-  writeValue(quantity: number) {
-    this.quantity = quantity;
+  // Updates the quantity.
+  writeValue(newQuantity: number) {
+    this.quantity.set(newQuantity);
   }
 
-  registerOnChange(onChange: any) {
-    this.onChange = onChange;
+  // Registers a callback for when the value changes
+  registerOnChange(fn: any) {
+    this.onChange = fn;
   }
 
-  registerOnTouched(onTouched: any) {
-    this.onTouched = onTouched;
+  // Registers a callback for when the control is touched
+  registerOnTouched(fn: any) {
+    this.onTouched = fn;
   }
 
+  // Marks the control as touched
   markAsTouched() {
     if (!this.touched) {
       this.onTouched();
       this.touched = true;
-      console.log('markAsTouched');
     }
   }
 
+  // Sets the disabled state
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
 
+  // Validates the control
   validate(control: AbstractControl): ValidationErrors | null {
     const quantity = control.value;
     if (quantity <= 0) {

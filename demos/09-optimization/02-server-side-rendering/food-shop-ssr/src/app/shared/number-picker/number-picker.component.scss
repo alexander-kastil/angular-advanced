@@ -1,27 +1,14 @@
 .container {
+  width: 160px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100px;
-  align-items: center;
 }
 
-.mat-icon {
-  fill: currentColor;
-  cursor: pointer;
+mat-icon {
+  margin: 0 0.5rem;
 }
 
-.material-icons {
-  font-size: 26px;
-}
-
-.quantity {
-  font-size: 34px;
-}
-
-.icon {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
+div{
+  width: 20px;
 }

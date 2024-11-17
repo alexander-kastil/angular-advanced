@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FoodService } from '../food.service';
 import { ShopItemComponent } from '../shop-item/shop-item.component';
 import { FoodCartItem } from '../shop-item/food-cart-item.model';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-food-list',
@@ -13,12 +14,11 @@ import { FoodCartItem } from '../shop-item/food-cart-item.model';
   styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent {
-  fs = inject(FoodService);
-  food = this.fs.getFood();
+  foodService = inject(FoodService);
+  food = toSignal(this.foodService.getFood());
   cart: FoodCartItem[] = []
 
-  updateCart(cartItem: FoodCartItem) {
-
+  updateCart(cartItem: any) {
     console.log("updateCart: ", cartItem);
   }
 }
