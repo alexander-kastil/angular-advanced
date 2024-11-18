@@ -1,34 +1,37 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { Component, input, output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
-import { NgOptimizedImage } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { EuroPipe } from '../../shared/euro.pipe';
+import { RouterModule } from '@angular/router';
 import { NumberPickerComponent } from '../../shared/number-picker/number-picker.component';
 import { FoodItem } from '../food.model';
 import { FoodCartItem } from './food-cart-item.model';
+import { EuroPipe } from '../../shared/euro.pipe';
 
 @Component({
   selector: 'app-shop-item',
   templateUrl: './shop-item.component.html',
   styleUrls: ['./shop-item.component.scss'],
   standalone: true,
-  imports: [MatCardModule, ReactiveFormsModule, RouterModule, MatIconModule, NgOptimizedImage, EuroPipe, NumberPickerComponent]
+  imports: [
+    MatCardModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatIconModule,
+    NgOptimizedImage,
+    NumberPickerComponent,
+    EuroPipe
+  ]
 })
 export class ShopItemComponent {
-  @Input() food: FoodItem = new FoodItem();
-  @Input() inCart: number | null = 0;
-  @Output() itemChanged: EventEmitter<FoodCartItem> = new EventEmitter<FoodCartItem>();
+  food = input.required<FoodItem>();
+  inCart = input<number>(0);
+  itemChanged = output<FoodCartItem>();
+  nbrPicker: FormControl = new FormControl(0);
 
-  nbrPicker: FormControl = new FormControl(this.inCart);
-
-  ngOnChanges() {
-    this.nbrPicker.setValue(this.inCart);
-  }
-
-  handleAmountChange(amount: number) {
-    const item: FoodCartItem = { ...this.food, quantity: amount };
+  handleAmountChange(amount: any) {
+    const item: FoodCartItem = { id: this.food().id, quantity: amount, price: this.food().price };
     this.itemChanged.emit(item);
   }
 }

@@ -12,8 +12,13 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch()
     ),
-    provideRouter(routes, withComponentInputBinding()),
-    provideClientHydration(withEventReplay()),
+    provideRouter(
+      routes,
+      withComponentInputBinding()
+    ),
+    provideClientHydration(
+      withEventReplay()
+    ),
     provideAnimationsAsync(),
     provideAppInitializer((store = inject(foodStore)) => {
       store.checkPersistence();

@@ -1,4 +1,5 @@
-export class FoodCartItem {
-    id = 0;
-    quantity = 0
-}
+export type FoodCartItem = {
+    id: number;
+    quantity: number;
+    price: number;
+};
