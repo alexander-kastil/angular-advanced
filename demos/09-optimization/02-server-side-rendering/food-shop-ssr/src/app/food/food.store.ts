@@ -1,13 +1,14 @@
 import { isPlatformBrowser } from '@angular/common';
 import { computed, inject, PLATFORM_ID } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, watchState, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { setEntities, withEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 import { FoodItem } from './food.model';
 import { FoodService } from './food.service';
 import { FoodCartItem } from './shop-item/food-cart-item.model';
+import { state } from '@angular/animations';
 
 const logError = (error: Error) => console.error("error: ", error);
 
@@ -46,6 +47,15 @@ export const foodStore = signalStore(
                 patchState(store, state => {
                     const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
                     if (existingItem) {
+                        const newState = {
+                            ...state,
+                            cart: state.cart.map(cartItem =>
+                                cartItem.id === item.id
+                                    ? { ...cartItem, quantity: item.quantity }
+                                    : cartItem
+                            )
+                        };
+
                         return {
                             ...state,
                             cart: state.cart.map(cartItem =>
@@ -99,14 +109,20 @@ export const foodStore = signalStore(
                     }
                 }
             },
+            persistStore: () => {
+                if (isPlatformBrowser(platformId)) {
+                    localStorage.setItem('foodState', JSON.stringify(store));
+                }
+            }
         })),
     withComputed(({ cart }) => ({
         cartItems: computed(() => cart().reduce((acc, item) => acc + item.quantity, 0) || 0),
         cartTotal: computed(() => cart().reduce((acc, item) => acc + item.quantity * item.price, 0) || 0)
     })),
     withHooks({
-        onInit({ fetchFood }) {
+        onInit({ fetchFood, persistStore }) {
             fetchFood();
+            persistStore();
         }
     })
 );

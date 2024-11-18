@@ -15,6 +15,6 @@
 - Creating a Signals Store using @ngrx/signals
 - NgRx and Signals Interoperability
 - Side Effects using rxMethod
-- Implementing View Models using Deep Signals
 - Signals Store, Entity & Custom Data Services
 - Implementing and using Custom Store Features
+- Tracking State changes
