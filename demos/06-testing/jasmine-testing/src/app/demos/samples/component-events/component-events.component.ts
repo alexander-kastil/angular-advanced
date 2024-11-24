@@ -4,15 +4,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-component-events',
-  templateUrl: './component-events.component.html',
-  styleUrls: ['./component-events.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCardModule,
-    MatButtonModule,
-  ],
+    selector: 'app-component-events',
+    templateUrl: './component-events.component.html',
+    styleUrls: ['./component-events.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCardModule,
+        MatButtonModule,
+    ]
 })
 export class ComponentEventsComponent {
 

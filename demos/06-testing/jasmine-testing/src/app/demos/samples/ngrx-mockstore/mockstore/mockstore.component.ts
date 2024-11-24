@@ -4,11 +4,10 @@ import { AsyncPipe } from '@angular/common';
 import { getAllDemos } from '../../../state/demos.state';
 
 @Component({
-  selector: 'app-mockstore',
-  templateUrl: './mockstore.component.html',
-  styleUrls: ['./mockstore.component.scss'],
-  standalone: true,
-  imports: [AsyncPipe]
+    selector: 'app-mockstore',
+    templateUrl: './mockstore.component.html',
+    styleUrls: ['./mockstore.component.scss'],
+    imports: [AsyncPipe]
 })
 export class MockstoreComponent {
   store = inject(Store)

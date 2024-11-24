@@ -1,25 +1,45 @@
 # Advanced Angular Development
 
-This is a workshop for experienced Angular developers who want to deepen their knowledge and skills in Angular development. It consists of 10 modules each covering different advanced topics in Angular development. The workshop is designed to be hands-on and interactive, with a mix of lectures, demos, and exercises.
+This is a workshop for experienced Angular developers who want to deepen their knowledge and skills in Angular development. It consists of 10 modules each covering different advanced topics in Angular development. The workshop is designed to be hands-on and interactive, with a mix of lectures, demos, and exercises. It allows participants to deepen their Angular skills for Classic Angular Development but also teaches the updates introduced by the Angular Renaissance Initiative like using Standalone Components, functional Implementations, Signals, and NgRx SignalStore.
+
+Standalone Components - Concepts & Migration: Understand the differences between standalone components and modules, delve into Angular's bootstrapping process, and learn how to migrate an existing project to use standalone components.
+
+Components & Forms Deep Dive: Explore advanced component and form techniques, including control flow syntax, deferred loading, content projection, cascading reactive forms, and creating custom controls with enhanced validation and error handling.
+
+Mastering Reactive Programming using RxJS: Master RxJS concepts like observables, operators, and error handling strategies, along with practical debugging and testing techniques for implementing custom observable operators.
+
+Mastering Reactivity using Signals: Learn about signals and their interoperability with observables, data retrieval methods, and effective communication between components using advanced signal techniques and the Event Bus pattern.
+
+State Management using NgRx Classic & NgRx SignalStore: Discover state management patterns, implement both NgRx Classic and SignalStore, manage side effects, and create custom store features while tracking state changes efficiently.
+
+Advanced Routing and App Initialization: Gain deep insights into dependency injection, app initialization, global error handling, and advanced routing techniques including view transitions, auxiliary routes, and router animations.
+
+Advanced Testing with Jasmine, Jest, Cypress and NgRx: Comprehensively test Angular applications using tools like Jasmine, Jest, and Cypress, covering unit tests, complex form testing, state management testing, and end-to-end testing.
+
+Reusability with Libraries, Nx & Angular Elements: Create reusable Angular artifacts using libraries and Nx workspaces, and develop reusable components like an AI chat using Angular Elements.
+
+Real Time Micro-Frontends & Progressive Web Apps: Understand micro-frontends and progressive web apps, focusing on real-time connected micro-frontends, HTML5 APIs, service workers, and PWA installation and updates.
+
+Server Side Rendering (SSR): Get introduced to SSR, including build-time pre-rendering, optimizing components for server-side, hybrid rendering, and incremental hydration for improved performance.
+
+Optimizing Applications: Use tools like Chrome Dev Tools and Lighthouse to optimize application performance, analyze bundles, improve change detection, and ensure accessibility and configuration management best practices.
 
 ## Modules
 
 ### Standalone Components: Concepts & Migration
 
 - Standalone Components vs Modules
-- Creating Standalone Components and Converting existing Components
 - Understanding the Angular Bootstrapping Process
-- app.config.ts & app.routes.ts
 - Registering Providers in app.config.ts
-- Migration an existing Project to Standalone Components
+- Routing and app.routes.ts
+- Migrate an existing Project to Standalone Components
 
 ### Components & Forms Deep Dive
 
 - Using & Migrating to Control Flow Syntax
-- Deferred Loading
+- Deferred Loading & Selective Activation using @deferred
 - Standalone Directives & Directives Composition Api
-- Content Projection 
-- HostBinding & HostListener
+- Reusability with Content Projection 
 - Reactive Forms (FormGroup, Form Builder, FormControl, FormArray)
 - Typed Forms Nullability, NonNullableFormBuilder, GetRawValue
 - Partial Values, Optional Controls, Dynamic Groups and FormRecord
@@ -33,14 +53,13 @@ This is a workshop for experienced Angular developers who want to deepen their k
 
 - Introduction to RxJS
 - Observables, Observers & Use Cases
+- Unsubscribing DestroyRef & takeUntilDestroyed
 - Imperative vs Declarative Reactivity
 - Data- vs Action-Streams
 - Mouse & DOM Events as Observables
 - Subject Types & Stateful Services
-- Unsubscribing DestroyRef & takeUntilDestroyed
 - Base Operators: Mapping, Filtering, Merging, 
 - Understanding Marble Diagrams & Debugging Observables
-- Marble-testing RxJS
 - Combination & Transformation Operators
 - Retry & Error Handling Strategies
 - Implementing & Testing Custom Observable Operators
@@ -51,12 +70,12 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Signals vs Observables
 - Signals & Observables Interoperability
 - Deep Signals & Linked Signals
-- Async Signals using resource() and rxResource()
+- Data Retrieval using resource() and rxResource()
 - Nesting Components using Signals, input, output & model
 - View Queries: viewChild, -Children, contentChild, -Children
 - Creating View Models using Deep Signals
 - Communication between Components using Event Bus Pattern
-- Zoneless Change Detection using Signals
+- ngAfterSignalUpdate Lifecycle Hook
 
 ### State Management using NgRx Classic & NgRx SignalStore
 
@@ -77,35 +96,31 @@ This is a workshop for experienced Angular developers who want to deepen their k
 
 - Dependency Injection in Depth: Resolution modifiers and Dependency providers
 - Using Constructor vs inject for DI
-- APP_INITIALIZER, Injection & forwardRef
-- Implementing Global Error Handling and Retry-Patterns
-- Lazy Loading & Dynamic Components
-- Using Preloading Strategies
-- Binding Router-Params to Component Inputs
-- Preloading Component Data using Functional Resolvers
+- App initialization & Interceptors
+- Global Error Handling & Http-Error Interceptor with Retry-Patterns
+- Using Preloading Strategies & Functional Resolvers
+- Functional Route Guards
 - Route Redirect Functions
-- Functional Route Guards & Interceptors
+- Binding Router-Params to Component Inputs & routerOutletData 
 - View Transition Api
 - Auxiliary Routes: Common use cases
 - Router Animations & Anchor Scrolling
-- Introduction to Visual Feedback (Loading-, Saving-, ...-Indicator)
 
 ### Advanced Testing with Jasmine, Jest, Cypress and NgRx
 
 - Introduction Angular Testing Tools (Jasmine, Karma, Jest & Cypress)
 - Testing Classes, Pipes, Directives
 - Testing Services using HttpClientTestingModule & HttpTestingController
-- Mocking vs Spies
 - Testing Component Interaction (Read, Write, Emit, Inputs)
-- Complex Forms Testing
+- Complex Forms Testing & Deferrable Views
 - Testing Observables & Signals
 - Material Testing using Component Harnesses
 - Async Component Testing (done, fakeAsync, waitForAsync)
-- Components Marble Testing
-- Testing NgRx: Mock Store, Mock Selectors, Reducers, Effects, Facades
+- Marble-testing RxJS
+- Testing NgRx Classic: Mock Store, Mock Selectors, Reducers, Effects, Facades
+- Testing Signal Store & Custom Features
 - Using Jest for Unit Testing (Setup, Changes in spec, Snapshot Tests)
 - Introduction to End-2-End Testing using Cypress
-- Cypress Component Tests
 
 ### Reusability with Libraries, Nx & Angular Elements
 
@@ -114,24 +129,33 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Introduction to Nx Workspaces
 - Creating a reusable AI Chat Component using Angular Elements
 
-### Real Time, Micro-Frontends, Progressive Web Apps
+### Real Time Micro-Frontends & Progressive Web Apps
 
 - Introduction to Micro-Frontends 
 - Real Time connected Micro-Frontend processing Cloud Events
 - Introduction to Progressive Web Apps
+- HTML 5 APIs
 - Understanding and Configuring Service Workers & Manifests
 - Installing & Updating Progressive Web Apps
+
+## Server Side Rendering (SSR)
+
+- Introduction to Server Side Rendering (SSR)
+- Build-time pre-rerendering
+- Optimize Components using Platform Specific Code
+- Hybrid Rendering
+- Introduction to Hydration & Incremental Hydration
 
 # Optimizing Applications
 
 - Using Chrome Dev Tools & Lighthouse for Performance Optimization
 - Understanding & Using Page Traces & Web Vitals
 - Analyzing and Optimizing Bundles & Components
+- Build Optimizations using Angular CLI
 - Optimizing Images using NgOptimizedImage 
 - Data-Loading Strategies, Virtual- & Infinite Scrolling, 
 - Understanding, Profiling & Optimizing Angular Change Detection
-- Understanding & Optimizing Angular Change Detection
-- Introduction to Server Side Rendering (SSR) and Non-destructive hydration
+- Zoneless Change Detection
 - Accessibility A11y: Best Practices & Linting
 - Using Linting and Autoformat with Prettier
 - Configuration Management & Containers

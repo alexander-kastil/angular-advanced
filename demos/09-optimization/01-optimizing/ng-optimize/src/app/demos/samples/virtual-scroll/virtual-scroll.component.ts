@@ -7,7 +7,6 @@ import { MarkdownRendererComponent } from "../../../shared/markdown-renderer/mar
     selector: "app-virtual-scroll",
     templateUrl: "./virtual-scroll.component.html",
     styleUrls: ["./virtual-scroll.component.scss"],
-    standalone: true,
     imports: [MarkdownRendererComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent, CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf]
 })
 export class VirtualScrollComponent {

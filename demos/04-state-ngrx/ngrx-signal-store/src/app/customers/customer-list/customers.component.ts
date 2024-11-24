@@ -4,14 +4,13 @@ import { RouterLink } from '@angular/router';
 import { customersStore } from '../customers.store';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss'],
-  standalone: true,
-  imports: [
-    MatButton,
-    RouterLink
-  ]
+    selector: 'app-customers',
+    templateUrl: './customers.component.html',
+    styleUrls: ['./customers.component.scss'],
+    imports: [
+        MatButton,
+        RouterLink
+    ]
 })
 export class CustomersComponent {
   store = inject(customersStore);

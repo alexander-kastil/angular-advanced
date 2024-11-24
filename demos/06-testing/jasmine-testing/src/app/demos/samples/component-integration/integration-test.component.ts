@@ -9,7 +9,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-integration-test',
     templateUrl: './integration-test.component.html',
     styleUrls: ['./integration-test.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
@@ -18,7 +17,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         MatCardContent,
         FoodRowComponent,
         FoodListComponent,
-    ],
+    ]
 })
 export class IntegrationTestComponent {
   f: FoodItem = { id: 99, name: 'Cordon Bleu', rating: 4 };

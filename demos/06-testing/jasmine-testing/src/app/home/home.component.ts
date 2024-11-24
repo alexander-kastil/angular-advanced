@@ -5,7 +5,6 @@ import { IntroComponent } from '../shared/intro/intro.component';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    standalone: true,
-    imports: [IntroComponent],
+    imports: [IntroComponent]
 })
 export class HomeComponent {}

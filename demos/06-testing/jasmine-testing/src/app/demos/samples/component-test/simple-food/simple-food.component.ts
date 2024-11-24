@@ -7,13 +7,12 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-simple-food',
     templateUrl: './simple-food.component.html',
     styleUrls: ['./simple-food.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
         MatCardTitle,
         MatCardContent,
-    ],
+    ]
 })
 export class SimpleFoodComponent implements OnInit {
   fs = inject(FoodService);

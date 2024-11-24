@@ -9,17 +9,16 @@ import { RendererStateService } from '../markdown-renderer/renderer-state.servic
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-side-panel',
-  templateUrl: './side-panel.component.html',
-  styleUrls: ['./side-panel.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatToolbarRow,
-    MatMiniFabButton,
-    MatIcon,
-    MatTooltipModule
-  ],
+    selector: 'app-side-panel',
+    templateUrl: './side-panel.component.html',
+    styleUrls: ['./side-panel.component.scss'],
+    imports: [
+        MatToolbar,
+        MatToolbarRow,
+        MatMiniFabButton,
+        MatIcon,
+        MatTooltipModule
+    ]
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);

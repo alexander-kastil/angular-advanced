@@ -4,18 +4,17 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { PhonenumberPipe } from './phonenumber.pipe';
 
 @Component({
-  selector: 'app-test-pipe',
-  templateUrl: './test-pipe.component.html',
-  styleUrls: ['./test-pipe.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    PhonenumberPipe,
-  ],
+    selector: 'app-test-pipe',
+    templateUrl: './test-pipe.component.html',
+    styleUrls: ['./test-pipe.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        PhonenumberPipe,
+    ]
 })
 export class TestPipeComponent {
   phone = "3333333333";

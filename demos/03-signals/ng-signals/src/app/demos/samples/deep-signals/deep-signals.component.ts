@@ -7,7 +7,6 @@ import { CenteredDirective } from '../../../shared/formatting/formatting-directi
 
 @Component({
     selector: 'app-deep-signals',
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatButton,

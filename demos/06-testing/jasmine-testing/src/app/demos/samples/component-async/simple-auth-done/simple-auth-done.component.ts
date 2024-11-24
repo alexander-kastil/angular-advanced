@@ -3,16 +3,15 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
 import { SimpleAuthService } from '../simple-auth.service';
 
 @Component({
-  selector: 'app-simple-auth-done',
-  templateUrl: './simple-auth-done.component.html',
-  styleUrls: ['./simple-auth-done.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-  ],
+    selector: 'app-simple-auth-done',
+    templateUrl: './simple-auth-done.component.html',
+    styleUrls: ['./simple-auth-done.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+    ]
 })
 export class SimpleAuthDoneComponent implements OnInit {
   auth = inject(SimpleAuthService);

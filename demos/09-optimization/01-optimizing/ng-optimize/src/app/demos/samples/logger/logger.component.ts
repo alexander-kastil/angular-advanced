@@ -6,18 +6,17 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { ApplicationInsightsService } from '../../../shared/logging/app-insights.service';
 
 @Component({
-  selector: 'app-logger',
-  templateUrl: './logger.component.html',
-  styleUrls: ['./logger.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton
-  ]
+    selector: 'app-logger',
+    templateUrl: './logger.component.html',
+    styleUrls: ['./logger.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton
+    ]
 })
 export class LoggerComponent {
   ngxLogger = inject(NGXLogger);

@@ -12,20 +12,19 @@ import { SkillsEntityService } from '../skills-entity.service';
 import { SkillsKpiComponent } from '../skills-kpi/skills-kpi.component';
 
 @Component({
-  selector: 'app-skills-container',
-  templateUrl: './skills-container.component.html',
-  styleUrls: ['./skills-container.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatToolbarRow,
-    MatButton,
-    MatSlideToggle,
-    FormsModule,
-    ReactiveFormsModule,
-    SkillRowComponent,
-    SkillsKpiComponent,
-  ],
+    selector: 'app-skills-container',
+    templateUrl: './skills-container.component.html',
+    styleUrls: ['./skills-container.component.scss'],
+    imports: [
+        MatToolbar,
+        MatToolbarRow,
+        MatButton,
+        MatSlideToggle,
+        FormsModule,
+        ReactiveFormsModule,
+        SkillRowComponent,
+        SkillsKpiComponent,
+    ]
 })
 export class SkillsContainerComponent {
   service = inject(SkillsEntityService);

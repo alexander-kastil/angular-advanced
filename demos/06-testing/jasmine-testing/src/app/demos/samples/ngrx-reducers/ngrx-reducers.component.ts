@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-ngrx-reducers',
     templateUrl: './ngrx-reducers.component.html',
     styleUrls: ['./ngrx-reducers.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class NgrxReducersComponent {

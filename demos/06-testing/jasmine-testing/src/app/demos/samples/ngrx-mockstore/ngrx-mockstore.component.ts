@@ -6,7 +6,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-ngrx-mockstore',
     templateUrl: './ngrx-mockstore.component.html',
     styleUrls: ['./ngrx-mockstore.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, MockstoreComponent]
 })
 export class NgrxMockstoreComponent {

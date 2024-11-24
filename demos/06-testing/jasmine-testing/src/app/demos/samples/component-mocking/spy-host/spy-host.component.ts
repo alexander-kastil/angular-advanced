@@ -6,7 +6,6 @@ import { MarkdownRendererComponent } from '../../../../shared/markdown-renderer/
     selector: 'app-spy-host',
     templateUrl: './spy-host.component.html',
     styleUrls: ['./spy-host.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, UseSpyComponent]
 })
 export class SpyHostComponent {

@@ -10,19 +10,18 @@ import { FoodCartItem } from './food-cart-item.model';
 import { EuroPipe } from '../../shared/euro.pipe';
 
 @Component({
-  selector: 'app-shop-item',
-  templateUrl: './shop-item.component.html',
-  styleUrls: ['./shop-item.component.scss'],
-  standalone: true,
-  imports: [
-    MatCardModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MatIconModule,
-    NgOptimizedImage,
-    NumberPickerComponent,
-    EuroPipe
-  ]
+    selector: 'app-shop-item',
+    templateUrl: './shop-item.component.html',
+    styleUrls: ['./shop-item.component.scss'],
+    imports: [
+        MatCardModule,
+        ReactiveFormsModule,
+        RouterModule,
+        MatIconModule,
+        NgOptimizedImage,
+        NumberPickerComponent,
+        EuroPipe
+    ]
 })
 export class ShopItemComponent {
   food = input.required<FoodItem>();

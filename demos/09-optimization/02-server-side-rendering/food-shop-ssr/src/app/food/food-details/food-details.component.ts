@@ -8,16 +8,15 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FoodItem } from '../food.model';
 
 @Component({
-  selector: 'app-food-details',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule
-  ],
-  providers: [FoodService],
-  templateUrl: './food-details.component.html',
-  styleUrls: ['./food-details.component.scss']
+    selector: 'app-food-details',
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule
+    ],
+    providers: [FoodService],
+    templateUrl: './food-details.component.html',
+    styleUrls: ['./food-details.component.scss']
 })
 export class FoodDetailsComponent {
   id = input.required<number>();

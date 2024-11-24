@@ -6,14 +6,13 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-debug-statements',
     templateUrl: './debug-statements.component.html',
     styleUrls: ['./debug-statements.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
         MatCardHeader,
         MatCardTitle,
         MatCardContent,
-    ],
+    ]
 })
 export class DebugStatementsComponent implements OnInit {
   constructor() {}

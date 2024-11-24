@@ -8,12 +8,11 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
     selector: 'app-skills-kpi',
     templateUrl: './skills-kpi.component.html',
     styleUrls: ['./skills-kpi.component.scss'],
-    standalone: true,
     imports: [
         MatToolbar,
         MatToolbarRow,
         AsyncPipe,
-    ],
+    ]
 })
 export class SkillsKpiComponent {
   service = inject(SkillsEntityService)
