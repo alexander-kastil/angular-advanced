@@ -1,6 +1,6 @@
 ﻿# Advanced Angular Development
 
-Companion Material for Class Delivery by [Alexander Kastil](https://github.com/arambazamba) containing:
+Companion Material for Class Delivery by [Alexander Kastil](https://www.linkedin.com/in/alexander-kastil-3bb26511a/) containing:
 
 - [Class Environment Setup](./setup)
   - [Install class software requirements](./setup/)
