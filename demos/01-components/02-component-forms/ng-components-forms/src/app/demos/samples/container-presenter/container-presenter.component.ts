@@ -9,7 +9,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-container-presenter',
     templateUrl: './container-presenter.component.html',
     styleUrls: ['./container-presenter.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, PresenterListComponent, PresenterEditComponent]
 })
 export class ContainerPresenterComponent implements OnInit {

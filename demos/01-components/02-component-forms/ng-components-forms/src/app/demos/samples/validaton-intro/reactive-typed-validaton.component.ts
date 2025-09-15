@@ -9,26 +9,25 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-reactive-typed-validation',
-  templateUrl: './reactive-typed-validation.component.html',
-  styleUrls: ['./reactive-typed-validation.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    ColumnDirective,
-    MatFormField,
-    MatInput,
-    MatError,
-    MatCardActions,
-    MatButton,
-    JsonPipe,
-  ],
+    selector: 'app-reactive-typed-validation',
+    templateUrl: './reactive-typed-validation.component.html',
+    styleUrls: ['./reactive-typed-validation.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        ColumnDirective,
+        MatFormField,
+        MatInput,
+        MatError,
+        MatCardActions,
+        MatButton,
+        JsonPipe,
+    ]
 })
 export class ReactiveTypedValidationComponent {
   registerForm = new FormGroup(

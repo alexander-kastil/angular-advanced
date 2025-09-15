@@ -12,7 +12,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-template-vs-container',
     templateUrl: './template-vs-container.component.html',
     styleUrls: ['./template-vs-container.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
@@ -23,7 +22,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         ClockComponent,
         ExpanderTemplateComponent,
         AsyncPipe,
-    ],
+    ]
 })
 export class TemplateVsContainerComponent implements OnInit {
   currentTime = interval(100).pipe(map(() => new Date().toTimeString()));

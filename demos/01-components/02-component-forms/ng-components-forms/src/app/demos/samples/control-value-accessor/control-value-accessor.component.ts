@@ -8,25 +8,24 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { NumberPickerComponent } from './number-picker/number-picker.component';
 
 @Component({
-  selector: 'app-control-value-accessor',
-  templateUrl: './control-value-accessor.component.html',
-  styleUrls: ['./control-value-accessor.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    NumberPickerComponent,
-    MatCardActions,
-    MatButton,
-  ],
+    selector: 'app-control-value-accessor',
+    templateUrl: './control-value-accessor.component.html',
+    styleUrls: ['./control-value-accessor.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        NumberPickerComponent,
+        MatCardActions,
+        MatButton,
+    ]
 })
 export class ControlValueAccessorComponent implements OnInit {
   fb: FormBuilder = inject(FormBuilder);

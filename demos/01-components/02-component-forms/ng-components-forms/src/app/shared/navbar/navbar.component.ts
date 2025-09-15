@@ -10,7 +10,6 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
-    standalone: true,
     imports: [
         MatToolbar,
         MatToolbarRow,
@@ -18,7 +17,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
         RouterLinkActive,
         RouterLink,
         AsyncPipe,
-    ],
+    ]
 })
 export class NavbarComponent {
   ms = inject(SideNavService);

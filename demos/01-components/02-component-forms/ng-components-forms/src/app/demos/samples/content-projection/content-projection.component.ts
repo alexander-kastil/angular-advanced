@@ -10,7 +10,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-content-projection',
     templateUrl: './content-projection.component.html',
     styleUrls: ['./content-projection.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -19,7 +18,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
         MatButton,
         uxSplitComponent,
         uxButtonComponent,
-    ],
+    ]
 })
 export class ContentProjectionComponent {
   dialog: MatDialog = inject(MatDialog);

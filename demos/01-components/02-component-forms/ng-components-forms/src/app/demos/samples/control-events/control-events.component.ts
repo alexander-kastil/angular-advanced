@@ -7,10 +7,8 @@ import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-dire
 
 @Component({
   selector: 'app-control-events',
-  standalone: true,
   imports: [
     MatFormField,
-    MatLabel,
     MatInput,
     ReactiveFormsModule,
     MarkdownRendererComponent,

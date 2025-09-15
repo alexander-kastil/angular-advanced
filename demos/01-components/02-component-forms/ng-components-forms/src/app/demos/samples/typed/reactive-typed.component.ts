@@ -16,7 +16,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-reactive-typed',
     templateUrl: './reactive-typed.component.html',
     styleUrls: ['./reactive-typed.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
@@ -34,7 +33,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         MatRadioGroup,
         MatRadioButton,
         MatButton,
-    ],
+    ]
 })
 export class ReactiveTypedComponent implements OnInit {
   ps: PersonService = inject(PersonService);
