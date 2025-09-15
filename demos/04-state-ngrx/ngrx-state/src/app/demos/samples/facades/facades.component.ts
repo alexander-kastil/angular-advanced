@@ -6,20 +6,19 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { AuthFacade } from '../../../state/auth.facade';
 
 @Component({
-  selector: 'app-facades',
-  templateUrl: './facades.component.html',
-  styleUrls: ['./facades.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatCardActions,
-    MatButton,
-    AsyncPipe,
-  ],
+    selector: 'app-facades',
+    templateUrl: './facades.component.html',
+    styleUrls: ['./facades.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatCardActions,
+        MatButton,
+        AsyncPipe,
+    ]
 })
 export class FacadesComponent {
   auth = inject(AuthFacade);

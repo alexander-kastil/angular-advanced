@@ -11,7 +11,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-dispatch-action',
     templateUrl: './dispatch-action.component.html',
     styleUrls: ['./dispatch-action.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions, MatButton, AsyncPipe]
 })
 export class DispatchActionComponent {

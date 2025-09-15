@@ -6,11 +6,10 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { Skill } from '../../../skills/skill.model';
 import { SkillsService } from '../../../skills/skills.service';
 @Component({
-  selector: 'app-signal-effects',
-  standalone: true,
-  imports: [MatFormField, MatLabel, MatSelectModule, MarkdownRendererComponent, BoxedDirective],
-  templateUrl: './signal-effects.component.html',
-  styleUrl: './signal-effects.component.scss'
+    selector: 'app-signal-effects',
+    imports: [MatFormField, MatLabel, MatSelectModule, MarkdownRendererComponent, BoxedDirective],
+    templateUrl: './signal-effects.component.html',
+    styleUrl: './signal-effects.component.scss'
 })
 export class SignalEffectsComponent {
   service = inject(SkillsService);

@@ -8,18 +8,17 @@ import { MatRadioModule } from '@angular/material/radio';
 import { Person } from '../person.model';
 
 @Component({
-  selector: 'app-person-edit-signals',
-  standalone: true,
-  imports: [
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatRadioModule,
-    MatButtonModule,
-  ],
-  templateUrl: './person-edit-signals.component.html',
-  styleUrl: './person-edit-signals.component.scss'
+    selector: 'app-person-edit-signals',
+    imports: [
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        MatButtonModule,
+    ],
+    templateUrl: './person-edit-signals.component.html',
+    styleUrl: './person-edit-signals.component.scss'
 })
 export class PersonEditSignalsComponent {
   person = input<Person | undefined>();

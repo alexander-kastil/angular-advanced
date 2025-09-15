@@ -7,7 +7,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-ngrx-entity',
     templateUrl: './ngrx-entity.component.html',
     styleUrls: ['./ngrx-entity.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, DemoFilterComponent, DemoListComponent]
 })
 export class NgrxEntityComponent { }

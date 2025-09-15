@@ -13,20 +13,19 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-skills-container',
-  templateUrl: './skills-container.component.html',
-  styleUrls: ['./skills-container.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatToolbarRow,
-    MatButton,
-    MatSlideToggle,
-    FormsModule,
-    ReactiveFormsModule,
-    SkillRowComponent,
-    SkillsKpiComponent
-  ],
+    selector: 'app-skills-container',
+    templateUrl: './skills-container.component.html',
+    styleUrls: ['./skills-container.component.scss'],
+    imports: [
+        MatToolbar,
+        MatToolbarRow,
+        MatButton,
+        MatSlideToggle,
+        FormsModule,
+        ReactiveFormsModule,
+        SkillRowComponent,
+        SkillsKpiComponent
+    ]
 })
 export class SkillsContainerComponent {
   service = inject(SkillsEntityService);

@@ -9,11 +9,10 @@ import { CustomersFacade } from '../state/customers.facade';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss'],
-  standalone: true,
-  imports: [MatToolbar, MatInputModule, MatToolbarRow, FormsModule, ReactiveFormsModule, AsyncPipe]
+    selector: 'app-customers',
+    templateUrl: './customers.component.html',
+    styleUrls: ['./customers.component.scss'],
+    imports: [MatToolbar, MatInputModule, MatToolbarRow, FormsModule, ReactiveFormsModule, AsyncPipe]
 })
 export class CustomersComponent implements OnInit {
   // store = inject(Store<CustomersState>)

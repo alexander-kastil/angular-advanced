@@ -12,21 +12,20 @@ import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
 
 @Component({
-  selector: 'app-skills-edit',
-  templateUrl: './skills-edit.component.html',
-  styleUrls: ['./skills-edit.component.scss'],
-  standalone: true,
-  imports: [
-    MatCardModule,
-    MatFormField,
-    MatInput,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSlideToggle,
-    MatCardActions,
-    MatButton
-  ],
+    selector: 'app-skills-edit',
+    templateUrl: './skills-edit.component.html',
+    styleUrls: ['./skills-edit.component.scss'],
+    imports: [
+        MatCardModule,
+        MatFormField,
+        MatInput,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSlideToggle,
+        MatCardActions,
+        MatButton
+    ]
 })
 export class SkillsEditComponent {
   @Input({ required: true }) id: number = 0;

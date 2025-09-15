@@ -8,11 +8,10 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { SkillsService } from '../../../skills/skills.service';
 
 @Component({
-  selector: 'app-zoneless-change-detection',
-  standalone: true,
-  imports: [AsyncPipe, MarkdownRendererComponent, BoxedDirective, ClickableDirective],
-  templateUrl: './zoneless-change-detection.component.html',
-  styleUrl: './zoneless-change-detection.component.scss'
+    selector: 'app-zoneless-change-detection',
+    imports: [AsyncPipe, MarkdownRendererComponent, BoxedDirective, ClickableDirective],
+    templateUrl: './zoneless-change-detection.component.html',
+    styleUrl: './zoneless-change-detection.component.scss'
 })
 export class ZonelessChangeDetectionComponent implements OnInit {
   http = inject(HttpClient);

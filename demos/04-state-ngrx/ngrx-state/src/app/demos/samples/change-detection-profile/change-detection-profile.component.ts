@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-change-detection-profile',
     templateUrl: './change-detection-profile.component.html',
     styleUrls: ['./change-detection-profile.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class ChangeDetectionProfileComponent { }

@@ -5,15 +5,15 @@ import { SkillsEntityService } from '../skills-entity.service';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 @Component({
-    selector: 'app-skills-kpi',
-    templateUrl: './skills-kpi.component.html',
-    styleUrls: ['./skills-kpi.component.scss'],
-    standalone: true,
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        AsyncPipe,
-    ],
+  selector: 'app-skills-kpi',
+  templateUrl: './skills-kpi.component.html',
+  styleUrls: ['./skills-kpi.component.scss'],
+  standalone: true,
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    AsyncPipe,
+  ]
 })
 export class SkillsKpiComponent {
   service = inject(SkillsEntityService)
