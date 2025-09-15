@@ -16,13 +16,13 @@ import { environment } from '../../../environments/environment';
   selector: 'app-skill-row',
   templateUrl: './skill-row.component.html',
   styleUrls: ['./skill-row.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatButton,
     RouterLink,
     MatIcon,
-  ],
+  ]
 })
 export class SkillRowComponent {
   skill = input.required<Skill>();

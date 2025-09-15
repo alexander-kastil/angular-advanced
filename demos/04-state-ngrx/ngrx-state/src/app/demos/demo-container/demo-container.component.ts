@@ -17,26 +17,25 @@ import { environment } from '../../../environments/environment';
 import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
 
 @Component({
-  selector: 'app-demo-container',
-  templateUrl: './demo-container.component.html',
-  styleUrls: ['./demo-container.component.scss'],
-  standalone: true,
-  imports: [
-    MatSidenavContainer,
-    MatSidenav,
-    MatToolbar,
-    MatToolbarRow,
-    MatNavList,
-    MatListItem,
-    RouterLink,
-    MatSidenavContent,
-    NgStyle,
-    LoadingComponent,
-    RouterOutlet,
-    EditorContainerComponent,
-    SidePanelComponent,
-    AsyncPipe,
-  ],
+    selector: 'app-demo-container',
+    templateUrl: './demo-container.component.html',
+    styleUrls: ['./demo-container.component.scss'],
+    imports: [
+        MatSidenavContainer,
+        MatSidenav,
+        MatToolbar,
+        MatToolbarRow,
+        MatNavList,
+        MatListItem,
+        RouterLink,
+        MatSidenavContent,
+        NgStyle,
+        LoadingComponent,
+        RouterOutlet,
+        EditorContainerComponent,
+        SidePanelComponent,
+        AsyncPipe,
+    ]
 })
 export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);

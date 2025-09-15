@@ -5,8 +5,7 @@ import { NgTemplateOutlet } from '@angular/common';
     selector: 'app-expander-template',
     templateUrl: './expander-template.component.html',
     styleUrls: ['./expander-template.component.scss'],
-    standalone: true,
-    imports: [NgTemplateOutlet],
+    imports: [NgTemplateOutlet]
 })
 export class ExpanderTemplateComponent implements OnInit {
   @Input() title = '';

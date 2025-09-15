@@ -7,7 +7,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, 
     selector: 'app-intro',
     templateUrl: './intro.component.html',
     styleUrls: ['./intro.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -17,7 +16,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, 
         MatCardActions,
         MatButton,
         RouterLink,
-    ],
+    ]
 })
 export class IntroComponent {
   @Input({ required: true }) title = '';

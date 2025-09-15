@@ -1,22 +1,19 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormField } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DemoService } from '../../demo-base/demo.service';
-import { AsyncPipe } from '@angular/common';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
-import { MatInput } from '@angular/material/input';
-import { MatFormField } from '@angular/material/form-field';
-import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
+import { DemoService } from '../../demo-base/demo.service';
 
 @Component({
   selector: 'app-action-streams',
   templateUrl: './action-streams.component.html',
   styleUrls: ['./action-streams.component.scss'],
-  standalone: true,
-  imports: [MatToolbar, MatToolbarRow, MatFormField, MatInput, FormsModule, ReactiveFormsModule, MatCard, MatCardHeader, MatCardTitle, MatCardContent, AsyncPipe, MarkdownRendererComponent, BoxedDirective]
+  imports: [MatFormField, MatInput, FormsModule, ReactiveFormsModule, AsyncPipe, MarkdownRendererComponent, BoxedDirective]
 })
 export class ActionStreamsComponent {
   ds = inject(DemoService);

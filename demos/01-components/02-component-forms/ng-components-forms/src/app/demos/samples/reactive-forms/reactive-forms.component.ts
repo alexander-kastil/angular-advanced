@@ -13,28 +13,27 @@ import { Person, wealthOptsValues } from '../person/person.model';
 import { PersonService } from '../person/person.service';
 
 @Component({
-  selector: 'app-reactive-forms',
-  templateUrl: './reactive-forms.component.html',
-  styleUrls: ['./reactive-forms.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatInput,
-    MatFormField,
-    MatLabel,
-    MatSelect,
-    MatOption,
-    MatRadioGroup,
-    MatRadioButton,
-    MatButton,
-  ],
+    selector: 'app-reactive-forms',
+    templateUrl: './reactive-forms.component.html',
+    styleUrls: ['./reactive-forms.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        FormsModule,
+        ColumnDirective,
+        ReactiveFormsModule,
+        MatInput,
+        MatFormField,
+        MatLabel,
+        MatSelect,
+        MatOption,
+        MatRadioGroup,
+        MatRadioButton,
+        MatButton,
+    ]
 })
 export class ReactiveFormsComponent implements OnInit {
   ps: PersonService = inject(PersonService);

@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-ngrx-data',
     templateUrl: './ngrx-data.component.html',
     styleUrls: ['./ngrx-data.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class NgrxDataComponent { }

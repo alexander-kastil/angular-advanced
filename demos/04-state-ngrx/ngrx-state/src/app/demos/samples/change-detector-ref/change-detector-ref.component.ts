@@ -12,8 +12,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-change-detector-ref',
     templateUrl: './change-detector-ref.component.html',
     styleUrls: ['./change-detector-ref.component.scss'],
-    standalone: true,
-    imports: [MarkdownRendererComponent, DetectorChildComponent],
+    imports: [MarkdownRendererComponent, DetectorChildComponent]
 })
 export class ChangeDetectorRefComponent implements AfterViewInit {
   cd = inject(ChangeDetectorRef);

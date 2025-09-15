@@ -12,28 +12,27 @@ import { ColumnDirective, BorderDirective } from '../../../shared/ux-lib/formatt
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
-  selector: 'app-reactive-nested',
-  templateUrl: './reactive-nested.component.html',
-  styleUrls: ['./reactive-nested.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatInput,
-    MatFormField,
-    MatLabel,
-    MatSelect,
-    MatOption,
-    MatRadioGroup,
-    BorderDirective,
-    MatRadioButton,
-    MatButton,
-  ],
+    selector: 'app-reactive-nested',
+    templateUrl: './reactive-nested.component.html',
+    styleUrls: ['./reactive-nested.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        FormsModule,
+        ColumnDirective,
+        ReactiveFormsModule,
+        MatInput,
+        MatFormField,
+        MatLabel,
+        MatSelect,
+        MatOption,
+        MatRadioGroup,
+        BorderDirective,
+        MatRadioButton,
+        MatButton,
+    ]
 })
 export class ReactiveNestedComponent {
   fb: FormBuilder = inject(FormBuilder);

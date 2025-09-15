@@ -6,8 +6,7 @@ import { MatButton } from '@angular/material/button';
     selector: 'app-comments-list',
     templateUrl: './comments-list.component.html',
     styleUrls: ['./comments-list.component.scss'],
-    standalone: true,
-    imports: [MatButton],
+    imports: [MatButton]
 })
 export class CommentsListComponent {
   @Input() Comments: CommentItem[] | null = null;

@@ -15,18 +15,17 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-err-handling',
-  templateUrl: './err-handling.component.html',
-  styleUrls: ['./err-handling.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-err-handling',
+    templateUrl: './err-handling.component.html',
+    styleUrls: ['./err-handling.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton,
+        MarkdownRendererComponent
+    ]
 })
 export class ErrHandlingComponent {
   vs = inject(VouchersService);

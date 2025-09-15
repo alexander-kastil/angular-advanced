@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { appRoutes } from './app.routes';
@@ -18,7 +18,7 @@ import * as demoEffects from './demos/state/demos.effects';
 export const appConfig: ApplicationConfig = {
     providers: [
         // provideZoneChangeDetection({ eventCoalescing: true }),
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         provideHttpClient(),
         provideRouter(appRoutes, withComponentInputBinding()),
         provideAnimations(),

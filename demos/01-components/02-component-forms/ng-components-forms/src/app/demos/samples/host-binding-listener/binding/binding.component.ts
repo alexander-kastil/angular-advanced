@@ -7,7 +7,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-binding',
     templateUrl: './binding.component.html',
     styleUrls: ['./binding.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -15,7 +14,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
         MatCardContent,
         MatSlideToggle,
         FormsModule,
-    ],
+    ]
 })
 export class BindingComponent implements OnInit {
   @HostBinding('attr.isChecked') checked = false;

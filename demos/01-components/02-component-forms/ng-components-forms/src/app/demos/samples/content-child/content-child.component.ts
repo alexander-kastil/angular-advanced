@@ -6,8 +6,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-content-child',
     templateUrl: './content-child.component.html',
     styleUrls: ['./content-child.component.scss'],
-    standalone: true,
-    imports: [MarkdownRendererComponent, ProjectorComponent],
+    imports: [MarkdownRendererComponent, ProjectorComponent]
 })
 export class ContentChildComponent {
 }

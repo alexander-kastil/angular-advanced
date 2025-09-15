@@ -14,23 +14,22 @@ import { PersonService } from '../person/person.service';
 import { Person } from '../person/person.model';
 
 @Component({
-  selector: 'app-reactive-validation',
-  templateUrl: './reactive-validation.component.html',
-  styleUrls: ['./reactive-validation.component.scss'],
-  standalone: true,
-  imports: [
-    MatCardModule,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatRadioModule,
-    MatButtonModule,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-reactive-validation',
+    templateUrl: './reactive-validation.component.html',
+    styleUrls: ['./reactive-validation.component.scss'],
+    imports: [
+        MatCardModule,
+        FormsModule,
+        ColumnDirective,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatRadioModule,
+        MatButtonModule,
+        MarkdownRendererComponent
+    ]
 })
 export class ReactiveValidationComponent implements OnInit {
   ps = inject(PersonService);

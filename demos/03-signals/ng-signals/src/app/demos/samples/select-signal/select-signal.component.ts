@@ -6,11 +6,10 @@ import { BorderDirective } from '../../../shared/formatting/formatting-directive
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-select-signal',
-  standalone: true,
-  imports: [MarkdownRendererComponent, BorderDirective],
-  templateUrl: './select-signal.component.html',
-  styleUrl: './select-signal.component.scss'
+    selector: 'app-select-signal',
+    imports: [MarkdownRendererComponent, BorderDirective],
+    templateUrl: './select-signal.component.html',
+    styleUrl: './select-signal.component.scss'
 })
 export class SelectSignalComponent {
   store = inject(Store) as Store<CustomersState>;

@@ -4,11 +4,10 @@ import { SkillsService } from '../skills.service';
 import { Skill } from '../skill.model';
 
 @Component({
-  selector: 'app-skills',
-  standalone: true,
-  imports: [],
-  templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.scss']
+    selector: 'app-skills',
+    imports: [],
+    templateUrl: './skills.component.html',
+    styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent {
   service = inject(SkillsService);

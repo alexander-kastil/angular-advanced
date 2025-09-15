@@ -9,17 +9,18 @@
         "@schematics/angular:component": {
           "style": "scss"
         }
-      },    
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/component-forms",
+            "outputPath": {
+              "base": "dist/component-forms"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -31,24 +32,27 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/prismjs/themes/prism-okaidia.min.css",
+              "node_modules/prismjs/themes/prism-okaidia.min.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/theme"]
+              "includePaths": [
+                "src/theme"
+              ]
             },
             "scripts": [
-              "node_modules/marked/marked.min.js",
+              "node_modules/marked/lib/marked.umd.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-typescript.min.js",
-              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-css.min.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash",
               "util",
               "subsink",
               "axios"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -67,9 +71,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
@@ -84,7 +86,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "component-forms:build:production"
@@ -96,13 +98,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "component-forms:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "polyfills": [
               "zone.js",
@@ -128,5 +130,31 @@
       "enabled": false
     },
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

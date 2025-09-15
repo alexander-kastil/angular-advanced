@@ -6,11 +6,10 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { customersActions } from '../../../customers/state/customers.actions';
 
 @Component({
-  selector: 'app-ngrx-signals',
-  templateUrl: './ngrx-signals.component.html',
-  styleUrls: ['./ngrx-signals.component.scss'],
-  standalone: true,
-  imports: [MarkdownRendererComponent, BorderDirective]
+    selector: 'app-ngrx-signals',
+    templateUrl: './ngrx-signals.component.html',
+    styleUrls: ['./ngrx-signals.component.scss'],
+    imports: [MarkdownRendererComponent, BorderDirective]
 })
 export class NgrxSignalsComponent {
   store = inject(Store) as Store<CustomersState>;

@@ -13,7 +13,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-list',
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -23,7 +22,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
         DemoRowComponent,
         CdkDrag,
         AsyncPipe,
-    ],
+    ]
 })
 export class ListComponent {
   ds = inject(StatefulDemoService);

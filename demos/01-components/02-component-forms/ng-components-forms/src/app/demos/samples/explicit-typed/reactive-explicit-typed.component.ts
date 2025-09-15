@@ -15,7 +15,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-reactive-explicit-typed',
     templateUrl: './reactive-explicit-typed.component.html',
     styleUrls: ['./reactive-explicit-typed.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -32,7 +31,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
         MatRadioGroup,
         MatRadioButton,
         MatButton,
-    ],
+    ]
 })
 export class ReactiveExplicitTypedComponent implements OnInit {
   ps: PersonService = inject(PersonService);

@@ -10,7 +10,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-demo-filter',
     templateUrl: './demo-filter.component.html',
     styleUrls: ['./demo-filter.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -20,7 +19,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
         MatInput,
         FormsModule,
         ReactiveFormsModule,
-    ],
+    ]
 })
 export class DemoFilterComponent implements OnInit {
   df = inject(DemoFacade);

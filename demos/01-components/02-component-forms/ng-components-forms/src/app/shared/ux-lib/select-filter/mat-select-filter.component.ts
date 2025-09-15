@@ -5,34 +5,36 @@ import {
   Z,
   ZERO
 } from '@angular/cdk/keycodes';
-import { NgIf, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'ux-select-filter',
-  standalone: true,
-  imports: [
+    selector: 'ux-select-filter',
+    imports: [
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    NgStyle,
-    NgIf
-  ],
-  template: `
+    NgStyle
+],
+    template: `
   <form [formGroup]="searchForm" class="mat-filter" [ngStyle]="{'background-color': color ? color : 'white'}">
-  <div>
-  <input #input class="mat-filter-input" matInput placeholder="{{placeholder}}" formControlName="value" (keydown)="handleKeydown($event)">
-    <mat-spinner *ngIf="localSpinner" class="spinner" diameter="16"></mat-spinner>
-  </div>
-  <div *ngIf="noResults"
-     class="noResultsMessage">
-  {{noResultsMessage}}
-</div>
-</form>
+    <div>
+      <input #input class="mat-filter-input" matInput placeholder="{{placeholder}}" formControlName="value" (keydown)="handleKeydown($event)">
+      @if (localSpinner) {
+        <mat-spinner class="spinner" diameter="16"></mat-spinner>
+      }
+    </div>
+    @if (noResults) {
+      <div
+        class="noResultsMessage">
+        {{noResultsMessage}}
+      </div>
+    }
+  </form>
   `,
-  styleUrls: ['./mat-select-filter.component.scss']
+    styleUrls: ['./mat-select-filter.component.scss']
 })
 export class MatSelectFilterComponent implements OnInit, OnDestroy {
   private searchFormValueChangesSubscription: Subscription | undefined;

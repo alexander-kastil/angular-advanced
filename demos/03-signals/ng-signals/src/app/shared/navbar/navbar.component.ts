@@ -8,18 +8,17 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { SideNavFacade } from '../../state/sidenav.facade';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatToolbarRow,
-    MatIcon,
-    RouterLinkActive,
-    RouterLink,
-    AsyncPipe,
-  ],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    imports: [
+        MatToolbar,
+        MatToolbarRow,
+        MatIcon,
+        RouterLinkActive,
+        RouterLink,
+        AsyncPipe,
+    ]
 })
 export class NavbarComponent {
   nav = inject(SideNavFacade);
