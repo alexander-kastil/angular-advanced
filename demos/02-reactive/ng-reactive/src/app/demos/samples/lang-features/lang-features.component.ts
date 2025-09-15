@@ -6,18 +6,17 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-lang-features',
-  templateUrl: './lang-features.component.html',
-  styleUrls: ['./lang-features.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    MarkdownRendererComponent
-  ],
+    selector: 'app-lang-features',
+    templateUrl: './lang-features.component.html',
+    styleUrls: ['./lang-features.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton,
+        MarkdownRendererComponent
+    ]
 })
 export class LangFeaturesComponent {
   impureFunction() {

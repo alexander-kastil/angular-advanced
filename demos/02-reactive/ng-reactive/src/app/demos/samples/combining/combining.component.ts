@@ -12,7 +12,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-combining',
     templateUrl: './combining.component.html',
     styleUrls: ['./combining.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
@@ -20,7 +19,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         MatCardTitle,
         MatCardContent,
         MatButton,
-    ],
+    ]
 })
 export class CombiningComponent {
   vs = inject(VouchersService);

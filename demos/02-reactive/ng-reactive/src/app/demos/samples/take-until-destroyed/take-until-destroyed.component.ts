@@ -7,11 +7,10 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-  selector: 'app-take-until-destroyed',
-  templateUrl: './take-until-destroyed.component.html',
-  styleUrls: ['./take-until-destroyed.component.scss'],
-  standalone: true,
-  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError]
+    selector: 'app-take-until-destroyed',
+    templateUrl: './take-until-destroyed.component.html',
+    styleUrls: ['./take-until-destroyed.component.scss'],
+    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError]
 })
 export class TakeUntilDestroyedComponent {
   destroyRef = inject(DestroyRef);

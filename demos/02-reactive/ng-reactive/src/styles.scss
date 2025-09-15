@@ -1,25 +1,33 @@
+@use "resets.scss";
+@use "mat-overrides.scss";
+@use "tables.scss";
+@use "forms.scss";
+@use "markdown.scss";
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
-@include mat.core();
+@use "@angular/material" as mat;
+@include mat.elevation-classes();
+@include mat.app-background();
 
 // Available color palettes: https://material.io/design/color/
 $app-primary: mat.m2-define-palette(mat.$m2-blue-palette, 700);
 $app-accent: mat.m2-define-palette(mat.$m2-blue-grey-palette, 100);
 $app-warn: mat.m2-define-palette(mat.$m2-red-palette);
-$app-theme: mat.m2-define-light-theme((
-  color: (
-    primary: $app-primary,
-    accent: $app-accent,
-    warn: $app-warn,
+$app-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
   )
-));
+);
 @include mat.all-component-themes($app-theme);
 
 //Export global vars from design system for easy use
 :root {
-  --color-primary: #1E88E5;
-  --color-accent: #B0BEC5;
+  --color-primary: #1e88e5;
+  --color-accent: #b0bec5;
   --color-warn: red;
   --color-font: white;
   --gap-small: 0.5rem;
@@ -34,11 +42,3 @@ $app-theme: mat.m2-define-light-theme((
   --font-big: 1.4rem;
   --breakpoint-mobile: 960px;
 }
-
-/* You can add global styles to this file, and also import other style files */
-@import "resets.scss";
-@import "mixins.scss";
-@import "mat-overrides.scss";
-@import "tables.scss";
-@import "forms.scss";
-@import "markdown.scss";

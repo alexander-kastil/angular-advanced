@@ -15,7 +15,6 @@ import { TaskService } from '../../tasks/task.service';
   selector: 'app-async-pipe',
   templateUrl: './async-pipe.component.html',
   styleUrls: ['./async-pipe.component.scss'],
-  standalone: true,
   imports: [
     MarkdownRendererComponent,
     MatCard,
@@ -23,12 +22,10 @@ import { TaskService } from '../../tasks/task.service';
     MatCardTitle,
     MatCardContent,
     MatProgressBar,
-    MatFormField,
-    MatInput,
     FormsModule,
     AsyncPipe,
     JsonPipe,
-  ],
+  ]
 })
 export class AsyncPipeComponent implements OnInit {
   ts = inject(TaskService);

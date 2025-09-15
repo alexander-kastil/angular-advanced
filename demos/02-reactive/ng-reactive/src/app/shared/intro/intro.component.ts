@@ -5,22 +5,21 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, 
 import { CenteredDirective, ColumnDirective } from '../ux-lib/formatting/formatting-directives';
 
 @Component({
-  selector: 'app-intro',
-  templateUrl: './intro.component.html',
-  styleUrls: ['./intro.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCardContent,
-    ColumnDirective,
-    CenteredDirective,
-    MatCardActions,
-    MatButton,
-    RouterLink,
-  ],
+    selector: 'app-intro',
+    templateUrl: './intro.component.html',
+    styleUrls: ['./intro.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatCardContent,
+        ColumnDirective,
+        CenteredDirective,
+        MatCardActions,
+        MatButton,
+        RouterLink,
+    ]
 })
 export class IntroComponent {
   @Input() title: string = '';

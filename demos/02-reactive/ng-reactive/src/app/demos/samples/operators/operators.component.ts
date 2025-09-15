@@ -18,19 +18,18 @@ import { Voucher } from '../../vouchers/voucher.model';
 import { VouchersService } from '../../vouchers/voucher.service';
 
 @Component({
-  selector: 'app-operators',
-  templateUrl: './operators.component.html',
-  styleUrls: ['./operators.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    MarkdownRendererComponent,
-    BoxedDirective
-  ],
+    selector: 'app-operators',
+    templateUrl: './operators.component.html',
+    styleUrls: ['./operators.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton,
+        MarkdownRendererComponent,
+        BoxedDirective
+    ]
 })
 export class OperatorsComponent implements OnInit {
   vs = inject(VouchersService);

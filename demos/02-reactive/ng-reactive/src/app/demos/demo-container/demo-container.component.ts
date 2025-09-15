@@ -16,25 +16,24 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-demo-container',
-  templateUrl: './demo-container.component.html',
-  styleUrls: ['./demo-container.component.scss'],
-  standalone: true,
-  imports: [
-    MatSidenavContainer,
-    MatSidenav,
-    MatToolbar,
-    MatToolbarRow,
-    MatNavList,
-    MatListItem,
-    RouterLink,
-    MatSidenavContent,
-    NgStyle,
-    RouterOutlet,
-    MarkdownEditorComponent,
-    SidePanelComponent,
-    AsyncPipe,
-  ],
+    selector: 'app-demo-container',
+    templateUrl: './demo-container.component.html',
+    styleUrls: ['./demo-container.component.scss'],
+    imports: [
+        MatSidenavContainer,
+        MatSidenav,
+        MatToolbar,
+        MatToolbarRow,
+        MatNavList,
+        MatListItem,
+        RouterLink,
+        MatSidenavContent,
+        NgStyle,
+        RouterOutlet,
+        MarkdownEditorComponent,
+        SidePanelComponent,
+        AsyncPipe,
+    ]
 })
 export class DemoContainerComponent {
   destroyRef = inject(DestroyRef);

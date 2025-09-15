@@ -12,19 +12,18 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { TopicService } from '../../topics/topic.service';
 
 @Component({
-  selector: 'app-transformation',
-  templateUrl: './transformation.component.html',
-  styleUrls: ['./transformation.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatButton,
-    BoxedDirective
-  ],
+    selector: 'app-transformation',
+    templateUrl: './transformation.component.html',
+    styleUrls: ['./transformation.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatButton,
+        BoxedDirective
+    ]
 })
 export class TransformationComponent {
   ts = inject(TopicService);

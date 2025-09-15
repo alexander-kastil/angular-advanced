@@ -13,7 +13,6 @@ import { SkillsService } from '../../skills/skills.service';
   selector: 'app-imperative',
   templateUrl: './imperative.component.html',
   styleUrls: ['./imperative.component.scss'],
-  standalone: true,
   imports: [
     MarkdownRendererComponent,
     MatCard,
@@ -24,9 +23,8 @@ import { SkillsService } from '../../skills/skills.service';
     MatLabel,
     MatInput,
     FormsModule,
-    ReactiveFormsModule,
-    JsonPipe,
-  ],
+    ReactiveFormsModule
+  ]
 })
 export class ImperativeComponent implements OnInit {
   @Input() title = 'ImperativeProgramming';

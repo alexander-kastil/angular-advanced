@@ -8,8 +8,7 @@ import { MatToolbar } from '@angular/material/toolbar';
     selector: 'app-kpi',
     templateUrl: './kpi.component.html',
     styleUrls: ['./kpi.component.scss'],
-    standalone: true,
-    imports: [MatToolbar, AsyncPipe],
+    imports: [MatToolbar, AsyncPipe]
 })
 export class KpiComponent {
   service = inject(StatefulDemoService);
