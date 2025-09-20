@@ -1,10 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
   SimpleChanges,
-  input
+  input,
+  output
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -26,8 +25,8 @@ import { environment } from '../../../environments/environment';
 })
 export class SkillRowComponent {
   skill = input.required<Skill>();
-  @Output() itemDeleted: EventEmitter<Skill> = new EventEmitter<Skill>();
-  @Output() itemCompleted: EventEmitter<Skill> = new EventEmitter<Skill>();
+  readonly itemDeleted = output<Skill>();
+  readonly itemCompleted = output<Skill>();
 
   ngDoCheck(): void {
     if (environment.logChangeDetection) {
