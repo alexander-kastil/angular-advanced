@@ -1,11 +1,13 @@
-@import "mixins.scss";
-
 .navLink {
-  @include link(var(--color-fg), var(--font-big));
+  font-size: var(--font-big);
+  color: var(--color-fg);
+  cursor: pointer;
   margin-top: -0.5rem;
+  &:hover {
+    text-decoration: underline;
+  }
 }
-
-.navLinkActive{
+.navLinkActive {
   text-decoration: underline;
 }
 
@@ -16,7 +18,7 @@ mat-toolbar-row {
   gap: 10px;
 }
 
-.hamburgerMenu{
+.hamburgerMenu {
   cursor: pointer;
   display: none;
   @media only screen and (max-width: 960px) {
@@ -24,7 +26,7 @@ mat-toolbar-row {
   }
 }
 
-.menuContainer{
+.menuContainer {
   display: flex;
   flex-direction: row;
   gap: 25px;

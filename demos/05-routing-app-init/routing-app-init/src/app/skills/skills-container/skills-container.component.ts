@@ -16,7 +16,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
   selector: 'app-skills-container',
   templateUrl: './skills-container.component.html',
   styleUrls: ['./skills-container.component.scss'],
-  standalone: true,
   imports: [
     MatToolbar,
     MatToolbarRow,
@@ -25,9 +24,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
     FormsModule,
     ReactiveFormsModule,
     SkillRowComponent,
-    SkillsKpiComponent,
-    AsyncPipe,
-  ],
+    SkillsKpiComponent
+  ]
 })
 export class SkillsContainerComponent {
   service = inject(SkillsEntityService);

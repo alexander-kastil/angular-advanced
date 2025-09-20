@@ -7,11 +7,10 @@ import { customersActions } from '../../state/customers.actions';
 import { customerState } from '../../state/customers.state';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss'],
-  standalone: true,
-  imports: [MatButton, RouterLink]
+    selector: 'app-customers',
+    templateUrl: './customers.component.html',
+    styleUrls: ['./customers.component.scss'],
+    imports: [MatButton, RouterLink]
 })
 export class CustomersComponent implements OnInit {
   state = inject(Store);

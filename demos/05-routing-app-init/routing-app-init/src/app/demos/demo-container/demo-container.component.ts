@@ -20,7 +20,6 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
     selector: 'app-demo-container',
     templateUrl: './demo-container.component.html',
     styleUrls: ['./demo-container.component.scss'],
-    standalone: true,
     imports: [
         MatSidenavContainer,
         MatSidenav,
@@ -36,7 +35,7 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
         EditorContainerComponent,
         SidePanelComponent,
         AsyncPipe,
-    ],
+    ]
 })
 export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);

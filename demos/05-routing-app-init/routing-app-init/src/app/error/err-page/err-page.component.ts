@@ -6,17 +6,16 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 declare var window: Window;
 
 @Component({
-  selector: 'app-err-page',
-  templateUrl: './err-page.component.html',
-  styleUrls: ['./err-page.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    JsonPipe,
-  ],
+    selector: 'app-err-page',
+    templateUrl: './err-page.component.html',
+    styleUrls: ['./err-page.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        JsonPipe,
+    ]
 })
 export class ErrPageComponent {
   error = window.history.state;

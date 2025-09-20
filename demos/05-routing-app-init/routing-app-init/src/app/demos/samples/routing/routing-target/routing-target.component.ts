@@ -10,13 +10,12 @@ import { MatCard, MatCardContent } from '@angular/material/card';
     selector: 'app-routing-target',
     templateUrl: './routing-target.component.html',
     styleUrls: ['./routing-target.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardContent,
         AsyncPipe,
         JsonPipe,
-    ],
+    ]
 })
 export class RoutingTargetComponent {
   store = inject(Store) as Store<RouterReducerState>;

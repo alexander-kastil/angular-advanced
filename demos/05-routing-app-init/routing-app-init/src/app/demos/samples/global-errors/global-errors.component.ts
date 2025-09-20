@@ -7,7 +7,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-global-errors',
     templateUrl: './global-errors.component.html',
     styleUrls: ['./global-errors.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
@@ -16,7 +15,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         MatCardContent,
         MatCardActions,
         MatButton,
-    ],
+    ]
 })
 export class GlobalErrorsComponent {
   throwErr() {
