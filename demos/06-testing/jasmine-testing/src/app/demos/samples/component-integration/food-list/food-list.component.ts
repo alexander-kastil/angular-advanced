@@ -8,14 +8,13 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     selector: 'app-food-list',
     templateUrl: './food-list.component.html',
     styleUrls: ['./food-list.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
         MatCardTitle,
         MatCardContent,
         FoodRowComponent,
-    ],
+    ]
 })
 export class FoodListComponent implements OnInit {
   food: FoodItem[] = [];

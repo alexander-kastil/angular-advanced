@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-http-tests',
     templateUrl: './http-tests.component.html',
     styleUrls: ['./http-tests.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class HttpTestsComponent implements OnInit {

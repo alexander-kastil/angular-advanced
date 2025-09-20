@@ -5,11 +5,10 @@ import { environment } from '../environments/environment';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [NavbarComponent, RouterOutlet],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [NavbarComponent, RouterOutlet]
 })
 export class AppComponent {
   titleService = inject(Title);

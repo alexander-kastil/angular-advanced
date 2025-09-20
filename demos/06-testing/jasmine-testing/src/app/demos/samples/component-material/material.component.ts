@@ -8,20 +8,19 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-  selector: 'app-material',
-  templateUrl: './material.component.html',
-  styleUrls: ['./material.component.scss'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonModule
-  ],
+    selector: 'app-material',
+    templateUrl: './material.component.html',
+    styleUrls: ['./material.component.scss'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCardModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonModule
+    ]
 })
 export class MaterialComponent {
   value = 50;

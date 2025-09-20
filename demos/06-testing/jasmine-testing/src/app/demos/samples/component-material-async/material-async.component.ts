@@ -10,7 +10,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-material-async',
     templateUrl: './material-async.component.html',
     styleUrls: ['./material-async.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         MatCard,
@@ -21,7 +20,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         MatTab,
         MatTabLabel,
         DatePipe,
-    ],
+    ]
 })
 export class MaterialAsyncComponent {
   displayedColumns = ['email', 'created', 'roles'];
