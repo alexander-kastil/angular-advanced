@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions } from '@angular/material/card';
@@ -19,7 +19,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, 
     ]
 })
 export class IntroComponent {
-  @Input() title = '';
-  @Input() subtitle = '';
-  @Input() img = '';
+  readonly title = input('');
+  readonly subtitle = input('');
+  readonly img = input('');
 }
