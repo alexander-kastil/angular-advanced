@@ -6,7 +6,6 @@ import { AsyncPipe } from '@angular/common';
     selector: 'app-food-menu',
     templateUrl: './food-menu.component.html',
     styleUrls: ['./food-menu.component.scss'],
-    standalone: true,
     imports: [AsyncPipe]
 })
 export class FoodMenuComponent {

@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { APP_INITIALIZER, ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, ErrorHandler, importProvidersFrom, provideAppInitializer, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
@@ -54,25 +54,17 @@ export const appConfig: ApplicationConfig = {
         //NgRx DevTools
         provideStoreDevtools({ maxAge: 25 }),
         // Application Init
-        {
-            provide: APP_INITIALIZER,
-            useValue: () => {
+        provideAppInitializer(() => {
                 console.log('App init running');
-            },
-            multi: true,
-        },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initFactory,
-            deps: [AppInitService],
-            multi: true,
-        },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: configFactory,
-            deps: [ConfigService],
-            multi: true,
-        },
+            }),
+        provideAppInitializer(() => {
+        const initializerFn = (initFactory)(inject(AppInitService));
+        return initializerFn();
+      }),
+        provideAppInitializer(() => {
+        const initializerFn = (configFactory)(inject(ConfigService));
+        return initializerFn();
+      }),
         {
             provide: ErrorHandler,
             useValue: globalErrorHandler,

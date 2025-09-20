@@ -17,7 +17,6 @@ import { MatFormField } from '@angular/material/form-field';
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         MatDialogTitle,
         MatDialogContent,
@@ -25,7 +24,7 @@ import { MatFormField } from '@angular/material/form-field';
         MatInput,
         MatDialogActions,
         MatButton,
-    ],
+    ]
 })
 export class SignUpComponent implements AfterViewInit {
   router = inject(Router);

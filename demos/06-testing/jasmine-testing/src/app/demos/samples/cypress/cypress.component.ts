@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-cypress',
     templateUrl: './cypress.component.html',
     styleUrls: ['./cypress.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class CypressComponent implements OnInit {

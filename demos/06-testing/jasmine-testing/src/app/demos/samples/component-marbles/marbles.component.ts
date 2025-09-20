@@ -5,11 +5,10 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-marbles',
-  templateUrl: './marbles.component.html',
-  styleUrls: ['./marbles.component.scss'],
-  standalone: true,
-  imports: [MarkdownRendererComponent],
+    selector: 'app-marbles',
+    templateUrl: './marbles.component.html',
+    styleUrls: ['./marbles.component.scss'],
+    imports: [MarkdownRendererComponent]
 })
 export class MarblesComponent implements OnInit {
   ps = inject(PersonService)

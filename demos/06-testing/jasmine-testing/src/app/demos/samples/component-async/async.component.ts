@@ -8,13 +8,12 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-async',
     templateUrl: './async.component.html',
     styleUrls: ['./async.component.scss'],
-    standalone: true,
     imports: [
         MarkdownRendererComponent,
         SimpleAuthDoneComponent,
         SimpleAuthFakeAsyncComponent,
         SimpleAuthWhenStableComponent,
-    ],
+    ]
 })
 export class AsyncComponent implements OnInit {
   constructor() { }

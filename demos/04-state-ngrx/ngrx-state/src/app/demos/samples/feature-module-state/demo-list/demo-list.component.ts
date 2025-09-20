@@ -1,6 +1,6 @@
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { AsyncPipe } from '@angular/common';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -27,7 +27,7 @@ import { DemoRowComponent } from '../demo-row/demo-row.component';
 })
 export class DemoListComponent {
   df = inject(DemoFacade);
-  @Output() onSelectDemo: EventEmitter<null> = new EventEmitter();
+  readonly onSelectDemo = output<null>();
 
   demos$ = this.df.getDemos();
   filter$ = this.df.getFilter();
@@ -52,6 +52,6 @@ export class DemoListComponent {
 
   selectItem(item: DemoItem) {
     this.df.selectDemo(item);
-    this.onSelectDemo.emit();
+    this.onSelectDemo.emit(null);
   }
 }

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { DemoItem } from '../demo-base/demo-item.model';
 import { demoActions } from './demos.actions';
-import { DemoState, demoState, getAllDemos } from './demos.state';
+import { DemoState, getAllDemos, selectLoaded, selectSelected, selectFilter } from './demos.state';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class DemoFacade {
   }
 
   hasLoaded() {
-    return this.store.select(demoState.selectLoaded).pipe(take(1));
+    return this.store.select(selectLoaded).pipe(take(1));
   }
 
   getDemos() {
@@ -27,7 +27,7 @@ export class DemoFacade {
   }
 
   getSelectedDemo() {
-    return this.store.select(demoState.selectSelected);
+    return this.store.select(selectSelected);
   }
 
   deleteDemo(item: DemoItem) {
@@ -51,6 +51,6 @@ export class DemoFacade {
   }
 
   getFilter() {
-    return this.store.select(demoState.selectFilter);
+    return this.store.select(selectFilter);
   }
 }

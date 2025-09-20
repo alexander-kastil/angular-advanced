@@ -6,8 +6,8 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { FoodItem } from '../food/food.model';
 
 @Component({
-  selector: 'app-component-class',
-  template: `<app-markdown-renderer
+    selector: 'app-component-class',
+    template: `<app-markdown-renderer
         [md]="'component-class'"
       ></app-markdown-renderer>
       <mat-card appearance="outlined">
@@ -23,13 +23,12 @@ import { FoodItem } from '../food/food.model';
       </mat-card>
       <button mat-raised-button (click)="addFood({ id: 4, name: 'Blini with Salmon', rating: 1 })" color="primary">Add Food</button>
       `,
-  styles: ['h1 { color: green; font-size: 2rem}'],
-  standalone: true,
-  imports: [
-    MarkdownRendererComponent,
-    MatCardModule,
-    MatButtonModule
-  ],
+    styles: ['h1 { color: green; font-size: 2rem}'],
+    imports: [
+        MarkdownRendererComponent,
+        MatCardModule,
+        MatButtonModule
+    ]
 })
 export class ComponentClassComponent implements OnInit {
   title = 'Food App';

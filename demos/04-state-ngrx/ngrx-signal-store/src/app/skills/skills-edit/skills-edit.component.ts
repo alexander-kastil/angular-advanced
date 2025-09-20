@@ -15,7 +15,6 @@ import { SkillsEntityService } from '../skills-entity.service';
   selector: 'app-skills-edit',
   templateUrl: './skills-edit.component.html',
   styleUrls: ['./skills-edit.component.scss'],
-  standalone: true,
   imports: [
     MatCardModule,
     MatFormField,
@@ -25,10 +24,8 @@ import { SkillsEntityService } from '../skills-entity.service';
     ReactiveFormsModule,
     MatSlideToggle,
     MatCardActions,
-    MatButton,
-    AsyncPipe,
-    JsonPipe,
-  ],
+    MatButton
+  ]
 })
 export class SkillsEditComponent {
   @Input({ required: true }) id: number = 0;

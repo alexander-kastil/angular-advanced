@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideAppInitializer } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
@@ -36,10 +36,6 @@ export const appConfig: ApplicationConfig = {
         //NgRx DevTools
         provideStoreDevtools({ maxAge: 25 }),
         // Application Init
-        {
-            provide: APP_INITIALIZER,
-            useValue: () => { console.log('App init running'); },
-            multi: true,
-        }
+        provideAppInitializer(() => { console.log('App init running'); })
     ]
 };

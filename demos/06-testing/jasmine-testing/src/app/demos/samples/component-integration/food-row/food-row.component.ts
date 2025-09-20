@@ -3,11 +3,10 @@ import { MatIcon } from '@angular/material/icon';
 import { FoodItem } from '../../food/food.model';
 
 @Component({
-  selector: 'app-food-row',
-  templateUrl: './food-row.component.html',
-  styleUrls: ['./food-row.component.scss'],
-  standalone: true,
-  imports: [MatIcon],
+    selector: 'app-food-row',
+    templateUrl: './food-row.component.html',
+    styleUrls: ['./food-row.component.scss'],
+    imports: [MatIcon]
 })
 export class FoodRowComponent {
   food = input.required<FoodItem>();

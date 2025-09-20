@@ -8,7 +8,6 @@ import { MarkdownRendererComponent } from '../../../../shared/markdown-renderer/
     selector: 'app-routing',
     templateUrl: './routing.component.html',
     styleUrls: ['./routing.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatButton, RouterLink, RouterOutlet]
 })
 export class RoutingComponent implements OnInit {

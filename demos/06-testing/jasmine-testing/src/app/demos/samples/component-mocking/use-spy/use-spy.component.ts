@@ -3,16 +3,15 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-use-spy',
-  templateUrl: './use-spy.component.html',
-  styleUrls: ['./use-spy.component.scss'],
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent
-  ],
+    selector: 'app-use-spy',
+    templateUrl: './use-spy.component.html',
+    styleUrls: ['./use-spy.component.scss'],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent
+    ]
 })
 export class UseSpyComponent {
   auth = inject(AuthService);

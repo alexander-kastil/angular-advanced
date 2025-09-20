@@ -12,7 +12,6 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
     selector: 'app-editor-container',
     templateUrl: './editor-container.component.html',
     styleUrls: ['./editor-container.component.scss'],
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,
@@ -24,7 +23,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
         MatCardActions,
         MatButton,
         AsyncPipe,
-    ],
+    ]
 })
 export class EditorContainerComponent implements OnInit {
   ef = inject(EditorFacade)
