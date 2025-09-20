@@ -77,5 +77,7 @@ export const { selectAll, selectEntities, selectIds, selectTotal } =
   demosAdapter.getSelectors();
 
 export const getDemoState = createFeatureSelector<DemoState>(demosFeatureKey);
-
+export const selectLoaded = createSelector(getDemoState, (state) => state.loaded);
+export const selectSelected = createSelector(getDemoState, (state) => state.selected);
+export const selectFilter = createSelector(getDemoState, (state) => state.filter);
 export const getAllDemos = createSelector(getDemoState, selectAll);
