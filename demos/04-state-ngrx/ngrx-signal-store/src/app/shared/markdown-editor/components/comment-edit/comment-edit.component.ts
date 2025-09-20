@@ -9,14 +9,13 @@ import { ColumnDirective } from '../../../formatting/formatting-directives';
     selector: 'app-comment-edit',
     templateUrl: './comment-edit.component.html',
     styleUrls: ['./comment-edit.component.scss'],
-    standalone: true,
     imports: [
         ColumnDirective,
         MatFormField,
         MatLabel,
         MatInput,
         FormsModule,
-    ],
+    ]
 })
 export class CommentEditComponent {
   @Input() comment: CommentItem = new CommentItem();
