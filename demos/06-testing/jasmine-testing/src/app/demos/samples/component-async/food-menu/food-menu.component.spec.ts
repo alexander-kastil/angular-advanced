@@ -8,14 +8,14 @@ describe('FoodMenuComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-    imports: [FoodMenuComponent]
-}).compileComponents();
+      imports: [FoodMenuComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FoodMenuComponent);
     component = fixture.componentInstance;
   });
 
-  it('should have a list of 3 food items', fakeAsync(() => {
+  it('should have a list of 3 food items (using fakeAsync)', fakeAsync(() => {
     fixture.detectChanges();
     tick(200);
     fixture.detectChanges();
@@ -24,7 +24,7 @@ describe('FoodMenuComponent', () => {
     expect(items.length).toBe(3);
   }));
 
-  it('should have a list of 3 food items', fakeAsync(() => {
+  it('should have a list of 3 food items (using autoDetectChanges)', fakeAsync(() => {
     fixture.autoDetectChanges();
     tick(200);
     console.log(fixture.debugElement.nativeElement.innerHTML);
@@ -33,7 +33,7 @@ describe('FoodMenuComponent', () => {
   }));
 
 
-  it('should have a list of 3 food items', waitForAsync(() => {
+  it('should have a list of 3 food items (using waitForAsync)', waitForAsync(() => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       fixture.detectChanges();
