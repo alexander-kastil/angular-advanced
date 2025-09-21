@@ -5,12 +5,11 @@ import { ShopItemComponent } from '../shop-item/shop-item.component';
 import { FoodCartItem } from '../shop-item/food-cart-item.model';
 
 @Component({
-  selector: 'app-food-list',
-  standalone: true,
-  imports: [CommonModule, ShopItemComponent],
-  providers: [FoodService],
-  templateUrl: './food-list.component.html',
-  styleUrls: ['./food-list.component.scss']
+    selector: 'app-food-list',
+    imports: [CommonModule, ShopItemComponent],
+    providers: [FoodService],
+    templateUrl: './food-list.component.html',
+    styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent {
   fs = inject(FoodService);
