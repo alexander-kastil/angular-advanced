@@ -11,13 +11,12 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
     selector: 'app-side-panel',
     templateUrl: './side-panel.component.html',
     styleUrls: ['./side-panel.component.scss'],
-    standalone: true,
     imports: [
         MatToolbar,
         MatToolbarRow,
         MatMiniFabButton,
         MatIcon,
-    ],
+    ]
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);

@@ -9,7 +9,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-logger',
     templateUrl: './logger.component.html',
     styleUrls: ['./logger.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatButton]
 })
 export class LoggerComponent {

@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-eslint',
     templateUrl: './eslint.component.html',
     styleUrls: ['./eslint.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class EslintComponent {

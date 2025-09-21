@@ -1,71 +1,75 @@
-import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { DemoService } from '../demo-base/demo.service';
-import * as demoActions from './demos.actions';
+import { demoActions } from './demos.actions';
+import { Router } from '@angular/router';
 
-@Injectable()
-export class DemosEffects {
-  constructor(private actions$: Actions, private service: DemoService) {}
-
-  loadDemos$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(demoActions.loadDemos),
-      mergeMap(() =>
-        this.service.getItems().pipe(
-          map((demos) => ({
-            type: '[Demos] loadDemos Success',
-            items: demos,
-          })),
-          catchError((err) => of(demoActions.loadDemosFailure({ err })))
-        )
+export const loadDemos = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+  return actions$.pipe(
+    ofType(demoActions.loadDemos),
+    mergeMap(() =>
+      service.getDemos().pipe(
+        map((demos) =>
+          demoActions.loadDemosSuccess({ demos })
+        ),
+        catchError((err) => of(demoActions.loadDemosFailure({ err })))
       )
     )
-  );
+  )
+}, { functional: true });
 
-  addDemos$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(demoActions.addDemo),
-      mergeMap((action) =>
-        this.service.addItem(action.item).pipe(
-          map((demos) => ({
-            type: '[Demos] addDemo Success',
-            items: demos,
-          })),
-          catchError((err) => of(demoActions.addDemoFailure({ err })))
-        )
+export const addDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+  return actions$.pipe(
+    ofType(demoActions.addDemo),
+    mergeMap((action) =>
+      service.addDemo(action.demo).pipe(
+        map((demo) =>
+          demoActions.addDemoSuccess({ demo })
+        ),
+        catchError((err) => of(demoActions.loadDemosFailure({ err })))
       )
     )
-  );
+  )
+}, { functional: true });
 
-  updateDemos$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(demoActions.updateDemo),
-      mergeMap((action) =>
-        this.service.updateItem(action.item).pipe(
-          map((demos) => ({
-            type: '[Demos] updateDemo Success',
-            items: demos,
-          })),
-          catchError((err) => of(demoActions.updateDemoFailure({ err })))
-        )
+export const updateDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+  return actions$.pipe(
+    ofType(demoActions.updateDemo),
+    mergeMap((action) =>
+      service.updateDemo(action.demo).pipe(
+        map((demo) =>
+          demoActions.updateDemoSuccess({ demo })
+        ),
+        catchError((err) => of(demoActions.updateDemoFailure({ err })))
       )
     )
-  );
+  )
+}, { functional: true });
 
-  deleteDemo$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(demoActions.deleteDemo),
-      mergeMap((action) =>
-        this.service.deleteItem(action.item.id).pipe(
-          map(() => ({
-            type: '[Demos] deleteDemo Success',
-            item: action.item,
-          })),
-          catchError((err) => of(demoActions.deleteDemoFailure({ err })))
-        )
+export const deleteDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+  return actions$.pipe(
+    ofType(demoActions.deleteDemo),
+    mergeMap((action) =>
+      service.deleteDemo(action.demo.id).pipe(
+        map((demo) =>
+          demoActions.deleteDemoSuccess({ demo })
+        ),
+        catchError((err) => of(demoActions.deleteDemoFailure({ err })))
       )
     )
-  );
-}
+  )
+}, { functional: true });
+
+export const redirectToError = createEffect((actions$ = inject(Actions), router = inject(Router)) => {
+  return actions$.pipe(
+    ofType(demoActions.redirectToError),
+    mergeMap(() => {
+      router.navigate(['/error']);
+      return EMPTY.pipe(
+        map(() => ({ type: 'Redirected to Error' }))
+      );
+    })
+  )
+}, { functional: true });
