@@ -15,19 +15,18 @@ import { FoodOrder, orderstatus } from './order.model';
 import { OrdersStore } from './orders.store';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-  ],
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss'],
-  providers: [OrdersStore],
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './orders.component.html',
+    styleUrls: ['./orders.component.scss'],
+    providers: [OrdersStore]
 })
 export class OrdersComponent {
   private store = inject(OrdersStore);
