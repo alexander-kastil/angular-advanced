@@ -9,12 +9,11 @@ import { NgFor, AsyncPipe } from '@angular/common';
     selector: 'app-skills',
     templateUrl: './skills.component.html',
     styleUrls: ['./skills.component.scss'],
-    standalone: true,
     imports: [
         ReactiveFormsModule,
         NgFor,
         AsyncPipe,
-    ],
+    ]
 })
 export class SkillsComponent implements OnInit {
   skills$: BehaviorSubject<Skill[]> = new BehaviorSubject<Skill[]>([]);

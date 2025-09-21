@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,12 +14,10 @@ import { ConfigService } from './config/config.service';
         //   useValue: () => console.log('APP_INITIALIZER'),
         //   multi: true,
         // },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: configFactory,
-            deps: [ConfigService],
-            multi: true,
-        },
+        provideAppInitializer(() => {
+        const initializerFn = (configFactory)(inject(ConfigService));
+        return initializerFn();
+      }),
         provideHttpClient(withInterceptorsFromDi()),
     ] })
 export class AppModule {}

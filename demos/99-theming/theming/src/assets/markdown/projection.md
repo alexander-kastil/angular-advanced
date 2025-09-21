@@ -1,2 +1,0 @@
-- Examine `ux-button` and `ux-split` in `ux.module.ts`
-- Examine custom material theme for custom components in `mat-components.scss`
