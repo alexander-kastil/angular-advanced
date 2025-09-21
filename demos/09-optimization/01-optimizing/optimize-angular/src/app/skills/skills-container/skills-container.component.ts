@@ -1,22 +1,20 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { SkillRowComponent } from '../skill-row/skill-row.component';
 import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
-import { AsyncPipe } from '@angular/common';
 import { SkillsKpiComponent } from '../skills-kpi/skills-kpi.component';
-import { SkillRowComponent } from '../skill-row/skill-row.component';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { MatButton } from '@angular/material/button';
-import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-skills-container',
   templateUrl: './skills-container.component.html',
   styleUrls: ['./skills-container.component.scss'],
-  standalone: true,
   imports: [
     MatToolbar,
     MatToolbarRow,
@@ -25,9 +23,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
     FormsModule,
     ReactiveFormsModule,
     SkillRowComponent,
-    SkillsKpiComponent,
-    AsyncPipe,
-  ],
+    SkillsKpiComponent
+  ]
 })
 export class SkillsContainerComponent {
   service = inject(SkillsEntityService);

@@ -5,7 +5,6 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     selector: 'app-lighthouse',
     templateUrl: './lighthouse.component.html',
     styleUrls: ['./lighthouse.component.scss'],
-    standalone: true,
     imports: [MarkdownRendererComponent]
 })
 export class LighthouseComponent implements OnInit {

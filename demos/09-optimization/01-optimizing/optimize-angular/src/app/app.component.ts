@@ -8,8 +8,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [NavbarComponent, RouterOutlet],
+    imports: [NavbarComponent, RouterOutlet]
 })
 export class AppComponent {
   constructor(private titleService: Title) {

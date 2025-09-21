@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
 import { NgOptimizedImage } from '@angular/common';
@@ -10,25 +10,24 @@ import { FoodItem } from '../food.model';
 import { FoodCartItem } from './food-cart-item.model';
 
 @Component({
-  selector: 'app-shop-item',
-  templateUrl: './shop-item.component.html',
-  styleUrls: ['./shop-item.component.scss'],
-  standalone: true,
-  imports: [MatCardModule, ReactiveFormsModule, RouterModule, MatIconModule, NgOptimizedImage, EuroPipe, NumberPickerComponent]
+    selector: 'app-shop-item',
+    templateUrl: './shop-item.component.html',
+    styleUrls: ['./shop-item.component.scss'],
+    imports: [MatCardModule, ReactiveFormsModule, RouterModule, MatIconModule, NgOptimizedImage, EuroPipe, NumberPickerComponent]
 })
 export class ShopItemComponent {
-  @Input() food: FoodItem = new FoodItem();
-  @Input() inCart: number | null = 0;
-  @Output() itemChanged: EventEmitter<FoodCartItem> = new EventEmitter<FoodCartItem>();
+  readonly food = input<FoodItem>(new FoodItem());
+  readonly inCart = input<number | null>(0);
+  readonly itemChanged = output<FoodCartItem>();
 
-  nbrPicker: FormControl = new FormControl(this.inCart);
+  nbrPicker: FormControl = new FormControl(this.inCart());
 
   ngOnChanges() {
-    this.nbrPicker.setValue(this.inCart);
+    this.nbrPicker.setValue(this.inCart());
   }
 
   handleAmountChange(amount: number) {
-    const item: FoodCartItem = { ...this.food, quantity: amount };
+    const item: FoodCartItem = { ...this.food(), quantity: amount };
     this.itemChanged.emit(item);
   }
 }

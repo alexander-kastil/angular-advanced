@@ -1,15 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { FoodService } from '../food.service';
-import { ShopItemComponent } from '../shop-item/shop-item.component';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-food-details',
-  standalone: true,
-  imports: [CommonModule, ShopItemComponent, RouterModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatButtonModule],
   providers: [FoodService],
   templateUrl: './food-details.component.html',
   styleUrls: ['./food-details.component.scss']

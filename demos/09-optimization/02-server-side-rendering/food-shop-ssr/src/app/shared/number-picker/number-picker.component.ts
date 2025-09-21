@@ -1,8 +1,7 @@
 import {
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output
 } from '@angular/core';
 import {
   AbstractControl,
@@ -15,27 +14,26 @@ import {
 import { MatIconModule } from "@angular/material/icon";
 
 @Component({
-  selector: 'app-number-picker',
-  templateUrl: './number-picker.component.html',
-  styleUrls: ['./number-picker.component.scss'],
-  standalone: true,
-  imports: [MatIconModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: NumberPickerComponent,
-    },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: NumberPickerComponent,
-    },
-  ],
+    selector: 'app-number-picker',
+    templateUrl: './number-picker.component.html',
+    styleUrls: ['./number-picker.component.scss'],
+    imports: [MatIconModule],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: NumberPickerComponent,
+        },
+        {
+            provide: NG_VALIDATORS,
+            multi: true,
+            useExisting: NumberPickerComponent,
+        },
+    ]
 })
 export class NumberPickerComponent implements ControlValueAccessor, Validator {
-  @Input() increment: number = 1;
-  @Output() amountChanged: EventEmitter<number> = new EventEmitter<number>();
+  readonly increment = input<number>(1);
+  readonly amountChanged = output<number>();
   quantity = 0;
 
   onChange = (quantity: number) => {
@@ -51,7 +49,7 @@ export class NumberPickerComponent implements ControlValueAccessor, Validator {
   onAdd() {
     this.markAsTouched();
     if (!this.disabled) {
-      this.quantity += this.increment;
+      this.quantity += this.increment();
       this.onChange(this.quantity);
       this.amountChanged.emit(this.quantity);
     }
@@ -60,7 +58,7 @@ export class NumberPickerComponent implements ControlValueAccessor, Validator {
   onRemove() {
     this.markAsTouched();
     if (!this.disabled && this.quantity > 0) {
-      this.quantity -= this.increment;
+      this.quantity -= this.increment();
       this.onChange(this.quantity);
       this.amountChanged.emit(this.quantity);
     }

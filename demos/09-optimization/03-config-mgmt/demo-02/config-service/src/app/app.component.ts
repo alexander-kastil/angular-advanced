@@ -4,9 +4,10 @@ import { AppConfig } from './config/app.config.model';
 import { ConfigService } from './config/config.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
   title = 'ng-config-srv';

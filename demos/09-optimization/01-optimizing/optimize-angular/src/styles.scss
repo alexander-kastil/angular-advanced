@@ -1,7 +1,13 @@
+@use "resets.scss";
+@use "mat-overrides.scss";
+@use "tables.scss";
+@use "forms.scss";
+@use "markdown.scss";
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 // Available color palettes: https://material.io/design/color/
 $app-primary: mat.m2-define-palette(mat.$m2-blue-palette, 700);
@@ -34,11 +40,3 @@ $app-theme: mat.m2-define-light-theme((
   --font-big: 1.4rem;
   --breakpoint-mobile: 960px;
 }
-
-/* You can add global styles to this file, and also import other style files */
-@import "resets.scss";
-@import "mixins.scss";
-@import "mat-overrides.scss";
-@import "tables.scss";
-@import "forms.scss";
-@import "markdown.scss";
