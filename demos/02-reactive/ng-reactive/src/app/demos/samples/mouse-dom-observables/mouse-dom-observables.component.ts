@@ -23,6 +23,7 @@ export class MouseDomObservablesComponent {
   cx: CanvasRenderingContext2D | null = null;
 
   subscribeMouse() {
+    console.log('subscribeMouse');
     this.captureEvents();
   }
 

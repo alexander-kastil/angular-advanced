@@ -17,19 +17,20 @@ import { DemoService } from '../../demo-base/demo.service';
 })
 export class ActionStreamsComponent {
   ds = inject(DemoService);
+
   demos$ = this.ds.getItems();
-  filter = new FormControl<string>('', { nonNullable: true });
+  filter$ = new FormControl<string>('', { nonNullable: true });
 
   vm$ = combineLatest([
     this.demos$,
-    this.filter.valueChanges.pipe(startWith('')),
+    this.filter$.valueChanges.pipe(startWith('')),
   ]).pipe(
     map(([demos, filter]) => {
-      return filter != ''
-        ? demos.filter((d) =>
+      return filter == ''
+        ? demos
+        : demos.filter((d) =>
           d.title.toLowerCase().includes(filter.toLowerCase())
-        )
-        : demos;
+        );
     })
   );
 }
