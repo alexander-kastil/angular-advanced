@@ -1,5 +1,5 @@
 {
-  "name": "Angular 19 and .NET 9 Development",
+  "name": "Angular 20 and .NET 9 Development",
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspace",

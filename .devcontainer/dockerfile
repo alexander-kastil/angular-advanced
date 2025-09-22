@@ -1,15 +1,15 @@
 FROM mcr.microsoft.com/devcontainers/dotnet:9.0
 
-# Install Node.js 20.12.2
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+# Install Node.js 24
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get update \
     && apt-get install -y nodejs \
     && npm install -g npm@latest \
     && node --version \
     && npm --version
 
-# Install Angular CLI 19
-RUN npm install -g @angular/cli@19
+# Install latest Angular CLI
+RUN npm install -g @angular/cli
 
 # Install SQLite
 RUN apt-get update \
@@ -30,8 +30,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 WORKDIR /workspace
 
 # Set correct permissions for .NET projects
-RUN mkdir -p /workspace/src/fitness-api/obj \
-    && chmod -R 777 /workspace
+RUN chmod -R 777 /workspace
 
 # Set timezone
 ENV TZ=UTC
