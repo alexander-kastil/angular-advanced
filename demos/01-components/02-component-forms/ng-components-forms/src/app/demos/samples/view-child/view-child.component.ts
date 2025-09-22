@@ -8,6 +8,7 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { AlertComponent } from './alert/alert.component';
 import { MatButtonModule } from '@angular/material/button';
+import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
   selector: 'app-view-child',
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardTitle,
     MatCardContent,
     MatButtonModule,
-    AlertComponent
+    AlertComponent,
+    BoxedDirective
   ]
 })
 export class ViewChildComponent {
