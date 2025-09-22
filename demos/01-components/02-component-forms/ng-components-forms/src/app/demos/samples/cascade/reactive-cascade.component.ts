@@ -6,27 +6,27 @@ import { MatSelect } from '@angular/material/select';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
-import { BorderDirective } from 'src/app/shared/ux-lib/formatting/formatting-directives';
+import { BorderDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-    selector: 'app-reactive-cascade',
-    templateUrl: './reactive-cascade.component.html',
-    styleUrls: ['./reactive-cascade.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        MatLabel,
-        MatSelect,
-        MatOption,
-        MatButton,
-        BorderDirective
-    ]
+  selector: 'app-reactive-cascade',
+  templateUrl: './reactive-cascade.component.html',
+  styleUrls: ['./reactive-cascade.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    MatButton,
+    BorderDirective
+  ]
 })
 export class ReactiveCascadeComponent {
   fb: FormBuilder = inject(FormBuilder);
