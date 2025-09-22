@@ -14,13 +14,10 @@ children: [
 
 ```typescript
 @Component({
-  selector: 'app-lazy-standalone',
-  standalone: true,
+  selector: "app-lazy-standalone",
   imports: [CommonModule, MarkdownModule, MdRendererModule, RouterModule],
-  templateUrl: './lazy-standalone.component.html',
-  styleUrls: ['./lazy-standalone.component.scss'],
+  templateUrl: "./lazy-standalone.component.html",
+  styleUrls: ["./lazy-standalone.component.scss"],
 })
-export class LazyStandaloneComponent {
-  constructor() { }
-}
+export class LazyStandaloneComponent {}
 ```

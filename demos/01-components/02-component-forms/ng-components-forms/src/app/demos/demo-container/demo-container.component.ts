@@ -15,24 +15,24 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        RouterOutlet,
-        MarkdownEditorComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ]
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    NgStyle,
+    RouterOutlet,
+    MarkdownEditorComponent,
+    SidePanelComponent,
+    AsyncPipe,
+  ]
 })
 export class DemoContainerComponent {
   destroyRef = inject(DestroyRef);
@@ -66,7 +66,7 @@ export class DemoContainerComponent {
       map(() => this.rootRoute(this.route)),
       filter((route: ActivatedRoute) => route.outlet === 'primary'),
       map((route: ActivatedRoute) => route.component != null
-        ? `Component: ${route.component.name.substring(1)}`
+        ? `Component: ${route.component.name}`
         : 'Please select a demo')
     );
 
