@@ -6,17 +6,17 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-lang-features',
-    templateUrl: './lang-features.component.html',
-    styleUrls: ['./lang-features.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-        MarkdownRendererComponent
-    ]
+  selector: 'app-lang-features',
+  templateUrl: './lang-features.component.html',
+  styleUrls: ['./lang-features.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+    MarkdownRendererComponent
+  ]
 })
 export class LangFeaturesComponent {
   impureFunction() {
@@ -56,7 +56,7 @@ export class LangFeaturesComponent {
       ],
     };
 
-    const skilsArray = ['JavaScript', 'TypeScript', 'Angular'];
+    const skillsArray = ['JavaScript', 'TypeScript', 'Angular'];
 
     //does this create a shallow copy or a deep copy?
     const spreadClonedPerson = { ...father };
