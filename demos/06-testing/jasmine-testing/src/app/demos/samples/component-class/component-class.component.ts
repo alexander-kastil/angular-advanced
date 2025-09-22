@@ -7,9 +7,8 @@ import { FoodItem } from '../food/food.model';
 
 @Component({
     selector: 'app-component-class',
-    template: `<app-markdown-renderer
-        [md]="'component-class'"
-      ></app-markdown-renderer>
+    template: `<app-markdown-renderer [md]="'component-class'"
+       />
       <mat-card appearance="outlined">
         <mat-card-header>
           <mat-card-title>ComponentClassComponent</mat-card-title>

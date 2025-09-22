@@ -5,13 +5,12 @@
   <mat-card-content>
     <div cdkDropList (cdkDropListDropped)="drop($event)" class="list">
       @for (d of vm$ | async; track d) {
-        <app-demo-row
-          [item]="d"
+        <app-demo-row [item]="d"
           (onDelete)="deleteItem($event)"
           (onChangeVisibility)="changeVisibility($event)"
           cdkDrag
           class="box"
-        ></app-demo-row>
+         />
       }
     </div>
   </mat-card-content>

@@ -18,18 +18,18 @@ import { Voucher } from '../../vouchers/voucher.model';
 import { VouchersService } from '../../vouchers/voucher.service';
 
 @Component({
-    selector: 'app-operators',
-    templateUrl: './operators.component.html',
-    styleUrls: ['./operators.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-        MarkdownRendererComponent,
-        BoxedDirective
-    ]
+  selector: 'app-operators',
+  templateUrl: './operators.component.html',
+  styleUrls: ['./operators.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+    MarkdownRendererComponent,
+    BoxedDirective
+  ]
 })
 export class OperatorsComponent implements OnInit {
   vs = inject(VouchersService);
@@ -156,6 +156,6 @@ export class OperatorsComponent implements OnInit {
     this.vouchers$.pipe(
       mergeMap((vouchers: Voucher[]) => vouchers),
       reduce((acc, curr) => { acc = acc + curr.Amount; return acc }, 0)
-    ).subscribe(sum => console.log("Sum vouchers: ", sum));
+    ).subscribe(sum => console.log("Sum of vouchers: ", sum));
   }
 }

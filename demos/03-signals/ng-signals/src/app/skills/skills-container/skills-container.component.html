@@ -9,11 +9,10 @@
   </mat-toolbar-row>
 </mat-toolbar>
 @for (sk of skills(); track sk) {
-  <app-skill-row
-    [skill]="sk"
+  <app-skill-row [skill]="sk"
     [editEnabled]="'true'"
     (itemDeleted)="deleteItem($event)"    
     (itemCompleted)="toggleItemComplete($event)"
-  ></app-skill-row>
+   />
 }
-<app-skills-kpi></app-skills-kpi>
+<app-skills-kpi />

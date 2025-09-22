@@ -33,15 +33,15 @@
         <app-loading *ngIf="isLoading"></app-loading>
       </div> -->
       <div class="gdWorkbench">
-        <router-outlet> </router-outlet>
+        <router-outlet />
       </div>
       @if (showMdEditor ) {
       <div class="gdEditor">
-        <app-markdown-editor></app-markdown-editor>
+        <app-markdown-editor />
       </div>
       }
       <div class="gdSidebar">
-        <app-side-panel></app-side-panel>
+        <app-side-panel />
       </div>
     </div>
   </mat-sidenav-content>
