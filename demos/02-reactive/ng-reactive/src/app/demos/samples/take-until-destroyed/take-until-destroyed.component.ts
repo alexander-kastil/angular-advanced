@@ -7,10 +7,10 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-    selector: 'app-take-until-destroyed',
-    templateUrl: './take-until-destroyed.component.html',
-    styleUrls: ['./take-until-destroyed.component.scss'],
-    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError]
+  selector: 'app-take-until-destroyed',
+  templateUrl: './take-until-destroyed.component.html',
+  styleUrls: ['./take-until-destroyed.component.scss'],
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError]
 })
 export class TakeUntilDestroyedComponent {
   destroyRef = inject(DestroyRef);
@@ -18,10 +18,10 @@ export class TakeUntilDestroyedComponent {
   name = new FormControl('',
     [Validators.required, Validators.minLength(3)],
     []);
-  postal = new FormControl('3544', [Validators.minLength(4)]);
-  city = new FormControl<string>('Idolsberg', [Validators.maxLength(15)]);
+  postal = new FormControl('3532', [Validators.minLength(4)]);
+  city = new FormControl<string>('Peygarten-Ottenstein', [Validators.maxLength(15)]);
 
-  ngOnInit() {
+  constructor() {
     this.name.valueChanges.pipe(takeUntilDestroyed()).subscribe((data) =>
       console.log('Form values changed', data)
     );

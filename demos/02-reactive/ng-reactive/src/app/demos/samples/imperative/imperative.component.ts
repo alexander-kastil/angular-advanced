@@ -8,6 +8,7 @@ import { MatInput } from '@angular/material/input';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { Skill } from '../../skills/skills';
 import { SkillsService } from '../../skills/skills.service';
+import { BoxedDirective } from "src/app/shared/ux-lib/formatting/formatting-directives";
 
 @Component({
   selector: 'app-imperative',
@@ -23,7 +24,8 @@ import { SkillsService } from '../../skills/skills.service';
     MatLabel,
     MatInput,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BoxedDirective
   ]
 })
 export class ImperativeComponent implements OnInit {

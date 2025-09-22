@@ -8,25 +8,27 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-    selector: 'app-reified-reactive',
-    templateUrl: './reified-reactive.component.html',
-    styleUrls: ['./reified-reactive.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        FormsModule,
-        ReactiveFormsModule,
-        AsyncPipe,
-        JsonPipe,
-    ]
+  selector: 'app-reified-reactive',
+  templateUrl: './reified-reactive.component.html',
+  styleUrls: ['./reified-reactive.component.scss'],
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    AsyncPipe,
+    JsonPipe,
+    BoxedDirective
+  ]
 })
 export class ReifiedReactiveComponent {
   service = inject(SkillsService);

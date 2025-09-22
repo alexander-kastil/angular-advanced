@@ -8,13 +8,13 @@
       <mat-label>Filter</mat-label>
       <input matInput type="text" [formControl]="filter$" />
     </mat-form-field>
-    <div>
+    <div boxed>
       <h2>Skills</h2>
       <ul>
         @for (skill of skills$ | async; track skill) {
-          <li>
-            {{ skill | json }}
-          </li>
+        <li>
+          {{ skill | json }}
+        </li>
         }
       </ul>
     </div>
