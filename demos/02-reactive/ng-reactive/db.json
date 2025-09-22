@@ -45,28 +45,8 @@
       "title": "Base Operators"
     },
     {
-      "url": "subjects",
-      "title": "Subjects"
-    },
-    {
-      "url": "stateful-service",
-      "title": "Stateful Service"
-    },
-    {
-      "url": "event-bus",
-      "title": "EventBus"
-    },
-    {
-      "url": "marble-testing",
-      "title": "Marble Testing"
-    },
-    {
       "url": "err-handling",
       "title": "Error Handling"
-    },
-    {
-      "url": "combining",
-      "title": "Combination"
     },
     {
       "url": "transformation",
