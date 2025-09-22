@@ -11,6 +11,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
 # Install latest Angular CLI
 RUN npm install -g @angular/cli
 
+# Install json-server
+RUN npm install -g json-server@0.8.23
+
 # Install SQLite
 RUN apt-get update \
     && apt-get install -y sqlite3 \

@@ -20,7 +20,7 @@
         // General development extensions
         "mdickin.markdown-shortcuts",
         "esbenp.prettier-vscode",
-        "github.copilot-insiders",
+        "github.copilot",
         "github.copilot-chat",
         "eamodio.gitlens",
         "streetsidesoftware.code-spell-checker",
@@ -48,7 +48,7 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20.12.2"
+      "version": "24.0.0"
     },
     "ghcr.io/devcontainers/features/dotnet:1": {
       "version": "9.0"
