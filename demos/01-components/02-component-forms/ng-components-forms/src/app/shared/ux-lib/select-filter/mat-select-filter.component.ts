@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs';
     <div>
       <input #input class="mat-filter-input" matInput placeholder="{{placeholder}}" formControlName="value" (keydown)="handleKeydown($event)">
       @if (localSpinner) {
-        <mat-spinner class="spinner" diameter="16"></mat-spinner>
+        <mat-spinner class="spinner" diameter="16" />
       }
     </div>
     @if (noResults) {

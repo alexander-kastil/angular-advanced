@@ -1,13 +1,11 @@
-<app-markdown-renderer [md]="'container-presenter'"></app-markdown-renderer>
+<app-markdown-renderer [md]="'container-presenter'" />
 
-<app-presenter-list
-  [persons]="persons"
+<app-presenter-list [persons]="persons"
   (personSelected)="onPersonSelected($event)"
-></app-presenter-list>
+ />
 
 @if (current) {
-<app-presenter-edit
-  [person]="current"
+<app-presenter-edit [person]="current"
   (savePerson)="onPersonSaved($event)"
-></app-presenter-edit>
+ />
 }

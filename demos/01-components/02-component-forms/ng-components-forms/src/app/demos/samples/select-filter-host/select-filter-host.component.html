@@ -1,13 +1,11 @@
 <div>
   <mat-form-field>
     <mat-label>Select a person</mat-label>
-    <ux-select-filter
-      [placeholder]="'Select a person'"
+    <ux-select-filter [placeholder]="'Select a person'"
       [array]="allPersons"
       [displayMember]="'name'"
       (filteredReturn)="filteredPersons = $event"
-      >
-    </ux-select-filter>
+       />
     <mat-select [formControl]="fcPerson">
       @for (p of allPersons; track p) {
         <mat-option [value]="p.id">

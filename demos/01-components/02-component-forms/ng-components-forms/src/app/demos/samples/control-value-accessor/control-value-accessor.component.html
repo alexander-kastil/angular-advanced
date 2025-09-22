@@ -1,4 +1,4 @@
-<app-markdown-renderer [md]="'control-value-accessor'"></app-markdown-renderer>
+<app-markdown-renderer [md]="'control-value-accessor'" />
 
 <form
   [formGroup]="shoppingForm"
@@ -20,10 +20,9 @@
           formControlName="itemName"
         />
       </mat-form-field>
-      <app-number-picker
-        formControlName="quantity"
+      <app-number-picker formControlName="quantity"
         label="Amount"
-      ></app-number-picker>
+       />
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-raised-button color="primary" type="submit">Submit</button>
