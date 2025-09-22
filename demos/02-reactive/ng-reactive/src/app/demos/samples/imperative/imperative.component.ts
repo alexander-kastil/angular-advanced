@@ -1,14 +1,13 @@
-import { JsonPipe } from '@angular/common';
 import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
+import { BoxedDirective } from "src/app/shared/ux-lib/formatting/formatting-directives";
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { Skill } from '../../skills/skills';
 import { SkillsService } from '../../skills/skills.service';
-import { BoxedDirective } from "src/app/shared/ux-lib/formatting/formatting-directives";
 
 @Component({
   selector: 'app-imperative',

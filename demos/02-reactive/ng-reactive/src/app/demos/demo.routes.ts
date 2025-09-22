@@ -13,12 +13,12 @@ import { LangFeaturesComponent } from './samples/lang-features/lang-features.com
 import { MarbleTestingComponent } from './samples/marble-testing/marble-testing.component';
 import { MouseDomObservablesComponent } from './samples/mouse-dom-observables/mouse-dom-observables.component';
 import { OperatorsComponent } from './samples/operators/operators.component';
-import { ReifiedReactiveComponent } from './samples/reified-reactive/reified-reactive.component';
 import { ResponsiveScreenComponent } from './samples/responsive-screen/responsive-screen.component';
 import { StatefulComponent } from './samples/stateful/stateful.component';
 import { SubjectsComponent } from './samples/subjects/subjects.component';
 import { TransformationComponent } from './samples/transformation/transformation.component';
 import { UnsubscribingComponent } from './samples/unsubscribing/unsubscribing.component';
+import { DeclarativeComponent } from './samples/declarative/declarative.component';
 
 export const demoRoutes: Routes = [
     {
@@ -29,7 +29,7 @@ export const demoRoutes: Routes = [
             { path: 'lang-features', component: LangFeaturesComponent },
             { path: 'subjects', component: SubjectsComponent },
             { path: 'imperative', component: ImperativeComponent },
-            { path: 'reactive', component: ReifiedReactiveComponent },
+            { path: 'reactive', component: DeclarativeComponent },
             { path: 'creating', component: CreatingObservableComponent },
             { path: 'mouse-dom', component: MouseDomObservablesComponent },
             { path: 'operators', component: OperatorsComponent },
