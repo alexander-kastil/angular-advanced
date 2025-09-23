@@ -17,15 +17,11 @@ import { SideNavService } from './shared/sidenav/sidenav.service';
 })
 export class AppComponent {
   title = 'Food App';
-  mode: MatDrawerMode = 'side';
-  ms = inject(SideNavService);
+
+  sideNavService = inject(SideNavService);
   ls = inject(LoadingService);
   changeDetector = inject(ChangeDetectorRef);
   isLoading = this.ls.getLoading();
-
-  constructor() {
-    this.ms.sideNavPosition.subscribe((currentMode) => { this.mode = currentMode });
-  }
 
   ngAfterContentChecked(): void {
     this.changeDetector.detectChanges();
@@ -33,13 +29,11 @@ export class AppComponent {
 
   getWorkbenchStyle() {
     let result = {};
-    this.ms.sideNavVisible.subscribe((visible) => {
-      result = visible
-        ? {
-          'padding-left': '10px',
-        }
-        : {};
-    });
+    result = this.sideNavService.sideNavVisible()
+      ? {
+        'padding-left': '10px',
+      }
+      : {};
     return result;
   }
 }

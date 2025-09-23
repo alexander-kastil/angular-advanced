@@ -4,6 +4,8 @@ import { SidebarActions } from './sidebar.actions';
 
 @Injectable({ providedIn: 'root' })
 export class SidePanelService {
+
+  // This is the current state
   private commands = signal<SidebarActions>(SidebarActions.HIDE_MARKDOWN);
 
   getCommands() {

@@ -1,7 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -9,9 +8,8 @@ import { tap } from 'rxjs/operators';
 })
 export class SideNavService {
   breakpointObserver = inject(BreakpointObserver);
-  sideNavVisible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  sideNavPosition: BehaviorSubject<MatDrawerMode> =
-    new BehaviorSubject<MatDrawerMode>('side');
+  sideNavVisible = signal<boolean>(true);
+  sideNavPosition = signal<MatDrawerMode>('side');
 
   constructor() {
     this.watchScreen.subscribe();
@@ -22,13 +20,13 @@ export class SideNavService {
     .pipe(
       tap((matchesBreakpoint) => {
         console.log(matchesBreakpoint);
-        this.sideNavVisible.next(matchesBreakpoint.matches ? false : true);
-        this.sideNavPosition.next(matchesBreakpoint.matches ? 'over' : 'side');
+        this.sideNavVisible.set(matchesBreakpoint.matches ? false : true);
+        this.sideNavPosition.set(matchesBreakpoint.matches ? 'over' : 'side');
       })
     );
 
   toggleMenuVisibility() {
-    const visible = !this.sideNavVisible.getValue();
-    this.sideNavVisible.next(visible);
+    const visible = !this.sideNavVisible();
+    this.sideNavVisible.set(visible);
   }
 }
