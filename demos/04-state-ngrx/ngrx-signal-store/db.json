@@ -19,16 +19,11 @@
       "url": "store-entities",
       "title": "SignalStore Entities",
       "id": 4
-    },    
+    },
     {
       "url": "custom-store-features",
       "title": "Custom Store Features",
       "id": 5
-    },
-    {
-      "url": "presenter-ngrx",
-      "title": "Container Presenter NgRx",
-      "id": 6
     },
     {
       "url": "deep-signals",

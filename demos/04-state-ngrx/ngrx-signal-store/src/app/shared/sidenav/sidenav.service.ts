@@ -33,6 +33,6 @@ export class SideNavService {
   }
 
   toggleMenuVisibility() {
-    this.navStore.toggleSideNav();
+    this.navStore.toggleSideNavVisible();
   }
 }

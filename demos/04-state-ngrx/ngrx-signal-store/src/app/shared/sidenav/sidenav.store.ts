@@ -15,7 +15,7 @@ export const sideNavStore = signalStore(
   { providedIn: 'root', protectedState: false },
   withState(initialSideNavState),
   withMethods((store) => ({
-    toggleSideNav() {
+    toggleSideNavVisible() {
       patchState(store, { sideNavVisible: !store.sideNavVisible() });
     },
     changeSideNavVisible(visible: boolean) {
