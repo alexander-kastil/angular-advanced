@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { EMPTY, Observable, interval, of, throwError } from 'rxjs';
 import {
   catchError,
@@ -7,25 +9,23 @@ import {
   retry,
   tap
 } from 'rxjs/operators';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { DemoService } from '../../demo-base/demo.service';
 import { Voucher } from '../../vouchers/voucher.model';
 import { VouchersService } from '../../vouchers/voucher.service';
-import { MatButton } from '@angular/material/button';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
-import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-err-handling',
-    templateUrl: './err-handling.component.html',
-    styleUrls: ['./err-handling.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-        MarkdownRendererComponent
-    ]
+  selector: 'app-err-handling',
+  templateUrl: './err-handling.component.html',
+  styleUrls: ['./err-handling.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+    MarkdownRendererComponent
+  ]
 })
 export class ErrHandlingComponent {
   vs = inject(VouchersService);
@@ -65,10 +65,10 @@ export class ErrHandlingComponent {
         }),
         finalize(() => console.log('finalizing ...'))
       )
-      .subscribe(
-        (data) => console.log('tryCatchAlike result', data),
-        (err) => console.log('tryCatchAlike error', err)
-      );
+      .subscribe({
+        next: (data) => console.log('tryCatchAlike result', data),
+        error: (err) => console.log('tryCatchAlike error', err)
+      });
   }
 
   fallbackValue() {
