@@ -5,19 +5,19 @@ import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 @Component({
-    selector: 'app-signals-basics',
-    templateUrl: './signals-basics.component.html',
-    styleUrls: ['./signals-basics.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-        BorderDirective,
-        CenteredDirective
-    ]
+  selector: 'app-signals-basics',
+  templateUrl: './signals-basics.component.html',
+  styleUrls: ['./signals-basics.component.scss'],
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+    BorderDirective,
+    CenteredDirective
+  ]
 })
 export class SignalsBasicsComponent {
   injector = inject(Injector)
@@ -35,6 +35,10 @@ export class SignalsBasicsComponent {
       console.log('grossAmount changed', this.grossAmount());
     });
   }
+
+  logChanges = effect(() => {
+    console.log('amount changed declarative effect function', this.netAmount());
+  });
 
   // exotic use case
   logLikes() {

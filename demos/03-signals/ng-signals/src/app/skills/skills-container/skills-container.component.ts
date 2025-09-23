@@ -1,47 +1,48 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { SkillRowComponent } from '../skill-row/skill-row.component';
 import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
-import { AsyncPipe } from '@angular/common';
 import { SkillsKpiComponent } from '../skills-kpi/skills-kpi.component';
-import { SkillRowComponent } from '../skill-row/skill-row.component';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { MatButton } from '@angular/material/button';
-import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { environment } from '../../../environments/environment';
 
 @Component({
-    selector: 'app-skills-container',
-    templateUrl: './skills-container.component.html',
-    styleUrls: ['./skills-container.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatButton,
-        MatSlideToggle,
-        FormsModule,
-        ReactiveFormsModule,
-        SkillRowComponent,
-        SkillsKpiComponent
-    ]
+  selector: 'app-skills-container',
+  templateUrl: './skills-container.component.html',
+  styleUrls: ['./skills-container.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatButton,
+    MatSlideToggle,
+    FormsModule,
+    ReactiveFormsModule,
+    SkillRowComponent,
+    SkillsKpiComponent
+  ]
 })
 export class SkillsContainerComponent {
-  service = inject(SkillsEntityService);
+  skillsEntityService = inject(SkillsEntityService);
   fcToggle = new FormControl(true);
+  showAll$ = this.fcToggle.valueChanges.pipe(startWith(true));
+
   skills = toSignal(
-    this.service.entities$.pipe(
-      combineLatestWith(this.fcToggle.valueChanges.pipe(startWith(true))),
+    this.skillsEntityService.entities$.pipe(
+      combineLatestWith(this.showAll$),
       map(([skills, showAll]) => {
         return showAll ? skills : skills.filter((sk: Skill) => sk.completed === showAll);
       })
     ));
 
   ngOnInit(): void {
-    this.service.loaded$.subscribe((loaded) => {
+    this.skillsEntityService.loaded$.subscribe((loaded) => {
       if (!loaded) {
-        this.service.getAll();
+        this.skillsEntityService.getAll();
       }
     });
   }
@@ -59,14 +60,14 @@ export class SkillsContainerComponent {
       name: 'Configuration Mgmt',
       completed: false,
     };
-    this.service.add(newItem);
+    this.skillsEntityService.add(newItem);
   }
 
   deleteItem(item: Skill): void {
-    this.service.delete(item);
+    this.skillsEntityService.delete(item);
   }
 
   toggleItemComplete(item: Skill): void {
-    this.service.update({ ...item, completed: !item.completed });
+    this.skillsEntityService.update({ ...item, completed: !item.completed });
   }
 }
