@@ -22,14 +22,14 @@ describe('Component - Directive - CapitalizeDirective', () => {
 
   it('should capitalize text when initially clicked', () => {
     const debugEl: HTMLElement = fixture.debugElement.nativeElement;
-    const div: HTMLElement = debugEl.querySelector('#divDirective') as HTMLElement;
+    const div: HTMLElement = debugEl.querySelector('[data-testid="divDirective"]') as HTMLElement;
     div.click();
     expect(div.style.textTransform).toBe('uppercase');
   });
 
   it('should lowercase when clicked twice', () => {
     const debugEl: HTMLElement = fixture.debugElement.nativeElement;
-    const div: HTMLElement = debugEl.querySelector('#divDirective') as HTMLElement;
+    const div: HTMLElement = debugEl.querySelector('[data-testid="divDirective"]') as HTMLElement;
     div.click();
     div.click();
     expect(div.style.textTransform).toBe('lowercase');
