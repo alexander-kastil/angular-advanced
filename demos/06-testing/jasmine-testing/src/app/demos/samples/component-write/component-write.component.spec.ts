@@ -1,9 +1,9 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MarkdownModule } from 'ngx-markdown';
 import { ComponentWriteComponent } from './component-write.component';
-import { HttpClientModule } from '@angular/common/http';
 
 describe('ComponentWriteComponent', () => {
   let fixture: ComponentFixture<ComponentWriteComponent>;
@@ -13,9 +13,11 @@ describe('ComponentWriteComponent', () => {
       imports: [
         ComponentWriteComponent,
         NoopAnimationsModule,
-        HttpClientModule,
         MarkdownModule.forRoot()
-      ]
+      ],
+      providers: [
+        provideHttpClient(),
+      ],
     }).createComponent(ComponentWriteComponent);
   });
 
