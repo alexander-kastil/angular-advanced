@@ -1,8 +1,7 @@
 import { Directive, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
 
 @Directive({
-    selector: '[appCapitalize]',
-    standalone: true,
+  selector: '[appCapitalize]'
 })
 export class CapitalizeDirective {
   el = inject(ElementRef);
