@@ -72,4 +72,29 @@ describe('Service - HttpTest -FoodService', () => {
     req.flush(data);
   });
 
+  it('should delete a food item by id', () => {
+    const itemToDelete: FoodItem = { id: 2, name: 'Butter Chicken', rating: 5 };
+    service.deleteFood(itemToDelete).subscribe((result) => {
+      expect(result).toBeTruthy();
+    });
+    const url = `${environment.api}food/${itemToDelete.id}`;
+    const req = controller.expectOne(url);
+    expect(req.request.method).toEqual('DELETE');
+    req.flush({});
+  });
+
+  it('should add a food item', () => {
+    const newItem: FoodItem = { id: 10, name: 'Sushi', rating: 4 };
+    service.addFood(newItem).subscribe((result) => {
+      expect(result).toBeTruthy();
+      expect(result.id).toEqual(10);
+      expect(result.name).toBe('Sushi');
+    });
+    const url = `${environment.api}food`;
+    const req = controller.expectOne(url);
+    expect(req.request.method).toEqual('PUT');
+    expect(req.request.body).toEqual(newItem);
+    req.flush(newItem);
+  });
+
 });

@@ -22,4 +22,9 @@ describe('Pipe - Phonenumber', () => {
     const result = pipe.transform(phoneNumber);
     expect(result).toBe(phoneNumber);
   });
+
+  it('should throw error if no input is passed', () => {
+    expect(() => pipe.transform(undefined)).toThrowError('No input provided to phone pipe');
+    expect(() => pipe.transform(null)).toThrowError('No input provided to phone pipe');
+  });
 });
