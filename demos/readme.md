@@ -18,7 +18,7 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Using & Migrating to Control Flow Syntax
 - Deferred Loading
 - Standalone Directives & Directives Composition Api
-- Content Projection 
+- Content Projection
 - HostBinding & HostListener
 - Reactive Forms (FormGroup, Form Builder, FormControl, FormArray)
 - Typed Forms Nullability, NonNullableFormBuilder, GetRawValue
@@ -38,9 +38,8 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Mouse & DOM Events as Observables
 - Subject Types & Stateful Services
 - Unsubscribing DestroyRef & takeUntilDestroyed
-- Base Operators: Mapping, Filtering, Merging, 
+- Base Operators: Mapping, Filtering, Merging,
 - Understanding Marble Diagrams & Debugging Observables
-- Marble-testing RxJS
 - Combination & Transformation Operators
 - Retry & Error Handling Strategies
 - Implementing & Testing Custom Observable Operators
@@ -56,14 +55,18 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Communication between Components using Event Bus Pattern
 - Zoneless Change Detection using Signals
 
-### State Management using NgRx Classic & NgRx SignalStore
+### Implementing Signal based Forms
+
+- Introduction to Signal based Forms
+- Using Schemas
+- Validation, Custom Validators & Error Handling
+- Nested Forms, Form Groups and Arrays
+- Implementing Custom Fields
+
+### Client Side State Management using NgRx SignalStore
 
 - Overview State Management Patterns
 - NgRx Classic vs Signal Store
-- Introduction to the Classic NgRx & Redux Pattern
-- Implementing NgRx Store, Reducers & Selectors using createFeature
-- Actions & createActionGroup
-- Effects, Facades, @ngrx/entity & @ngrx/data
 - Creating a Signals Store using @ngrx/signals
 - NgRx and Signals Interoperability
 - Side Effects using rxMethod
@@ -100,21 +103,22 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Material Testing using Component Harnesses
 - Async Component Testing (done, fakeAsync, waitForAsync)
 - Components Marble Testing
-- Testing NgRx: Mock Store, Mock Selectors, Reducers, Effects, Facades
-- Using Jest for Unit Testing (Setup, Changes in spec, Snapshot Tests)
+- Testing & Mocking Signal Stores
 - Introduction to End-2-End Testing using Cypress
 - Cypress Component Tests
 
-### Reusability with Libraries, Nx & Angular Elements
+### Upgrading & Reusability with Libraries, Nx & Angular Elements
 
 - Angular Building Blocks: Workspace, Apps, Libraries
 - Reusable Artifacts using Angular Libraries
+- Understanding Monorepos: Pro / Cons
 - Introduction to Nx Workspaces
-- Creating a reusable AI Chat Component using Angular Elements
+- Implementing Web Components using Angular Elements
+- Upgrading Angular Applications
 
 ### Real Time, Micro-Frontends, Progressive Web Apps
 
-- Introduction to Micro-Frontends 
+- Introduction to Micro-Frontends
 - Real Time connected Micro-Frontend processing Cloud Events
 - Introduction to Progressive Web Apps
 - Understanding and Configuring Service Workers & Manifests
@@ -125,8 +129,8 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Using Chrome Dev Tools & Lighthouse for Performance Optimization
 - Understanding & Using Page Traces & Web Vitals
 - Analyzing and Optimizing Bundles & Components
-- Optimizing Images using NgOptimizedImage 
-- Data-Loading Strategies, Virtual- & Infinite Scrolling, 
+- Optimizing Images using NgOptimizedImage
+- Data-Loading Strategies, Virtual- & Infinite Scrolling,
 - Understanding, Profiling & Optimizing Angular Change Detection
 - Understanding & Optimizing Angular Change Detection
 - Introduction to Server Side Rendering (SSR) and Non-destructive hydration
