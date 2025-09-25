@@ -6,10 +6,12 @@ import { FoodOrder } from './order.model';
 
 export interface OrdersState {
   orders: CloudEvent<FoodOrder>[];
+  loading: boolean;
 }
 
 export const initialState: OrdersState = {
   orders: [],
+  loading: false,
 };
 
 @Injectable()

@@ -1,5 +1,5 @@
-@topicurl=https://foodevents-dev-15199.westeurope-1.eventgrid.azure.net/api/events
-@topickey=2FznxhcI8lij1YKsoknF2EiI4o3lVrwRaWKQDdBmCqDsUZena7A9JQQJ99AIAC5RqLJXJ3w3AAABAZEGFE8I
+@topicurl=https://foodevents-dev-9504.westeurope-1.eventgrid.azure.net/api/events
+@topickey=3TpGx3bKKsEeGPmMkXqVOWisL0KuNa52GDhy85PY6GFAHSWkKOk2JQQJ99BIAC5RqLJXJ3w3AAABAZEGfvHC
 
 POST  {{topicurl}} HTTP/1.1
 content-type: application/cloudevents+json; charset=utf-8
@@ -15,12 +15,12 @@ aeg-sas-key: {{topickey}}
    "data":{
       "id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
       "customerId": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
-      "customerName": "John Doe",
+      "customerName": "Alex Kastil",
       "address": "123 Main Street, Seattle, WA 98101",
       "status": "incoming",
       "items": [
          {
-            "name": "butter chicken",
+            "name": "Rindsuppe",
             "quantity": 2
          },
          {

@@ -38,7 +38,7 @@ cd food-orders-func
 func azure functionapp publish $funcApp --csharp
 cd ..
 
-# subscribe event grid topc
+# subscribe event grid topic
 az eventgrid event-subscription create --name $funcApp \
     --source-resource-id $topicid \
     --endpoint https://$funcEP/api/orderSubscription \
