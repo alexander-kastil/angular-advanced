@@ -1,12 +1,12 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MarkdownModule } from 'ngx-markdown';
+import { EMPTY, of } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 import { MarblesComponent } from './marbles.component';
 import { PersonService } from './person.service';
-import { EMPTY, of } from 'rxjs';
-import { By } from '@angular/platform-browser';
-import { MarkdownModule } from 'ngx-markdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 
 describe('MaterialAsyncComponent', () => {
   let fixture: ComponentFixture<MarblesComponent>;
@@ -24,12 +24,12 @@ describe('MaterialAsyncComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MarblesComponent,
-        HttpClientModule,
         MarkdownModule.forRoot(),
         BrowserAnimationsModule
       ],
       providers: [
-        { provide: PersonService, useValue: spy }
+        { provide: PersonService, useValue: spy },
+        provideHttpClient()
       ],
     });
     fixture = TestBed.createComponent(MarblesComponent);

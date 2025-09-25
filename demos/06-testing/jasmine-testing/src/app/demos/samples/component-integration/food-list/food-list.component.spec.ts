@@ -1,14 +1,13 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, flush, tick, flushMicrotasks } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FoodServiceBS } from '../../food/food.service-bs';
-import { RatingPipe } from '../../pipe/rating.pipe';
 import { FoodRowComponent } from '../food-row/food-row.component';
 import { FoodListComponent } from './food-list.component';
 
 describe('Component - Integration Test', () => {
-  let fs: any;
+  let foodServiceSpy: any;
   const foodData = [
     { name: 'Pad Thai', rating: 5 },
     { name: 'Butter Chicken', rating: 5 },
@@ -28,10 +27,10 @@ describe('Component - Integration Test', () => {
   let de: DebugElement;
 
   beforeEach(() => {
-    fs = jasmine.createSpyObj(['getFood', 'deleteFood']);
+    foodServiceSpy = jasmine.createSpyObj(['getFood', 'deleteFood']);
 
     const module = {
-      providers: [{ provide: FoodServiceBS, useValue: fs }],
+      providers: [{ provide: FoodServiceBS, useValue: foodServiceSpy }],
       schemas: [NO_ERRORS_SCHEMA],
     };
 
@@ -42,8 +41,8 @@ describe('Component - Integration Test', () => {
   });
 
   it('should render each FoodItem as FoodItemRow', () => {
-    fs.getFood.and.returnValue(of(foodData));
-    fixture.detectChanges();
+    foodServiceSpy.getFood.and.returnValue(of(foodData));
+    fixture.autoDetectChanges();
 
     const rows = fixture.debugElement.queryAll(By.directive(FoodRowComponent));
     expect(rows.length).toEqual(4);
@@ -51,7 +50,7 @@ describe('Component - Integration Test', () => {
   });
 
   it('should have three rows when an item is deleted', fakeAsync(() => {
-    fs.getFood.and.returnValue(of(foodData));
+    foodServiceSpy.getFood.and.returnValue(of(foodData));
     fixture.autoDetectChanges();
 
     spyOn(comp, 'deleteFood');
@@ -59,7 +58,7 @@ describe('Component - Integration Test', () => {
     const row = deRow.componentInstance;
     row.delete.emit(deleteItem);
 
-    fs.deleteFood.and.returnValue(of(serviceResult));
+    foodServiceSpy.deleteFood.and.returnValue(of(serviceResult));
     expect(comp.deleteFood).toHaveBeenCalledWith(deleteItem);
   }));
 });

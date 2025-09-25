@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { customersStore } from '../customers.store';
 import { provideHttpClient } from '@angular/common/http';
 import { CustomersComponent } from './customers.component';
