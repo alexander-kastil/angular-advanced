@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import { effect } from '@angular/core';
 import { CloudEvent } from '@azure/eventgrid';
-import { ComponentStore } from '@ngrx/component-store';
-import { map } from 'rxjs/operators';
+import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
 import { FoodOrder } from './order.model';
 
 export interface OrdersState {
@@ -9,57 +8,70 @@ export interface OrdersState {
   loading: boolean;
 }
 
-export const initialState: OrdersState = {
+const createInitialState = (): OrdersState => ({
   orders: [],
   loading: false,
-};
+});
 
-@Injectable()
-export class OrdersStore extends ComponentStore<OrdersState> {
-  orders$ = this.select((state) => state.orders);
+const isBrowser = typeof window !== 'undefined';
+const storageKey = 'orders';
 
-  constructor() {
-    super(initialState);
-  }
+export const OrdersStore = signalStore(
+  withState(createInitialState()),
+  withMethods((store) => ({
+    resetOrders: () => {
+      patchState(store, createInitialState());
+    },
+    addOrder: (order: CloudEvent<FoodOrder>) => {
+      patchState(store, {
+        orders: [...store.orders(), order],
+      });
+    },
+    updateOrder: (order: CloudEvent<FoodOrder>) => {
+      const updated = store.orders().map((existing) =>
+        existing.id === order.id ? order : existing
+      );
 
-  init() {
-    this.loadOrdersFromStorage();
-  }
+      if (order.data?.status === 'ready' || order.data?.status === 'rejected') {
+        console.log('New order event', order);
+      }
 
-  resetOrders() {
-    this.setState(initialState);
-  }
+      patchState(store, { orders: updated });
+    },
+    loadOrdersFromStorage: () => {
+      if (!isBrowser) {
+        return;
+      }
 
-  addOrder(order: CloudEvent<FoodOrder>) {
-    this.setState((state) => ({
-      ...state,
-      orders: [...state.orders, order],
-    }));
-  }
+      const serialized = window.localStorage.getItem(storageKey);
+      if (!serialized) {
+        return;
+      }
 
-  updateOrder(order: CloudEvent<FoodOrder>) {
-    this.setState((state) => ({
-      ...state,
-      orders: state.orders.map((o) => o.id == order.id ? order : o),
-    }));
+      try {
+        const parsed = JSON.parse(serialized) as CloudEvent<FoodOrder>[];
+        patchState(store, { orders: parsed });
+      } catch (error) {
+        console.error('Failed to parse stored orders', error);
+        window.localStorage.removeItem(storageKey);
+      }
+    },
+  })),
+  withHooks(({ loadOrdersFromStorage, orders }) => ({
+    onInit() {
+      loadOrdersFromStorage();
 
-    if ((order.data?.status == 'ready', order.data?.status == 'rejected')) {
-      console.log('New order event', order);
-    }
-  }
+      effect(
+        () => {
+          if (!isBrowser) {
+            return;
+          }
 
-  loadOrdersFromStorage = this.effect((trigger$) => {
-    return trigger$.pipe(
-      map(() => {
-        let strOrders = localStorage.getItem('orders');
-        if (strOrders) {
-          const orders = JSON.parse(strOrders);
-          this.setState((state) => ({
-            ...state,
-            orders: [...orders],
-          }));
-        }
-      })
-    );
-  });
-}
+          const serialized = JSON.stringify(orders());
+          window.localStorage.setItem(storageKey, serialized);
+        },
+        { allowSignalWrites: true }
+      );
+    },
+  }))
+);
