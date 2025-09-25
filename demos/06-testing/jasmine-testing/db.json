@@ -96,6 +96,16 @@
       "id": 59
     },
     {
+      "url": "mock-signals-store",
+      "title": "Mock Signals Store",
+      "id": 56
+    },
+    {
+      "url": "test-signals-store",
+      "title": "Test Signals Store",
+      "id": 53
+    },
+    {
       "url": "cypress",
       "title": "Cypress",
       "id": 54
@@ -143,19 +153,23 @@
   ],
   "top-links": [
     {
-        "label": "Home",
-        "url": ""
+      "label": "Home",
+      "url": ""
     },
     {
-        "label": "Demos",
-        "url": "demos"
+      "label": "Demos",
+      "url": "demos"
     },
     {
-        "label": "Skills",
-        "url": "skills"
+      "label": "Skills",
+      "url": "skills"
+    },
+    {
+      "label": "Customers",
+      "url": "customers"
     }
-],
-"comments": [
+  ],
+  "comments": [
     {
       "id": 1,
       "url": "",

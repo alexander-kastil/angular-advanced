@@ -20,6 +20,8 @@ import { NgrxMockstoreComponent } from './samples/ngrx-mockstore/ngrx-mockstore.
 import { NgrxReducersComponent } from './samples/ngrx-reducers/ngrx-reducers.component';
 import { TestPipeComponent } from './samples/pipe/test-pipe.component';
 import { SimpleServiceComponent } from './samples/simple-service/simple-service.component';
+import { MockSignalsStoreComponent } from './samples/mock-signals-store/mock-signals-store.component';
+import { TestSignalsStoreComponent } from './samples/test-signals-store/test-signals-store.component';
 
 export const demoRoutes: Routes = [
     {
@@ -46,6 +48,8 @@ export const demoRoutes: Routes = [
             { path: 'spy', component: SpyHostComponent },
             { path: 'ngrx-mock-store', component: NgrxMockstoreComponent },
             { path: 'ngrx-reducers', component: NgrxReducersComponent },
+            { path: 'mock-signals-store', component: MockSignalsStoreComponent },
+            { path: 'test-signals-store', component: TestSignalsStoreComponent },
         ],
     }
 ];

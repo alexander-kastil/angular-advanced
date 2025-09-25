@@ -16,4 +16,9 @@ export const appRoutes: Routes = [
         loadChildren: () =>
             import('./skills/skills.routes').then((m) => m.skillRoutes),
     },
+    {
+        path: 'customers',
+        loadChildren: () =>
+            import('./customers/customers.routes').then((m) => m.customerRoutes),
+    }
 ];
