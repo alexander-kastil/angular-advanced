@@ -1,0 +1,1 @@
+Examine `customers.store.spec.ts` to see how to test a store that uses a service to fetch and update data. Note how we use Jasmine's `spyOn` to create a mock service and simulate different scenarios, including successful data retrieval and error handling.

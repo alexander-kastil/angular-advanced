@@ -1,0 +1,1 @@
+Examine `customers.component.spec.ts` and `customers.component.ts` to see how to test a component that uses a service which returns a signal. Note how we create a mock service that returns a signal using `signal()` from `@angular/core`. This allows us to simulate different states of the signal in our tests.
