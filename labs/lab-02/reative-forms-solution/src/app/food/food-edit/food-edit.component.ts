@@ -18,29 +18,26 @@ import { FoodItem } from '../food.model';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule
-]
+  ]
 })
 export class FoodEditComponent {
   fb = inject(FormBuilder);
   readonly food = input<FoodItem>(new FoodItem());
   readonly onFoodSaved = output<FoodItem>();
+  foodForm = this.createForm(this.food());
 
-  foodForm = this.fb.nonNullable.group({
-    id: [this.food().id, [Validators.required]],
-    name: [this.food().name, [Validators.required, Validators.minLength(3)]],
-    price: [this.food().price, [Validators.required, Validators.min(1)]],
-    calories: this.food().calories,
-  })
+  onFoodChange = effect(() => {
+    this.foodForm = this.createForm(this.food());
+  });
 
-  // onFoodChange = effect(() => {
-
-  // }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['food']) {
-  //     this.foodForm.setValue(changes['food'].currentValue);
-  //   }
-  // }
+  private createForm(food: FoodItem) {
+    return this.fb.nonNullable.group({
+      id: [food.id, [Validators.required]],
+      name: [food.name, [Validators.required, Validators.minLength(3)]],
+      price: [food.price, [Validators.required, Validators.min(1)]],
+      calories: [food.calories],
+    });
+  }
 
   saveForm(): void {
     console.log('food to save', this.foodForm.value);
