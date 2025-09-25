@@ -1,4 +1,4 @@
-#  Reusability with Libraries, Schematics, Nx & Angular Elements
+#  Reusability with Libraries, Nx & Angular Elements
 
 - Angular Building Blocks: Workspace, Apps, Libraries
 - Reusable Artifacts using Angular Libraries
