@@ -124,7 +124,7 @@ This is a workshop for experienced Angular developers who want to deepen their k
 - Understanding and Configuring Service Workers & Manifests
 - Installing & Updating Progressive Web Apps
 
-# Optimizing Applications
+### Optimizing Applications
 
 - Using Chrome Dev Tools & Lighthouse for Performance Optimization
 - Understanding & Using Page Traces & Web Vitals
