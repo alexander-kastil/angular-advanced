@@ -4,8 +4,8 @@ LABEL author="Alexander Kastil"
 
 WORKDIR /app
 COPY . .
-RUN npm install
-RUN npm run build
+RUN npm install --legacy-peer-deps
+RUN npm run build 
 
 ##### Stage 2 - Create the run-time-image
 FROM nginx:alpine
