@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SideNavService } from '../sidenav/sidenav.service';
 import { AsyncPipe } from '@angular/common';
@@ -7,17 +7,19 @@ import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatIcon,
-        RouterLinkActive,
-        RouterLink,
-        AsyncPipe,
-    ]
+  selector: 'app-navbar',
+  standalone: true,
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatIcon,
+    RouterLinkActive,
+    RouterLink,
+    AsyncPipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
   ms = inject(SideNavService);
