@@ -1,5 +1,4 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { FormBuilder, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
@@ -28,7 +27,7 @@ import { SkillsEntityService } from '../skills-entity.service';
   ]
 })
 export class SkillsEditComponent {
-  @Input({ required: true }) id: number = 0;
+  readonly id = input(0);
   route = inject(ActivatedRoute);
   router = inject(Router);
   service = inject(SkillsEntityService);
@@ -42,14 +41,17 @@ export class SkillsEditComponent {
     completed: false,
   });
 
-  ngOnChanges(): void {
-    if (this.id != 0) {
-      this.service.getSkillById(this.id).subscribe((data) => {
-        if (data) {
-          this.skillForm.patchValue(data);
-        }
-      });
-    }
+  constructor() {
+    effect(() => {
+      const id = Number(this.id());
+      if (id !== 0) {
+        this.service.getSkillById(id).subscribe((data) => {
+          if (data) {
+            this.skillForm.patchValue(data);
+          }
+        });
+      }
+    });
   }
 
   saveSkill() {

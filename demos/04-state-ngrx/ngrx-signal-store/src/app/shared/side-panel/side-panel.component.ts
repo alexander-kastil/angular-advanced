@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -12,33 +12,36 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
-    selector: 'app-side-panel',
-    templateUrl: './side-panel.component.html',
-    styleUrls: ['./side-panel.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatMiniFabButton,
-        MatIcon,
-        MatTooltipModule
-    ]
+  selector: 'app-side-panel',
+  templateUrl: './side-panel.component.html',
+  styleUrls: ['./side-panel.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatMiniFabButton,
+    MatIcon,
+    MatTooltipModule
+  ],
+  // TODO: This component has been partially migrated to be zoneless-compatible.
+  // After testing, this should be updated to ChangeDetectionStrategy.OnPush.
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
   sidenav = inject(SideNavService);
   rendererState = inject(RendererStateService);
-  editorDisplayed = false;
-  icon = "create";
+  readonly editorDisplayed = signal(false);
+  readonly icon = signal("create");
 
   toggleEditor() {
-    if (this.editorDisplayed) {
+    if (this.editorDisplayed()) {
       this.eb.triggerCmd(SidebarActions.HIDE_MARKDOWN);
     } else {
       this.eb.triggerCmd(SidebarActions.SHOW_MARKDOWN);
     }
-    this.editorDisplayed = !this.editorDisplayed;
-    this.icon = this.editorDisplayed ? "close" : "create";
+    this.editorDisplayed.set(!this.editorDisplayed());
+    this.icon.set(this.editorDisplayed() ? "close" : "create");
   }
 
   toggleSideNav() {

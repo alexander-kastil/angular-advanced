@@ -2,7 +2,7 @@
   <mat-sidenav #sidenav [opened]="sidenavVisible()" [mode]="sidenavMode()">
     <mat-toolbar color="accent">
       <mat-toolbar-row>
-        {{ title }}
+        {{ title() }}
       </mat-toolbar-row>
     </mat-toolbar>
     <mat-nav-list>
@@ -22,12 +22,12 @@
       <div class="gdToolbar">
         <mat-toolbar color="accent">
           <mat-toolbar-row>
-            <h4>{{ header }}</h4>
+            <h4>{{ header() }}</h4>
           </mat-toolbar-row>
         </mat-toolbar>
       </div>
       <div class="gdLoading">
-        @if (isLoading) {
+        @if (isLoading()) {
           <app-loading />
         }
       </div>

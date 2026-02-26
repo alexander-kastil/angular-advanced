@@ -1,5 +1,5 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
-import { Component, DestroyRef, OnInit, computed, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, ChangeDetectionStrategy, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
@@ -17,25 +17,28 @@ import { SideNavService } from '../../shared/sidenav/sidenav.service';
 import { DemoFacade } from '../state/demo.facade';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        LoadingComponent,
-        RouterOutlet,
-        EditorContainerComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ]
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    NgStyle,
+    LoadingComponent,
+    RouterOutlet,
+    EditorContainerComponent,
+    SidePanelComponent,
+    AsyncPipe,
+  ],
+  // TODO: This component has been partially migrated to be zoneless-compatible.
+  // After testing, this should be updated to ChangeDetectionStrategy.OnPush.
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);
@@ -46,21 +49,21 @@ export class DemoContainerComponent implements OnInit {
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
 
-  title: string = environment.title;
-  header = 'Please select a demo';
-  demos = this.df.getDemos();
+  readonly title = signal(environment.title);
+  readonly header = signal('Please select a demo');
+  readonly demos = this.df.getDemos();
 
-  isLoading = false;
+  readonly isLoading = signal(false);
 
-  sidenavMode = this.nav.getSideNavPosition();
-  sidenavVisible = this.nav.getSideNavVisible();
-  workbenchMargin = computed(() => this.sidenavVisible() ? { 'margin-left': '5px' } : { 'margin-left': '0px' });
-  currentCMD = this.eb.getCommands();
-  showMdEditor = computed(() => this.currentCMD() !== SidebarActions.HIDE_MARKDOWN);
+  readonly sidenavMode = this.nav.getSideNavPosition();
+  readonly sidenavVisible = this.nav.getSideNavVisible();
+  readonly workbenchMargin = computed(() => this.sidenavVisible() ? { 'margin-left': '5px' } : { 'margin-left': '0px' });
+  readonly currentCMD = this.eb.getCommands();
+  readonly showMdEditor = computed(() => this.currentCMD() !== SidebarActions.HIDE_MARKDOWN);
 
   constructor() {
     this.ls.getLoading().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-      Promise.resolve(null).then(() => { this.isLoading = value });
+      this.isLoading.set(value);
     });
   }
 
@@ -84,12 +87,13 @@ export class DemoContainerComponent implements OnInit {
       filter((route: ActivatedRoute) => route.outlet === 'primary')
     )
       .subscribe((route: ActivatedRoute) => {
-        this.header =
+        this.header.set(
           route.component != null
             ? `Component: ${route.component
               .toString()
               .substring(7, route.component.toString().indexOf('{') - 1)}`
-            : '';
+            : ''
+        );
       });
   }
 }
