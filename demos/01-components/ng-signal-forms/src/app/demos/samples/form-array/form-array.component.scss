@@ -1,0 +1,14 @@
+mat-form-field {
+  width: 100%;
+}
+
+h6 {
+  margin-left: var(--gap-medium);
+  margin-bottom: var(--gap-medium);
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-medium);
+}
