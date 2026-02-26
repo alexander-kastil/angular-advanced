@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Person, wealthOptsValues } from '../person/person.model';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { form, FormField, required } from '@angular/forms/signals';
+import { wealthOptsValues } from '../person/person.model';
 import { PersonService } from '../person/person.service';
 import { MatButton } from '@angular/material/button';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
@@ -11,6 +11,20 @@ import { MatInput } from '@angular/material/input';
 import { ColumnDirective, BorderDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
+interface NestedModel {
+  name: string;
+  lastName: string;
+  age: number;
+  gender: string;
+  email: string;
+  wealth: string;
+  address: {
+    street: string;
+    city: string;
+    postalCode: string;
+  };
+}
+
 @Component({
   selector: 'app-reactive-nested',
   templateUrl: './reactive-nested.component.html',
@@ -20,9 +34,8 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
     MatCardHeader,
     MatCardTitle,
     MatCardContent,
-    FormsModule,
     ColumnDirective,
-    ReactiveFormsModule,
+    FormField,
     MatInput,
     MatFormField,
     MatLabel,
@@ -36,40 +49,46 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReactiveNestedComponent {
-  fb: FormBuilder = inject(FormBuilder);
-  ps: PersonService = inject(PersonService);
-  person: Person = new Person();
+  private ps = inject(PersonService);
   wealthOpts = wealthOptsValues;
-  personForm = this.fb.group({
-    id: [this.person.id],
-    name: [this.person.name, Validators.required],
-    lastname: [this.person.lastName, Validators.required],
-    age: [this.person.age],
-    gender: [this.person.gender],
-    email: [this.person.email],
-    wealth: [this.person.wealth],
-    address: this.fb.group({
-      street: [this.person.address?.street],
-      city: [this.person.address?.city],
-      postalCode: [this.person.address?.postalCode],
-    }),
+
+  personModel = signal<NestedModel>({
+    name: '',
+    lastName: '',
+    age: 0,
+    gender: 'not set',
+    email: '',
+    wealth: '',
+    address: { street: '', city: '', postalCode: '' },
   });
 
-  ngOnInit() {
+  // Signal Forms supports nested objects via dot notation
+  personForm = form(this.personModel, (s) => {
+    required(s.name, { message: 'Name is required' });
+    required(s.lastName, { message: 'Last name is required' });
+    required(s.address.street, { message: 'Street is required' });
+  });
+
+  constructor() {
     this.ps.getPerson().subscribe((p) => {
-      //Reminder: setValue vs patchValue
-      this.personForm.patchValue(p);
-      console.log('Data loaded from service', p);
+      this.personModel.update((m) => ({
+        ...m,
+        name: p.name,
+        lastName: p.lastName ?? '',
+        age: p.age,
+        gender: p.gender,
+        email: p.email,
+        wealth: p.wealth,
+        address: p.address ?? m.address,
+      }));
     });
 
     setTimeout(() => {
-      //Use this to update form incrementally
-      this.personForm.patchValue({ name: 'Soi' });
-      console.log('Cleo changed to Soi');
+      this.personModel.update((m) => ({ ...m, name: 'Soi' }));
     }, 3000);
   }
 
-  savePerson(personForm: any): void {
-    this.ps.save(personForm);
+  savePerson(): void {
+    this.ps.save(this.personModel() as any);
   }
 }

@@ -1,58 +1,64 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { applyEach, form, FormField, required } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
+
+interface SkillsModel {
+  name: string;
+  skills: Array<{ skill: string; years: string }>;
+}
 
 @Component({
   selector: 'app-form-array',
   templateUrl: './form-array.component.html',
   styleUrls: ['./form-array.component.scss'],
   imports: [
-    ReactiveFormsModule,
+    FormField,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MarkdownRendererComponent
+    MarkdownRendererComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormArrayComponent {
-  fb: FormBuilder = inject(FormBuilder);
-
-  skillForm = this.fb.group({
+  skillModel = signal<SkillsModel>({
     name: 'Giro',
-    skills: this.fb.array([
-      this.fb.group({ skill: 'Hunting', years: '9' }),
-    ]),
+    skills: [{ skill: 'Hunting', years: '9' }],
+  });
+
+  skillForm = form(this.skillModel, (s) => {
+    required(s.name, { message: 'Name is required' });
+    applyEach(s.skills, (item) => {
+      required(item.skill, { message: 'Skill name required' });
+      required(item.years, { message: 'Years required' });
+    });
   });
 
   addSkill() {
-    const skillsGrp = this.skillForm.controls.skills as FormArray;
-    skillsGrp.push(
-      this.fb.group({
-        skill: '',
-        years: '',
-      })
-    );
+    this.skillModel.update(m => ({
+      ...m,
+      skills: [...m.skills, { skill: '', years: '' }],
+    }));
   }
 
   removeSkill(index: number) {
-    const skillsGrp = this.skillForm.controls.skills as FormArray;
-    skillsGrp.removeAt(index);
+    this.skillModel.update(m => ({
+      ...m,
+      skills: m.skills.filter((_, i) => i !== index),
+    }));
   }
 
   checkArrayValid() {
-    const skillsGrp = this.skillForm.controls.skills as FormArray;
-    const lastSkill = skillsGrp.at(skillsGrp.length - 1);
-    return lastSkill.value.skill === '' || lastSkill.value.years === '';
+    const lastSkill = this.skillModel().skills.at(-1);
+    return !lastSkill?.skill || !lastSkill?.years;
   }
 
   saveForm() {
-    console.log('saving ...', this.skillForm.value);
+    console.log('saving ...', this.skillModel());
   }
 }

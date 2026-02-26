@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { form, FormField, applyEach } from '@angular/forms/signals';
 import { MatButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -7,6 +7,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { BorderDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
+import { SkillItem, SkillProfile } from './skill-profile.model';
 
 @Component({
   selector: 'app-reactive-cascade',
@@ -17,8 +18,7 @@ import { BorderDirective } from '../../../shared/ux-lib/formatting/formatting-di
     MatCardHeader,
     MatCardTitle,
     MatCardContent,
-    FormsModule,
-    ReactiveFormsModule,
+    FormField,
     MatFormField,
     MatInput,
     MatLabel,
@@ -30,51 +30,34 @@ import { BorderDirective } from '../../../shared/ux-lib/formatting/formatting-di
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReactiveCascadeComponent {
-  fb: FormBuilder = inject(FormBuilder);
-
   readonly selectValues = [
-    {
-      type: 'Frameworks',
-      values: ['Angular', 'React', '.NET Core', 'Spring']
-    },
-    {
-      type: 'Languages',
-      values: ['TypeScript', 'JavaScript', 'C#', 'Java', 'Python'],
-    },
-    {
-      type: 'Cloud',
-      values: ['Azure', 'AWS', 'Google']
-    },
+    { type: 'Frameworks', values: ['Angular', 'React', '.NET Core', 'Spring'] },
+    { type: 'Languages', values: ['TypeScript', 'JavaScript', 'C#', 'Java', 'Python'] },
+    { type: 'Cloud', values: ['Azure', 'AWS', 'Google'] },
   ];
 
-  selects: string[] = [];
-
-  profileForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    skills: this.fb.array([this.fb.nonNullable.group({
-      techType: [''],
-      techValues: [''],
-    })]),
+  profileModel = signal<SkillProfile>({
+    firstName: '',
+    lastName: '',
+    skills: [{ techType: '', techValues: '' }],
   });
 
-  saveProfileForm() {
-    console.log(this.profileForm.value);
+  profileForm = form(this.profileModel, (s) => {
+    applyEach(s.skills, (_item) => { });
+  });
+
+  getCriteria(techType: string): string[] {
+    return this.selectValues.find((s) => s.type === techType)?.values ?? [];
   }
 
-  getCriteria(type: any) {
-    const select = this.selectValues.find((tech) => tech.type == type);
-    return select ? select.values : select;
-  }
-
-  saveForm() {
-    console.log('form saves:', this.profileForm);
-  }
-
-  addSkill() {
-    this.profileForm.controls.skills.push(this.fb.nonNullable.group({
-      techType: [''],
-      techValues: [''],
+  addSkill(): void {
+    this.profileModel.update((m) => ({
+      ...m,
+      skills: [...m.skills, { techType: '', techValues: '' }],
     }));
+  }
+
+  saveForm(): void {
+    console.log('form saves:', this.profileModel());
   }
 }

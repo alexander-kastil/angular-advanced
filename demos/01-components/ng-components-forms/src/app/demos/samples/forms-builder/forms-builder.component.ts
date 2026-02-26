@@ -1,74 +1,53 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Person, wealthOptsValues } from '../person/person.model';
-import { PersonService } from '../person/person.service';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { email, form, FormField, min, required, validate } from '@angular/forms/signals';
 import { MatButton } from '@angular/material/button';
-import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatOption } from '@angular/material/core';
-import { MatSelect } from '@angular/material/select';
-import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MatInput } from '@angular/material/input';
+import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
+import { MatSelect } from '@angular/material/select';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
+import { wealthOptsValues } from '../person/person.model';
+import { PersonService } from '../person/person.service';
 
 @Component({
   selector: 'app-forms-builder',
   templateUrl: './forms-builder.component.html',
   styleUrls: ['./forms-builder.component.scss'],
   imports: [
-    MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatSelect,
-    MatOption,
-    MatRadioGroup,
-    MatRadioButton,
-    MatButton,
+    MarkdownRendererComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent,
+    ColumnDirective, FormField, MatInput, MatFormField, MatLabel,
+    MatSelect, MatOption, MatRadioGroup, MatRadioButton, MatButton,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormBuilderComponent implements OnInit {
-  fb: FormBuilder = inject(FormBuilder);
-  ps: PersonService = inject(PersonService);
-  person: Person = new Person();
+export class FormBuilderComponent {
+  private ps = inject(PersonService);
   wealthOpts = wealthOptsValues;
-  genderPattern = '^(male|female|diverse)';
+  genderPattern = /^(male|female|diverse)$/;
 
-  personForm = this.fb.group({
-    id: [this.person.id],
-    name: [this.person.name, { validators: [Validators.required] }],
-    age: [this.person.age, { validators: [Validators.min(1)] }],
-    email: [this.person.email, { validators: [Validators.email] }],
-    gender: [this.person.gender, { validators: [Validators.pattern(this.genderPattern)] }],
-    wealth: [this.person.wealth],
+  personModel = signal({
+    id: 0, name: '', age: 0, email: '',
+    gender: 'not set' as 'male' | 'female' | 'not set', wealth: '',
   });
 
-  ngOnInit() {
-    this.ps.getPerson().subscribe((p) => {
-      //Reminder: explain setValue vs patchValue
-      // this.personForm.setValue(p);
-      this.personForm.patchValue(p);
-      console.log('Data loaded from service', p);
-    });
+  personForm = form(this.personModel, (s) => {
+    required(s.name, { message: 'Name is required' });
+    min(s.age, 1, { message: 'Age must be at least 1' });
+    email(s.email, { message: 'Invalid email' });
+    validate(s.gender, ({ value }) =>
+      this.genderPattern.test(value()) ? null : { kind: 'pattern', message: 'Invalid gender' }
+    );
+  });
 
-    setTimeout(() => {
-      //Use this to update form incrementally
-      this.personForm.patchValue({ name: 'Soi' });
-      console.log('Cleo changed to Soi');
-    }, 3000);
+  constructor() {
+    this.ps.getPerson().subscribe(p => this.personModel.update(m => ({ ...m, ...p })));
+    setTimeout(() => this.personModel.update(m => ({ ...m, name: 'Soi' })), 3000);
   }
 
-  savePerson(): void {
-    this.ps.save(this.personForm as unknown as NgForm);
-    console.log('Getting raw value of id:', this.personForm.getRawValue().id);
+  savePerson() {
+    console.log('Saving:', this.personModel());
   }
 }

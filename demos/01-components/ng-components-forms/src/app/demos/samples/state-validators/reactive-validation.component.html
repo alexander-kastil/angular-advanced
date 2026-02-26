@@ -2,79 +2,62 @@
 
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title> FormsBuilder & Validation </mat-card-title>
+    <mat-card-title>Signal Forms - Sync & Async Validation</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form
-      [formGroup]="personForm"
-      (ngSubmit)="savePerson(personForm)"
-      role="form"
-      novalidate
-      column
-    >
+    <form role="form" novalidate column>
       <mat-form-field>
-        <input matInput type="text" placeholder="Name" formControlName="name" />
-        @if (evalShowError('name')) {
-        <mat-error> The Name Hugo is not allowed </mat-error>
-        }
-        <!-- outsource the logic to the typescript file -->
-        @if (violatesMinLength()) {
-        <mat-error> Name is required (minimum 4 characters). </mat-error>
-        }
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Name" [formField]="personForm.name" />
       </mat-form-field>
+      @if (personForm.name().touched() && personForm.name().invalid()) {
+        @for (err of personForm.name().errors(); track err.kind) {
+          <div class="error">{{ err.message }}</div>
+        }
+      }
 
       <mat-form-field>
-        <input matInput type="number" placeholder="Age" formControlName="age" />
-        @if (personForm.controls['age'].errors != undefined) {
-        <mat-error> Person must be between 18 and 99 </mat-error>
-        }
+        <mat-label>Age</mat-label>
+        <input matInput type="number" placeholder="Age" [formField]="personForm.age" />
       </mat-form-field>
+      @if (personForm.age().touched() && personForm.age().invalid()) {
+        @for (err of personForm.age().errors(); track err.kind) {
+          <div class="error">{{ err.message }}</div>
+        }
+      }
 
       <mat-form-field>
-        <input
-          matInput
-          type="text"
-          placeholder="Email"
-          formControlName="email"
-        />
-        @if ( personForm.controls['email'].errors != undefined &&
-        personForm.controls['email'].errors['mailExists'] ) {
-        <mat-error>Sorry this mail is already registered</mat-error>
-        }
+        <mat-label>Email</mat-label>
+        <input matInput type="text" placeholder="Email" [formField]="personForm.email" />
       </mat-form-field>
+      @if (personForm.email().pending()) {
+        <div>Checking email...</div>
+      }
+      @if (personForm.email().touched() && personForm.email().invalid()) {
+        @for (err of personForm.email().errors(); track err.kind) {
+          <div class="error">{{ err.message }}</div>
+        }
+      }
 
       <mat-form-field>
-        <mat-select placeholder="Gender" formControlName="gender">
+        <mat-label>Gender</mat-label>
+        <mat-select placeholder="Gender" [formField]="personForm.gender">
           <mat-option value="male">Male</mat-option>
           <mat-option value="female">Female</mat-option>
+          <mat-option value="not set">Not set</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-radio-group
-        aria-label="Select an option"
-        name="wealth"
-        formControlName="wealth"
-      >
+      <mat-radio-group name="wealthValidation" [formField]="personForm.wealth">
         <mat-label>Wealth:</mat-label>
         @for (opt of wealthOpts; track opt) {
-          <mat-radio-button value="{{ opt }}">{{ opt }}</mat-radio-button>
+          <mat-radio-button [value]="opt">{{ opt }}</mat-radio-button>
         }
       </mat-radio-group>
+
       <div class="cmdItems">
-        <button
-          mat-raised-button
-          (click)="validateForm(personForm)"
-          color="primary"
-        >
-          Validate
-        </button>
-        <!-- valid is false by default when using async validators -->
-        <button
-          mat-raised-button
-          type="submit"
-          color="primary"
-          [disabled]="!personForm.valid" 
-        >
+        <button mat-raised-button type="button" color="primary"
+          [disabled]="personForm().invalid()" (click)="savePerson()">
           Submit
         </button>
       </div>
@@ -84,29 +67,25 @@
 
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>Control State - "Name" Field</mat-card-title>
+    <mat-card-title>Name Field State</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    Name Fld is dirty: {{ personForm.controls["name"].dirty }}<br />
-    Name Fld is pristine: {{ personForm.controls["name"].pristine }}<br />
-    Name Fld is valid: {{ personForm.controls["name"].valid }}<br />
-    Name Fld is invalid: {{ personForm.controls["name"].invalid }}<br />
-    Name Fld is touched: {{ personForm.controls["name"].touched }}<br />
-    Name Fld is untouched: {{ personForm.controls["name"].untouched }}
+    dirty: {{ personForm.name().dirty() }} |
+    valid: {{ personForm.name().valid() }} |
+    touched: {{ personForm.name().touched() }} |
+    pending: {{ personForm.name().pending() }}
   </mat-card-content>
 </mat-card>
 
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>Control State - "E-Mail" Field</mat-card-title>
+    <mat-card-title>Email Field State</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    E-Mail is dirty: {{ personForm.controls["email"].dirty }}<br />
-    E-Mail is pristine: {{ personForm.controls["email"].pristine }}<br />
-    E-Mail is valid: {{ personForm.controls["email"].valid }}<br />
-    E-Mail is invalid: {{ personForm.controls["email"].invalid }}<br />
-    E-Mail is touched: {{ personForm.controls["email"].touched }}<br />
-    E-Mail is untouched: {{ personForm.controls["email"].untouched }}
+    dirty: {{ personForm.email().dirty() }} |
+    valid: {{ personForm.email().valid() }} |
+    touched: {{ personForm.email().touched() }} |
+    pending: {{ personForm.email().pending() }}
   </mat-card-content>
 </mat-card>
 
@@ -115,11 +94,8 @@
     <mat-card-title>Form State</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    Form is dirty: {{ personForm.dirty }}<br />
-    Form is pristine ('unberührt'): {{ personForm.pristine }}<br />
-    Form is valid: {{ personForm.valid }}<br />
-    Form is invalid: {{ personForm.invalid }}<br />
-    Form is touched: {{ personForm.touched }}<br />
-    Form is untouched: {{ personForm.untouched }}<br />
+    valid: {{ personForm().valid() }} |
+    touched: {{ personForm().touched() }} |
+    pending: {{ personForm().pending() }}
   </mat-card-content>
 </mat-card>

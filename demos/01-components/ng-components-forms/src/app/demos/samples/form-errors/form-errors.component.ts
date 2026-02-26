@@ -1,14 +1,18 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { applyEach, form, FormField, maxLength, min, minLength, required, validate } from '@angular/forms/signals';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
-import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { map } from 'rxjs';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { RowDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
+
+interface SkillsForm {
+  name: string;
+  age: number;
+  skills: Array<{ skillName: string; years: string }>;
+}
 
 @Component({
   selector: 'app-form-errors',
@@ -16,74 +20,44 @@ import { RowDirective } from '../../../shared/ux-lib/formatting/formatting-direc
   styleUrls: ['./form-errors.component.scss'],
   imports: [
     MarkdownRendererComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatError,
-    RowDirective,
-    MatCardActions,
-    MatButton,
-    JsonPipe,
+    FormField,
+    MatCard, MatCardHeader, MatCardTitle, MatCardContent,
+    MatFormField, MatLabel, MatInput,
+    RowDirective, MatCardActions, MatButton, JsonPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormErrorsComponent {
-  fb: FormBuilder = inject(FormBuilder);
-  skillForm = this.fb.group({
-    name: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(15),
-        this.validateName
-      ],
-    ],
-    age: [0, [Validators.required, Validators.min(18)]],
-    skillsGrp: this.fb.array([]),
+  skillModel = signal<SkillsForm>({ name: '', age: 0, skills: [] });
+
+  skillForm = form(this.skillModel, (s) => {
+    required(s.name, { message: 'Name is required' });
+    minLength(s.name, 4, { message: 'Min 4 characters' });
+    maxLength(s.name, 15, { message: 'Max 15 characters' });
+    validate(s.name, ({ value }) =>
+      value() === 'Hugo' ? { kind: 'invalidName', message: 'Hugo is not allowed' } : null
+    );
+    required(s.age, { message: 'Age is required' });
+    min(s.age, 18, { message: 'Must be 18+' });
+    applyEach(s.skills, (item) => {
+      required(item.skillName, { message: 'Skill name required' });
+      required(item.years, { message: 'Years required' });
+    });
   });
 
-  validationErrors = toSignal(this.skillForm.valueChanges.pipe(
-    map(() => {
-      const errors: ValidationErrors[] = [];
-
-      Object.keys(this.skillForm.controls).forEach((key) => {
-        let err = this.skillForm.get(key)?.errors;
-        if (err) errors.push(err);
-      });
-
-      return errors;
-    })
-  ));
+  allErrors = computed(() => [
+    ...this.skillForm.name().errors(),
+    ...this.skillForm.age().errors(),
+  ]);
 
   addSkill() {
-    const skillsGrp = this.skillForm.controls.skillsGrp as FormArray;
-    skillsGrp.push(
-      this.fb.group({
-        skillName: '',
-        years: '',
-      })
-    );
+    this.skillModel.update(m => ({
+      ...m,
+      skills: [...m.skills, { skillName: '', years: '' }],
+    }));
   }
 
   saveForm() {
-    console.log('form saved', this.skillForm);
-  }
-
-  getElementsInFormArray() {
-    return (this.skillForm.controls.skillsGrp as FormArray).controls;
-  }
-
-  validateName(control: FormControl): { [s: string]: boolean } | null {
-    if (control.value === 'Hugo') {
-      return { nameError: true };
-    }
-    return null;
+    console.log('form saved', this.skillModel());
   }
 }

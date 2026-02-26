@@ -2,12 +2,21 @@
 
 <div boxed>
   <mat-form-field>
-    <input matInput type="text" placeholder="Name" [formControl]="name" />
+    <mat-label>Name</mat-label>
+    <input matInput type="text" placeholder="Name" [formField]="fields.name" />
   </mat-form-field>
 
   <div boxed>
-    @for (entry of events.entries(); track $index) {
-    <div>{{ entry[0] }}: {{ entry[1] }}</div>
+    <div>Value: {{ fields.name().value() }}</div>
+    <div>Valid: {{ fields.name().valid() }}</div>
+    <div>Invalid: {{ fields.name().invalid() }}</div>
+    <div>Touched: {{ fields.name().touched() }}</div>
+    <div>Dirty: {{ fields.name().dirty() }}</div>
+    <div>Pending: {{ fields.name().pending() }}</div>
+    @if (fields.name().touched() && fields.name().invalid()) {
+      @for (err of fields.name().errors(); track err.kind) {
+        <div class="error">{{ err.message }}</div>
+      }
     }
   </div>
 </div>

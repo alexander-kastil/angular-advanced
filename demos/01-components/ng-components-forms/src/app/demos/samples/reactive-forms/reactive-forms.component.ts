@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { email, form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatOption } from '@angular/material/core';
@@ -9,7 +9,7 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatSelect } from '@angular/material/select';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
-import { Person, wealthOptsValues } from '../person/person.model';
+import { wealthOptsValues } from '../person/person.model';
 import { PersonService } from '../person/person.service';
 
 @Component({
@@ -18,82 +18,38 @@ import { PersonService } from '../person/person.service';
   styleUrls: ['./reactive-forms.component.scss'],
   imports: [
     MarkdownRendererComponent,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    FormsModule,
-    ColumnDirective,
-    ReactiveFormsModule,
-    MatInput,
-    MatFormField,
-    MatLabel,
-    MatSelect,
-    MatOption,
-    MatRadioGroup,
-    MatRadioButton,
-    MatButton,
+    MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective,
+    FormField, MatInput, MatFormField, MatLabel, MatSelect, MatOption,
+    MatRadioGroup, MatRadioButton, MatButton,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReactiveFormsComponent implements OnInit {
-  ps: PersonService = inject(PersonService);
-  person: Person = new Person();
+export class ReactiveFormsComponent {
+  private ps = inject(PersonService);
   wealthOpts = wealthOptsValues;
 
-  personForm = new FormGroup({
-    //include the id even if you do not want to render it to support updated
-    // with name params are supplied using comma as separator
-    // with email we are using an object to supply the validators
-    id: new FormControl(this.person.id),
-    name: new FormControl(
-      this.person.name, // initial value
-      [Validators.required, Validators.minLength(3)], // sync validators
-      [] // async validators
-    ),
-    lastname: new FormControl(this.person.lastName, Validators.required),
-    age: new FormControl(this.person.age),
-    email: new FormControl(
-      this.person.email, // initial value
-      { // configuration object
-        updateOn: 'change',
-        validators: [Validators.required],
-        nonNullable: true,
-      }
-    ),
-    gender: new FormControl(this.person.gender),
-    wealth: new FormControl(this.person.wealth),
+  personModel = signal({
+    name: '', lastName: '', age: 0, email: '',
+    gender: 'not set' as 'male' | 'female' | 'not set', wealth: '',
   });
 
-  ngOnInit() {
-    this.initForm();
-    this.subscribeFormChanges();
+  personForm = form(this.personModel, (s) => {
+    required(s.name, { message: 'Name is required' });
+    minLength(s.name, 3, { message: 'Min 3 characters' });
+    required(s.lastName, { message: 'Last name is required' });
+    required(s.email, { message: 'Email is required' });
+    email(s.email, { message: 'Invalid email' });
+  });
+
+  constructor() {
+    this.ps.getPerson().subscribe(p => this.personModel.update(m => ({ ...m, ...p })));
   }
 
-  initForm() {
-    this.ps.getPerson().subscribe((p) => {
-      // Use when you want to set the complete model to the form
-      // this.personForm.setValue(p);
-      // Use when you want to partially update the form
-      // In this case some model props are missing in the form
-      this.personForm.patchValue(p);
-    });
+  savePerson() {
+    submit(this.personForm, async () => console.log('Saving person:', this.personModel()));
   }
 
-  subscribeFormChanges() {
-    this.personForm.valueChanges.subscribe((data) =>
-      console.log('Form values changed', data)
-    );
-    this.personForm.statusChanges.subscribe((data) =>
-      console.log('Form status changed', data)
-    );
-  }
-
-  savePerson(personForm: FormGroup): void {
-    this.ps.save(personForm as unknown as NgForm);
-  }
-
-  saveForLater(personForm: FormGroup): void {
-    this.ps.saveForLater(personForm as unknown as NgForm);
+  saveForLater() {
+    console.log('Saving for later:', this.personModel());
   }
 }

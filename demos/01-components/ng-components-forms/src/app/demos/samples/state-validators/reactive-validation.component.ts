@@ -1,17 +1,24 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, signal, Signal } from '@angular/core';
+import { form, FormField, required, email, validate, validateAsync, min, max } from '@angular/forms/signals';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { asyncMailExistsValidator } from './asyncMailExistsValidator';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 import { ColumnDirective } from 'src/app/shared/ux-lib/formatting/formatting-directives';
 import { PersonService } from '../person/person.service';
-import { Person } from '../person/person.model';
+
+interface PersonFormModel {
+  name: string;
+  age: number;
+  gender: string;
+  email: string;
+  wealth: string;
+}
 
 @Component({
   selector: 'app-reactive-validation',
@@ -19,9 +26,8 @@ import { Person } from '../person/person.model';
   styleUrls: ['./reactive-validation.component.scss'],
   imports: [
     MatCardModule,
-    FormsModule,
     ColumnDirective,
-    ReactiveFormsModule,
+    FormField,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -32,85 +38,43 @@ import { Person } from '../person/person.model';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReactiveValidationComponent implements OnInit {
-  ps = inject(PersonService);
-  fb = inject(FormBuilder);
-  mailExistsValidator = inject(asyncMailExistsValidator);
-  person: Person = new Person();
+export class ReactiveValidationComponent {
+  private ps = inject(PersonService);
   wealthOpts = ['poor', 'rich', 'middle_class'];
 
-  personForm = this.fb.group({
-    name: [
-      this.person.name,
-      [Validators.required, Validators.minLength(4), this.validateName],
-    ],
-    age: [this.person.age, [Validators.min(18), Validators.max(99)]],
-    gender: [this.person.gender],
-    email: ['',
-      {
-        validators: [Validators.required, Validators.email],
-        asyncValidators: [this.mailExistsValidator],
-        updateOn: 'blur'
-      }
-    ],
-    wealth: [this.person.wealth],
+  personModel = signal<PersonFormModel>({ name: '', age: 0, gender: 'not set', email: '', wealth: '' });
+
+  private createEmailResource = (emailSignal: Signal<string | undefined>) =>
+    rxResource({
+      params: () => emailSignal(),
+      stream: ({ params: mail }) => this.ps.checkMailExists(mail ?? ''),
+    });
+
+  personForm = form(this.personModel, (s) => {
+    required(s.name, { message: 'Name is required' });
+    validate(s.name, ({ value }) =>
+      value() === 'Hugo' ? { kind: 'invalidName', message: 'The name Hugo is not allowed' } : null
+    );
+    min(s.age, 18, { message: 'Person must be at least 18' });
+    max(s.age, 99, { message: 'Person must be at most 99' });
+    required(s.email, { message: 'Email is required' });
+    email(s.email, { message: 'Invalid email address' });
+    validateAsync(s.email, {
+      params: ({ value }) => value() ?? undefined,
+      factory: this.createEmailResource,
+      onSuccess: (exists) =>
+        exists ? { kind: 'mailExists', message: 'Sorry this mail is already registered' } : null,
+      onError: () => ({ kind: 'serverError', message: 'Could not verify email' }),
+    });
   });
 
-
-  ngOnInit() {
-    this.loadData();
-    this.subscribeChanges();
-  }
-
-  private loadData() {
+  constructor() {
     this.ps.getPerson().subscribe((p) => {
-      this.personForm.patchValue(p);
+      this.personModel.update((m) => ({ ...m, name: p.name, age: p.age, email: p.email, gender: p.gender, wealth: p.wealth }));
     });
   }
 
-  private subscribeChanges() {
-    this.personForm.valueChanges.subscribe((vals) => {
-      console.log('changes happening @form: ', vals);
-    });
-  }
-
-  evalShowError(field: string) {
-    const control = this.personForm.get(field) as FormControl;
-    return control.errors != undefined &&
-      control.errors != undefined &&
-      control.errors['InvalidNameError']
-  }
-
-  savePerson(personForm: any): void {
-    this.ps.save(personForm);
-  }
-
-  //Sample for custom sync validator
-  validateName(control: FormControl): { [s: string]: boolean } | null {
-    if (control.value === 'Hugo') {
-      return { InvalidNameError: true };
-    }
-    return null;
-  }
-
-  violatesMinLength() {
-    let result = false;
-    let errs: any = this.personForm.controls['name'].errors && this.personForm.controls['name'].dirty;
-
-    if (errs == true) {
-      console.log('Errors in Name field: ', errs);
-      if (errs['minlength']) {
-        result = true;
-      }
-    }
-    return result;
-  }
-
-  validateForm(form: FormGroup) {
-    // validated single control
-    form.controls['name'].updateValueAndValidity();
-    // validated form
-    form.updateValueAndValidity();
-    console.log('form is valid:', form.valid);
+  savePerson(): void {
+    this.ps.save(this.personModel() as any);
   }
 }
