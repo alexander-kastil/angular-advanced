@@ -4,7 +4,7 @@
     <mat-card-title> Classic imperative subscribe pattern </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    @for (t of tasks; track t) {
+    @for (t of tasks(); track t) {
       <div>{{ t.id }} - {{ t.title }}</div>
     }
   </mat-card-content>

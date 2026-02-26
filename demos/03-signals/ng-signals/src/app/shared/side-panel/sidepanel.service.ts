@@ -1,15 +1,13 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { SidebarActions } from './sidebar.actions';
-
 
 @Injectable({ providedIn: 'root' })
 export class SidePanelService {
-
-  // This is the current state
   private commands = signal<SidebarActions>(SidebarActions.HIDE_MARKDOWN);
+  readonly currentCommand = this.commands.asReadonly();
 
   getCommands() {
-    return computed(() => this.commands());
+    return this.currentCommand;
   }
 
   triggerCmd(action: SidebarActions) {

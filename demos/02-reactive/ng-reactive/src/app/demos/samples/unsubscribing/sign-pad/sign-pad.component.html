@@ -2,7 +2,7 @@
 
 <canvas #signPad class="signPad" border></canvas>
 
-<div border>signPad - Mouse Moved at X: {{ result.X }} Y: {{ result.Y }}</div>
+<div border>signPad - Mouse Moved at X: {{ result().X }} Y: {{ result().Y }}</div>
 
 <div class="cmdItems">
   <button mat-raised-button color="accent" (click)="subscribeMouseEvts()"

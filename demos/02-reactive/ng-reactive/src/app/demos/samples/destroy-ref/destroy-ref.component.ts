@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, Validators, UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { MatInput } from '@angular/material/input';
@@ -7,11 +7,11 @@ import { ColumnDirective } from '../../../shared/formatting/formatting-directive
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
-    selector: 'app-destroy-ref',
-    templateUrl: './destroy-ref.component.html',
-    styleUrls: ['./destroy-ref.component.scss'],
-    standalone: true,
-    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError]
+  selector: 'app-destroy-ref',
+  templateUrl: './destroy-ref.component.html',
+  styleUrls: ['./destroy-ref.component.scss'],
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DestroyRefComponent {
   name = new FormControl('',

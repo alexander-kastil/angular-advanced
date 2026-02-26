@@ -1,39 +1,54 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject, signal } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { NavItem } from '../navbar/navitem.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SideNavService {
+  http = inject(HttpClient);
   breakpointObserver = inject(BreakpointObserver);
-
-  visible$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  position$: BehaviorSubject<MatDrawerMode> = new BehaviorSubject<MatDrawerMode>('side');
+  private visible = signal(true);
+  private position = signal<MatDrawerMode>('side');
+  readonly sideNavVisible = this.visible.asReadonly();
+  readonly sideNavPosition = this.position.asReadonly();
 
   constructor() {
-    this.breakpointObserver
-      .observe([Breakpoints.XSmall, Breakpoints.Small])
-      .pipe(
-        tap((matchesBreakpoint) => {
-          this.visible$.next(matchesBreakpoint.matches ? false : true);
-          this.position$.next(matchesBreakpoint.matches ? 'over' : 'side');
-        })
-      ).subscribe();
+    this.watchScreen.subscribe();
   }
 
   getSideNavVisible() {
-    return this.visible$.asObservable();
+    return this.sideNavVisible;
   }
 
   getSideNavPosition() {
-    return this.position$.asObservable();
+    return this.sideNavPosition;
+  }
+
+  watchScreen = this.breakpointObserver
+    .observe([Breakpoints.XSmall, Breakpoints.Small])
+    .pipe(
+      tap((matchesBreakpoint) => {
+        console.log(matchesBreakpoint);
+        this.visible.set(!matchesBreakpoint.matches);
+        this.position.set(matchesBreakpoint.matches ? 'over' : 'side');
+      })
+    );
+
+  setSideNavEnabled(val: boolean) {
+    this.visible.set(val);
   }
 
   toggleMenuVisibility() {
-    let status = !this.visible$.getValue();
-    this.visible$.next(status);
+    this.visible.update(v => !v);
+  }
+
+  getTopItems(): Observable<NavItem[]> {
+    return this.http.get<NavItem[]>(`${environment.api}top-links`);
   }
 }

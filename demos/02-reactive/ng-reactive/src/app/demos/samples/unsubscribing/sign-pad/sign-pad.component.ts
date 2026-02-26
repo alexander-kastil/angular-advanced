@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, signal, ViewChild } from '@angular/core';
 import { fromEvent, map, Subscription, tap } from 'rxjs';
 import { MatButton } from '@angular/material/button';
 import { MarkdownRendererComponent } from '../../../../shared/markdown-renderer/markdown-renderer.component';
@@ -8,24 +8,23 @@ import { BorderDirective } from '../../../../shared/ux-lib/formatting/formatting
   selector: 'app-sign-pad',
   templateUrl: './sign-pad.component.html',
   styleUrls: ['./sign-pad.component.scss'],
-  standalone: true,
   imports: [
     MarkdownRendererComponent,
     BorderDirective,
     MatButton,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignPadComponent implements OnDestroy {
   @ViewChild('signPad', { static: true }) canvas: ElementRef | null = null;
 
   subMouseEvents: Subscription | null = null;
-  result: { X: number; Y: number } = { X: 0, Y: 0 };
+  result = signal({ X: 0, Y: 0 });
 
   ngOnDestroy() {
     this.unsubscribeMouseEvts();
   }
 
-  //used from ngOnDestroy and mouse event
   unsubscribeMouseEvts() {
     if (this.subMouseEvents) {
       this.subMouseEvents.unsubscribe();
@@ -44,7 +43,7 @@ export class SignPadComponent implements OnDestroy {
       );
 
       this.subMouseEvents = evtMouse.subscribe((point) => {
-        this.result = point;
+        this.result.set(point);
         console.log('Mouse Moved @: ', point);
       });
     }

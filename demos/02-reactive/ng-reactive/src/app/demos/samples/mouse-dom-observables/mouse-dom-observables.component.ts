@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { fromEvent } from 'rxjs';
 import { pairwise, switchMap, takeUntil } from 'rxjs/operators';
@@ -15,7 +15,8 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     BoxedDirective,
     ColumnDirective,
     CenteredDirective
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MouseDomObservablesComponent {
   @ViewChild('signPad') signPad: ElementRef | undefined;

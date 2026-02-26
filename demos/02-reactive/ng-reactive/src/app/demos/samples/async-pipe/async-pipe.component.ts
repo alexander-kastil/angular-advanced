@@ -1,9 +1,10 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatProgressBar } from '@angular/material/progress-bar';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, mergeMap, tap } from 'rxjs/operators';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { TaskItem } from '../../tasks/task-item.model';
@@ -23,28 +24,22 @@ import { TaskService } from '../../tasks/task.service';
     FormsModule,
     AsyncPipe,
     JsonPipe,
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AsyncPipeComponent implements OnInit {
   ts = inject(TaskService);
-  taskSubscription: Subscription | null = null;
+  destroyRef = inject(DestroyRef);
 
-  // Classic imperative subscribe pattern the uses ngOnInit and subscribe
-  tasks: TaskItem[] = [];
+  tasks = signal<TaskItem[]>([]);
 
   ngOnInit() {
-    // this subscribe has to be unsubscribed in ngOnDestroy
-    this.taskSubscription = this.ts.getTasks().subscribe((data) => {
-      //unwrap the data from the observable
-      this.tasks = data;
+    this.ts.getTasks().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((data) => {
+      this.tasks.set(data);
     });
   }
 
-  // Reactive declarative Approach using async pipe
-  // pipe is used to modify the observable stream
-  // The $ sign is use to indicate that this is an observable
   tasks$ = this.ts.getTasks().pipe(
-    //observable operators: tap is used for debugging and is called a side effect
     tap((data) => console.log("getting data from service:", data))
   );
 
@@ -52,9 +47,4 @@ export class AsyncPipeComponent implements OnInit {
     mergeMap((tasks: TaskItem[]) => tasks),
     filter((t) => t.completed)
   );
-
-  ngOnDestroy() {
-    // unsubscribe from the observable
-    this.taskSubscription?.unsubscribe();
-  }
 }

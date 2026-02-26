@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { EMPTY, from } from 'rxjs';
@@ -12,18 +12,19 @@ import { takeEveryNth } from './takeEveryNth';
 import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-directives';
 
 @Component({
-    selector: 'app-custom-operators',
-    templateUrl: './custom-operators.component.html',
-    styleUrls: ['./custom-operators.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-        MarkdownRendererComponent,
-        BoxedDirective
-    ]
+  selector: 'app-custom-operators',
+  templateUrl: './custom-operators.component.html',
+  styleUrls: ['./custom-operators.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+    MarkdownRendererComponent,
+    BoxedDirective
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomOperatorsComponent {
   http = inject(HttpClient);

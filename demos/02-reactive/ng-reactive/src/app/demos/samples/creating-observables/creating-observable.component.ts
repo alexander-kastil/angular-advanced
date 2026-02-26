@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import axios from 'axios';
 import { Observable, from, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -7,17 +7,18 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-simple-observable',
-    templateUrl: './creating-observable.component.html',
-    styleUrls: ['./creating-observable.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-    ]
+  selector: 'app-simple-observable',
+  templateUrl: './creating-observable.component.html',
+  styleUrls: ['./creating-observable.component.scss'],
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatingObservableComponent {
   onErr = (err: any) => console.log(err);

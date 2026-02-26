@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { from, interval, of } from 'rxjs';
@@ -29,7 +29,8 @@ import { VouchersService } from '../../vouchers/voucher.service';
     MatButton,
     MarkdownRendererComponent,
     BoxedDirective
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OperatorsComponent implements OnInit {
   vs = inject(VouchersService);

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { concat, forkJoin, interval, merge, of, zip } from 'rxjs';
 import { combineLatestWith, map, take, tap } from 'rxjs/operators';
 import { AccountService } from '../../vouchers/account.service';
@@ -9,17 +9,18 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-combining',
-    templateUrl: './combining.component.html',
-    styleUrls: ['./combining.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-    ]
+  selector: 'app-combining',
+  templateUrl: './combining.component.html',
+  styleUrls: ['./combining.component.scss'],
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CombiningComponent {
   vs = inject(VouchersService);

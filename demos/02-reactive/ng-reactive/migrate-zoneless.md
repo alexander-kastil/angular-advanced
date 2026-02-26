@@ -16,7 +16,7 @@ The ng-reactive application is a **strong candidate for zoneless change detectio
 | **State Management**          | ✅ Observable-Based | Uses RxJS for reactive state, compatible with zoneless         |
 | **Event Handling**            | ✅ Standard         | No custom event patching or setTimeout manipulation            |
 | **Material Components**       | ✅ Compatible       | Angular Material v21.2.0 supports zoneless                     |
-| **Polyfills**                 | ⚠️ Needs Removal    | zone.js currently in polyfills (required for zone.js-based CD) |
+| **Polyfills**                 | ✅ Removed           | zone.js removed from polyfills, zoneless CD enabled            |
 
 ### Potential Considerations
 

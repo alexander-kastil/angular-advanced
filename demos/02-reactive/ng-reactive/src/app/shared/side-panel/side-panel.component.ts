@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -22,18 +22,18 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
-  editorDisplayed = false;
+  editorDisplayed = signal(false);
   sidenav = inject(SideNavService);
-  icon = "create";
+  icon = signal('create');
 
   toggleEditor() {
-    if (this.editorDisplayed) {
+    if (this.editorDisplayed()) {
       this.eb.triggerCmd(SidebarActions.HIDE_MARKDOWN);
     } else {
       this.eb.triggerCmd(SidebarActions.SHOW_MARKDOWN);
     }
-    this.editorDisplayed = !this.editorDisplayed;
-    this.icon = this.editorDisplayed ? "close" : "create";
+    this.editorDisplayed.update(v => !v);
+    this.icon.set(this.editorDisplayed() ? 'close' : 'create');
   }
 
   toggleSidenav() {

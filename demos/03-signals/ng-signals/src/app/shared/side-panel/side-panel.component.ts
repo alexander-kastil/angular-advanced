@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -6,8 +6,6 @@ import { SideNavService } from '../sidenav/sidenav.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { RendererStateService } from '../markdown-renderer/renderer-state.service';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-side-panel',
@@ -18,13 +16,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarRow,
     MatMiniFabButton,
     MatIcon,
-    MatTooltipModule
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
-  rendererState = inject(RendererStateService);
   editorDisplayed = false;
   sidenav = inject(SideNavService);
   icon = "create";
@@ -39,20 +36,11 @@ export class SidePanelComponent {
     this.icon = this.editorDisplayed ? "close" : "create";
   }
 
-  toggleSideNav() {
+  toggleSidenav() {
     this.sidenav.toggleMenuVisibility();
   }
 
-  toggleInfo() {
-    this.rendererState.toggleVisibility();
+  showUpload() {
+    this.sns.displayAlert('Info', 'Not implemented - just a Demo');
   }
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key === 'i') {
-      this.toggleInfo();
-      event.preventDefault();
-    }
-  }
-
 }

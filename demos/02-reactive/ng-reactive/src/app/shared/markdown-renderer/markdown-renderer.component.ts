@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MarkdownComponent } from 'ngx-markdown';
 import { MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
@@ -16,10 +16,10 @@ import { MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } fr
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownRendererComponent {
-  @Input({ required: true }) md = '';
-  panelOpenState = true;
+  md = input.required<string>();
+  panelOpenState = signal(true);
 
   getMarkdown(): string {
-    return `${environment.markdownPath}${this.md}.md`;
+    return `${environment.markdownPath}${this.md()}.md`;
   }
 }

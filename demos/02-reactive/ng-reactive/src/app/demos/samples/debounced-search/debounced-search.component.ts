@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatFormField } from '@angular/material/form-field';
@@ -8,21 +8,22 @@ import { debounceTime, tap } from 'rxjs/operators';
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
-    selector: 'app-debounced-search',
-    templateUrl: './debounced-search.component.html',
-    styleUrls: ['./debounced-search.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatFormField,
-        MatInput,
-        FormsModule,
-        ReactiveFormsModule,
-        AsyncPipe,
-        MarkdownRendererComponent
-    ]
+  selector: 'app-debounced-search',
+  templateUrl: './debounced-search.component.html',
+  styleUrls: ['./debounced-search.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatFormField,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    AsyncPipe,
+    MarkdownRendererComponent
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DebouncedSearchComponent {
   searchTerm: FormControl = new FormControl('');

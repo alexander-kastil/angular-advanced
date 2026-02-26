@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
@@ -25,36 +25,36 @@ import { SkillsService } from '../../skills/skills.service';
     FormsModule,
     ReactiveFormsModule,
     BoxedDirective
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImperativeComponent implements OnInit {
-  @Input() title = 'ImperativeProgramming';
-  @Input() showMD = true;
+  title = input('ImperativeProgramming');
+  showMD = input(true);
   destroy = inject(DestroyRef)
 
   filter$ = new FormControl('', { nonNullable: true });
   service = inject(SkillsService);
-  //local vars for values taken out of the stream
   skills: Skill[] = [];
-  view: Skill[] = [];
+  view = signal<Skill[]>([]);
 
   ngOnInit(): void {
     this.service
       .getSkills()
-      //takeUntilDestroyed will unsubscribe from the stream when the destroy$ Subject emits a value
       .pipe(takeUntilDestroyed(this.destroy))
       .subscribe((skills) => {
         this.skills = skills;
-        this.view = skills;
+        this.view.set(skills);
       });
 
     this.filter$.valueChanges
       .pipe(takeUntilDestroyed(this.destroy))
       .subscribe((val) => {
-        this.view =
+        this.view.set(
           val == ''
             ? this.skills
-            : this.skills.filter((skill) => skill.name.includes(val));
+            : this.skills.filter((skill) => skill.name.includes(val))
+        );
       });
   }
 

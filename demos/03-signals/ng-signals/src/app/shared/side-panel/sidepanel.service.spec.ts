@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { SidePanelService } from './sidepanel.service';
 import { SidebarActions } from './sidebar.actions';
@@ -14,14 +15,18 @@ describe('SidePanelService', () => {
         expect(service).toBeTruthy();
     });
 
-    it('should initialize with HIDE_MARKDOWN action', () => {
-        const commands = service.getCommands();
-        expect(commands()).toBe(SidebarActions.HIDE_MARKDOWN);
+    it('should return HIDE_MARKDOWN initially', () => {
+        expect(service.getCommands()()).toBe(SidebarActions.HIDE_MARKDOWN);
     });
 
-    it('should trigger a command', () => {
+    it('should trigger SHOW_MARKDOWN command', () => {
         service.triggerCmd(SidebarActions.SHOW_MARKDOWN);
-        const commands = service.getCommands();
-        expect(commands()).toBe(SidebarActions.SHOW_MARKDOWN);
+        expect(service.getCommands()()).toBe(SidebarActions.SHOW_MARKDOWN);
+    });
+
+    it('should trigger HIDE_MARKDOWN command', () => {
+        service.triggerCmd(SidebarActions.SHOW_MARKDOWN);
+        service.triggerCmd(SidebarActions.HIDE_MARKDOWN);
+        expect(service.getCommands()()).toBe(SidebarActions.HIDE_MARKDOWN);
     });
 });

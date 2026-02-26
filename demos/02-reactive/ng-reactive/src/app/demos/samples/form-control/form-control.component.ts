@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { MatInput } from '@angular/material/input';
@@ -7,23 +7,23 @@ import { ColumnDirective } from '../../../shared/formatting/formatting-directive
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
-    selector: 'app-form-control',
-    templateUrl: './form-control.component.html',
-    styleUrls: ['./form-control.component.scss'],
-    standalone: true,
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        ColumnDirective,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        FormsModule,
-        ReactiveFormsModule,
-        MatError,
-    ],
+  selector: 'app-form-control',
+  templateUrl: './form-control.component.html',
+  styleUrls: ['./form-control.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    ColumnDirective,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    MatError,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormControlComponent implements OnInit {
   private destroy$ = new Subject();

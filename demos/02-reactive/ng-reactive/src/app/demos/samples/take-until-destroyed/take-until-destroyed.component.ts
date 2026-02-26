@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
@@ -10,7 +10,8 @@ import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-di
   selector: 'app-take-until-destroyed',
   templateUrl: './take-until-destroyed.component.html',
   styleUrls: ['./take-until-destroyed.component.scss'],
-  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError]
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, ColumnDirective, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatError],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TakeUntilDestroyedComponent {
 

@@ -6,24 +6,24 @@ import { DemoItem } from './demo-item.model';
 
 @Injectable({ providedIn: 'root' })
 export class DemoService {
-  http = inject(HttpClient);
+  httpClient = inject(HttpClient);
 
-  getDemos(): Observable<DemoItem[]> {
-    return this.http.get<DemoItem[]>(`${environment.api}demos`);
+  getItems(): Observable<DemoItem[]> {
+    return this.httpClient.get<DemoItem[]>(`${environment.api}demos`);
   }
 
-  addDemo(item: DemoItem): Observable<DemoItem> {
-    return this.http.post<DemoItem>(`${environment.api}demos`, item);
+  addItem(item: DemoItem): Observable<DemoItem> {
+    return this.httpClient.post<DemoItem>(`${environment.api}demos`, item);
   }
 
-  updateDemo(item: DemoItem): Observable<DemoItem> {
-    return this.http.put<DemoItem>(
+  updateItem(item: DemoItem): Observable<DemoItem> {
+    return this.httpClient.put<DemoItem>(
       `${environment.api}demos/${item.id}`,
       item
     );
   }
 
-  deleteDemo(id: number): Observable<any> {
-    return this.http.delete(`${environment.api}demos/${id}`);
+  deleteItem(id: number): Observable<any> {
+    return this.httpClient.delete(`${environment.api}demos/${id}`);
   }
 }

@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -10,19 +10,20 @@ import { DemoRowComponent } from '../demo-row/demo-row.component';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss'],
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        CdkDropList,
-        DemoRowComponent,
-        CdkDrag,
-        AsyncPipe,
-    ]
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    CdkDropList,
+    DemoRowComponent,
+    CdkDrag,
+    AsyncPipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent {
   ds = inject(StatefulDemoService);

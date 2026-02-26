@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { KpiComponent } from './kpi/kpi.component';
 import { ListComponent } from './list/list.component';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
@@ -11,6 +11,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
         MarkdownRendererComponent,
         ListComponent,
         KpiComponent,
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatefulComponent { }

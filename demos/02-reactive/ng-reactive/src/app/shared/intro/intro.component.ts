@@ -1,11 +1,11 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions } from '@angular/material/card';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-intro',
-  standalone: true,
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.scss'],
   imports: [
@@ -17,11 +17,12 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, 
     MatCardActions,
     MatButton,
     RouterLink,
+    NgOptimizedImage,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IntroComponent {
-  @Input({ required: true }) title = '';
-  @Input({ required: true }) subtitle = '';
-  @Input({ required: true }) img = '';
+  title = input.required<string>();
+  subtitle = input.required<string>();
+  img = input.required<string>();
 }

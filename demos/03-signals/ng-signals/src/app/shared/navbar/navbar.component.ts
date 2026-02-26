@@ -1,33 +1,33 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
-import { NavbarService } from './navbar.service';
+import { SideNavService } from '../sidenav/sidenav.service';
 import { AsyncPipe } from '@angular/common';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { SideNavFacade } from '../../state/sidenav.facade';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatIcon,
-        RouterLinkActive,
-        RouterLink,
-        AsyncPipe,
-    ]
+  selector: 'app-navbar',
+  standalone: true,
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatIcon,
+    RouterLinkActive,
+    RouterLink,
+    AsyncPipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
-  nav = inject(SideNavFacade);
-  ms = inject(NavbarService);
+  ms = inject(SideNavService);
   sns = inject(SnackbarService);
   menuItems = this.ms.getTopItems();
 
   toggleMenu() {
-    this.nav.toggleMenuVisibility();
+    this.ms.toggleMenuVisibility();
   }
 
   toggleApps() {

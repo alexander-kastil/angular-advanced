@@ -69,16 +69,6 @@ This document outlines additional optimizations that can be applied to the ng-re
 }
 ```
 
-## 5. Lazy Load Demo Routes More Granularly
-
-**Current State:** All demos are loaded together under a single lazy-loaded route.
-
-**Recommendation:** Consider further splitting demo routes:
-
-- Group related demos (e.g., all operator demos) into separate lazy-loaded chunks
-- Implement route-level code splitting for better initial page load
-- This provides incremental loading of demo content
-
 ## 6. Use Image Optimization
 
 **Current State:** No explicit image optimization noticed.
@@ -88,16 +78,6 @@ This document outlines additional optimizations that can be applied to the ng-re
 - Replace all static image usages with `NgOptimizedImage` where applicable
 - Implement responsive images with srcset if using multiple resolutions
 - Lazy load images that are not immediately visible
-
-## 7. Preload Strategically Important Routes
-
-**Current State:** Demos are lazy-loaded on demand.
-
-**Recommendation:**
-
-- Implement `PreloadAllModules` strategy or custom preloading strategy for frequently accessed demos
-- Consider preloading the "Language Features" demo since it's the first demonstration
-- Balance between faster initial load and preloading overhead
 
 ## 8. Refactor Observable Chains with Modern Operators
 
@@ -109,42 +89,3 @@ This document outlines additional optimizations that can be applied to the ng-re
 - Demonstrate composition patterns over nested subscriptions
 - Use `shareReplay()` for frequently accessed data streams
 
-## 9. Accessibility Improvements
-
-**Current State:** Application has basic accessibility.
-
-**Recommendation:**
-
-- Run comprehensive AXE accessibility audit on all demo pages
-- Ensure keyboard navigation works for all interactive elements
-- Add ARIA labels and descriptions for complex interactive patterns
-- Ensure proper focus management in modal dialogs or overlays
-- Verify color contrast ratios meet WCAG AA standards
-
-## 10. Bundle Analysis and Code Splitting
-
-**Current State:** Application includes several large scripts (marked, prismjs, etc.).
-
-**Recommendation:**
-
-- Analyze bundle size with `ng build --stats-json` and webpack-bundle-analyzer
-- Consider lazy-loading Prism.js and marked.js only when needed
-- Remove unused Prism language modules (currently loading multiple languages)
-- Optimize critical vs. deferred scripts
-
-## Performance Metrics to Monitor
-
-After implementing these optimizations:
-
-- **First Contentful Paint (FCP)** - Target: < 1.5s
-- **Largest Contentful Paint (LCP)** - Target: < 2.5s
-- **Cumulative Layout Shift (CLS)** - Target: < 0.1
-- **Time to Interactive (TTI)** - Target: < 3.5s
-
-## Next Steps
-
-1. **Phase 1:** Apply OnPush change detection and trackBy optimizations (high impact, low risk)
-2. **Phase 2:** Implement signal-based state management for UI state (medium impact, medium complexity)
-3. **Phase 3:** Evaluate and test zoneless migration in a feature branch (high impact, requires thorough testing)
-4. **Phase 4:** Implement accessibility improvements and accessibility testing (required for production)
-5. **Phase 5:** Perform bundle analysis and implement code splitting optimizations (ongoing)

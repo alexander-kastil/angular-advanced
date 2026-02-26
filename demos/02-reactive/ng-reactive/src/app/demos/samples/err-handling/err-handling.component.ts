@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { EMPTY, Observable, interval, of, throwError } from 'rxjs';
@@ -25,7 +25,8 @@ import { VouchersService } from '../../vouchers/voucher.service';
     MatCardContent,
     MatButton,
     MarkdownRendererComponent
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ErrHandlingComponent {
   vs = inject(VouchersService);

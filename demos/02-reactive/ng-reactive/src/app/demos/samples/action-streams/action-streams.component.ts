@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -13,7 +13,8 @@ import { DemoService } from '../../demo-base/demo.service';
   selector: 'app-action-streams',
   templateUrl: './action-streams.component.html',
   styleUrls: ['./action-streams.component.scss'],
-  imports: [MatFormField, MatInput, FormsModule, ReactiveFormsModule, AsyncPipe, MarkdownRendererComponent, BoxedDirective]
+  imports: [MatFormField, MatInput, FormsModule, ReactiveFormsModule, AsyncPipe, MarkdownRendererComponent, BoxedDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActionStreamsComponent {
   ds = inject(DemoService);

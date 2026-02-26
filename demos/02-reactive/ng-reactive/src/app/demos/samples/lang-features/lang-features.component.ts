@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatButton } from '@angular/material/button';
@@ -16,7 +16,8 @@ import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/mark
     MatCardContent,
     MatButton,
     MarkdownRendererComponent
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LangFeaturesComponent {
   impureFunction() {

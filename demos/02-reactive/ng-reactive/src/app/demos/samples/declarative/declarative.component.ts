@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { combineLatestWith, startWith, map } from 'rxjs';
 import { Skill } from '../../skills/skills';
@@ -28,7 +28,8 @@ import { BoxedDirective } from 'src/app/shared/ux-lib/formatting/formatting-dire
     BoxedDirective
   ],
   templateUrl: './declarative.component.html',
-  styleUrl: './declarative.component.scss'
+  styleUrl: './declarative.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeclarativeComponent {
   service = inject(SkillsService);

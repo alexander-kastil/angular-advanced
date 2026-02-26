@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { fromEvent, interval, of } from 'rxjs';
@@ -12,18 +12,19 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 import { TopicService } from '../../topics/topic.service';
 
 @Component({
-    selector: 'app-transformation',
-    templateUrl: './transformation.component.html',
-    styleUrls: ['./transformation.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatButton,
-        BoxedDirective
-    ]
+  selector: 'app-transformation',
+  templateUrl: './transformation.component.html',
+  styleUrls: ['./transformation.component.scss'],
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatButton,
+    BoxedDirective
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransformationComponent {
   ts = inject(TopicService);

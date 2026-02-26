@@ -1,6 +1,0 @@
-{
-    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-    "github.copilot.chat.setupTests.enabled": true,
-    "github.copilot.chat.startDebugging.enabled": true,
-    "chat.commandCenter.enabled": true,
-}
