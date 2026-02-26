@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, computed, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
@@ -49,8 +49,8 @@ export class DemoContainerComponent {
   sidenavVisible = this.nav.getSideNavVisible();
   isLoading = this.ls.getLoading();
 
-  workbenchLeftMargin = this.sidenavVisible.pipe(
-    map((visible: boolean) => { return visible ? { 'margin-left': '5px' } : {} })
+  workbenchLeftMargin = computed(() =>
+    this.sidenavVisible() ? { 'margin-left': '5px' } : {}
   );
 
   rootRoute(route: ActivatedRoute): ActivatedRoute {
@@ -70,9 +70,7 @@ export class DemoContainerComponent {
         : 'Please select a demo')
     );
 
-  showMdEditor = this.eb
-    .getCommands()
-    .pipe(
-      map((action: SidebarActions) => (action === SidebarActions.HIDE_MARKDOWN ? false : true))
-    );
+  showMdEditor = computed(() =>
+    this.eb.getCommands()() === SidebarActions.SHOW_MARKDOWN
+  );
 }
