@@ -46,39 +46,31 @@
     },
     {
       "url": "signal-forms-conditional",
-      "title": "Signal Forms Conditional"
+      "title": "Conditional Fields"
     },
     {
       "url": "signal-forms-submit",
-      "title": "Signal Forms Submit"
+      "title": "Form Submit"
     },
     {
       "url": "signal-forms-pets",
-      "title": "Signal Forms Pets"
-    },
-    {
-      "url": "signal-form-arrays",
-      "title": "Signal Form Arrays"
+      "title": "Pets CRUD"
     },
     {
       "url": "signal-form-arrays-objects",
-      "title": "Signal Form Arrays Objects"
+      "title": "Array of Objects"
     },
     {
       "url": "signal-form-null-values",
-      "title": "Signal Form Null Values"
-    },
-    {
-      "url": "signal-form-optional-props",
-      "title": "Signal Form Optional Props"
+      "title": "Null Values"
     },
     {
       "url": "signal-form-validate",
-      "title": "Signal Form Validate"
+      "title": "Cross-field Validation"
     },
     {
       "url": "signal-form-when",
-      "title": "Signal Form When"
+      "title": "Conditional Validators"
     }
   ],
   "pets": [

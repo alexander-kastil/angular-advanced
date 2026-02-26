@@ -15,10 +15,8 @@ import { ReactiveCascadeComponent } from './samples/signal-form-cascade/signal-f
 import { SignalFormsConditionalComponent } from './samples/signal-form-conditional/signal-form-conditional.component';
 import { SignalFormsSubmitComponent } from './samples/signal-form-submit/signal-form-submit.component';
 import { SignalFormsPetsComponent } from './samples/signal-form-pets/signal-form-pets.component';
-import { SfArraysComponent } from './samples/signal-form-arrays/signal-form-arrays.component';
 import { SfArraysObjectsComponent } from './samples/signal-form-arrays-objects/signal-form-arrays-objects.component';
 import { SfNullValuesComponent } from './samples/signal-form-null-values/signal-form-null-values.component';
-import { SfOptionalPropsComponent } from './samples/signal-form-optional-props/signal-form-optional-props.component';
 import { SfValidateComponent } from './samples/signal-form-validate/signal-form-validate.component';
 import { SfWhenComponent } from './samples/signal-form-when/signal-form-when.component';
 
@@ -41,10 +39,8 @@ export const demoRoutes: Routes = [
       { path: 'signal-forms-conditional', component: SignalFormsConditionalComponent },
       { path: 'signal-forms-submit', component: SignalFormsSubmitComponent },
       { path: 'signal-forms-pets', component: SignalFormsPetsComponent },
-      { path: 'signal-form-arrays', component: SfArraysComponent },
       { path: 'signal-form-arrays-objects', component: SfArraysObjectsComponent },
       { path: 'signal-form-null-values', component: SfNullValuesComponent },
-      { path: 'signal-form-optional-props', component: SfOptionalPropsComponent },
       { path: 'signal-form-validate', component: SfValidateComponent },
       { path: 'signal-form-when', component: SfWhenComponent },
     ],
