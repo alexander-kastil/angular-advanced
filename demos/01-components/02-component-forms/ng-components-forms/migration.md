@@ -22,6 +22,8 @@ If the project uses other Angular packages, include them as well:
 ng update @angular/material@21 @angular/cdk
 ```
 
+this is a monorepo. you might use `ng update @angular/*@21 ... --allow-dirty`
+
 **Why:**
 
 - Automatic migrations run (control flow, bootstrap options, etc.)
@@ -59,17 +61,14 @@ npm update
 ### Update main.ts:
 
 ```typescript
-import { provideZonelessChangeDetection } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { provideZonelessChangeDetection } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { appConfig } from "./app/app.config";
+import { AppComponent } from "./app/app.component";
 
 bootstrapApplication(AppComponent, {
   ...appConfig,
-  providers: [
-    provideZonelessChangeDetection(),
-    ...appConfig.providers
-  ]
+  providers: [provideZonelessChangeDetection(), ...appConfig.providers],
 }).catch((err) => console.error(err));
 ```
 
@@ -83,7 +82,7 @@ npm uninstall zone.js
 
 ```json
 {
-  "polyfills": []  // Remove zone.js from polyfills array
+  "polyfills": [] // Remove zone.js from polyfills array
 }
 ```
 
@@ -104,13 +103,13 @@ npm uninstall zone.js
 **Apply `ChangeDetectionStrategy.OnPush` to ALL components:**
 
 ```typescript
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 @Component({
-  selector: 'app-example',
-  templateUrl: './example.component.html',
-  styleUrls: ['./example.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush  // Add this
+  selector: "app-example",
+  templateUrl: "./example.component.html",
+  styleUrls: ["./example.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush, // Add this
 })
 export class ExampleComponent {
   // ...
@@ -137,7 +136,7 @@ export class ExampleComponent {
 
 ```html
 @for (item of items(); track item) {
-  <!-- ... -->
+<!-- ... -->
 }
 ```
 
@@ -151,20 +150,20 @@ trackById(index: number, item: Item): number {
 
 ```html
 @for (item of items(); track trackById($index, item)) {
-  <!-- ... -->
+<!-- ... -->
 }
 ```
 
 ### 5.2 Enable Route Preloading
 
 ```typescript
-import { provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
+import { provideRouter, withPreloading, PreloadAllModules } from "@angular/router";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withPreloading(PreloadAllModules)),
     // ...
-  ]
+  ],
 };
 ```
 
@@ -179,11 +178,11 @@ export const appConfig: ApplicationConfig = {
 **Convert Observables to Signals for better change detection:**
 
 ```typescript
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from "@angular/core/rxjs-interop";
 
 export class SkillsComponent {
   service = inject(SkillsService);
-  skills = toSignal(this.service.getSkills());  // Signal from Observable
+  skills = toSignal(this.service.getSkills()); // Signal from Observable
 }
 ```
 
@@ -191,7 +190,7 @@ export class SkillsComponent {
 
 ```html
 @for (skill of skills(); track trackById($index, skill)) {
-  <!-- Signals work perfectly with OnPush -->
+<!-- Signals work perfectly with OnPush -->
 }
 ```
 
