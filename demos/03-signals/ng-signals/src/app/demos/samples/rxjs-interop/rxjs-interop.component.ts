@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, effect, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { of } from 'rxjs';
-import { BorderDirective, CenteredDirective } from '../../../shared/formatting/formatting-directives';
+import { BorderDirective, CenteredDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
@@ -16,7 +16,8 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     CenteredDirective
   ],
   templateUrl: './rxjs-interop.component.html',
-  styleUrl: './rxjs-interop.component.scss'
+  styleUrl: './rxjs-interop.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RxjsInteropComponent {
   amount$ = of(10);

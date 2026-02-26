@@ -1,6 +1,6 @@
-import { Component, Injector, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, computed, effect, inject, signal } from '@angular/core';
 import { Topic } from './topic.model';
-import { BorderDirective, CenteredDirective } from '../../../shared/formatting/formatting-directives';
+import { BorderDirective, CenteredDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
@@ -17,7 +17,8 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     MatButton,
     BorderDirective,
     CenteredDirective
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignalsBasicsComponent {
   injector = inject(Injector)

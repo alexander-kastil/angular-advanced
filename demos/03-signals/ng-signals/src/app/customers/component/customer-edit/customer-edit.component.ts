@@ -1,14 +1,15 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { mergeMap } from 'rxjs';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { customerState } from '../../state/customers.state';
 
 @Component({
-    selector: 'app-customer-edit',
-    templateUrl: './customer-edit.component.html',
-    styleUrls: ['./customer-edit.component.scss'],
-    imports: [AsyncPipe, JsonPipe]
+  selector: 'app-customer-edit',
+  templateUrl: './customer-edit.component.html',
+  styleUrls: ['./customer-edit.component.scss'],
+  imports: [AsyncPipe, JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerEditComponent {
   readonly id = input.required<number>();

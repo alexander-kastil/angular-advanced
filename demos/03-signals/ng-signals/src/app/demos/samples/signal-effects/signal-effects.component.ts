@@ -1,7 +1,7 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { BoxedDirective } from '../../../shared/formatting/formatting-directives';
+import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { Skill } from '../../../skills/skill.model';
 import { SkillsService } from '../../../skills/skills.service';
@@ -9,7 +9,8 @@ import { SkillsService } from '../../../skills/skills.service';
   selector: 'app-signal-effects',
   imports: [MatFormField, MatLabel, MatSelectModule, MarkdownRendererComponent, BoxedDirective],
   templateUrl: './signal-effects.component.html',
-  styleUrl: './signal-effects.component.scss'
+  styleUrl: './signal-effects.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignalEffectsComponent {
   service = inject(SkillsService);

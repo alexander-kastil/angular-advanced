@@ -2,13 +2,13 @@ import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SideNavService } from '../sidenav/sidenav.service';
 import { AsyncPipe } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   imports: [
@@ -18,6 +18,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
     RouterLinkActive,
     RouterLink,
     AsyncPipe,
+    NgOptimizedImage,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

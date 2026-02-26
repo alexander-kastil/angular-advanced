@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
@@ -24,7 +24,8 @@ import { SkillsKpiComponent } from '../skills-kpi/skills-kpi.component';
     ReactiveFormsModule,
     SkillRowComponent,
     SkillsKpiComponent
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkillsContainerComponent {
   skillsEntityService = inject(SkillsEntityService);

@@ -104,3 +104,11 @@ export class WidthDirective {
 })
 export class BoxedDirective {
 }
+
+@Directive({
+  selector: '[clickable]',
+  standalone: true,
+  host: { 'style': 'cursor:pointer;' },
+})
+export class ClickableDirective {
+}

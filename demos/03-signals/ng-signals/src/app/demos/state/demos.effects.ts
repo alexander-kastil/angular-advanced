@@ -10,7 +10,7 @@ export const loadDemos = createEffect((actions$ = inject(Actions), service = inj
   return actions$.pipe(
     ofType(demoActions.loadDemos),
     mergeMap(() =>
-      service.getDemos().pipe(
+      service.getItems().pipe(
         map((demos) =>
           demoActions.loadDemosSuccess({ demos })
         ),
@@ -24,7 +24,7 @@ export const addDemo = createEffect((actions$ = inject(Actions), service = injec
   return actions$.pipe(
     ofType(demoActions.addDemo),
     mergeMap((action) =>
-      service.addDemo(action.demo).pipe(
+      service.addItem(action.demo).pipe(
         map((demo) =>
           demoActions.addDemoSuccess({ demo })
         ),
@@ -38,7 +38,7 @@ export const updateDemo = createEffect((actions$ = inject(Actions), service = in
   return actions$.pipe(
     ofType(demoActions.updateDemo),
     mergeMap((action) =>
-      service.updateDemo(action.demo).pipe(
+      service.updateItem(action.demo).pipe(
         map((demo) =>
           demoActions.updateDemoSuccess({ demo })
         ),
@@ -52,7 +52,7 @@ export const deleteDemo = createEffect((actions$ = inject(Actions), service = in
   return actions$.pipe(
     ofType(demoActions.deleteDemo),
     mergeMap((action) =>
-      service.deleteDemo(action.demo.id).pipe(
+      service.deleteItem(action.demo.id).pipe(
         map((demo) =>
           demoActions.deleteDemoSuccess({ demo })
         ),

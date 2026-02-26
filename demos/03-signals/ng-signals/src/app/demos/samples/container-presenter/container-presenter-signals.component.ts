@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { PersonEditSignalsComponent } from './person-edit-signals/person-edit-signals.component';
@@ -7,14 +7,15 @@ import { Person } from './person.model';
 import { PersonService } from './person.service';
 
 @Component({
-    selector: 'app-container-presenter-signals',
-    imports: [
-        MarkdownRendererComponent,
-        PersonListSignalsComponent,
-        PersonEditSignalsComponent
-    ],
-    templateUrl: './container-presenter-signals.component.html',
-    styleUrl: './container-presenter-signals.component.scss'
+  selector: 'app-container-presenter-signals',
+  imports: [
+    MarkdownRendererComponent,
+    PersonListSignalsComponent,
+    PersonEditSignalsComponent
+  ],
+  templateUrl: './container-presenter-signals.component.html',
+  styleUrl: './container-presenter-signals.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContainerPresenterSignalsComponent {
   ps = inject(PersonService);

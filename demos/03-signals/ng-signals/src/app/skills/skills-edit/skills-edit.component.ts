@@ -1,5 +1,5 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { FormBuilder, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
@@ -12,20 +12,21 @@ import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
 
 @Component({
-    selector: 'app-skills-edit',
-    templateUrl: './skills-edit.component.html',
-    styleUrls: ['./skills-edit.component.scss'],
-    imports: [
-        MatCardModule,
-        MatFormField,
-        MatInput,
-        MatButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSlideToggle,
-        MatCardActions,
-        MatButton
-    ]
+  selector: 'app-skills-edit',
+  templateUrl: './skills-edit.component.html',
+  styleUrls: ['./skills-edit.component.scss'],
+  imports: [
+    MatCardModule,
+    MatFormField,
+    MatInput,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggle,
+    MatCardActions,
+    MatButton
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkillsEditComponent {
   @Input({ required: true }) id: number = 0;
