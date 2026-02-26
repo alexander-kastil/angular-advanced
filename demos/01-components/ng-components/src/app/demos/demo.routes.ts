@@ -13,21 +13,6 @@ import { HostBindingListenerComponent } from './samples/host-binding-listener/ho
 import { ContainerPresenterComponent } from './samples/container-presenter/container-presenter.component';
 import { DynamicComponentsComponent } from './samples/dynamic-components/dynamic-components.component';
 
-import { FormControlComponent } from './samples/form-control/form-control.component';
-import { ControlEventsComponent } from './samples/control-events/control-events.component';
-import { ReactiveFormsComponent } from './samples/reactive-forms/reactive-forms.component';
-import { FormBuilderComponent } from './samples/forms-builder/forms-builder.component';
-import { ReactiveNestedComponent } from './samples/nested-objects/reactive-nested.component';
-import { FormArrayComponent } from './samples/form-array/form-array.component';
-import { ReactiveTypedValidationComponent } from './samples/validaton-intro/reactive-typed-validaton.component';
-import { ReactiveValidationComponent } from './samples/state-validators/reactive-validation.component';
-import { FormErrorsComponent } from './samples/form-errors/form-errors.component';
-import { ErrStateMatcherComponent } from './samples/err-state-matcher/err-state-matcher.component';
-import { ReactiveCascadeComponent } from './samples/cascade/reactive-cascade.component';
-import { SignalFormsConditionalComponent } from './samples/signal-forms-conditional/signal-forms-conditional.component';
-import { SignalFormsSubmitComponent } from './samples/signal-forms-submit/signal-forms-submit.component';
-import { SignalFormsPetsComponent } from './samples/signal-forms-pets/signal-forms-pets.component';
-
 export const demoRoutes: Routes = [
   {
     path: '',
@@ -51,21 +36,6 @@ export const demoRoutes: Routes = [
       { path: 'host-binding', component: HostBindingListenerComponent },
       { path: 'container-presenter', component: ContainerPresenterComponent },
       { path: 'dynamic-components', component: DynamicComponentsComponent },
-
-      { path: 'form-control', component: FormControlComponent },
-      { path: 'control-events', component: ControlEventsComponent },
-      { path: 'reactive-forms', component: ReactiveFormsComponent },
-      { path: 'form-builder', component: FormBuilderComponent },
-      { path: 'reactive-nested', component: ReactiveNestedComponent },
-      { path: 'form-array', component: FormArrayComponent },
-      { path: 'validation-typed', component: ReactiveTypedValidationComponent },
-      { path: 'validation', component: ReactiveValidationComponent },
-      { path: 'form-errors', component: FormErrorsComponent },
-      { path: 'err-state-matcher', component: ErrStateMatcherComponent },
-      { path: 'cascade', component: ReactiveCascadeComponent },
-      { path: 'signal-forms-conditional', component: SignalFormsConditionalComponent },
-      { path: 'signal-forms-submit', component: SignalFormsSubmitComponent },
-      { path: 'signal-forms-pets', component: SignalFormsPetsComponent },
     ],
   },
 ];

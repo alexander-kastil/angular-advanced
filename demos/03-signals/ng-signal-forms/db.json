@@ -1,52 +1,84 @@
 {
   "demos": [
     {
-      "url": "standalone",
-      "title": "Standalone Component"
+      "url": "form-control",
+      "title": "Form Control"
     },
     {
-      "url": "lazy-standalone",
-      "title": "Lazy Standalone Comp."
+      "url": "control-events",
+      "title": "Control Events"
     },
     {
-      "url": "standalone-bootstrap",
-      "title": "Load Standalone Apps"
+      "url": "base",
+      "title": "Base Reactive Forms"
     },
     {
-      "url": "control-flow",
-      "title": "Control Flow"
+      "url": "form-builder",
+      "title": "Form Builder"
     },
     {
-      "url": "directives-composition",
-      "title": "Directives Composition"
+      "url": "reactive-nested",
+      "title": "Nested Objects"
     },
     {
-      "url": "content-projection",
-      "title": "Content Projection"
+      "url": "form-array",
+      "title": "Form Array"
     },
     {
-      "url": "content-child",
-      "title": "Content Child"
+      "url": "validation-typed",
+      "title": "Validation Intro"
     },
     {
-      "url": "view-queries",
-      "title": "View Queries"
+      "url": "validation",
+      "title": "Form State & Validators"
     },
     {
-      "url": "template-vs-container",
-      "title": "Template vs Container"
+      "url": "form-errors",
+      "title": "Form Errors"
     },
     {
-      "url": "host-binding",
-      "title": "Host Binding & Listener"
+      "url": "err-state-matcher",
+      "title": "Error State Matcher"
     },
     {
-      "url": "container-presenter",
-      "title": "Container Presenter"
+      "url": "cascade",
+      "title": "Cascade Controls"
     },
     {
-      "url": "dynamic-components",
-      "title": "Dynamic Components"
+      "url": "signal-forms-conditional",
+      "title": "Signal Forms Conditional"
+    },
+    {
+      "url": "signal-forms-submit",
+      "title": "Signal Forms Submit"
+    },
+    {
+      "url": "signal-forms-pets",
+      "title": "Signal Forms Pets"
+    },
+    {
+      "url": "signal-form-arrays",
+      "title": "Signal Form Arrays"
+    },
+    {
+      "url": "signal-form-arrays-objects",
+      "title": "Signal Form Arrays Objects"
+    },
+    {
+      "url": "signal-form-null-values",
+      "title": "Signal Form Null Values"
+    },
+    {
+      "url": "signal-form-optional-props",
+      "title": "Signal Form Optional Props"
+    },
+    {
+      "url": "signal-form-validate",
+      "title": "Signal Form Validate"
+    },
+    {
+      "url": "signal-form-when",
+      "title": "Signal Form When"
     }
   ],
   "pets": [

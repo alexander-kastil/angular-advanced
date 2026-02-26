@@ -6,7 +6,7 @@ export class Person {
     wealth = '';
     state?: 'Satisfied' | 'Unsatisfied' | 'ReadyForRevolution';
     lastName?: string;
-    gender: 'male' | 'female' = 'male';
+    gender: 'male' | 'female' | 'not set' = 'male';
     married?: boolean;
     imgUrl?: string;
     address?: Address;

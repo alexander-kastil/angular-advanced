@@ -9,6 +9,25 @@ export class PersonService {
 
     constructor() { }
 
+    getPerson(): Observable<Person> {
+        const person: Person = {
+            id: 1,
+            name: 'John',
+            lastName: 'Doe',
+            age: 30,
+            email: 'john@example.com',
+            gender: 'male',
+            wealth: 'middle_class',
+            address: {
+                street: '123 Main St',
+                city: 'New York',
+                postalCode: '10001'
+            }
+        };
+
+        return of(person);
+    }
+
     getPersons(): Observable<Person[]> {
         const persons: Person[] = [
             {
@@ -56,5 +75,16 @@ export class PersonService {
         ];
 
         return of(persons);
+    }
+
+    save(person: Person): void {
+        console.log('Person saved:', person);
+    }
+
+    checkMailExists(email: string): Observable<boolean> {
+        // Simulate async mail check - return false (mail doesn't exist) after delay
+        return of(false).pipe(
+            // delay(1000)
+        );
     }
 }
