@@ -5,7 +5,7 @@
     </div>
     <div><img ngSrc="/images/angular.svg" width="50" height="50" alt="Angular logo" /></div>
     <div class="menuContainer">
-      @for (mi of menuItems | async; track mi) {
+      @for (mi of ms.topItems.value(); track mi) {
         <div
           routerLink="{{ '/' + mi.url }}"
           routerLinkActive="navLinkActive"

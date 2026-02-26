@@ -1,10 +1,10 @@
 <app-markdown-renderer [md]="'mouse-dom'" />
 
-<div boxed column centered>
+<div boxed style="align-items:center;">
   <canvas #signPad class="canvasStyle"></canvas>
   <button mat-raised-button color="accent" (click)="subscribeMouse()">
     Capture Mouse Events
   </button>
 
-  <div>signPad - Mouse Moved at X: {{ result.X }} Y: {{ result.Y }}</div>
+  <div>signPad - Mouse Moved at X: {{ (result$ | async)?.X }} Y: {{ (result$ | async)?.Y }}</div>
 </div>

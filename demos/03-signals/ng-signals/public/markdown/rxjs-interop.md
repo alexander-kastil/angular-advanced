@@ -1,6 +1,17 @@
-- `@angular/core/rxjs-interop` provides useful utilities to integrate Angular Signals with RxJS Observables
+- `@angular/core/rxjs-interop` provides utilities to bridge RxJS Observables and Angular Signals:
+    - `toSignal<T>(obs, { initialValue })` — wraps an Observable as a **read-only** signal
+    - `toObservable<T>(signal)` — wraps a signal as a cold Observable
 
-    - toSignal<T>(observable: Observable<T>, {initialValue}): Signal<T>
-    - toObservable<T>
+- `toSignal()` creates a read-only signal — to get a writable copy, use `effect()` with `allowSignalWrites: true`:
 
-- Keep in mind that the `toSignal()` function creates a signal that is not writable. If you need a writable signal, use an effect or subscribe to the observable directly.
+```typescript
+amount$ = of(10);
+amount = toSignal(this.amount$, { initialValue: 0 });
+writeableAmount = signal(this.amount());
+
+createWriteAmount = effect(() => {
+  this.writeableAmount.set(this.amount());
+}, { allowSignalWrites: true });
+```
+
+- For new code prefer `httpResource()` over `toSignal(http.get(...))` — `toSignal` + Observable interop is still useful when working with existing RxJS streams (e.g. `combineLatest`, `switchMap`, `FormControl.valueChanges`)

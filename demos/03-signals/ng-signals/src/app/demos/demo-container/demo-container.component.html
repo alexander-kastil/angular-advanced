@@ -9,7 +9,7 @@
       <mat-toolbar class="sidenav-menu">
         <span>Please select:</span>
       </mat-toolbar>
-      @for (item of demos | async; track item) {
+      @for (item of demosResource.value(); track item) {
         <mat-list-item role="listitem" [routerLink]="['./' + item.url]">{{
           item.title
         }}</mat-list-item>

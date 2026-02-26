@@ -11,14 +11,6 @@ export class SkillsService {
   http = inject(HttpClient);
   private url = `${environment.api}skills`;
 
-  getSkills(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(this.url);
-  }
-
-  getSkillsByCompletion(completed: boolean): Observable<Skill[]> {
-    return this.http.get<Skill[]>(`${this.url}?completed=${completed}`);
-  }
-
   getSkill(id: number): Observable<Skill | undefined> {
     return this.http.get<Skill>(`${this.url}/${id}`)
   }

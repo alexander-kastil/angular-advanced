@@ -1,10 +1,17 @@
-- A Signals Effect is an operation that runs whenever one or more signal values change. 
+- Examine `signal-effects.component.ts` and notice that `effect()` + `.subscribe()` has been replaced with `httpResource()` — a signal-based HTTP primitive from Angular 19+
 
-- Effects always execute asynchronously, during the change detection process, and are guaranteed to run only once per change detection cycle.
+- The request function is reactive: returning `undefined` puts the resource in **idle** state (no request sent)
 
-- By default, you can only create an effect() within an injection context:
+```typescript
+skillsResource = httpResource<Skill[]>(() => {
+  const filter = this.completedFilter();
+  return filter !== undefined
+    ? `${environment.api}skills?completed=${filter}`
+    : undefined;
+}, { defaultValue: [] });
+```
 
-    - The constructor of a component
-    - Using the Injector
-    - By defining the effect as a field / property of a class
+- The resource refetches automatically whenever `completedFilter()` changes — no manual `effect()` needed
+
+- Use `effect()` only for side effects that are **not** HTTP calls: logging, localStorage, DOM manipulation
 

@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { httpResource } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
 import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
 import { SidePanelService } from '../../shared/side-panel/sidepanel.service';
 import { environment } from '../../../environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
-import { DemoService } from '../demo-base/demo.service';
+import { DemoItem } from '../demo-base/demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
 import { MarkdownEditorComponent } from '../../shared/markdown-editor/markdown-editor.component';
 import { NgStyle, AsyncPipe } from '@angular/common';
@@ -39,13 +40,12 @@ export class DemoContainerComponent {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
   route = inject(ActivatedRoute);
-  ds = inject(DemoService);
   nav = inject(SideNavService);
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
 
   title: string = environment.title;
-  demos = this.ds.getItems();
+  demosResource = httpResource<DemoItem[]>(() => `${environment.api}demos`);
   sidenavMode = this.nav.getSideNavPosition();
   sidenavVisible = this.nav.getSideNavVisible();
   isLoading = this.ls.getLoading();

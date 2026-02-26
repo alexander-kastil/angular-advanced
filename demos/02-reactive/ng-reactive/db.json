@@ -1,10 +1,6 @@
 {
   "demos": [
     {
-      "url": "lang-features",
-      "title": "Language Features"
-    },
-    {
       "url": "imperative",
       "title": "Imperative Reactivity"
     },

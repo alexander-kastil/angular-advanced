@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { PersonEditSignalsComponent } from './person-edit-signals/person-edit-signals.component';
 import { PersonListSignalsComponent } from './person-list-signals/person-list-signals.component';
 import { Person } from './person.model';
-import { PersonService } from './person.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-container-presenter-signals',
@@ -18,9 +18,7 @@ import { PersonService } from './person.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContainerPresenterSignalsComponent {
-  ps = inject(PersonService);
-
-  persons = toSignal(this.ps.getPersons(), { initialValue: [] });
+  personsResource = httpResource<Person[]>(() => `${environment.api}persons`, { defaultValue: [] });
   current = signal<Person | undefined>(undefined);
 
   onPersonSelected(p: Person) {
@@ -30,13 +28,12 @@ export class ContainerPresenterSignalsComponent {
 
   onPersonSaved(p: Person) {
     console.log('mock saving to service:', p);
-    const existing: Person | undefined = this.persons().find((i) => i.id == p.id);
-    if (existing) {
-      Object.assign(existing, p);
-    } else {
-      this.persons().push(p);
-    }
+    this.personsResource.update(persons => {
+      const idx = persons.findIndex(i => i.id === p.id);
+      return idx >= 0
+        ? persons.map((i, index) => index === idx ? { ...i, ...p } : i)
+        : [...persons, p];
+    });
     this.current.set(undefined);
-    console.log('Persons array after save', this.persons);
   }
 }

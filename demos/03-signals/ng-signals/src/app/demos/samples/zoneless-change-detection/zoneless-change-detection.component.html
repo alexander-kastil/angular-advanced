@@ -12,15 +12,8 @@
 </div>
 
 <div boxed>
-    <h3>Data retrieved from HTTP with async pipe:</h3>
-    @for(skill of skills | async; track skill.id) {
-        <div>{{ skill.name }}</div>
-    }
-</div>
-
-<div boxed>
-    <h3>Data converted to signal:</h3>
-    @for(skill of sigSkills() ; track skill.id) {
+    <h3>Data retrieved via httpResource (signal-based):</h3>
+    @for(skill of skills(); track skill.id) {
         <div>{{ skill.name }}</div>
     }
 </div>

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
-import { fromEvent } from 'rxjs';
+import { BehaviorSubject, fromEvent } from 'rxjs';
 import { pairwise, switchMap, takeUntil } from 'rxjs/operators';
-import { BoxedDirective, CenteredDirective, ColumnDirective } from 'src/app/shared/ux-lib/formatting/formatting-directives';
+import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
@@ -13,14 +14,13 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
     MarkdownRendererComponent,
     MatButton,
     BoxedDirective,
-    ColumnDirective,
-    CenteredDirective
+    AsyncPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MouseDomObservablesComponent {
-  @ViewChild('signPad') signPad: ElementRef | undefined;
-  result: { X: number; Y: number } = { X: -1, Y: -1 };
+  signPad = viewChild<ElementRef>('signPad');
+  result$ = new BehaviorSubject<{ X: number; Y: number }>({ X: -1, Y: -1 });
   cx: CanvasRenderingContext2D | null = null;
 
   subscribeMouse() {
@@ -29,8 +29,9 @@ export class MouseDomObservablesComponent {
   }
 
   captureEvents() {
-    if (!!this.signPad) {
-      const canvasEl: HTMLCanvasElement = this.signPad.nativeElement;
+    const pad = this.signPad();
+    if (pad) {
+      const canvasEl: HTMLCanvasElement = pad.nativeElement;
       const rect = canvasEl.getBoundingClientRect();
 
       // set the internal canvas to the correct aspect ratio of the element
@@ -59,7 +60,7 @@ export class MouseDomObservablesComponent {
         );
 
         mouse$.subscribe((res: [Event, Event]) => {
-          const rectangle = this.signPad?.nativeElement.getBoundingClientRect();
+          const rectangle = this.signPad()?.nativeElement.getBoundingClientRect();
 
           // previous and current position with the offset
           var evtA = res[0] as MouseEvent;
@@ -99,8 +100,7 @@ export class MouseDomObservablesComponent {
       this.cx.stroke();
       this.cx.closePath();
 
-      this.result.X = currentPos.x;
-      this.result.Y = currentPos.y;
+      this.result$.next({ X: currentPos.x, Y: currentPos.y });
     }
   }
 }

@@ -1,6 +1,6 @@
 <app-markdown-renderer [md]="'container-presenter'" />
 
-<app-person-list-signals [persons]="persons()"
+<app-person-list-signals [persons]="personsResource.value()"
   (personSelected)="onPersonSelected($event)"
  />
 

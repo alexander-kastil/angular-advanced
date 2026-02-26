@@ -9,7 +9,6 @@ import { DebouncedSearchComponent } from './samples/debounced-search/debounced-s
 import { ErrHandlingComponent } from './samples/err-handling/err-handling.component';
 import { EventBusComponent } from './samples/eventbus/eventbus.component';
 import { ImperativeComponent } from './samples/imperative/imperative.component';
-import { LangFeaturesComponent } from './samples/lang-features/lang-features.component';
 import { MarbleTestingComponent } from './samples/marble-testing/marble-testing.component';
 import { MouseDomObservablesComponent } from './samples/mouse-dom-observables/mouse-dom-observables.component';
 import { OperatorsComponent } from './samples/operators/operators.component';
@@ -26,7 +25,6 @@ export const demoRoutes: Routes = [
         component: DemoContainerComponent,
         children: [
             { path: 'responsive-screen', component: ResponsiveScreenComponent },
-            { path: 'lang-features', component: LangFeaturesComponent },
             { path: 'subjects', component: SubjectsComponent },
             { path: 'imperative', component: ImperativeComponent },
             { path: 'reactive', component: DeclarativeComponent },
