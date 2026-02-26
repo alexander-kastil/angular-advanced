@@ -1,21 +1,21 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-    selector: 'ux-button',
-    templateUrl: './ux-button.component.html',
-    styleUrls: ['./ux-button.component.scss'],
-    standalone: true,
-    imports: [MatButton, MatIcon],
+  selector: 'ux-button',
+  templateUrl: './ux-button.component.html',
+  styleUrls: ['./ux-button.component.scss'],
+  imports: [MatButton, MatIcon],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class uxButtonComponent {
-  @Input() disabled = false;
-  @Input() label = '';
-  @Input() icon = '';
-  @Output() click = new EventEmitter<void>();
+  disabled = input<boolean>(false);
+  label = input<string>('');
+  icon = input<string>('');
+  onClick = output<void>();
 
   buttonClicked() {
-    this.click.emit();
+    this.onClick.emit();
   }
 }

@@ -12,9 +12,9 @@ import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
+  private requests: HttpRequest<any>[] = [];
   ls = inject(LoadingService);
   sbs = inject(SnackbarService);
-  requests: HttpRequest<any>[] = [];
 
   removeRequest(req: HttpRequest<any>) {
     const i = this.requests.indexOf(req);

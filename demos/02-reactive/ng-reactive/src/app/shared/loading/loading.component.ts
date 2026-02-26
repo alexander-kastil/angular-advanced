@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
@@ -7,9 +7,7 @@ import { MatProgressBar } from '@angular/material/progress-bar';
     styleUrls: ['./loading.component.scss'],
     standalone: true,
     imports: [MatProgressBar],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoadingComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class LoadingComponent {
 }

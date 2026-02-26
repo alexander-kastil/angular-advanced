@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
     selector: 'app-markdown-editor',
-    imports: [MatCardModule],
     templateUrl: './markdown-editor.component.html',
-    styleUrls: ['./markdown-editor.component.scss']
+    styleUrls: ['./markdown-editor.component.scss'],
+    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownEditorComponent {
-
 }

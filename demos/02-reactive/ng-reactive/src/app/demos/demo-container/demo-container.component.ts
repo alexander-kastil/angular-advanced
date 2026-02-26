@@ -1,9 +1,8 @@
-import { Component, DestroyRef, effect, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import { SidePanelActions } from 'src/app/shared/side-panel/side-panel.actions';
-import { SidePanelService } from 'src/app/shared/side-panel/side-panel.service';
+import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
+import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
 import { environment } from 'src/environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
@@ -16,24 +15,25 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        RouterOutlet,
-        MarkdownEditorComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ]
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    NgStyle,
+    RouterOutlet,
+    MarkdownEditorComponent,
+    SidePanelComponent,
+    AsyncPipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoContainerComponent {
   destroyRef = inject(DestroyRef);
@@ -46,33 +46,13 @@ export class DemoContainerComponent {
 
   title: string = environment.title;
   demos = this.ds.getItems();
-  selectedComponent = 'Please select a demo';
-
-  isLoading = false;
-
   sidenavMode = this.nav.getSideNavPosition();
   sidenavVisible = this.nav.getSideNavVisible();
+  isLoading = this.ls.getLoading();
 
-  workbenchMargin = this.sidenavVisible.pipe(
-    map((visible: boolean) => { return visible ? { 'margin-left': '5px' } : {} })
+  workbenchLeftMargin = computed(() =>
+    this.sidenavVisible() ? { 'margin-left': '5px' } : {}
   );
-
-  currentCMD = this.eb.getCommands()
-  showMdEditor: boolean = false;
-
-  constructor() {
-    effect(() => {
-      this.showMdEditor = this.currentCMD() === SidePanelActions.HIDE_MARKDOWN ? false : true;
-    });
-
-    this.ls.getLoading().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-      Promise.resolve(null).then(() => { this.isLoading = value });
-    });
-  }
-
-  ngOnInit() {
-    this.setComponentMetadata();
-  }
 
   rootRoute(route: ActivatedRoute): ActivatedRoute {
     while (route.firstChild) {
@@ -81,21 +61,17 @@ export class DemoContainerComponent {
     return route;
   }
 
-  setComponentMetadata() {
-    this.router.events
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter((event) => event instanceof NavigationEnd),
-        map(() => this.rootRoute(this.route)),
-        filter((route: ActivatedRoute) => route.outlet === 'primary')
-      )
-      .subscribe((route: ActivatedRoute) => {
-        this.selectedComponent =
-          route.component != null
-            ? `Component: ${route.component
-              .toString()
-              .substring(7, route.component.toString().indexOf('{') - 1)}`
-            : '';
-      });
-  }
+  header = this.router.events
+    .pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.rootRoute(this.route)),
+      filter((route: ActivatedRoute) => route.outlet === 'primary'),
+      map((route: ActivatedRoute) => route.component != null
+        ? `Component: ${route.component.name}`
+        : 'Please select a demo')
+    );
+
+  showMdEditor = computed(() =>
+    this.eb.getCommands()() === SidebarActions.SHOW_MARKDOWN
+  );
 }
