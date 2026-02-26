@@ -1,3 +1,4 @@
+<app-markdown-renderer [md]="'cascade'" />
 <mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title>Signal Forms - Cascade Controls</mat-card-title>
@@ -8,12 +9,22 @@
       <div>
         <mat-form-field>
           <mat-label>First Name</mat-label>
-          <input matInput type="text" placeholder="First Name" [formField]="profileForm.firstName" />
+          <input
+            matInput
+            type="text"
+            placeholder="First Name"
+            [formField]="profileForm.firstName"
+          />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Last Name</mat-label>
-          <input matInput type="text" placeholder="Last Name" [formField]="profileForm.lastName" />
+          <input
+            matInput
+            type="text"
+            placeholder="Last Name"
+            [formField]="profileForm.lastName"
+          />
         </mat-form-field>
       </div>
 
@@ -26,7 +37,9 @@
               <mat-select [formField]="item.techType">
                 <mat-option value="" disabled>Select a Criteria</mat-option>
                 @for (select of selectValues; track select) {
-                  <mat-option [value]="select.type">{{ select.type }}</mat-option>
+                  <mat-option [value]="select.type">{{
+                    select.type
+                  }}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -35,7 +48,10 @@
               <mat-label>Select an Option</mat-label>
               <mat-select [formField]="item.techValues">
                 <mat-option value="" disabled>Select an Option</mat-option>
-                @for (techType of getCriteria(item.techType().value()); track techType) {
+                @for (
+                  techType of getCriteria(item.techType().value());
+                  track techType
+                ) {
                   <mat-option [value]="techType">{{ techType }}</mat-option>
                 }
               </mat-select>
@@ -45,8 +61,12 @@
       }
 
       <div class="cmdItems">
-        <button mat-raised-button (click)="addSkill()" color="primary">Add Skill</button>
-        <button mat-raised-button (click)="saveForm()" color="primary">Save</button>
+        <button mat-raised-button (click)="addSkill()" color="primary">
+          Add Skill
+        </button>
+        <button mat-raised-button (click)="saveForm()" color="primary">
+          Save
+        </button>
       </div>
     </form>
   </mat-card-content>

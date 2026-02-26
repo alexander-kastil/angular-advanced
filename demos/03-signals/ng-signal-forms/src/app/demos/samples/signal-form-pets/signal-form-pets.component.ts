@@ -7,11 +7,13 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { PetService } from './pet.service';
 import { inject } from '@angular/core';
 import { Pet, Owner, PetType } from './pet.model';
 import { JsonPipe } from '@angular/common';
 import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
 
 interface PetFormModel {
     name: string;
@@ -46,7 +48,7 @@ const emptyPet: PetFormModel = {
         MatSelectModule,
         FormsModule,
         JsonPipe,
-        MatProgressBar,
+        MatProgressBar, ColumnDirective, MatListModule,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

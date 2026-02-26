@@ -1,12 +1,19 @@
-FormBuilder can shorten form initialization in TypeScript. There is also a `NonNullableFormBuilder` available.
+Examine the signal form without a builder in `signal-form-builder.component.ts`:
 
 ```typescript
-personForm = this.fb.group({
-    id: [this.person.id],
-    name: [this.person.name, { validators: [Validators.required] }],
-    age: [this.person.age, { validators: [Validators.min(1)] }],
-    email: [this.person.email, { validators: [Validators.email] }],
-    gender: [this.person.gender, { validators: [Validators.pattern(this.genderPattern)] }],
-    wealth: [this.person.wealth],
+personModel = signal({
+  id: 0,
+  name: "",
+  age: 0,
+  email: "",
+  gender: "not set" as "male" | "female" | "not set",
+  wealth: "",
+});
+
+personForm = form(this.personModel, (s) => {
+  required(s.name, { message: "Name is required" });
+  min(s.age, 1, { message: "Age must be at least 1" });
+  email(s.email, { message: "Invalid email" });
+  validate(s.gender, ({ value }) => (this.genderPattern.test(value()) ? null : { kind: "pattern", message: "Invalid gender" }));
 });
 ```

@@ -7,6 +7,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { BorderDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 import { SkillItem, SkillProfile } from './skill-profile.model';
 
 @Component({
@@ -25,7 +26,8 @@ import { SkillItem, SkillProfile } from './skill-profile.model';
     MatSelect,
     MatOption,
     MatButton,
-    BorderDirective
+    BorderDirective,
+    MarkdownRendererComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

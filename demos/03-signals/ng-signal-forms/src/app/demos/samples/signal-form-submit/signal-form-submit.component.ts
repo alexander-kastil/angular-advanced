@@ -5,6 +5,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 interface LoginModel {
     email: string;
@@ -25,6 +26,7 @@ interface LoginModel {
         MatLabel,
         MatInput,
         MatButton,
+        ColumnDirective,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

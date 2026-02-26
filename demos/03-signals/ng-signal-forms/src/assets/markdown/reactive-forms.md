@@ -1,14 +1,20 @@
-Examine a base reactive form in reactive-forms.component.ts:
+Examine the base signal form in `signal-form-base.component.ts`:
 
 ```typescript
-this.personForm = new FormGroup({
-    //include the id even if you do not want to render it to support updated
-    id: new FormControl(this.person.id),
-    name: new FormControl(this.person.name, Validators.required),
-    lastname: new FormControl(this.person.lastname, Validators.required),
-    age: new FormControl(this.person.age),
-    email: new FormControl(this.person.email),
-    gender: new FormControl(this.person.gender),
-    wealth: new FormControl(this.person.wealth),
+personModel = signal({
+  name: "",
+  lastName: "",
+  age: 0,
+  email: "",
+  gender: "not set" as "male" | "female" | "not set",
+  wealth: "",
+});
+
+personForm = form(this.personModel, (s) => {
+  required(s.name, { message: "Name is required" });
+  minLength(s.name, 3, { message: "Min 3 characters" });
+  required(s.lastName, { message: "Last name is required" });
+  required(s.email, { message: "Email is required" });
+  email(s.email, { message: "Invalid email" });
 });
 ```

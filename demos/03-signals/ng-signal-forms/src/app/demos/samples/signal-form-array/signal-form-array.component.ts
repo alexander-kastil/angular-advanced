@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
+import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 
 interface SkillsModel {
   name: string;
@@ -22,6 +23,7 @@ interface SkillsModel {
     MatInputModule,
     MatButtonModule,
     MarkdownRendererComponent,
+    ColumnDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

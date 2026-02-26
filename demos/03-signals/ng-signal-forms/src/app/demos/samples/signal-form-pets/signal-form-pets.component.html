@@ -10,19 +10,16 @@
       @if (isLoading()) {
         <mat-progress-bar mode="indeterminate" />
       }
-      <div class="pet-items">
+      <mat-nav-list>
         @for (pet of pets(); track pet.id) {
-          <div class="pet-item"
-               [class.selected]="selectedPet()?.name === pet.name"
-               (click)="onSelectPet(pet)">
-            <span class="pet-icon">{{ pet.type === 'cat' ? '🐱' : '🐶' }}</span>
-            <span class="pet-info">
-              <strong>{{ pet.name }}</strong>
-              <small>{{ pet.breed }} · {{ pet.owner }}</small>
-            </span>
-          </div>
+          <mat-list-item [class.selected]="selectedPet()?.name === pet.name"
+                         (click)="onSelectPet(pet)">
+            <span matListItemIcon>{{ pet.type === 'cat' ? '🐱' : '🐶' }}</span>
+            <span matListItemTitle>{{ pet.name }}</span>
+            <span matListItemLine>{{ pet.breed }} · {{ pet.owner }}</span>
+          </mat-list-item>
         }
-      </div>
+      </mat-nav-list>
       <button mat-stroked-button (click)="addPet()" style="margin-top: 8px; width: 100%;">
         + New Pet
       </button>

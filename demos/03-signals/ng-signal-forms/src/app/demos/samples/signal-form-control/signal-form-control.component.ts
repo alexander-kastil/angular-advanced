@@ -5,6 +5,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
   selector: 'app-form-control',
@@ -13,7 +14,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
   imports: [
     MatCard, MatCardHeader, MatCardTitle, MatCardContent,
     ColumnDirective, MatFormField, MatLabel, MatInput,
-    MatCardActions, MatButton, FormField,
+    MatCardActions, MatButton, FormField, MarkdownRendererComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

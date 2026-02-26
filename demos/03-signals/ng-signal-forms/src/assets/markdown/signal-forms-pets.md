@@ -1,10 +1,23 @@
-## Signal Forms - Pets (List / Detail / Edit with On-Change Tracking)
+Examine the pet CRUD form in `signal-form-pets.component.ts`:
 
-Adapted from [DeborahK/angular-signal-forms](https://github.com/DeborahK/angular-signal-forms/) vehicle demos.
+```typescript
+petForm = form(this.petModel, (s) => {
+  required(s.name, { message: 'Pet name is required' });
+  required(s.age, { message: 'Age is required' });
+  min(s.age, 0, { message: 'Age cannot be negative' });
+  max(s.age, 30, { message: 'Age must be 30 or less' });
+  required(s.breed, { message: 'Breed is required' });
+  required(s.owner, { message: 'Owner is required' });
+});
 
-- **`form()`** from `@angular/forms/signals` binds a `signal<PetFormModel>()` to the template via `[formField]`
-- **Validation** uses `required()`, `min()`, `max()` with custom messages
-- **`submit()`** marks all fields touched and only calls the callback when valid
-- **On-change tracking** via `effect()` — every model mutation is logged to the change log panel
-- Select a pet from the list → detail populates the form → edit and save
-- Click **+ New Pet** to create a new entry
+savePet(): void {
+  submit(this.petForm, async () => {
+    this.submitted.set(true);
+    const updated = this.petModel();
+    this.selectedPet.set({ ...updated });
+    this.petService.reload();
+  });
+}
+```
+
+Uses `rxResource` to fetch pets, `effect()` for on-change tracking, and `submit()` for save.

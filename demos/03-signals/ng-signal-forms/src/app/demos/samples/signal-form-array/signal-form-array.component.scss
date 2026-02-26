@@ -1,14 +1,23 @@
 mat-form-field {
-  width: 100%;
+  flex: 1;
 }
 
 h6 {
-  margin-left: var(--gap-medium);
   margin-bottom: var(--gap-medium);
 }
 
-.row{
+.skill-row {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: var(--gap-medium);
+}
+
+.skill-row.actions {
+  justify-content: flex-end;
+  padding-top: var(--gap-small);
+}
+
+button {
+  min-width: 120px;
 }

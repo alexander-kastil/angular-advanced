@@ -6,6 +6,7 @@ import { Directive } from '@angular/core';
     'style': `
     display: flex;
     flex-direction: column;
+    gap: var(--gap-medium);
     `},
   standalone: true
 })
@@ -18,6 +19,7 @@ export class ColumnDirective {
     'style': `
     display: flex;
     flex-direction: row;
+    gap: var(--gap-medium);
     `},
   standalone: true
 })

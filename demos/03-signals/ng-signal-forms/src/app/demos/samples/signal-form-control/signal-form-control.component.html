@@ -1,3 +1,5 @@
+<app-markdown-renderer [md]="'form-control'" />
+
 <mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title>Signal Form Fields</mat-card-title>
@@ -6,7 +8,12 @@
     <div column>
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput type="text" placeholder="Name" [formField]="fields.name" />
+        <input
+          matInput
+          type="text"
+          placeholder="Name"
+          [formField]="fields.name"
+        />
       </mat-form-field>
       @if (fields.name().touched() && fields.name().invalid()) {
         @for (err of fields.name().errors(); track err.kind) {
@@ -15,11 +22,21 @@
       }
       <mat-form-field>
         <mat-label>Postal</mat-label>
-        <input matInput type="text" placeholder="Postal" [formField]="fields.postal" />
+        <input
+          matInput
+          type="text"
+          placeholder="Postal"
+          [formField]="fields.postal"
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>City</mat-label>
-        <input matInput type="text" placeholder="City" [formField]="fields.city" />
+        <input
+          matInput
+          type="text"
+          placeholder="City"
+          [formField]="fields.city"
+        />
       </mat-form-field>
       @if (fields.city().touched() && fields.city().invalid()) {
         @for (err of fields.city().errors(); track err.kind) {
@@ -29,8 +46,12 @@
     </div>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-raised-button (click)="logName()" color="accent">Log Name</button>
-    <button mat-raised-button (click)="updateName()" color="accent">Update Name</button>
+    <button mat-raised-button (click)="logName()" color="accent">
+      Log Name
+    </button>
+    <button mat-raised-button (click)="updateName()" color="accent">
+      Update Name
+    </button>
     <button mat-raised-button color="accent">Save</button>
   </mat-card-actions>
 </mat-card>

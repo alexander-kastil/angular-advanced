@@ -10,6 +10,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { ColumnDirective, BorderDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 interface NestedModel {
   name: string;
@@ -30,6 +31,7 @@ interface NestedModel {
   templateUrl: './signal-form-nested-objects.component.html',
   styleUrls: ['./signal-form-nested-objects.component.scss'],
   imports: [
+    MarkdownRendererComponent,
     MatCard,
     MatCardHeader,
     MatCardTitle,

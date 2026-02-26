@@ -6,6 +6,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { ColumnDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
 import { JsonPipe } from '@angular/common';
 
 type PetType = 'cat' | 'dog';
@@ -35,7 +36,7 @@ const initialData: PetWhenModel = {
         MarkdownRendererComponent,
         MatCard, MatCardHeader, MatCardTitle, MatCardContent,
         FormField, MatFormField, MatLabel, MatInput,
-        MatCheckbox, MatSelectModule, JsonPipe,
+        MatCheckbox, MatSelectModule, JsonPipe, ColumnDirective,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
