@@ -29,8 +29,7 @@
     "marked": "^17.0.3",
     "ngx-markdown": "^21.1.0",
     "rxjs": "~7.8.1",
-    "tslib": "^2.6.2",
-    "zone.js": "~0.15.1"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@angular/build": "^21.2.0",
