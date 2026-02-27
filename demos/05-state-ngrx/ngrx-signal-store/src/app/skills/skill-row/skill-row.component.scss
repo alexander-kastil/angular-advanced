@@ -17,4 +17,7 @@
 .cmd {
   flex: 1;
   text-align: end;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
 }

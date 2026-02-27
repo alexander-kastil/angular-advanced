@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-import { DemoService } from '../demo-base/demo.service';
+import { catchError, map, mergeMap, mapTo } from 'rxjs/operators';
+import { DemoService } from '../demo-container/demo.service';
 import { demoActions } from './demos.actions';
 
-export const loadDemos = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+export const loadDemos = createEffect((actions$ = inject(Actions), service = inject(DemoService) as DemoService) => {
   return actions$.pipe(
     ofType(demoActions.loadDemos),
     mergeMap(() =>
@@ -19,7 +19,7 @@ export const loadDemos = createEffect((actions$ = inject(Actions), service = inj
   )
 }, { functional: true });
 
-export const addDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+export const addDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService) as DemoService) => {
   return actions$.pipe(
     ofType(demoActions.addDemo),
     mergeMap((action) =>
@@ -33,7 +33,7 @@ export const addDemo = createEffect((actions$ = inject(Actions), service = injec
   )
 }, { functional: true });
 
-export const updateDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+export const updateDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService) as DemoService) => {
   return actions$.pipe(
     ofType(demoActions.updateDemo),
     mergeMap((action) =>
@@ -47,14 +47,12 @@ export const updateDemo = createEffect((actions$ = inject(Actions), service = in
   )
 }, { functional: true });
 
-export const deleteDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService)) => {
+export const deleteDemo = createEffect((actions$ = inject(Actions), service = inject(DemoService) as DemoService) => {
   return actions$.pipe(
     ofType(demoActions.deleteDemo),
     mergeMap((action) =>
       service.deleteDemo(action.demo.id).pipe(
-        map((demo) =>
-          demoActions.deleteDemoSuccess({ demo })
-        ),
+        mapTo(demoActions.deleteDemoSuccess({ demo: action.demo })),
         catchError((err) => of(demoActions.deleteDemoFailure({ err })))
       )
     )

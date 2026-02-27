@@ -1,33 +1,35 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 import { SkillRowComponent } from '../skill-row/skill-row.component';
 import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
 import { SkillsKpiComponent } from '../skills-kpi/skills-kpi.component';
 
 @Component({
-    selector: 'app-skills-container',
-    templateUrl: './skills-container.component.html',
-    styleUrls: ['./skills-container.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatButton,
-        MatSlideToggle,
-        FormsModule,
-        ReactiveFormsModule,
-        SkillRowComponent,
-        SkillsKpiComponent,
-    ]
+  selector: 'app-skills-container',
+  templateUrl: './skills-container.component.html',
+  styleUrls: ['./skills-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatButton,
+    MatSlideToggle,
+    FormsModule,
+    ReactiveFormsModule,
+    SkillRowComponent,
+    SkillsKpiComponent,
+  ]
 })
 export class SkillsContainerComponent {
   service = inject(SkillsEntityService);
+  router = inject(Router);
   fcToggle = new FormControl(true);
 
   skills = toSignal(this.service.entities$.pipe(
@@ -37,28 +39,14 @@ export class SkillsContainerComponent {
     })
   ));
 
-  ngOnInit(): void {
-    this.service.loaded$.subscribe((loaded) => {
-      if (!loaded) {
-        this.service.getAll();
-      }
+  constructor() {
+    this.service.loaded$.pipe(takeUntilDestroyed()).subscribe((loaded) => {
+      if (!loaded) this.service.getAll();
     });
   }
 
-  ngDoCheck(): void {
-    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-    if (environment.logChangeDetection) {
-      console.log('SkillsContainerComponent - ngDoCheck');
-    }
-  }
-
   addItem(): void {
-    const newItem: Skill = {
-      id: 0,
-      name: 'Configuration Mgmt',
-      completed: false,
-    };
-    this.service.add(newItem);
+    this.router.navigate(['/skills', 0]);
   }
 
   deleteItem(item: Skill): void {

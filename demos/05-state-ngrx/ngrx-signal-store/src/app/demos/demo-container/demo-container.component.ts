@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, r
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
-import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
-import { environment } from 'src/environments/environment';
+import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
+import { SidePanelService } from '../../shared/side-panel/sidepanel.service';
+import { environment } from '../../../environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
 import { DemoItem } from './demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
-import { MarkdownEditorComponent } from '../../shared/markdown-editor/markdown-editor.component';
+import { EditorContainerComponent } from '../../shared/markdown-editor/components/editor-container/editor-container.component';
 import { MatNavList, MatListItem } from '@angular/material/list';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
@@ -28,7 +28,7 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
     RouterLink,
     MatSidenavContent,
     RouterOutlet,
-    MarkdownEditorComponent,
+    EditorContainerComponent,
     SidePanelComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -50,12 +50,10 @@ export class DemoContainerComponent {
     loader: () => lastValueFrom(this.http.get<DemoItem[]>(`${environment.api}demos`))
   });
 
-  demosSorted = computed(() => {
+  demos = computed(() => {
     const items = this.demosResource.value() ?? [];
     return [...items].sort((a, b) => a.sortOrder - b.sortOrder);
   });
-
-  demos = computed(() => this.demosSorted());
   isLoadingDemos = computed(() => this.demosResource.status() === 'loading');
   hasErrorDemos = computed(() => this.demosResource.status() === 'error');
 
@@ -66,7 +64,7 @@ export class DemoContainerComponent {
   header = signal('Please select a demo');
 
   showMdEditor = computed(() =>
-    this.eb.getCommands()() === SidebarActions.SHOW_MARKDOWN
+    (this.eb.getCommands() as any)() === SidebarActions.SHOW_MARKDOWN
   );
 
   constructor() {
