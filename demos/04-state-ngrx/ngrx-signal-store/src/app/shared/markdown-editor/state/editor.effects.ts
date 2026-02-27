@@ -38,8 +38,8 @@ export const deleteComment$ = createEffect((actions$ = inject(Actions), service 
     ofType(MarkdownEditorActions.deleteComment),
     mergeMap((action) =>
       service.deleteComment(action.item).pipe(
-        map((comment) =>
-          MarkdownEditorActions.deleteCommentSuccess({ item: comment })
+        map(() =>
+          MarkdownEditorActions.deleteCommentSuccess({ item: action.item })
         ),
         catchError((err) => of(MarkdownEditorActions.deleteCommentFailure({ err })))
       )

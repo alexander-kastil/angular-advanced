@@ -14,4 +14,7 @@
       [(ngModel)]="comment.comment"
     ></textarea>
   </mat-form-field>
+  <div class="preview">
+    <markdown [data]="comment.comment" />
+  </div>
 </div>

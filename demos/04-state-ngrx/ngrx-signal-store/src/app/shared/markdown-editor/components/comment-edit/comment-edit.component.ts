@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { ColumnDirective } from '../../../formatting/formatting-directives';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
     selector: 'app-comment-edit',
@@ -15,6 +16,7 @@ import { ColumnDirective } from '../../../formatting/formatting-directives';
         MatLabel,
         MatInput,
         FormsModule,
+        MarkdownComponent,
     ]
 })
 export class CommentEditComponent {
