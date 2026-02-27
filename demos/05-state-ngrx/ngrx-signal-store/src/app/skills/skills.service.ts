@@ -17,14 +17,15 @@ export class SkillsService {
   }
 
   getSkill(id: number): Observable<Skill | undefined> {
-    return this.http.get<Skill>(`${this.url}/${id}`)
+    return this.http.get<Skill>(`${this.url}/${id}`);
   }
 
   addSkill(skill: Skill): Observable<Skill> {
-    return this.http.post<Skill>(this.url, skill);
+    const { id: _id, ...payload } = skill;
+    return this.http.post<Skill>(this.url, payload);
   }
 
   deleteSkill(skill: Skill): Observable<any> {
-    return this.http.delete(this.url);
+    return this.http.delete(`${this.url}/${skill.id}`);
   }
 }

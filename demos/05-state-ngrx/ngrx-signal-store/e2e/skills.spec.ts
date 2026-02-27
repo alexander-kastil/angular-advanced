@@ -1,7 +1,7 @@
 import { test, expect, seedSkills } from './skills.fixtures';
 
 test.describe('Skills', () => {
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ page, mockSkillsApi }) => {
         await page.goto('/skills', { waitUntil: 'networkidle' });
     });
 

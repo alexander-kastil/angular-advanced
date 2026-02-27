@@ -9,7 +9,7 @@ export const seedSkills = [
 export const test = base.extend<{ mockSkillsApi: void }>({
     mockSkillsApi: [async ({ page }, use) => {
         let skills = seedSkills.map(s => ({ ...s }));
-        let nextId = 100;
+        let nextId = Math.max(...seedSkills.map(s => s.id)) + 1;
 
         await page.route('http://localhost:3000/skills/*', async (route) => {
             const url = route.request().url();
