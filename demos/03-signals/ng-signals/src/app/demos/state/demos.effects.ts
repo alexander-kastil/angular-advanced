@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { DemoService } from '../demo-base/demo.service';
+import { DemoService } from '../demo-container/demo.service';
 import { demoActions } from './demos.actions';
 import { Router } from '@angular/router';
 
@@ -53,8 +53,8 @@ export const deleteDemo = createEffect((actions$ = inject(Actions), service = in
     ofType(demoActions.deleteDemo),
     mergeMap((action) =>
       service.deleteItem(action.demo.id).pipe(
-        map((demo) =>
-          demoActions.deleteDemoSuccess({ demo })
+        map(() =>
+          demoActions.deleteDemoSuccess({ demo: action.demo })
         ),
         catchError((err) => of(demoActions.deleteDemoFailure({ err })))
       )

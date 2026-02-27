@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { DemoItem } from '../../../demo-base/demo-item.model';
+import { DemoItem } from '../../../demo-container/demo-item.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
@@ -16,7 +16,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoRowComponent {
-  item = input(new DemoItem());
+  item = input<DemoItem>(new DemoItem());
   onDelete = output<DemoItem>();
   onSelect = output<DemoItem>();
   onChangeVisibility = output<DemoItem>();

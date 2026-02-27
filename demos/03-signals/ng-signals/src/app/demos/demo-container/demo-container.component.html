@@ -9,24 +9,24 @@
       <mat-toolbar class="sidenav-menu">
         <span>Please select:</span>
       </mat-toolbar>
-      @for (item of demosResource.value(); track item) {
-        <mat-list-item role="listitem" [routerLink]="['./' + item.url]">{{
+      @for (item of demos(); track item) {
+        <mat-list-item role="listitem" [routerLink]="['./' + item.url]" [matTooltip]="item.teaches" matTooltipPosition="after" matTooltipClass="demo-tooltip">{{
           item.title
         }}</mat-list-item>
       }
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="gdSidenavContent" [ngStyle]="workbenchLeftMargin()">
+    <div class="gdSidenavContent" [style.margin-left]="sidenavVisible() ? '5px' : '0'">
       <div class="gdToolbar">
         <mat-toolbar color="accent">
           <mat-toolbar-row>
-            <h4>{{ header | async }}</h4>
+            <h4>{{ header() }}</h4>
           </mat-toolbar-row>
         </mat-toolbar>
       </div>
       <!-- <div class="gdLoading">
-        <app-loading *ngIf="isLoading | async"></app-loading>
+        <app-loading *ngIf="isLoading()"></app-loading>
       </div> -->
       <div class="gdWorkbench">
         <router-outlet />

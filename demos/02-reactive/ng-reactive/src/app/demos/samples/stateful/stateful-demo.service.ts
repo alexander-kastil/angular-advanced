@@ -1,27 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { DemoItem } from '../../demo-base/demo-item.model';
+import { DemoItem } from '../../demo-container/demo-item.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StatefulDemoService {
-  http = inject(HttpClient);
+  private readonly sampleDemos: DemoItem[] = [
+    { id: 1, title: 'Observable Basics', url: 'observable-basics', teaches: 'Observable fundamentals', sortOrder: 1, topic: 'Basics', visible: true },
+    { id: 2, title: 'Subject & Behavior', url: 'subject-behavior', teaches: 'Subjects and behaviors', sortOrder: 2, topic: 'Basics', visible: true },
+    { id: 3, title: 'Operators', url: 'operators', teaches: 'RxJS operators', sortOrder: 3, topic: 'Operators', visible: true },
+  ];
 
   private demos: BehaviorSubject<DemoItem[]> = new BehaviorSubject<DemoItem[]>(
-    []
+    this.sampleDemos
   );
-
-  constructor() {
-    this.http
-      .get<DemoItem[]>(`${environment.api}demos`)
-      .subscribe((data) => {
-        let trimmed = data.slice(0, 3);
-        this.demos.next(trimmed);
-      });
-  }
 
   getDemos() {
     return this.demos.asObservable();

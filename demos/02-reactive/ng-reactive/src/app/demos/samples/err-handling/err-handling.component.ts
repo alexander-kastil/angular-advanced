@@ -10,7 +10,6 @@ import {
   tap
 } from 'rxjs/operators';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
-import { DemoService } from '../../demo-base/demo.service';
 import { Voucher } from '../../vouchers/voucher.model';
 import { VouchersService } from '../../vouchers/voucher.service';
 
@@ -30,7 +29,6 @@ import { VouchersService } from '../../vouchers/voucher.service';
 })
 export class ErrHandlingComponent {
   vs = inject(VouchersService);
-  ds = inject(DemoService);
 
   completeStream() {
     // handle exceptions in the source / service
@@ -73,8 +71,18 @@ export class ErrHandlingComponent {
   }
 
   fallbackValue() {
-    this.ds
-      .getItems()
+    const sampleItems = [
+      {
+        url: 'langfeatures',
+        title: 'Language Features',
+      },
+      {
+        url: 'creating',
+        title: 'Creating Observables',
+      },
+    ];
+
+    of(sampleItems)
       .pipe(
         catchError((err) => {
           console.log('caught mapping error and rethrowing', err);
@@ -83,24 +91,7 @@ export class ErrHandlingComponent {
         finalize(() => console.log('first finalize() block executed')),
         catchError((err) => {
           console.log('rethrow error, providing fallback value', err);
-          return of([
-            {
-              url: 'langfeatures',
-              topicid: 2,
-              title: 'Language Features',
-              component: 'LangFeaturesComponent',
-              visible: true,
-              sortOrder: 1,
-            },
-            {
-              url: 'creating',
-              topicid: 2,
-              title: 'Creating Observables',
-              component: 'CreatingObservableComponent',
-              visible: true,
-              sortOrder: 2,
-            },
-          ]);
+          return of(sampleItems);
         }),
         finalize(() => console.log('second finalize() block executed'))
       )

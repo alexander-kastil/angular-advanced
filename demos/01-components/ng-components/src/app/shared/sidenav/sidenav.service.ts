@@ -2,8 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { effect } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NavItem } from '../navbar/navitem.model';
 import { environment } from '../../../environments/environment';
 
@@ -18,8 +18,21 @@ export class SideNavService {
   readonly sideNavVisible = this.visible.asReadonly();
   readonly sideNavPosition = this.position.asReadonly();
 
+  private topItemsSignal = toSignal(
+    this.http.get<NavItem[]>(`${environment.api}top-links`),
+    { initialValue: [] }
+  );
+
   constructor() {
-    this.watchScreen.subscribe();
+    effect(() => {
+      this.breakpointObserver
+        .observe([Breakpoints.XSmall, Breakpoints.Small])
+        .subscribe((matchesBreakpoint) => {
+          console.log(matchesBreakpoint);
+          this.visible.set(!matchesBreakpoint.matches);
+          this.position.set(matchesBreakpoint.matches ? 'over' : 'side');
+        });
+    }, { allowSignalWrites: true });
   }
 
   getSideNavVisible() {
@@ -30,16 +43,6 @@ export class SideNavService {
     return this.sideNavPosition;
   }
 
-  watchScreen = this.breakpointObserver
-    .observe([Breakpoints.XSmall, Breakpoints.Small])
-    .pipe(
-      tap((matchesBreakpoint) => {
-        console.log(matchesBreakpoint);
-        this.visible.set(!matchesBreakpoint.matches);
-        this.position.set(matchesBreakpoint.matches ? 'over' : 'side');
-      })
-    );
-
   setSideNavEnabled(val: boolean) {
     this.visible.set(val);
   }
@@ -48,7 +51,7 @@ export class SideNavService {
     this.visible.update(v => !v);
   }
 
-  getTopItems(): Observable<NavItem[]> {
-    return this.http.get<NavItem[]>(`${environment.api}top-links`);
+  getTopItems() {
+    return this.topItemsSignal;
   }
 }

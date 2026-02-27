@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DemoItem } from '../../../demo-base/demo-item.model';
+import { DemoItem } from '../../../demo-container/demo-item.model';
 import { StatefulDemoService } from '../stateful-demo.service';
 import { AsyncPipe } from '@angular/common';
 import { DemoRowComponent } from '../demo-row/demo-row.component';

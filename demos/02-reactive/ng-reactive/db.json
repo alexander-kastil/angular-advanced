@@ -2,55 +2,94 @@
   "demos": [
     {
       "url": "imperative",
-      "title": "Imperative Reactivity"
+      "title": "Imperative Reactivity",
+      "teaches": "Understand the limitations of imperative programming with callbacks and mutable state. See how manual subscription management leads to memory leaks and complex control flow.",
+      "sortOrder": 1,
+      "topic": "Reactive Fundamentals"
     },
     {
       "url": "reactive",
-      "title": "Declarative Reactivity"
+      "title": "Declarative Reactivity",
+      "teaches": "Transition to declarative reactive programming with Observables. Let RxJS handle data flow and subscriptions automatically for cleaner, more maintainable code.",
+      "sortOrder": 2,
+      "topic": "Reactive Fundamentals"
     },
     {
       "url": "async-pipe",
-      "title": "Async Pipe"
+      "title": "Async Pipe",
+      "teaches": "Use the async pipe to subscribe to Observables directly in templates. Mark components as OnPush for performance and let Angular handle subscription cleanup.",
+      "sortOrder": 3,
+      "topic": "Reactive Fundamentals"
     },
     {
       "url": "unsubscribe",
-      "title": "Unsubscribing"
-    },
-    {
-      "url": "debounced",
-      "title": "Debounced Search"
+      "title": "Unsubscribing",
+      "teaches": "Prevent memory leaks by properly unsubscribing from Observables. Explore patterns like takeUntil() and subscription management in component lifecycle.",
+      "sortOrder": 4,
+      "topic": "Reactive Fundamentals"
     },
     {
       "url": "action-streams",
-      "title": "Action Streams"
+      "title": "Action Streams",
+      "teaches": "Build reactive data flows from user actions using Subject and streams. Combine multiple action streams to create responsive, event-driven applications.",
+      "sortOrder": 10,
+      "topic": "Handling Events & Data"
+    },
+    {
+      "url": "debounced",
+      "title": "Debounced Search",
+      "teaches": "Implement efficient search with debounceTime() to reduce API calls. Combine with switchMap() to cancel previous requests when user types new queries.",
+      "sortOrder": 11,
+      "topic": "Handling Events & Data"
     },
     {
       "url": "mouse-dom",
-      "title": "Mouse & DOM Events"
+      "title": "Mouse & DOM Events",
+      "teaches": "Convert DOM events into Observable streams using fromEvent(). Handle mouse movements, clicks, and other browser events reactively.",
+      "sortOrder": 12,
+      "topic": "Handling Events & Data"
     },
     {
       "url": "responsive-screen",
-      "title": "Responsive Screen"
+      "title": "Responsive Screen",
+      "teaches": "React to screen size changes and media queries using Observables. Build responsive layouts that adapt dynamically to viewport dimensions.",
+      "sortOrder": 13,
+      "topic": "Handling Events & Data"
     },
     {
       "url": "creating",
-      "title": "Creating Observables"
+      "title": "Creating Observables",
+      "teaches": "Create Observables from scratch using of(), from(), interval(), and custom Observable constructors. Understand cold vs hot Observables.",
+      "sortOrder": 20,
+      "topic": "RxJS Operators & Observables"
     },
     {
       "url": "operators",
-      "title": "Base Operators"
-    },
-    {
-      "url": "err-handling",
-      "title": "Error Handling"
+      "title": "Base Operators",
+      "teaches": "Master fundamental operators like map(), filter(), reduce(), and forEach(). Transform and filter Observable streams with common operations.",
+      "sortOrder": 21,
+      "topic": "RxJS Operators & Observables"
     },
     {
       "url": "transformation",
-      "title": "Transformation"
+      "title": "Transformation",
+      "teaches": "Use advanced transformation operators like flatMap(), switchMap(), and mergeMap(). Control how nested Observables are flattened into result streams.",
+      "sortOrder": 22,
+      "topic": "RxJS Operators & Observables"
+    },
+    {
+      "url": "err-handling",
+      "title": "Error Handling",
+      "teaches": "Handle errors in Observable streams with catchError() and retry(). Recover from failures gracefully and log errors appropriately.",
+      "sortOrder": 23,
+      "topic": "RxJS Operators & Observables"
     },
     {
       "url": "custom-operators",
-      "title": "Custom Operators"
+      "title": "Custom Operators",
+      "teaches": "Build reusable custom operators with the pipe() pattern. Encapsulate complex transformation logic into composable, shareable utilities.",
+      "sortOrder": 24,
+      "topic": "RxJS Operators & Observables"
     }
   ],
   "skills": [

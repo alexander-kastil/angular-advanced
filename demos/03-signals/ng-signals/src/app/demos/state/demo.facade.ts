@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { DemoItem } from '../demo-base/demo-item.model';
+import { DemoItem } from '../demo-container/demo-item.model';
 import { demoActions } from './demos.actions';
 import { DemoState, getAllDemos, selectLoaded, selectSelected, selectFilter } from './demos.state';
 

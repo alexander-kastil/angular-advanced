@@ -69,3 +69,7 @@ mat-toolbar {
 .mat-list-base .mat-list-option {
   height: 36px;
 }
+
+::ng-deep .demo-tooltip {
+  max-width: 450px !important;
+}

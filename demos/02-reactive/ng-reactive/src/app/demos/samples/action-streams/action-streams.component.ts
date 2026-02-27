@@ -7,7 +7,7 @@ import { combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MarkdownRendererComponent } from 'src/app/shared/markdown-renderer/markdown-renderer.component';
 import { BoxedDirective } from '../../../shared/ux-lib/formatting/formatting-directives';
-import { DemoService } from '../../demo-base/demo.service';
+import { DemoService } from '../../demo-shared/demo.service';
 
 @Component({
   selector: 'app-action-streams',
