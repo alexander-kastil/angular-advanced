@@ -79,16 +79,6 @@
       "id": 3,
       "name": "Angular",
       "completed": false
-    },
-    {
-      "name": "test",
-      "completed": false,
-      "id": 9
-    },
-    {
-      "name": "hugo",
-      "completed": false,
-      "id": 10
     }
   ],
   "comments": [
