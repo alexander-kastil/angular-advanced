@@ -9,7 +9,7 @@ import { LoadingService } from '../../shared/loading/loading.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
 import { DemoItem } from './demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
-import { EditorContainerComponent } from '../../shared/markdown-editor/components/editor-container/editor-container.component';
+import { MarkdownEditorContainerComponent } from '../../shared/markdown-editor/components/markdown-editor-container/markdown-editor-container.component';
 import { MatNavList, MatListItem } from '@angular/material/list';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
@@ -28,7 +28,7 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
     RouterLink,
     MatSidenavContent,
     RouterOutlet,
-    EditorContainerComponent,
+    MarkdownEditorContainerComponent,
     SidePanelComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush

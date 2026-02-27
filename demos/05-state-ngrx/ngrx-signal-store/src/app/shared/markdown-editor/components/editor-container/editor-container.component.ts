@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { CommentItem } from '../../comment.model';
+import { MarkdownItem } from '../../markdown.model';
 import { MatButton } from '@angular/material/button';
-import { CommentEditComponent } from '../comment-edit/comment-edit.component';
-import { CommentsListComponent } from '../comments-list/comments-list.component';
+import { MarkdownEditComponent } from '../markdown-edit/markdown-edit.component';
+import { MarkdownListComponent } from '../markdown-list/markdown-list.component';
 import { ColumnDirective } from '../../../formatting/formatting-directives';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
-import { editorStore } from '../../editor.store';
+import { markdownEditorStore } from '../../markdown-editor.store';
 
 @Component({
   selector: 'app-editor-container',
@@ -17,19 +17,19 @@ import { editorStore } from '../../editor.store';
     MatCardTitle,
     MatCardContent,
     ColumnDirective,
-    CommentsListComponent,
-    CommentEditComponent,
+    MarkdownListComponent,
+    MarkdownEditComponent,
     MatCardActions,
     MatButton,
   ]
 })
 export class EditorContainerComponent {
-  store = inject(editorStore);
+  store = inject(markdownEditorStore);
   editorEdit = false;
-  current: CommentItem | null = null;
+  current: MarkdownItem | null = null;
 
   addComment() {
-    this.current = new CommentItem();
+    this.current = new MarkdownItem();
     this.editorEdit = true;
   }
 
@@ -40,11 +40,11 @@ export class EditorContainerComponent {
     }
   }
 
-  deleteComment(item: CommentItem) {
+  deleteComment(item: MarkdownItem) {
     this.store.deleteComment(item);
   }
 
-  editComment(item: CommentItem) {
+  editComment(item: MarkdownItem) {
     this.current = { ...item };
     this.editorEdit = true;
   }
