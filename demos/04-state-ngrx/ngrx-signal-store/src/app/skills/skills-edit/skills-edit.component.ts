@@ -1,12 +1,11 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
-import { FormBuilder, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { Component, OnChanges, inject, input, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SnackbarService } from '../../shared/snackbar/snackbar.service';
 import { Skill } from '../skill.model';
 import { SkillsEntityService } from '../skills-entity.service';
@@ -21,40 +20,40 @@ import { SkillsEntityService } from '../skills-entity.service';
     MatInput,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule,
     MatSlideToggle,
     MatCardActions,
-    MatButton
   ]
 })
-export class SkillsEditComponent {
-  @Input({ required: true }) id: number = 0;
-  route = inject(ActivatedRoute);
+export class SkillsEditComponent implements OnChanges {
+  id = input.required<number>();
   router = inject(Router);
   service = inject(SkillsEntityService);
   sns = inject(SnackbarService);
-  fb = inject(NonNullableFormBuilder);
-  skill: Skill = new Skill();
 
-  skillForm = this.fb.group({
-    id: [0, { validators: [Validators.required] }],
-    name: '',
-    completed: false,
-  });
+  skill = signal<Skill>(new Skill());
 
   ngOnChanges(): void {
-    if (this.id != 0) {
-      this.service.getSkillById(this.id).subscribe((data) => {
+    if (this.id() !== 0) {
+      this.service.getSkillById(this.id()).subscribe((data) => {
         if (data) {
-          this.skillForm.patchValue(data);
+          this.skill.set(data);
         }
       });
     }
   }
 
   saveSkill() {
-    this.service.upsert(this.skillForm.value as Skill).subscribe((data) => {
-    })
+    this.service.upsert(this.skill()).subscribe(() => {
+      this.router.navigate(['/skills']);
+    });
+  }
+
+  updateName(value: string) {
+    this.skill.update(s => ({ ...s, name: value }));
+  }
+
+  updateCompleted(value: boolean) {
+    this.skill.update(s => ({ ...s, completed: value }));
   }
 
   doCancel() {
