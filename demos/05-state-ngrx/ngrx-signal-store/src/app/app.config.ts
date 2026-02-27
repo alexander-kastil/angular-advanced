@@ -12,8 +12,7 @@ import * as demoEffects from './demos/state/demos.effects';
 import { demoState } from './demos/state/demos.state';
 import { LoadingInterceptor } from './shared/loading/loading-interceptor';
 import { LoadingService } from './shared/loading/loading.service';
-import * as editorEffects from './shared/markdown-editor/state/editor.effects';
-import { editorState } from './shared/markdown-editor/state/editor.state';
+
 import { SkillsDataService } from './skills/skills-data.service';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
@@ -27,10 +26,8 @@ export const appConfig: ApplicationConfig = {
         //NgRx
         provideStore(),
         provideEffects(demoEffects),
-        provideEffects(editorEffects),
         // State Slices
         provideState(demoState),
-        provideState(editorState),
         // NgRx Data
         provideEntityData(skillsEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: skillsDataServiceConfig },
