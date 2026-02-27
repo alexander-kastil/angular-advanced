@@ -12,7 +12,8 @@ export class CommentService {
 
   saveComment(item: CommentItem) {
     if (item.id === undefined || item.id === 0) {
-      return this.http.post<CommentItem>(this.url, item);
+      const { id, ...newItem } = item;
+      return this.http.post<CommentItem>(this.url, newItem);
     } else {
       return this.http.put<CommentItem>(`${this.url}/${item.id}`, item);
     }

@@ -21,7 +21,7 @@ export const editorReducer = createReducer(
   on(MarkdownEditorActions.loadCommentsSuccess, (state, action) => {
     return { ...state, comments: action.items, loaded: true };
   }),
-  on(MarkdownEditorActions.saveCommentsSuccess, (state, action) => {
+  on(MarkdownEditorActions.saveCommentSuccess, (state, action) => {
     //Notice to clone an Array we use [] instead of {}
     const clone = Object.assign([], state.comments) as Array<CommentItem>;
     let idx = clone.findIndex((c) => c.id == action.item.id);
@@ -32,7 +32,7 @@ export const editorReducer = createReducer(
     }
     return { ...state, comments: clone };
   }),
-  on(MarkdownEditorActions.deleteCommentsSuccess, (state, action) => {
+  on(MarkdownEditorActions.deleteCommentSuccess, (state, action) => {
     const clone = Object.assign(
       [],
       state.comments.filter((c) => c.id != action.item.id)
@@ -41,8 +41,8 @@ export const editorReducer = createReducer(
   }),
   on(
     MarkdownEditorActions.loadCommentsFailure,
-    MarkdownEditorActions.saveCommentsFailure,
-    MarkdownEditorActions.deleteCommentsFailure,
+    MarkdownEditorActions.saveCommentFailure,
+    MarkdownEditorActions.deleteCommentFailure,
     (state, action) => {
       return { ...state };
     }
