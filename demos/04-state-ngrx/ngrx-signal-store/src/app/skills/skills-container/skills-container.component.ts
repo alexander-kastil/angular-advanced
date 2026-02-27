@@ -54,7 +54,7 @@ export class SkillsContainerComponent {
 
   addItem(): void {
     const newItem: Skill = {
-      id: 0,
+      id: Date.now(),
       name: 'Configuration Mgmt',
       completed: false,
     };
