@@ -35,7 +35,8 @@ export class SkillsContainerComponent {
   skills = toSignal(this.service.entities$.pipe(
     combineLatestWith(this.fcToggle.valueChanges.pipe(startWith(true))),
     map(([skills, showAll]) => {
-      return showAll ? skills : skills.filter((sk: Skill) => sk.completed === showAll);
+      const filtered = showAll ? skills : skills.filter((sk: Skill) => sk.completed === showAll);
+      return filtered.sort((a, b) => a.id - b.id);
     })
   ));
 
