@@ -41,18 +41,6 @@ export class DemoContainerComponent {
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
 
-  hoveredItem = signal<DemoItem | null>(null);
-  popupTop = signal(0);
-
-  showPopup(item: DemoItem, event: MouseEvent): void {
-    this.hoveredItem.set(item);
-    this.popupTop.set((event.target as HTMLElement).getBoundingClientRect().top);
-  }
-
-  hidePopup(): void {
-    this.hoveredItem.set(null);
-  }
-
   title: string = environment.title;
 
   demosResource = resource({
@@ -74,6 +62,11 @@ export class DemoContainerComponent {
 
   header = signal('Please select a demo');
 
+  hoveredItem = signal<DemoItem | null>(null);
+  popupTopValue = signal<number>(0);
+
+  popupTop = computed(() => this.popupTopValue());
+
   showMdEditor = computed(() =>
     this.eb.getCommands()() === SidebarActions.SHOW_MARKDOWN
   );
@@ -84,8 +77,7 @@ export class DemoContainerComponent {
         if (event instanceof NavigationEnd) {
           const rootRoute = this.getRootRoute(this.route);
           if (rootRoute.outlet === 'primary' && rootRoute.component != null) {
-            const name = rootRoute.component.name.replace(/^_/, '');
-            this.header.set(`Component: ${name}`);
+            this.header.set(`Component: ${rootRoute.component.name}`);
           }
         }
       });
@@ -97,5 +89,16 @@ export class DemoContainerComponent {
       route = route.firstChild;
     }
     return route;
+  }
+
+  showPopup(item: DemoItem, event: MouseEvent): void {
+    this.hoveredItem.set(item);
+    const target = event.currentTarget as HTMLElement;
+    const rect = target.getBoundingClientRect();
+    this.popupTopValue.set(rect.top);
+  }
+
+  hidePopup(): void {
+    this.hoveredItem.set(null);
   }
 }
