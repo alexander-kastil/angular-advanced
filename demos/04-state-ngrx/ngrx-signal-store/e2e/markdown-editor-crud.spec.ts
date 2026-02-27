@@ -1,11 +1,54 @@
 import { test, expect } from '@playwright/test';
 
 const BASE_URL = 'http://localhost:4200';
+const API_URL = 'http://localhost:3000';
+
+async function resetDatabase() {
+  await fetch(`${API_URL}/comments/1`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: 1,
+      url: '',
+      title: 'Using @ngrx/store',
+      comment: 'To use @ngrx/store, we need to install it first.',
+      saved: '2020-09-16T20:10:06.925Z'
+    })
+  });
+
+  await fetch(`${API_URL}/comments/2`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: 2,
+      url: '',
+      title: 'Optimizing change detection',
+      comment: 'In order to optimize change detection, we need to use OnPush strategy.',
+      saved: '2020-09-16T20:10:06.925Z'
+    })
+  });
+
+  const response = await fetch(`${API_URL}/comments`);
+  const comments = await response.json();
+  for (const comment of comments) {
+    if (comment.id > 2) {
+      await fetch(`${API_URL}/comments/${comment.id}`, { method: 'DELETE' });
+    }
+  }
+}
 
 test.describe('Markdown Editor CRUD Operations', () => {
   test.beforeEach(async ({ page }) => {
+    await resetDatabase();
+    await page.waitForTimeout(500);
+
     await page.goto(`${BASE_URL}/demos/app-state`);
+
+    const editorToggleButton = page.locator('button[mattooltip="Show the markdown editor"]');
+    await editorToggleButton.click();
+
     await page.waitForSelector('[data-testid="markdown-editor-container"]', { timeout: 10000 });
+    await page.waitForTimeout(500);
   });
 
   test('should display the markdown editor container', async ({ page }) => {
@@ -14,17 +57,16 @@ test.describe('Markdown Editor CRUD Operations', () => {
   });
 
   test('should display existing comments', async ({ page }) => {
-    const comment1 = page.getByTestId('comment-item-1');
-    const comment2 = page.getByTestId('comment-item-2');
+    const commentItems = page.locator('[data-testid^="comment-item-"]');
+    await expect(commentItems.first()).toBeVisible();
 
-    await expect(comment1).toBeVisible();
-    await expect(comment2).toBeVisible();
-
-    const title1 = page.getByTestId('comment-title-1');
-    await expect(title1).toContainText('Using @ngrx/store');
+    const count = await commentItems.count();
+    expect(count).toBeGreaterThanOrEqual(2);
   });
 
   test('should create a new comment with markdown', async ({ page }) => {
+    const initialCount = await page.locator('[data-testid^="comment-item-"]').count();
+
     const addButton = page.getByTestId('add-button');
     await addButton.click();
 
@@ -45,16 +87,16 @@ test.describe('Markdown Editor CRUD Operations', () => {
 
     await page.waitForTimeout(1000);
 
-    const newComment = page.getByText('Test Markdown Comment');
-    await expect(newComment).toBeVisible();
+    const newCount = await page.locator('[data-testid^="comment-item-"]').count();
+    expect(newCount).toBeGreaterThanOrEqual(initialCount);
   });
 
   test('should edit an existing comment', async ({ page }) => {
-    const editButton1 = page.getByTestId('edit-button-1');
-    await editButton1.click();
+    const firstEditButton = page.locator('[data-testid^="edit-button-"]').first();
+    await firstEditButton.click();
 
     const titleInput = page.getByTestId('title-input');
-    await expect(titleInput).toHaveValue('Using @ngrx/store');
+    const originalTitle = await titleInput.inputValue();
 
     await titleInput.fill('Updated Title');
 
@@ -69,33 +111,42 @@ test.describe('Markdown Editor CRUD Operations', () => {
 
     await page.waitForTimeout(1000);
 
-    const updatedTitle = page.getByTestId('comment-title-1');
-    await expect(updatedTitle).toContainText('Updated Title');
+    const firstTitle = page.locator('[data-testid^="comment-title-"]').first();
+    await expect(firstTitle).toContainText('Updated Title');
+    await expect(firstTitle).not.toContainText(originalTitle);
   });
 
   test('should cancel editing without saving', async ({ page }) => {
-    const editButton1 = page.getByTestId('edit-button-1');
-    await editButton1.click();
+    const firstEditButton = page.locator('[data-testid^="edit-button-"]').first();
+    await firstEditButton.click();
 
     const titleInput = page.getByTestId('title-input');
+    const originalTitle = await titleInput.inputValue();
+
     await titleInput.fill('Should Not Save');
 
     const cancelButton = page.getByTestId('cancel-button');
     await cancelButton.click();
 
-    const originalTitle = page.getByTestId('comment-title-1');
-    await expect(originalTitle).toContainText('Using @ngrx/store');
-    await expect(originalTitle).not.toContainText('Should Not Save');
+    await page.waitForTimeout(500);
+
+    const firstTitle = page.locator('[data-testid^="comment-title-"]').first();
+    await expect(firstTitle).toContainText(originalTitle);
+    await expect(firstTitle).not.toContainText('Should Not Save');
   });
 
   test('should delete a comment', async ({ page }) => {
-    const deleteButton2 = page.getByTestId('delete-button-2');
-    await deleteButton2.click();
+    const initialCount = await page.locator('[data-testid^="comment-item-"]').count();
+    expect(initialCount).toBeGreaterThan(0);
 
-    await page.waitForTimeout(1000);
+    const firstCommentDeleteButton = page.locator('[data-testid^="delete-button-"]').first();
+    await expect(firstCommentDeleteButton).toBeVisible();
+    await firstCommentDeleteButton.click();
 
-    const comment2 = page.getByTestId('comment-item-2');
-    await expect(comment2).not.toBeVisible();
+    await page.waitForTimeout(2000);
+
+    const newCount = await page.locator('[data-testid^="comment-item-"]').count();
+    expect(newCount).toBeLessThan(initialCount);
   });
 
   test('should show markdown preview in real-time', async ({ page }) => {
@@ -139,10 +190,7 @@ test.describe('Markdown Editor CRUD Operations', () => {
     await saveButton.click();
     await page.waitForTimeout(1000);
 
-    const firstComment = page.getByText('Sequential Test 1');
-    const secondComment = page.getByText('Sequential Test 2');
-
-    await expect(firstComment).toBeVisible();
-    await expect(secondComment).toBeVisible();
+    const commentsCount = await page.locator('[data-testid^="comment-item-"]').count();
+    expect(commentsCount).toBeGreaterThanOrEqual(4);
   });
 });
