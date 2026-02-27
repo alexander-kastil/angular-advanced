@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
@@ -10,8 +10,7 @@ import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import * as demoEffects from './demos/state/demos.effects';
 import { demoState } from './demos/state/demos.state';
-import { LoadingInterceptor } from './shared/loading/loading-interceptor';
-import { LoadingService } from './shared/loading/loading.service';
+import { loadingInterceptor } from './shared/loading/loading-interceptor';
 
 import { SkillsDataService } from './skills/skills-data.service';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
@@ -20,7 +19,7 @@ import { skillsEntityConfig } from './skills/skills.metadata';
 export const appConfig: ApplicationConfig = {
     providers: [
         provideZonelessChangeDetection(),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withInterceptors([loadingInterceptor])),
         provideRouter(appRoutes, withComponentInputBinding()),
         provideAnimations(),
         //NgRx
@@ -43,9 +42,6 @@ export const appConfig: ApplicationConfig = {
         },
         // NgRx DevTools
         provideStoreDevtools({ maxAge: 25 }),
-        LoadingService,
-        { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
-        // Markdown
         provideMarkdown(),
     ]
 };

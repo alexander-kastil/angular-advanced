@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MarkdownItem } from '../../markdown.model';
 import { MatButton } from '@angular/material/button';
 
@@ -6,7 +6,8 @@ import { MatButton } from '@angular/material/button';
     selector: 'app-markdown-list',
     templateUrl: './markdown-list.component.html',
     styleUrls: ['./markdown-list.component.scss'],
-    imports: [MatButton]
+    imports: [MatButton],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownListComponent {
     readonly Comments = input<MarkdownItem[] | null>(null);

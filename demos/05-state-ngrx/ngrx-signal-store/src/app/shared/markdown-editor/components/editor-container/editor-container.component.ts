@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MarkdownItem } from '../../markdown.model';
 import { MatButton } from '@angular/material/button';
 import { MarkdownEditComponent } from '../markdown-edit/markdown-edit.component';
@@ -21,22 +21,24 @@ import { markdownEditorStore } from '../../markdown-editor.store';
     MarkdownEditComponent,
     MatCardActions,
     MatButton,
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditorContainerComponent {
   store = inject(markdownEditorStore);
-  editorEdit = false;
-  current: MarkdownItem | null = null;
+  editorEdit = signal(false);
+  current = signal<MarkdownItem | null>(null);
 
   addComment() {
-    this.current = new MarkdownItem();
-    this.editorEdit = true;
+    this.current.set(new MarkdownItem());
+    this.editorEdit.set(true);
   }
 
   saveComment() {
-    if (this.current) {
-      this.store.saveComment(this.current);
-      this.editorEdit = false;
+    const item = this.current();
+    if (item) {
+      this.store.saveComment(item);
+      this.editorEdit.set(false);
     }
   }
 
@@ -45,7 +47,7 @@ export class EditorContainerComponent {
   }
 
   editComment(item: MarkdownItem) {
-    this.current = { ...item };
-    this.editorEdit = true;
+    this.current.set({ ...item });
+    this.editorEdit.set(true);
   }
 }
