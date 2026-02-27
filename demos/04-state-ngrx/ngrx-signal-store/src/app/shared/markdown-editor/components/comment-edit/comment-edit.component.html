@@ -1,17 +1,24 @@
 <div column>
-  <mat-form-field
-    ><mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="comment.title" />
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="comment.title" data-testid="title-input" />
   </mat-form-field>
-  <mat-form-field
-    ><mat-label>Comment</mat-label
-    ><textarea
+  <mat-form-field>
+    <mat-label>Comment (Markdown)</mat-label>
+    <textarea
       matInput
-      name=""
-      id=""
       cols="30"
       rows="8"
       [(ngModel)]="comment.comment"
+      data-testid="comment-textarea"
     ></textarea>
   </mat-form-field>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Preview</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <markdown [data]="comment.comment" data-testid="markdown-preview"></markdown>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -1,4 +1,4 @@
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" data-testid="markdown-editor-container">
   <mat-card-header>
     <mat-card-title>Mock Markdown Editor</mat-card-title>
   </mat-card-header>
@@ -15,19 +15,20 @@
   </mat-card-content>
   <mat-card-actions align="end">
     @if (editorEdit) {
-      <button mat-flat-button (click)="saveComment()" color="primary">
+      <button mat-flat-button (click)="saveComment()" color="primary" data-testid="save-button">
         Save
       </button>
       <button
         mat-flat-button
         (click)="editorEdit = !editorEdit"
         color="primary"
+        data-testid="cancel-button"
         >
         Cancel
       </button>
     }
     @if (!editorEdit) {
-      <button mat-flat-button (click)="addComment()" color="primary">
+      <button mat-flat-button (click)="addComment()" color="primary" data-testid="add-button">
         Add
       </button>
     }
