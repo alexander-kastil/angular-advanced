@@ -46,7 +46,7 @@ export class SkillsEditComponent {
     effect(() => {
       const routeId = this.id();
       const idNum = Number(routeId);
-      
+
       if (routeId === 'new' || routeId === '') {
         this.skillModel.set({ id: 0, name: '', completed: false });
       } else if (idNum > 0) {
