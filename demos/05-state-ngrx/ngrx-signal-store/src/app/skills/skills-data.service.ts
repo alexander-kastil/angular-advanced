@@ -33,7 +33,8 @@ export class SkillsDataService extends DefaultDataService<Skill> {
   }
 
   override add(skill: Skill): Observable<Skill> {
-    return this.http.post<Skill>(`${environment.api}skills`, skill).pipe(
+    const { id: _id, ...payload } = skill;
+    return this.http.post<Skill>(`${environment.api}skills`, payload).pipe(
       map((data) => {
         return { ...skill, id: data.id };
       })

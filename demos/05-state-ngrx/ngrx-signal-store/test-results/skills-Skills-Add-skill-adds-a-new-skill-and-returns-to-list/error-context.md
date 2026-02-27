@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e7]:
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - generic [ref=e11] [cursor=pointer]: Home
+      - generic [ref=e12] [cursor=pointer]: Demos
+      - generic [ref=e13] [cursor=pointer]: Skills
+      - generic [ref=e14] [cursor=pointer]: Customers
+      - generic [ref=e15] [cursor=pointer]: Topics
+  - generic [ref=e17]:
+    - generic [ref=e19]:
+      - generic [ref=e20]: SPA Skills
+      - generic [ref=e21]:
+        - button "Add" [ref=e22]:
+          - generic [ref=e23]: Add
+        - generic [ref=e27]:
+          - switch "ShowAll" [checked] [ref=e28] [cursor=pointer]:
+            - generic [ref=e34]:
+              - img [ref=e35]
+              - img [ref=e37]
+          - generic [ref=e39] [cursor=pointer]: ShowAll
+    - generic [ref=e41]:
+      - generic [ref=e42]: Angular
+      - generic [ref=e43]: "completed: false"
+      - generic [ref=e44]:
+        - button [ref=e45]:
+          - img [ref=e46]: edit
+        - button [ref=e49]:
+          - img [ref=e50]: delete
+    - generic [ref=e54]:
+      - generic [ref=e55]: NgRx
+      - generic [ref=e56]: "completed: true"
+      - generic [ref=e57]:
+        - button [ref=e58]:
+          - img [ref=e59]: edit
+        - button [ref=e62]:
+          - img [ref=e63]: delete
+    - generic [ref=e67]:
+      - generic [ref=e68]: TypeScript
+      - generic [ref=e69]: "completed: false"
+      - generic [ref=e70]:
+        - button [ref=e71]:
+          - img [ref=e72]: edit
+        - button [ref=e75]:
+          - img [ref=e76]: delete
+    - generic [ref=e81]:
+      - generic [ref=e82]: "Skills Total: 3"
+      - generic [ref=e83]: "Not Completed: 2"
+```

@@ -46,7 +46,7 @@ export class SkillsContainerComponent {
   }
 
   addItem(): void {
-    this.router.navigate(['/skills', 0]);
+    this.router.navigate(['/skills', 'new']);
   }
 
   deleteItem(item: Skill): void {
