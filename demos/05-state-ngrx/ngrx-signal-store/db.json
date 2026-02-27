@@ -34,8 +34,8 @@
     },
     {
       "url": "custom-store-features",
-      "title": "Custom Store Features",
-      "teaches": "Build reusable store features with custom logic. Extend SignalStore with domain-specific functionality and computed values.",
+      "title": "Request Status Feature",
+      "teaches": "Build reusable store features with signalStoreFeature. Create a request status feature with state, computed properties, and pure updater functions.",
       "sortOrder": 20,
       "topic": "Advanced Patterns",
       "id": 5
@@ -47,6 +47,22 @@
       "sortOrder": 21,
       "topic": "Advanced Patterns",
       "id": 6
+    },
+    {
+      "url": "presenter-ngrx",
+      "title": "Container Presenter",
+      "teaches": "Implement the container-presenter pattern with SignalStore. Separate data management from presentation using smart and dumb components.",
+      "sortOrder": 22,
+      "topic": "Advanced Patterns",
+      "id": 7
+    },
+    {
+      "url": "markdown-editor",
+      "title": "Markdown Editor",
+      "teaches": "Compose custom store features into a real-world store. Uses withMarkdownItems() for entity CRUD and withLoadingState() for loading tracking.",
+      "sortOrder": 23,
+      "topic": "Advanced Patterns",
+      "id": 8
     }
   ],
   "skills": [

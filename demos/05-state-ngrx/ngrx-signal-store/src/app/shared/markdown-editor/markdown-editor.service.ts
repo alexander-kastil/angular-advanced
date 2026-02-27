@@ -7,8 +7,8 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root',
 })
 export class MarkdownEditorService {
-    http = inject(HttpClient);
-    url = environment.api + 'comments';
+    private http = inject(HttpClient);
+    private url = environment.api + 'comments';
 
     saveComment(item: MarkdownItem) {
         if (item.id === undefined || item.id === 0) {

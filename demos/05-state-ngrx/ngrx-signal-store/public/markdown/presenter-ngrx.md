@@ -1,18 +1,17 @@
- A `Container-Presenter` pattern is used to implement the `skills-container` and `skill-row` components. The `skills-container` component is the container and the `skill-row` component is the presenter. The `skills-container` component is responsible for the data and the `skill-row` component is responsible for the presentation.
+A `Container-Presenter` pattern separates data management from presentation. Examine `skills-container` (container) and `skill-row` (presenter).
 
-`skills-container.component.ts:`
+`skills-container.component.html` — iterates the signal-based collection:
 
 ```html
-<div *ngFor="let sk of skills | async" class="item">
-    <app-skill-row
-        [skill]="sk"
-        (itemDeleted)="deleteItem($event)"
-        (itemCompleted)="toggleItemComplete($event)">
-    </app-skill-row>
-</div>
+@for (sk of skills() ; track sk) {
+  <app-skill-row [skill]="sk"
+    (itemDeleted)="deleteItem($event)"
+    (itemCompleted)="toggleItemComplete($event)"
+   />
+}
 ```
 
-`skill-row.component.ts:`
+`skill-row.component.ts` — uses signal-based `input()` and `output()`:
 
 ```typescript
 export class SkillRowComponent {

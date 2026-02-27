@@ -1,12 +1,12 @@
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApplicationConfig, ENVIRONMENT_INITIALIZER, importProvidersFrom, inject, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { DefaultDataServiceConfig, EntityDataService, provideEntityData, withEffects } from '@ngrx/data';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { MarkdownModule } from 'ngx-markdown';
+import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import * as demoEffects from './demos/state/demos.effects';
 import { demoState } from './demos/state/demos.state';
@@ -46,8 +46,6 @@ export const appConfig: ApplicationConfig = {
         LoadingService,
         { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
         // Markdown
-        importProvidersFrom(
-            MarkdownModule.forRoot(),
-        )
+        provideMarkdown(),
     ]
 };
