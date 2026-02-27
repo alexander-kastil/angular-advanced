@@ -47,12 +47,10 @@ export class DemoContainerComponent {
     loader: () => lastValueFrom(this.http.get<DemoItem[]>(`${environment.api}demos`))
   });
 
-  demosSorted = computed(() => {
+  demos = computed(() => {
     const items = this.demosResource.value() ?? [];
     return [...items].sort((a, b) => a.sortOrder - b.sortOrder);
   });
-
-  demos = computed(() => this.demosSorted());
   isLoadingDemos = computed(() => this.demosResource.status() === 'loading');
   hasErrorDemos = computed(() => this.demosResource.status() === 'error');
 
