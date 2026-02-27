@@ -12,7 +12,7 @@
     "workbench sidebar"
     "mdeditor sidebar";
 
-    @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 960px) {
     grid-template-columns: auto;
     grid-template-areas:
       "toolbar"
@@ -52,6 +52,11 @@ mat-toolbar {
   margin-bottom: var(--gap-small);
 }
 
+.demo-container-wrapper {
+  height: 100%;
+  position: relative;
+}
+
 .mat-sidenav-container {
   height: 100%;
 }
@@ -70,6 +75,41 @@ mat-toolbar {
   height: 36px;
 }
 
-::ng-deep .demo-tooltip {
-  max-width: 450px !important;
+.demo-popup {
+  position: fixed;
+  left: 258px;
+  width: 300px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  padding: 14px 16px;
+  z-index: 1000;
+  pointer-events: none;
+
+  strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin: 0 0 8px;
+    color: #444;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 8px 0;
+  }
+
+  small {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+  }
 }

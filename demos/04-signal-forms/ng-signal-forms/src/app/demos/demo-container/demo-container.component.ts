@@ -11,7 +11,6 @@ import { DemoItem } from './demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
 import { MarkdownEditorComponent } from '../../shared/markdown-editor/markdown-editor.component';
 import { MatNavList, MatListItem } from '@angular/material/list';
-import { MatTooltip } from '@angular/material/tooltip';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
@@ -26,7 +25,6 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
     MatToolbarRow,
     MatNavList,
     MatListItem,
-    MatTooltip,
     RouterLink,
     MatSidenavContent,
     RouterOutlet,
@@ -42,6 +40,9 @@ export class DemoContainerComponent {
   nav = inject(SideNavService);
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
+
+  hoveredItem = signal<DemoItem | null>(null);
+  popupTop = signal(0);
 
   title: string = environment.title;
 
@@ -74,11 +75,21 @@ export class DemoContainerComponent {
         if (event instanceof NavigationEnd) {
           const rootRoute = this.getRootRoute(this.route);
           if (rootRoute.outlet === 'primary' && rootRoute.component != null) {
-            this.header.set(`Component: ${rootRoute.component.name}`);
+            const name = rootRoute.component.name.replace(/^_/, '');
+            this.header.set(`Component: ${name}`);
           }
         }
       });
     }, { allowSignalWrites: true });
+  }
+
+  showPopup(item: DemoItem, event: MouseEvent): void {
+    this.hoveredItem.set(item);
+    this.popupTop.set((event.target as HTMLElement).getBoundingClientRect().top);
+  }
+
+  hidePopup(): void {
+    this.hoveredItem.set(null);
   }
 
   private getRootRoute(route: ActivatedRoute): ActivatedRoute {
