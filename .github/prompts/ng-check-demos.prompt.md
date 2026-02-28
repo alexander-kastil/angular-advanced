@@ -7,62 +7,75 @@ model: Claude Haiku 4.5 (copilot)
 
 ## Goal
 
-Audit a demo module for outdated patterns, update markdown guides to match current code, and suggest new demos that would improve the teaching narrative.
+Audit a demo module for outdated patterns, update markdown guides, suggest improvements, and clean artifacts using parallelized sub-agent orchestration.
 
-## Instructions
+## Orchestration Flow
 
-### 1. Identify the module
+**Main Agent Responsibilities:**
+1. Identify/confirm the target module
+2. Launch 4 parallel sub-agents (see below)
+3. Synthesize results into actionable audit report
+4. Present findings to user
 
-If the user has not specified which module, ask or infer from the active file. Each module lives under `demos/<N>-<name>/<app-folder>/`.
+**Parallel Sub-Agent Tasks** (stateless, independent execution):
 
-### 2. Audit existing demos
+### Task A: Audit Existing Demos (Audit Agent)
+**Input:** Module path + `db.json` + `demo.routes.ts`
+**Output:** Validation report + outdated patterns flagged
 
-For each entry in `db.json → demos`:
+**For each demo in `db.json → demos`:**
+- Confirm route exists in `demo.routes.ts`
+- Confirm markdown file exists in `public/markdown/<url>.md`
+- Scan component `.ts` for anti-patterns (see table below)
+- Scan component `.html` for structural directives needing migration
+- Compare markdown content against actual implementation
+- Return: List of [demoUrl, isValid, issues[], hasMarkdownMismatch]
 
-- Confirm the route exists in `demo.routes.ts`
-- Confirm the markdown file exists in `public/markdown/<url>.md`
-- Read the component `.ts` and `.html` and the markdown guide
-- Flag any mismatches between the guide and the actual implementation
+**Anti-pattern Registry:**
 
-Common outdated patterns to look for and fix:
+| Anti-pattern | Modern replacement | Impact |
+|---|---|---|
+| `@Input()` / `@Output()` decorators | `input()` / `output()` signals | Critical |
+| `*ngIf` / `*ngFor` / `*ngSwitch` | `@if` / `@for` / `@switch` | Critical |
+| `async` pipe + `Observable` for HTTP | `httpResource()` | High |
+| `toSignal(http.get(...))` | `httpResource()` | High |
+| `effect()` + `.subscribe()` for data loading | `httpResource()` with reactive fn | High |
+| `BehaviorSubject` for local state | `signal()` | Medium |
+| Constructor injection | `inject()` function | Medium |
+| `CommonModule` import | Remove — standalone default | Low |
+| `ngClass` / `ngStyle` | `[class]` / `[style]` | Low |
+| `ChangeDetectionStrategy.Default` | `ChangeDetectionStrategy.OnPush` | Medium |
 
-| Anti-pattern | Modern replacement |
-|---|---|
-| `@Input()` / `@Output()` decorators | `input()` / `output()` signal functions |
-| `*ngIf` / `*ngFor` / `*ngSwitch` | `@if` / `@for` / `@switch` control flow |
-| `async` pipe + `Observable` for HTTP | `httpResource()` |
-| `toSignal(http.get(...))` | `httpResource()` |
-| `effect()` + `.subscribe()` for data loading | `httpResource()` with reactive request fn |
-| `BehaviorSubject` for local state | `signal()` |
-| Constructor injection | `inject()` function |
-| `standalone: true` in decorator | Remove — default in Angular v20+ |
-| `CommonModule` import | Remove — use standalone imports |
-| `ngClass` / `ngStyle` | `[class]` / `[style]` bindings |
-| `ChangeDetectionStrategy.Default` | `ChangeDetectionStrategy.OnPush` |
+### Task B: Update Markdown Guides (Markdown Agent)
+**Input:** List of outdated demos + component source files
+**Output:** Updated markdown files + diff summary
 
-### 3. Update markdown guides
+**For each guide flagged as out-of-date by Task A:**
+- Sync markdown to reflect current `.ts` and `.html` implementation
+- Add before/after code blocks if migration is central to the demo story
+- Keep structure: bullet points + fenced code blocks (no prose fluff)
+- Generate updated file content (do not commit yet)
+- Return: [filename, status: "updated"|"no-change", diffSummary]
 
-For each guide that is out of date:
+### Task C: Categorize & Update db.json (Catalog Agent)
+**Input:** All component directories in module
+**Output:** Complete demo catalog entries for db.json
 
-- Reflect the current component code accurately
-- Show before/after code blocks when a migration is the story of the demo
-- Keep guides short and focused — bullet points + fenced code blocks
-- Do not add prose that restates what the code already shows
+**Scan all component folders:**
+- Identify components WITHOUT db.json entries
+- For each unregistered component, generate:
+  - `url`: kebab-case slug (e.g., `standalone`, `form-validation`)
+  - `title`: short focus description
+  - `teaches`: 1-2 sentence concept summary
+  - `topic`: category (e.g., "Component Fundamentals", "State Management", "Advanced Patterns")
+  - `sortOrder`: logical progression number
+  
+**Validate existing entries:**
+- Check all db.json demos have corresponding components
+- Flag duplicates or incomplete metadata
+- Return: [newEntries[], updatedEntries[], issues[]]
 
-### 4. Categorize Demos by scanning components in samples and update db.json
-
-Scan all component files in the demo folder:
-
-- For each component directory that does NOT have a corresponding `db.json` entry, generate:
-  - A short `url` slug (kebab-case, e.g., `standalone`, `control-flow`)
-  - A clear `title` that describes the demo focus
-  - A `teaches` description (1-2 sentences explaining what concept is demonstrated)
-  - A `topic` category (e.g., "Component Fundamentals", "Component Composition", "Advanced Patterns", etc.)
-  - A `sortOrder` number for logical progression
-- Update `db.json → demos` to include all discovered components
-- Ensure every component has a matching db.json entry with complete metadata
-
-Example entry:
+**Example entry:**
 ```json
 {
   "url": "standalone",
@@ -73,21 +86,48 @@ Example entry:
 }
 ```
 
-### 5. Suggest new demos
+### Task D: Suggest New Demos (Suggestion Agent)
+**Input:** Existing demos in db.json + module topic
+**Output:** Ranked list of 2-3 suggested demo ideas
 
-After auditing, propose at least 2 new demos that would strengthen the module's teaching narrative. For each suggestion:
+**Analysis approach:**
+- Identify gaps in teaching progression (topic/concept coverage)
+- Cross-reference with Angular v20+ best practices
+- For each suggestion:
+  - Generate `url` and `title`
+  - Write 1-2 sentence concept description
+  - List 1-2 Microsoft Learn references to validate pattern
+  - Flag if concept requires pre-requisite demo
+- Return: [suggestion[], references[]]
 
-- Give it a short `url` slug and `title`
-- Write one sentence describing what concept it teaches
-- If unsure whether the concept is well-documented, ask: **"Search Microsoft Learn for Angular `<concept>` to confirm the recommended pattern before implementing"**
+---
 
-Use this syntax to trigger a Copilot web search:
+## Bonus Task: Cleanup (conditional, after audit results)
+
+**Only if user approves:**
+
+- **Orphan markdown files:** Files in `public/markdown/` not referenced by db.json → delete
+- **Route debris:** Routes in `demo.routes.ts` with no db.json entry → flag for review
+- **Incomplete catalog entries:** db.json entries with missing metadata → flag for completion
+- Return: [deletedFiles[], flaggedRoutes[], incompleteEntries[]]
+
+---
+
+## Execution Summary
+
 ```
-@github What is the recommended Angular v20+ pattern for <concept>? Search learn.microsoft.com.
+User Request
+    ↓
+Main Agent: Confirm module
+    ↓
+    ├─→ [Parallel] Task A: Audit existing demos
+    ├─→ [Parallel] Task B: Update markdown guides  
+    ├─→ [Parallel] Task C: Categorize & update db.json
+    └─→ [Parallel] Task D: Suggest new demos
+    ↓
+Main Agent: Synthesize results → present audit report
+    ↓
+[Optional] User approval → Execute cleanup
+    ↓
+Deliver consolidated report + file updates
 ```
-
-### 6. Clean orphan artifacts
-
-- Markdown files in `public/markdown/` that are not referenced by any component → delete
-- Routes in `demo.routes.ts` that have no matching `db.json` entry → flag for review
-- `db.json` entries with no route → add the route or remove the entry
