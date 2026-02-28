@@ -54,6 +54,13 @@ export const LayoutStore = signalStore(
         showEditor() {
             patchState(store, { markdownMode: 'editor' });
         },
+        toggleEditor() {
+            if (store.markdownMode() === 'editor') {
+                patchState(store, { markdownMode: 'guide' });
+            } else {
+                patchState(store, { markdownPaneVisible: true, markdownMode: 'editor' });
+            }
+        },
         toggleSidenavVisible() {
             patchState(store, { sidenavVisible: !store.sidenavVisible() });
         },

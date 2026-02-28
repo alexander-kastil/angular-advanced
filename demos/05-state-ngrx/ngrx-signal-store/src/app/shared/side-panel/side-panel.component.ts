@@ -24,6 +24,7 @@ export class SidePanelComponent {
   sidenav = inject(SideNavService);
 
   markdownPaneVisible = this.layout.markdownPaneVisible;
+  isEditorActive = this.layout.isEditorActive;
 
   toggleSideNav() {
     this.sidenav.toggleMenuVisibility();
@@ -33,7 +34,7 @@ export class SidePanelComponent {
     this.layout.showGuide();
   }
 
-  showEditor() {
-    this.layout.showEditor();
+  toggleEditor() {
+    this.layout.toggleEditor();
   }
 }
