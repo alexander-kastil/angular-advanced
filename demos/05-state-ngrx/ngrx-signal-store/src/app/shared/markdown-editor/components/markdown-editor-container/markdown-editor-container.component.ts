@@ -6,6 +6,9 @@ import { MarkdownListComponent } from '../markdown-list/markdown-list.component'
 import { ColumnDirective } from '../../../formatting/formatting-directives';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
 import { markdownEditorStore } from '../../markdown-editor.store';
+import { mdEditorEvents } from '../../markdown-editor.events';
+import { injectDispatch, Events } from '@ngrx/signals/events';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-markdown-editor-container',
@@ -26,6 +29,7 @@ import { markdownEditorStore } from '../../markdown-editor.store';
 })
 export class MarkdownEditorContainerComponent {
     store = inject(markdownEditorStore);
+    dispatch = injectDispatch(mdEditorEvents);
     readonly demoTitle = input('');
     readonly demoMd = input('');
     readonly demoUrl = input('');
@@ -36,20 +40,14 @@ export class MarkdownEditorContainerComponent {
     get currentItem(): MarkdownItem { return this.current()!; }
     set currentItem(value: MarkdownItem) { this.current.set(value); }
 
-    allItems = computed(() => {
-        const items = this.store.entities();
-        const title = this.demoTitle();
-        const url = this.demoUrl();
-        if (!title) return items;
-        const saved = items.find(i => i.id === -1 && i.url === url);
-        if (saved) return [saved, ...items.filter(i => !(i.id === -1 && i.url === url))];
-        return [{ id: -1, url, title, comment: this.demoMd(), saved: undefined }, ...items];
-    });
+    allItems = computed(() => this.store.listItems(this.demoUrl(), this.demoTitle(), this.demoMd()));
+    isDemoSaved = computed(() => this.store.isPageSaved()(this.demoUrl()));
 
-    isDemoSaved = computed(() => {
-        const url = this.demoUrl();
-        return this.store.entities().some(i => i.id === -1 && i.url === url);
-    });
+    constructor() {
+        inject(Events).on(mdEditorEvents.addItem)
+            .pipe(takeUntilDestroyed())
+            .subscribe(() => this.addMarkdownItem());
+    }
 
     addMarkdownItem() {
         this.current.set(new MarkdownItem());
@@ -59,13 +57,13 @@ export class MarkdownEditorContainerComponent {
     saveMarkdownItem() {
         const item = this.current();
         if (item) {
-            this.store.saveMarkdownItem(item);
+            this.dispatch.save(item);
             this.editorEdit.set(false);
         }
     }
 
     deleteMarkdownItem(item: MarkdownItem) {
-        this.store.deleteMarkdownItem(item);
+        this.dispatch.delete(item);
     }
 
     editMarkdownItem(item: MarkdownItem) {

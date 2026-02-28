@@ -87,7 +87,7 @@ export class DemoContainerComponent {
 
   guideMd = computed(() => {
     const url = `demos/${this.currentUrl()}`;
-    const override = this.markdownStore.entities().find(i => i.id === -1 && i.url === url);
+    const override = this.markdownStore.getPageOverride()(url);
     return override?.comment ?? this.currentMd();
   });
 

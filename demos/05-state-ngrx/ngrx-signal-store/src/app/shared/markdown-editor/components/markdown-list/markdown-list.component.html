@@ -1,4 +1,4 @@
-@for (c of items(); track c) {
+@for (c of items(); track c.id) {
   <div class="row">
     @if (c.id === -1) {
       <mat-icon [class.primary]="demoSaved()" [matTooltip]="demoSaved() ? 'Page customized' : 'Page'">article</mat-icon>

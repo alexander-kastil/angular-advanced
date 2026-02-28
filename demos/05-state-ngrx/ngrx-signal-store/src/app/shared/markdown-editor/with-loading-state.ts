@@ -1,19 +1,13 @@
-import { computed } from '@angular/core';
-import { patchState, signalStoreFeature, withComputed, withState } from '@ngrx/signals';
+import { signalStoreFeature, withState } from '@ngrx/signals';
 
-export type LoadingState = {
+export type RequestState = {
     isLoading: boolean;
+    error: string | null;
+    markdownContent: string | null;
 };
 
-export function withLoadingState() {
+export function withRequestState() {
     return signalStoreFeature(
-        withState<LoadingState>({ isLoading: false }),
-        withComputed(({ isLoading }) => ({
-            isLoading: computed(() => isLoading()),
-        }))
+        withState<RequestState>({ isLoading: false, error: null, markdownContent: null })
     );
-}
-
-export function setLoading(isLoading: boolean): LoadingState {
-    return { isLoading };
 }

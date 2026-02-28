@@ -1,55 +1,29 @@
-import { inject } from '@angular/core';
-import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStoreFeature, withMethods } from '@ngrx/signals';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
-import { MarkdownItem } from './markdown.model';
-import { MarkdownEditorService } from './markdown-editor.service';
+import { computed } from '@angular/core';
+import { signalStoreFeature, withComputed, withMethods } from '@ngrx/signals';
 import { withEntities } from '@ngrx/signals/entities';
-import { addEntities, removeEntity, setEntity } from '@ngrx/signals/entities';
-
-const logError = (error: Error) => console.error('error: ', error);
+import { MarkdownItem } from './markdown.model';
 
 export function withMarkdownItems() {
     return signalStoreFeature(
         withEntities<MarkdownItem>(),
-        withMethods((store, service = inject(MarkdownEditorService)) => ({
-            fetchMarkdownItems: rxMethod<void>(
-                pipe(
-                    switchMap(() =>
-                        service.getMarkdownItems().pipe(
-                            tapResponse({
-                                next: (items) => patchState(store, addEntities(items)),
-                                error: logError,
-                            })
-                        )
-                    )
-                )
+        withComputed((store) => ({
+            pageOverrides: computed(() => store.entities().filter(i => i.id === -1)),
+            comments: computed(() => store.entities().filter(i => i.id > 0)),
+            getPageOverride: computed(() => (url: string) =>
+                store.entities().find(i => i.id === -1 && i.url === url) ?? null
             ),
-            saveMarkdownItem: rxMethod<MarkdownItem>(
-                pipe(
-                    switchMap((item) =>
-                        service.saveMarkdownItem(item).pipe(
-                            tapResponse({
-                                next: (saved) => patchState(store, setEntity(saved)),
-                                error: logError,
-                            })
-                        )
-                    )
-                )
+            isPageSaved: computed(() => (url: string) =>
+                store.entities().some(i => i.id === -1 && i.url === url)
             ),
-            deleteMarkdownItem: rxMethod<MarkdownItem>(
-                pipe(
-                    switchMap((item) =>
-                        service.deleteMarkdownItem(item).pipe(
-                            tapResponse({
-                                next: () => patchState(store, removeEntity(item.id)),
-                                error: logError,
-                            })
-                        )
-                    )
-                )
-            ),
-        }))
+        })),
+        withMethods((store) => ({
+            listItems(url: string, title: string, fallbackMd: string): MarkdownItem[] {
+                const items = store.entities();
+                if (!title) return items;
+                const saved = items.find(i => i.id === -1 && i.url === url);
+                if (saved) return [saved, ...items.filter(i => !(i.id === -1 && i.url === url))];
+                return [{ id: -1, url, title, comment: fallbackMd, saved: undefined } as MarkdownItem, ...items];
+            },
+        })),
     );
 }

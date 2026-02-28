@@ -1,10 +1,15 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs';
 import { LayoutStore } from '../layout/layout.store';
 import { SideNavService } from '../sidenav/sidenav.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { mdEditorEvents } from '../markdown-editor/markdown-editor.events';
+import { injectDispatch } from '@ngrx/signals/events';
 
 @Component({
   selector: 'app-side-panel',
@@ -22,6 +27,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class SidePanelComponent {
   layout = inject(LayoutStore);
   sidenav = inject(SideNavService);
+  dispatch = injectDispatch(mdEditorEvents);
+
+  private router = inject(Router);
+  private url = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map(e => e.urlAfterRedirects),
+    ),
+    { initialValue: this.router.url },
+  );
+  isDemosRoute = computed(() => this.url().startsWith('/demos'));
 
   markdownPaneVisible = this.layout.markdownPaneVisible;
   isEditorActive = this.layout.isEditorActive;
@@ -36,5 +52,9 @@ export class SidePanelComponent {
 
   toggleEditor() {
     this.layout.toggleEditor();
+  }
+
+  addMarkdownItem() {
+    this.dispatch.addItem();
   }
 }

@@ -6,6 +6,8 @@ import { MarkdownListComponent } from '../markdown-list/markdown-list.component'
 import { ColumnDirective } from '../../../formatting/formatting-directives';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
 import { markdownEditorStore } from '../../markdown-editor.store';
+import { mdEditorEvents } from '../../markdown-editor.events';
+import { injectDispatch } from '@ngrx/signals/events';
 
 @Component({
   selector: 'app-editor-container',
@@ -26,6 +28,7 @@ import { markdownEditorStore } from '../../markdown-editor.store';
 })
 export class EditorContainerComponent {
   store = inject(markdownEditorStore);
+  dispatch = injectDispatch(mdEditorEvents);
   editorEdit = signal(false);
   current = signal<MarkdownItem | null>(null);
 
@@ -40,13 +43,13 @@ export class EditorContainerComponent {
   saveMarkdownItem() {
     const item = this.current();
     if (item) {
-      this.store.saveMarkdownItem(item);
+      this.dispatch.save(item);
       this.editorEdit.set(false);
     }
   }
 
   deleteMarkdownItem(item: MarkdownItem) {
-    this.store.deleteMarkdownItem(item);
+    this.dispatch.delete(item);
   }
 
   editMarkdownItem(item: MarkdownItem) {

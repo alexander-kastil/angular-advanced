@@ -3,7 +3,7 @@
     <button mat-mini-fab matTooltip="Toggle the SideNav" (click)="toggleSideNav()">
       <mat-icon>menu</mat-icon>
     </button>
-    @if (layout.hasMarkdownContent()) {
+    @if (isDemosRoute() && layout.hasMarkdownContent()) {
       <button mat-mini-fab matTooltip="Toggle Markdown Guide" (click)="showGuide()">
         <mat-icon>help_clinic</mat-icon>
       </button>
@@ -13,7 +13,13 @@
         (click)="toggleEditor()">
         <mat-icon>{{ isEditorActive() ? 'cancel' : 'edit_square' }}</mat-icon>
       </button>
+      @if (isEditorActive()) {
+        <button mat-mini-fab matTooltip="Add Comment" aria-label="Add Comment" (click)="addMarkdownItem()">
+          <mat-icon>add</mat-icon>
+        </button>
+      }
       @if (markdownPaneVisible()) {
+        <div class="pane-size">Guide px:</div>
         <span class="pane-size">{{ layout.demoPaneSize() }}</span>
       }
     }
