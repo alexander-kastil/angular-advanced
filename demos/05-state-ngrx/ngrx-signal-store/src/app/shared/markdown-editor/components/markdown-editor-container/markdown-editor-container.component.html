@@ -5,8 +5,8 @@
   <mat-card-content column>
     @if (!editorEdit()) {
       <app-markdown-list [items]="allItems()" [demoUrl]="demoUrl()" [demoSaved]="isDemoSaved()"
-        (onItemEdit)="editMarkdownItem($event)"
-        (onItemDelete)="deleteMarkdownItem($event)"
+        (itemEdit)="editMarkdownItem($event)"
+        (itemDelete)="deleteMarkdownItem($event)"
        />
     }
     @if (editorEdit() && current() != null) {

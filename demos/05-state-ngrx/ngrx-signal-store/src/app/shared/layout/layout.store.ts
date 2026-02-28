@@ -45,7 +45,7 @@ export const LayoutStore = signalStore(
     })),
     withMethods((store) => ({
         showGuide() {
-            if (store.markdownPaneVisible() && store.markdownMode() === 'guide') {
+            if (store.isGuideActive()) {
                 patchState(store, { markdownPaneVisible: false });
             } else {
                 patchState(store, { markdownPaneVisible: true, markdownMode: 'guide' });

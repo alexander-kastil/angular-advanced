@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { MarkdownItem } from '../../markdown.model';
+import { createMarkdownItem, MarkdownItem } from '../../markdown.model';
 import { MatButton } from '@angular/material/button';
 import { MarkdownEditComponent } from '../markdown-edit/markdown-edit.component';
 import { MarkdownListComponent } from '../markdown-list/markdown-list.component';
@@ -27,8 +27,8 @@ import { injectDispatch } from '@ngrx/signals/events';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditorContainerComponent {
-  store = inject(markdownEditorStore);
-  dispatch = injectDispatch(mdEditorEvents);
+  protected store = inject(markdownEditorStore);
+  private dispatch = injectDispatch(mdEditorEvents);
   editorEdit = signal(false);
   current = signal<MarkdownItem | null>(null);
 
@@ -36,7 +36,7 @@ export class EditorContainerComponent {
   set currentItem(value: MarkdownItem) { this.current.set(value); }
 
   addMarkdownItem() {
-    this.current.set(new MarkdownItem());
+    this.current.set(createMarkdownItem());
     this.editorEdit.set(true);
   }
 

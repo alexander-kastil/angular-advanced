@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
-import { MarkdownItem } from '../../markdown.model';
+import { createMarkdownItem, MarkdownItem } from '../../markdown.model';
 import { MatButton } from '@angular/material/button';
 import { MarkdownEditComponent } from '../markdown-edit/markdown-edit.component';
 import { MarkdownListComponent } from '../markdown-list/markdown-list.component';
@@ -28,8 +28,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownEditorContainerComponent {
-    store = inject(markdownEditorStore);
-    dispatch = injectDispatch(mdEditorEvents);
+    protected store = inject(markdownEditorStore);
+    private dispatch = injectDispatch(mdEditorEvents);
     readonly demoTitle = input('');
     readonly demoMd = input('');
     readonly demoUrl = input('');
@@ -50,7 +50,7 @@ export class MarkdownEditorContainerComponent {
     }
 
     addMarkdownItem() {
-        this.current.set(new MarkdownItem());
+        this.current.set(createMarkdownItem());
         this.editorEdit.set(true);
     }
 

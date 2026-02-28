@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, inject, model } from '@angular/core';
-import { MarkdownItem } from '../../markdown.model';
+import { createMarkdownItem, MarkdownItem } from '../../markdown.model';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { ColumnDirective } from '../../../formatting/formatting-directives';
@@ -26,7 +26,7 @@ import { injectDispatch } from '@ngrx/signals/events';
 export class MarkdownEditComponent {
     private store = inject(markdownEditorStore);
     private dispatch = injectDispatch(mdEditorEvents);
-    readonly markdownItem = model(new MarkdownItem());
+    readonly markdownItem = model(createMarkdownItem());
     readonly mdSrc = model<string | null>(null);
 
     itemForm = form(this.markdownItem);
@@ -41,7 +41,7 @@ export class MarkdownEditComponent {
 
         effect(() => {
             const content = this.store.markdownContent();
-            if (content) {
+            if (content && content !== this.markdownItem().comment) {
                 this.markdownItem.update(item => ({ ...item, comment: content }));
             }
         });

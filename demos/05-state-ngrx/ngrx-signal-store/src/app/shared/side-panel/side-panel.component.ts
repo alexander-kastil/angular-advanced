@@ -25,9 +25,9 @@ import { injectDispatch } from '@ngrx/signals/events';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidePanelComponent {
-  layout = inject(LayoutStore);
-  sidenav = inject(SideNavService);
-  dispatch = injectDispatch(mdEditorEvents);
+  protected layout = inject(LayoutStore);
+  private sidenav = inject(SideNavService);
+  private dispatch = injectDispatch(mdEditorEvents);
 
   private router = inject(Router);
   private url = toSignal(

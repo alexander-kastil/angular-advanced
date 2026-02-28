@@ -15,14 +15,14 @@ export class MarkdownListComponent {
     readonly items = input<MarkdownItem[] | null>(null);
     readonly demoUrl = input('');
     readonly demoSaved = input(false);
-    readonly onItemEdit = output<MarkdownItem>();
-    readonly onItemDelete = output<MarkdownItem>();
+    readonly itemEdit = output<MarkdownItem>();
+    readonly itemDelete = output<MarkdownItem>();
 
     editItem(item: MarkdownItem) {
-        this.onItemEdit.emit(item);
+        this.itemEdit.emit(item);
     }
 
     deleteMarkdownItem(item: MarkdownItem) {
-        this.onItemDelete.emit(item);
+        this.itemDelete.emit(item);
     }
 }
