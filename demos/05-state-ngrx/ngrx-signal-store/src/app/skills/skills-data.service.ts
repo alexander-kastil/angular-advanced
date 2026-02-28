@@ -13,15 +13,17 @@ import { Skill } from './skill.model';
 export class SkillsDataService extends DefaultDataService<Skill> {
   constructor(http: HttpClient, httpUrlGenerator: HttpUrlGenerator) {
     super('Skill', http, httpUrlGenerator);
+    console.log('SkillsDataService instantiated');
   }
 
   // Because we have overwritten all CRUD methods, we do not need to provide a custom HttpUrlGenerator
   // The current overwrites are just for demonstration purposes that represent the default behaviour
 
   override getAll() {
+    console.log('[SkillsDataService.getAll] called');
     return this.http.get<Skill[]>(`${environment.api}skills`).pipe(
       map((data: Skill[]) => {
-        console.log('overridden getAll', data)
+        console.log('[SkillsDataService.getAll] response:', data);
         if (!data) {
           return [];
         }

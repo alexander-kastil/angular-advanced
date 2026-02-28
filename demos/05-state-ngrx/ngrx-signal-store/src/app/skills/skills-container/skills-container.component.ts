@@ -38,7 +38,7 @@ export class SkillsContainerComponent {
       const filtered = showAll ? skills : skills.filter((sk: Skill) => sk.completed === showAll);
       return filtered.sort((a, b) => a.id - b.id);
     })
-  ));
+  ), { initialValue: [] as Skill[] });
 
   constructor() {
     this.service.loaded$.pipe(takeUntilDestroyed()).subscribe((loaded) => {

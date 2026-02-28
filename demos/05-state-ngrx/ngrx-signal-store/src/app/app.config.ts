@@ -1,16 +1,15 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { DefaultDataServiceConfig, EntityDataService, provideEntityData, withEffects } from '@ngrx/data';
+import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
 import { provideEffects } from '@ngrx/effects';
-import { provideState, provideStore } from '@ngrx/store';
+import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
 import { loadingInterceptor } from './shared/loading/loading-interceptor';
 
-import { SkillsDataService } from './skills/skills-data.service';
 import { skillsDataServiceConfig } from './skills/skills-data.service.config';
 import { skillsEntityConfig } from './skills/skills.metadata';
 
@@ -22,19 +21,10 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         //NgRx
         provideStore(),
+        provideEffects(),
         // NgRx Data
         provideEntityData(skillsEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: skillsDataServiceConfig },
-        // Registration of a custom EntityDataService - if you do not need it skip it
-        {
-            provide: ENVIRONMENT_INITIALIZER,
-            useValue() {
-                const entityDataService = inject(EntityDataService);
-                const skillsDataService = inject(SkillsDataService);
-                entityDataService.registerService('Skill', skillsDataService);
-            },
-            multi: true,
-        },
         // NgRx DevTools
         provideStoreDevtools({ maxAge: 25 }),
         provideMarkdown(),
