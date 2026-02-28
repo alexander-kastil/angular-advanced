@@ -29,24 +29,27 @@ export class EditorContainerComponent {
   editorEdit = signal(false);
   current = signal<MarkdownItem | null>(null);
 
-  addComment() {
+  get currentItem(): MarkdownItem { return this.current()!; }
+  set currentItem(value: MarkdownItem) { this.current.set(value); }
+
+  addMarkdownItem() {
     this.current.set(new MarkdownItem());
     this.editorEdit.set(true);
   }
 
-  saveComment() {
+  saveMarkdownItem() {
     const item = this.current();
     if (item) {
-      this.store.saveComment(item);
+      this.store.saveMarkdownItem(item);
       this.editorEdit.set(false);
     }
   }
 
-  deleteComment(item: MarkdownItem) {
-    this.store.deleteComment(item);
+  deleteMarkdownItem(item: MarkdownItem) {
+    this.store.deleteMarkdownItem(item);
   }
 
-  editComment(item: MarkdownItem) {
+  editMarkdownItem(item: MarkdownItem) {
     this.current.set({ ...item });
     this.editorEdit.set(true);
   }

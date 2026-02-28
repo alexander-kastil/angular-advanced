@@ -1,17 +1,14 @@
 <div column>
-  <mat-form-field
-    ><mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="comment().title" />
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    @if (markdownItem().id === -1) {
+      <input matInput [value]="markdownItem().title" readonly />
+    } @else {
+      <input matInput [formField]="itemForm.title" />
+    }
   </mat-form-field>
-  <mat-form-field
-    ><mat-label>Comment</mat-label
-    ><textarea
-      matInput
-      name=""
-      id=""
-      cols="30"
-      rows="8"
-      [(ngModel)]="comment().comment"
-    ></textarea>
+  <mat-form-field>
+    <mat-label>Comment</mat-label>
+    <textarea matInput cdkTextareaAutosize [formField]="itemForm.comment"></textarea>
   </mat-form-field>
 </div>

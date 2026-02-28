@@ -8,9 +8,9 @@ import { environment } from '../../../environments/environment';
 })
 export class MarkdownEditorService {
     private http = inject(HttpClient);
-    private url = environment.api + 'comments';
+    private url = environment.api + 'markdownItems';
 
-    saveComment(item: MarkdownItem) {
+    saveMarkdownItem(item: MarkdownItem) {
         if (item.id === undefined || item.id === 0) {
             return this.http.post<MarkdownItem>(this.url, item);
         } else {
@@ -18,15 +18,15 @@ export class MarkdownEditorService {
         }
     }
 
-    deleteComment(item: MarkdownItem) {
+    deleteMarkdownItem(item: MarkdownItem) {
         return this.http.delete<MarkdownItem>(`${this.url}/${item.id}`);
     }
 
-    getComments() {
+    getMarkdownItems() {
         return this.http.get<MarkdownItem[]>(this.url);
     }
 
-    getComment(id: number) {
+    getMarkdownItem(id: number) {
         return this.http.get<MarkdownItem>(`${this.url}/${id}`);
     }
 }

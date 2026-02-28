@@ -14,22 +14,22 @@ export function withMarkdownItems() {
     return signalStoreFeature(
         withEntities<MarkdownItem>(),
         withMethods((store, service = inject(MarkdownEditorService)) => ({
-            fetchComments: rxMethod<void>(
+            fetchMarkdownItems: rxMethod<void>(
                 pipe(
                     switchMap(() =>
-                        service.getComments().pipe(
+                        service.getMarkdownItems().pipe(
                             tapResponse({
-                                next: (comments) => patchState(store, addEntities(comments)),
+                                next: (items) => patchState(store, addEntities(items)),
                                 error: logError,
                             })
                         )
                     )
                 )
             ),
-            saveComment: rxMethod<MarkdownItem>(
+            saveMarkdownItem: rxMethod<MarkdownItem>(
                 pipe(
                     switchMap((item) =>
-                        service.saveComment(item).pipe(
+                        service.saveMarkdownItem(item).pipe(
                             tapResponse({
                                 next: (saved) => patchState(store, setEntity(saved)),
                                 error: logError,
@@ -38,10 +38,10 @@ export function withMarkdownItems() {
                     )
                 )
             ),
-            deleteComment: rxMethod<MarkdownItem>(
+            deleteMarkdownItem: rxMethod<MarkdownItem>(
                 pipe(
                     switchMap((item) =>
-                        service.deleteComment(item).pipe(
+                        service.deleteMarkdownItem(item).pipe(
                             tapResponse({
                                 next: () => patchState(store, removeEntity(item.id)),
                                 error: logError,

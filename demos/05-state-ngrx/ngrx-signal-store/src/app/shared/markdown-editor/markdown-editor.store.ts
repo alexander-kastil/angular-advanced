@@ -13,8 +13,8 @@ export const markdownEditorStore = signalStore(
         },
     })),
     withHooks({
-        onInit({ fetchComments }) {
-            fetchComments();
+        onInit({ fetchMarkdownItems }) {
+            fetchMarkdownItems();
         },
     })
 );

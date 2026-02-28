@@ -4,18 +4,18 @@
   </mat-card-header>
   <mat-card-content column>
     @if (!editorEdit()) {
-      <app-markdown-list [Comments]="store.entities()"
-        (onCommentEdit)="editComment($event)"
-        (onCommentDelete)="deleteComment($event)"
+      <app-markdown-list [items]="store.entities()"
+        (onItemEdit)="editMarkdownItem($event)"
+        (onItemDelete)="deleteMarkdownItem($event)"
        />
     }
     @if (editorEdit() && current() != null) {
-      <app-markdown-edit [comment]="current()!" />
+      <app-markdown-edit [(markdownItem)]="currentItem" />
     }
   </mat-card-content>
   <mat-card-actions align="end">
     @if (editorEdit()) {
-      <button mat-flat-button (click)="saveComment()" color="primary">
+      <button mat-flat-button (click)="saveMarkdownItem()" color="primary">
         Save
       </button>
       <button
@@ -27,7 +27,7 @@
       </button>
     }
     @if (!editorEdit()) {
-      <button mat-flat-button (click)="addComment()" color="primary">
+      <button mat-flat-button (click)="addMarkdownItem()" color="primary">
         Add
       </button>
     }

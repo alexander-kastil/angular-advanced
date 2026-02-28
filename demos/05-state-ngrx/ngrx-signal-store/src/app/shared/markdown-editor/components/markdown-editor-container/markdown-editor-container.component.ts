@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { MarkdownItem } from '../../markdown.model';
 import { MatButton } from '@angular/material/button';
 import { MarkdownEditComponent } from '../markdown-edit/markdown-edit.component';
@@ -26,27 +26,49 @@ import { markdownEditorStore } from '../../markdown-editor.store';
 })
 export class MarkdownEditorContainerComponent {
     store = inject(markdownEditorStore);
+    readonly demoTitle = input('');
+    readonly demoMd = input('');
+    readonly demoUrl = input('');
+
     editorEdit = signal(false);
     current = signal<MarkdownItem | null>(null);
 
-    addComment() {
+    get currentItem(): MarkdownItem { return this.current()!; }
+    set currentItem(value: MarkdownItem) { this.current.set(value); }
+
+    allItems = computed(() => {
+        const items = this.store.entities();
+        const title = this.demoTitle();
+        const url = this.demoUrl();
+        if (!title) return items;
+        const saved = items.find(i => i.id === -1 && i.url === url);
+        if (saved) return [saved, ...items.filter(i => !(i.id === -1 && i.url === url))];
+        return [{ id: -1, url, title, comment: this.demoMd(), saved: undefined }, ...items];
+    });
+
+    isDemoSaved = computed(() => {
+        const url = this.demoUrl();
+        return this.store.entities().some(i => i.id === -1 && i.url === url);
+    });
+
+    addMarkdownItem() {
         this.current.set(new MarkdownItem());
         this.editorEdit.set(true);
     }
 
-    saveComment() {
+    saveMarkdownItem() {
         const item = this.current();
         if (item) {
-            this.store.saveComment(item);
+            this.store.saveMarkdownItem(item);
             this.editorEdit.set(false);
         }
     }
 
-    deleteComment(item: MarkdownItem) {
-        this.store.deleteComment(item);
+    deleteMarkdownItem(item: MarkdownItem) {
+        this.store.deleteMarkdownItem(item);
     }
 
-    editComment(item: MarkdownItem) {
+    editMarkdownItem(item: MarkdownItem) {
         this.current.set({ ...item });
         this.editorEdit.set(true);
     }

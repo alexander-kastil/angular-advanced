@@ -44,11 +44,11 @@
             <as-split-area #paneMarkdown [size]="'*'" [visible]="showMarkdownPane()">
               <div class="split-content">
                 @if (markdownMode() === 'guide') {
-                  @if (currentMd()) {
-                    <app-markdown-renderer [md]="currentMd()" />
+                  @if (guideMd()) {
+                    <app-markdown-renderer [md]="guideMd()" />
                   }
                 } @else {
-                  <app-markdown-editor-container />
+                  <app-markdown-editor-container [demoTitle]="currentDemoTitle()" [demoMd]="currentMd()" [demoUrl]="'demos/' + currentUrl()" />
                 }
               </div>
             </as-split-area>

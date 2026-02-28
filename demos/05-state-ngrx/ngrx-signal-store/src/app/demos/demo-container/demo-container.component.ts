@@ -7,6 +7,7 @@ import { LayoutStore } from '../../shared/layout/layout.store';
 import { environment } from '../../../environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
+import { markdownEditorStore } from '../../shared/markdown-editor/markdown-editor.store';
 import { DemoItem } from './demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
 import { MarkdownEditorContainerComponent } from '../../shared/markdown-editor/components/markdown-editor-container/markdown-editor-container.component';
@@ -45,6 +46,7 @@ export class DemoContainerComponent {
   nav = inject(SideNavService);
   ls = inject(LoadingService);
   layout = inject(LayoutStore);
+  markdownStore = inject(markdownEditorStore);
 
   hoveredItem = signal<DemoItem | null>(null);
   popupTop = signal(0);
@@ -74,6 +76,19 @@ export class DemoContainerComponent {
     if (!url) return '';
     const demo = this.demos().find(d => d.url === url);
     return demo?.md ?? '';
+  });
+
+  currentDemoTitle = computed(() => {
+    const url = this.currentUrl();
+    if (!url) return '';
+    const demo = this.demos().find(d => d.url === url);
+    return demo?.title ?? '';
+  });
+
+  guideMd = computed(() => {
+    const url = `demos/${this.currentUrl()}`;
+    const override = this.markdownStore.entities().find(i => i.id === -1 && i.url === url);
+    return override?.comment ?? this.currentMd();
   });
 
   markdownPaneVisible = this.layout.markdownPaneVisible;
