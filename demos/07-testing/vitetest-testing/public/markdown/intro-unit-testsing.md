@@ -10,11 +10,11 @@ it('contains 12 characters', function () {
 });
 ```
 
-Run the Test using browser or headless mode: 
+Run tests using Vitest via Angular CLI:
 
 ```bash
 ng test
-ng test --browsers=ChromeHeadless
+ng test --watch false
 ```
 
 Additional intro samples: `voucher-validator.ts` and `voucher-validator.spec.ts`

@@ -3,111 +3,177 @@
     {
       "url": "testing-intro",
       "title": "Testing Intro",
+      "teaches": "Set up Vitest with Angular and write your first unit test. Understand test structure with describe/it blocks and basic assertions.",
+      "topic": "Introduction",
+      "sortOrder": 1,
       "id": 1
     },
     {
       "url": "pipe",
       "title": "Test Pipe",
+      "teaches": "Unit test Angular pipes in isolation by instantiating the pipe class directly and asserting transform output.",
+      "topic": "Pipes & Directives",
+      "sortOrder": 2,
       "id": 2
     },
     {
       "url": "directive",
       "title": "Test Directive",
+      "teaches": "Test attribute directives by creating a host component in TestBed and asserting DOM changes caused by the directive.",
+      "topic": "Pipes & Directives",
+      "sortOrder": 3,
       "id": 88
     },
     {
       "url": "simple-service",
       "title": "Simple Service",
+      "teaches": "Test a service class without DI by instantiating it directly. Verify methods and state mutations in isolation.",
+      "topic": "Services",
+      "sortOrder": 4,
       "id": 3
     },
     {
       "url": "http-tests",
       "title": "Service Http",
+      "teaches": "Test Angular services that use HttpClient with HttpTestingController. Flush mock responses and verify request URLs and methods.",
+      "topic": "Services",
+      "sortOrder": 5,
       "id": 8
     },
     {
       "url": "http-tests-bs",
       "title": "Service BS Http",
+      "teaches": "Test a service that uses BehaviorSubject for local state alongside HttpClient. Verify Observable emissions and state management.",
+      "topic": "Services",
+      "sortOrder": 6,
       "id": 83
     },
     {
       "url": "component-class",
       "title": "Comp Test Class",
+      "teaches": "Test component logic by instantiating the class directly (no TestBed). Fast and simple for components without template dependencies.",
+      "topic": "Component Testing",
+      "sortOrder": 7,
       "id": 77
     },
     {
       "url": "spy",
       "title": "Comp Inject Spy",
+      "teaches": "Use jasmine.createSpyObj to mock injected services in TestBed. Verify component behaviour when the service spy returns specific values.",
+      "topic": "Component Testing",
+      "sortOrder": 8,
       "id": 44
     },
     {
       "url": "component-test",
       "title": "Comp Spy returnValue",
+      "teaches": "Mock a service dependency in TestBed with createSpyObj and .and.returnValue to control Observable outputs. Assert DOM state and service interactions.",
+      "topic": "Component Testing",
+      "sortOrder": 9,
       "id": 5
     },
     {
       "url": "component-write",
       "title": "Comp Write / Read DOM",
+      "teaches": "Write to signal state and read DOM output after detectChanges. Use nativeElement queries to assert rendered text and attributes.",
+      "topic": "Component Testing",
+      "sortOrder": 10,
       "id": 63
     },
     {
       "url": "component-events",
       "title": "Comp Events",
+      "teaches": "Trigger DOM events and verify signal output emissions. Use fixture.debugElement to dispatch synthetic events and assert component reactions.",
+      "topic": "Component Testing",
+      "sortOrder": 11,
       "id": 89
     },
     {
       "url": "component-input-signals",
       "title": "Comp Input Signals",
+      "teaches": "Set signal inputs on a component under test using fixture.componentRef.setInput(). Assert rendered output and required input validation.",
+      "topic": "Component Testing",
+      "sortOrder": 12,
       "id": 633
     },
     {
       "url": "material",
       "title": "Comp Material Harness",
+      "teaches": "Use Angular Material component test harnesses to interact with Material UI elements in specs without coupling tests to DOM internals.",
+      "topic": "Component Testing",
+      "sortOrder": 13,
       "id": 19
     },
     {
       "url": "async",
       "title": "Comp Async",
+      "teaches": "Handle async operations in tests using fakeAsync/tick and whenStable. Test components that load data asynchronously.",
+      "topic": "Async Testing",
+      "sortOrder": 14,
       "id": 9
     },
     {
       "url": "material-async",
       "title": "Comp Material Async",
+      "teaches": "Combine Material test harnesses with async/await to interact with Material components that have asynchronous rendering.",
+      "topic": "Async Testing",
+      "sortOrder": 15,
       "id": 12
     },
     {
       "url": "integration-tests",
       "title": "Comp Nested Integration",
+      "teaches": "Write integration tests that render a parent component with real child components. Verify the full component tree without shallow mocking.",
+      "topic": "Integration Testing",
+      "sortOrder": 16,
       "id": 6
     },
     {
       "url": "marbles",
       "title": "Comp Marbles",
+      "teaches": "Use RxJS marble testing to assert Observable timing and emission sequences. Ideal for testing services with complex async pipelines.",
+      "topic": "RxJS Testing",
+      "sortOrder": 17,
       "id": 79
     },
     {
       "url": "ngrx-mock-store",
       "title": "NgRx Mock Store",
+      "teaches": "Test NgRx-connected components with MockStore and provideMockStore. Override selectors at test-time without dispatching real actions.",
+      "topic": "NgRx Testing",
+      "sortOrder": 18,
       "id": 51
     },
     {
       "url": "ngrx-reducers",
       "title": "NgRx Reducers",
+      "teaches": "Unit test NgRx reducers as pure functions by passing state and actions directly. Verify state transitions without TestBed.",
+      "topic": "NgRx Testing",
+      "sortOrder": 19,
       "id": 59
     },
     {
       "url": "mock-signals-store",
       "title": "Mock Signals Store",
+      "teaches": "Mock an NgRx Signal Store in component tests by providing a fake store that returns signals. Assert component output based on signal values.",
+      "topic": "NgRx Testing",
+      "sortOrder": 20,
       "id": 56
     },
     {
       "url": "test-signals-store",
       "title": "Test Signals Store",
+      "teaches": "Integration-test an NgRx Signal Store with a real service spy. Verify store state changes after calling store methods.",
+      "topic": "NgRx Testing",
+      "sortOrder": 21,
       "id": 53
     },
     {
       "url": "cypress",
       "title": "Cypress",
+      "teaches": "Introduction to Cypress for end-to-end testing. Learn the difference between unit tests and E2E tests and when to use each approach.",
+      "topic": "E2E Testing",
+      "sortOrder": 22,
       "id": 54
     }
   ],

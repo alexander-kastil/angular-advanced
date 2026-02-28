@@ -12,7 +12,7 @@
       fxLayoutGap="5px"
       class="list"
       >
-      @for (d of demos$ | async; track d) {
+      @for (d of demos(); track d) {
         <app-demo-row
           [item]="d"
           (onDelete)="deleteItem($event)"

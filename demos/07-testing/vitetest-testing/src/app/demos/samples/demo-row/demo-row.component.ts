@@ -1,35 +1,36 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { DemoItem } from '../../demo-base/demo-item.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
-    selector: 'app-demo-row',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './demo-row.component.html',
-    styleUrls: ['./demo-row.component.scss'],
-    standalone: true,
-    imports: [
-        MatSlideToggle,
-        MatButton,
-        MatIcon,
-    ],
+  selector: 'app-demo-row',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './demo-row.component.html',
+  styleUrls: ['./demo-row.component.scss'],
+  standalone: true,
+  imports: [
+    MatSlideToggle,
+    MatButton,
+    MatIcon,
+  ],
 })
 export class DemoRowComponent {
-  @Input() item: DemoItem | null = null;
-  @Output() onDelete: EventEmitter<DemoItem> = new EventEmitter();
-  @Output() onSlide: EventEmitter<DemoItem> = new EventEmitter();
+  item = input<DemoItem | null>(null);
+  onDelete = output<DemoItem>();
+  onSlide = output<DemoItem>();
 
   delete() {
-    if (this.item != null) this.onDelete.emit(this.item);
+    const item = this.item();
+    if (item != null) this.onDelete.emit(item);
   }
 
   changeVisibility() {
-
-    if (this.item != null) {
-      this.item.visible = !this.item.visible;
-      this.onSlide.emit(this.item);
+    const item = this.item();
+    if (item != null) {
+      item.visible = !item.visible;
+      this.onSlide.emit(item);
     }
   }
 }

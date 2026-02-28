@@ -1,13 +1,13 @@
-- Examine the `mockstore.component.spec.ts.spec` files in /ngrx-mockstore.
+- Examine the `mockstore.component.spec.ts` file in `/ngrx-mockstore/mockstore`.
 
-- It uses the `MockStore` to mock the `demoState` that is injected to mockstore.component.ts. 
+- It uses `provideMockStore` to mock the NgRx `Store` injected into `mockstore.component.ts`. Pass `initialState` to seed state without needing reducers.
 
-- You can copy initial state from the `Redux Dev Tools` if you are using an advanced data structure like a Map when use `EntityAdapter`.
+- You can copy initial state from the Redux DevTools when using advanced data structures like `EntityAdapter`.
 
 ```typescript
-beforeEach(async () => {
+beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MockstoreComponent],
+      imports: [MockstoreComponent],
       providers: [provideMockStore({ initialState })]
     }).compileComponents();
 
@@ -16,4 +16,11 @@ beforeEach(async () => {
     mockStore = TestBed.inject(MockStore);
     fixture.detectChanges();
 });
+```
+
+- Use `mockStore.overrideSelector()` to override a specific selector's return value at test-time:
+
+```typescript
+mockStore.overrideSelector(getAllDemos, mockDemos);
+mockStore.refreshState();
 ```

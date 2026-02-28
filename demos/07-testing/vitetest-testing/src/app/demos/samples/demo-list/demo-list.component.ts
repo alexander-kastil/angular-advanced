@@ -1,44 +1,38 @@
 import { CdkDragDrop, moveItemInArray, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { DemoItem } from '../../demo-base/demo-item.model';
 import { getAllDemos } from '../../state/demo.selectors';
 import { DemoActions } from '../../state/demos.actions';
 import { DemoState } from '../../state/demos.reducer';
-import { AsyncPipe } from '@angular/common';
 import { DemoRowComponent } from '../demo-row/demo-row.component';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
-    selector: 'app-demo-list',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './demo-list.component.html',
-    styleUrls: ['./demo-list.component.scss'],
-    standalone: true,
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        CdkDropList,
-        DemoRowComponent,
-        CdkDrag,
-        AsyncPipe,
-    ],
+  selector: 'app-demo-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './demo-list.component.html',
+  styleUrls: ['./demo-list.component.scss'],
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    CdkDropList,
+    DemoRowComponent,
+    CdkDrag,
+  ],
 })
-export class DemoListComponent implements OnInit {
-  constructor(private store: Store<DemoState>) { }
+export class DemoListComponent {
+  private store = inject(Store<DemoState>);
 
-  demos$: Observable<DemoItem[]> = this.store.select(getAllDemos);
-
-  ngOnInit() { }
+  demos = this.store.selectSignal(getAllDemos);
 
   drop(event: CdkDragDrop<DemoItem[]>) {
-    this.demos$.subscribe((arr) => {
-      moveItemInArray(arr, event.previousIndex, event.currentIndex);
-      this.changeSortOrder(arr);
-    });
+    const arr = [...this.demos()];
+    moveItemInArray(arr, event.previousIndex, event.currentIndex);
+    this.changeSortOrder(arr);
   }
 
   // Actually you should implement this using an action :-)

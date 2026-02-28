@@ -5,13 +5,13 @@
   fxLayoutGap="10px"
 >
   <div fxFlex="2 1 auto">
-    {{ item?.title }}
+    {{ item()?.title }}
   </div>
   <div>
     <mat-slide-toggle
       color="primary"
       (change)="changeVisibility()"
-      [checked]="item?.visible"
+      [checked]="item()?.visible"
       >Visible</mat-slide-toggle
     >
   </div>

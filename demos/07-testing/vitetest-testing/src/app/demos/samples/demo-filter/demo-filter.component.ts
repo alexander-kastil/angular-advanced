@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
@@ -9,24 +9,24 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
-    selector: 'app-demo-filter',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './demo-filter.component.html',
-    styleUrls: ['./demo-filter.component.scss'],
-    standalone: true,
-    imports: [
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatFormField,
-        MatInput,
-        FormsModule,
-        ReactiveFormsModule,
-    ],
+  selector: 'app-demo-filter',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './demo-filter.component.html',
+  styleUrls: ['./demo-filter.component.scss'],
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatFormField,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class DemoFilterComponent implements OnInit {
-  constructor(private store: Store<DemoState>) { }
+  private store = inject(Store<DemoState>);
 
   fcFilter = new FormControl();
 
