@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -8,15 +8,16 @@ import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
-    selector: 'app-side-panel',
-    templateUrl: './side-panel.component.html',
-    styleUrls: ['./side-panel.component.scss'],
-    imports: [
-        MatToolbar,
-        MatToolbarRow,
-        MatMiniFabButton,
-        MatIcon,
-    ]
+  selector: 'app-side-panel',
+  templateUrl: './side-panel.component.html',
+  styleUrls: ['./side-panel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    MatToolbar,
+    MatToolbarRow,
+    MatMiniFabButton,
+    MatIcon,
+  ]
 })
 export class SidePanelComponent {
   sns = inject(SnackbarService);

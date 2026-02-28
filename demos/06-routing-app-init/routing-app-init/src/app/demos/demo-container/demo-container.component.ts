@@ -1,91 +1,97 @@
-import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, resource } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { filter, map, tap } from 'rxjs/operators';
-import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
-import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
-import { SideNavFacade } from 'src/app/state/sidenav.facade';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
+import { SidePanelService } from '../../shared/side-panel/sidepanel.service';
+import { environment } from '../../../environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
-import { DemoFacade } from '../state/demo.facade';
+import { SideNavService } from '../../shared/sidenav/sidenav.service';
+import { DemoItem } from './demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
-import { EditorContainerComponent } from '../../shared/markdown-editor/components/editor-container/editor-container.component';
-import { LoadingComponent } from '../../shared/loading/loading.component';
-import { NgStyle, AsyncPipe } from '@angular/common';
+import { MarkdownEditorContainerComponent } from '../../shared/markdown-editor/components/markdown-editor-container/markdown-editor-container.component';
 import { MatNavList, MatListItem } from '@angular/material/list';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 @Component({
-    selector: 'app-demo-container',
-    templateUrl: './demo-container.component.html',
-    styleUrls: ['./demo-container.component.scss'],
-    imports: [
-        MatSidenavContainer,
-        MatSidenav,
-        MatToolbar,
-        MatToolbarRow,
-        MatNavList,
-        MatListItem,
-        RouterLink,
-        MatSidenavContent,
-        NgStyle,
-        LoadingComponent,
-        RouterOutlet,
-        EditorContainerComponent,
-        SidePanelComponent,
-        AsyncPipe,
-    ]
+  selector: 'app-demo-container',
+  templateUrl: './demo-container.component.html',
+  styleUrls: ['./demo-container.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    MatToolbar,
+    MatToolbarRow,
+    MatNavList,
+    MatListItem,
+    RouterLink,
+    MatSidenavContent,
+    RouterOutlet,
+    MarkdownEditorContainerComponent,
+    SidePanelComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoContainerComponent implements OnInit {
-  destroyRef = inject(DestroyRef);
+export class DemoContainerComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
-  df = inject(DemoFacade);
-  nav = inject(SideNavFacade);
+  http = inject(HttpClient);
+  nav = inject(SideNavService);
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
 
+  hoveredItem = signal<DemoItem | null>(null);
+  popupTop = signal(0);
+
   title: string = environment.title;
-  demos = this.df.getDemos();
-  header = this.router.events
-    .pipe(
-      takeUntilDestroyed(this.destroyRef),
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.rootRoute(this.route)),
-      filter((route: ActivatedRoute) => route.outlet === 'primary'),
-      map((route: ActivatedRoute) => route.component != null
-        ? `Component: ${route.component.name.substring(1)}`
-        : 'Please select a demo'),
-      tap((header) => console.log(header)
-      ));
 
-  isLoading = false;
+  demosResource = resource({
+    loader: () => lastValueFrom(this.http.get<DemoItem[]>(`${environment.api}demos`))
+  });
 
-  sidenavMode = this.nav.getSideNavPosition();
-  sidenavVisible = this.nav.getSideNavVisible();
-  workbenchMargin = this.sidenavVisible.pipe(
-    map(visible => { return visible ? { 'margin-left': '5px' } : {} })
+  demos = computed(() => {
+    const items = this.demosResource.value() ?? [];
+    return [...items].sort((a, b) => a.sortOrder - b.sortOrder);
+  });
+  isLoadingDemos = computed(() => this.demosResource.status() === 'loading');
+  hasErrorDemos = computed(() => this.demosResource.status() === 'error');
+
+  sidenavMode = toSignal(this.nav.getSideNavPosition(), { initialValue: 'side' as const });
+  sidenavVisible = toSignal(this.nav.getSideNavVisible(), { initialValue: true });
+  isLoading = toSignal(this.ls.getLoading());
+
+  header = signal('Please select a demo');
+
+  showMdEditor = computed(() =>
+    (this.eb.getCommands() as any)() === SidebarActions.SHOW_MARKDOWN
   );
-
-  currentCMD = this.eb.getCommands();
-  showMdEditor: boolean = false;
 
   constructor() {
     effect(() => {
-      this.showMdEditor = this.currentCMD() === SidebarActions.HIDE_MARKDOWN ? false : true;
-    });
-
-    this.ls.getLoading().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-      Promise.resolve(null).then(() => { this.isLoading = value });
-    });
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          const rootRoute = this.getRootRoute(this.route);
+          if (rootRoute.outlet === 'primary' && rootRoute.component != null) {
+            const name = rootRoute.component.name.replace(/^_/, '');
+            this.header.set(`Component: ${name}`);
+          }
+        }
+      });
+    }, { allowSignalWrites: true });
   }
 
-  ngOnInit() {
-    this.df.init();
+  showPopup(item: DemoItem, event: MouseEvent): void {
+    this.hoveredItem.set(item);
+    this.popupTop.set((event.target as HTMLElement).getBoundingClientRect().top);
   }
 
-  rootRoute(route: ActivatedRoute): ActivatedRoute {
+  hidePopup(): void {
+    this.hoveredItem.set(null);
+  }
+
+  private getRootRoute(route: ActivatedRoute): ActivatedRoute {
     while (route.firstChild) {
       route = route.firstChild;
     }

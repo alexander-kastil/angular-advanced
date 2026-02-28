@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, ErrorHandler, importProvidersFrom, provideAppInitializer, inject } from '@angular/core';
+import { ApplicationConfig, ErrorHandler, importProvidersFrom, provideAppInitializer, inject, provideZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
@@ -7,8 +7,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { MarkdownModule } from 'ngx-markdown';
-import { AppInitService, initFactory } from './app-init/app-init.service';
-import { configFactory } from './app-init/config.factory';
+import { AppInitService } from './app-init/app-init.service';
 import { ConfigService } from './app-init/config.service';
 import { appRoutes } from './app.routes';
 import * as customerEffects from './customers/state/customers.effects';
@@ -37,6 +36,7 @@ export const appConfig: ApplicationConfig = {
             withViewTransitions()
         ),
         provideAnimations(),
+        provideZonelessChangeDetection(),
         importProvidersFrom(
             MarkdownModule.forRoot(),
         ),
@@ -54,17 +54,9 @@ export const appConfig: ApplicationConfig = {
         //NgRx DevTools
         provideStoreDevtools({ maxAge: 25 }),
         // Application Init
-        provideAppInitializer(() => {
-                console.log('App init running');
-            }),
-        provideAppInitializer(() => {
-        const initializerFn = (initFactory)(inject(AppInitService));
-        return initializerFn();
-      }),
-        provideAppInitializer(() => {
-        const initializerFn = (configFactory)(inject(ConfigService));
-        return initializerFn();
-      }),
+        provideAppInitializer(() => console.log('App init running')),
+        provideAppInitializer(() => inject(AppInitService).loadData()),
+        provideAppInitializer(() => inject(ConfigService).loadConfig()),
         {
             provide: ErrorHandler,
             useValue: globalErrorHandler,

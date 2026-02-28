@@ -3,10 +3,6 @@ import { Store } from '@ngrx/store';
 import { customersActions } from '../customers/state/customers.actions';
 import { HttpClient } from '@angular/common/http';
 
-export const initFactory = (appInit: AppInitService) => {
-  return () => appInit.loadData();
-};
-
 @Injectable({
   providedIn: 'root',
 })

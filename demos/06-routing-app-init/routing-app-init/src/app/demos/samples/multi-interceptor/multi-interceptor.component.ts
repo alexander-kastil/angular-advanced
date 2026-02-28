@@ -1,59 +1,53 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import { DemoService } from '../../demo-base/demo.service';
+import { ChangeDetectionStrategy, Component, inject, resource, signal } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
+import { firstValueFrom } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-multi-interceptor',
-    templateUrl: './multi-interceptor.component.html',
-    styleUrls: ['./multi-interceptor.component.scss'],
-    imports: [
-        MarkdownRendererComponent,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        MatCardActions,
-        MatButton,
-    ]
+  selector: 'app-multi-interceptor',
+  templateUrl: './multi-interceptor.component.html',
+  styleUrls: ['./multi-interceptor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    MarkdownRendererComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatCardActions,
+    MatButton,
+    JsonPipe
+  ]
 })
 export class MultiInterceptorComponent {
-  service = inject(DemoService);
-  http = inject(HttpClient);
-  data1 = '';
-  data2 = '';
+  private http = inject(HttpClient);
 
-  httpCall(): void {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/todos/1')
-      .subscribe((body) => {
-        console.log(body);
-        this.data1 = JSON.stringify(body);
-      });
+  protected requestUrl = signal<string>('https://jsonplaceholder.typicode.com/todos/1');
+
+  protected data = resource({
+    loader: async () => {
+      const url = this.requestUrl();
+      return await firstValueFrom(this.http.get(url));
+    }
+  });
+
+  protected requestData() {
+    this.requestUrl.set('https://jsonplaceholder.typicode.com/todos/1');
+    this.data.reload();
   }
 
-  requestData() {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/todos/1')
-      .subscribe((body) => {
-        console.log(body);
-        this.data1 = JSON.stringify(body);
-      });
+  protected requestXMLData() {
+    this.requestUrl.set(
+      'https://api.openweathermap.org/data/2.5/weather?q=London&mode=xml&appid=25a0801691214cdec4c44e5b125b6396'
+    );
+    this.data.reload();
   }
-  requestXMLData() {
-    this.http
-      .get(
-        'https://api.openweathermap.org/data/2.5/weather?q=London&mode=xml&appid=25a0801691214cdec4c44e5b125b6396'
-      )
-      .subscribe((body) => {
-        console.log(body), (this.data2 = JSON.stringify(body));
-      });
-  }
-  request404Data() {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/todos/7878')
-      .subscribe((res) => console.log(res));
+
+  protected request404Data() {
+    this.requestUrl.set('https://jsonplaceholder.typicode.com/todos/7878');
+    this.data.reload();
   }
 }

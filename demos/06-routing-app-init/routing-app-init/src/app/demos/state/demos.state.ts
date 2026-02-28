@@ -5,7 +5,7 @@ import {
   Update,
 } from '@ngrx/entity';
 import { createFeature, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { DemoItem } from '../demo-base/demo-item.model';
+import { DemoItem } from '../demo-container/demo-item.model';
 import { demoActions } from './demos.actions';
 
 

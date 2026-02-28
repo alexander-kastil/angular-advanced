@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
@@ -7,10 +7,11 @@ import { DemoState } from '../../state/demos.state';
 import { BoxedDirective } from 'src/app/shared/formatting/formatting-directives';
 
 @Component({
-    selector: 'app-ngrx-router-actions',
-    templateUrl: './ngrx-router-actions.component.html',
-    styleUrls: ['./ngrx-router-actions.component.scss'],
-    imports: [MarkdownRendererComponent, MatButton, BoxedDirective]
+  selector: 'app-ngrx-router-actions',
+  templateUrl: './ngrx-router-actions.component.html',
+  styleUrls: ['./ngrx-router-actions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MarkdownRendererComponent, MatButton, BoxedDirective]
 })
 export class NgrxRouterActionsComponent {
   store = inject(Store<DemoState>) as Store<DemoState>;

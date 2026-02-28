@@ -41,7 +41,6 @@
     "@angular/build": "^21.2.0",
     "@angular/cli": "~21.2.0",
     "@angular/compiler-cli": "^21.2.0",
-    "@ngrx/schematics": "^21.0.1",
     "@ngrx/store-devtools": "^21.0.1",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",

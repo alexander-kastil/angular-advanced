@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -16,6 +16,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   selector: 'app-skills-container',
   templateUrl: './skills-container.component.html',
   styleUrls: ['./skills-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatToolbar,
     MatToolbarRow,

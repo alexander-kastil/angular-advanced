@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
@@ -9,6 +9,7 @@ declare var window: Window;
     selector: 'app-err-page',
     templateUrl: './err-page.component.html',
     styleUrls: ['./err-page.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatCard,
         MatCardHeader,
@@ -18,5 +19,5 @@ declare var window: Window;
     ]
 })
 export class ErrPageComponent {
-  error = window.history.state;
+    error = window.history.state;
 }

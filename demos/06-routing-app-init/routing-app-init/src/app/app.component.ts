@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    imports: [NavbarComponent, RouterOutlet]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NavbarComponent, RouterOutlet]
 })
 export class AppComponent {
 
@@ -15,11 +16,11 @@ export class AppComponent {
     console.log('AppComponent constructor');
   }
 
-  title: string = environment.title;
-  selectedTheme: string = 'default';
+  readonly title = environment.title;
+  readonly selectedTheme = signal<'default' | 'dark'>('default');
 
   toggleTheme() {
-    this.selectedTheme = this.selectedTheme == 'default' ? 'dark' : 'default';
-    console.log(this.selectedTheme);
+    this.selectedTheme.update((theme) => theme === 'default' ? 'dark' : 'default');
+    console.log(this.selectedTheme());
   }
 }

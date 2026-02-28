@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { SideNavService } from "src/app/shared/sidenav/sidenav.service";
 
 @Component({
   selector: "app-admin-container",
   templateUrl: "./admin-container.component.html",
-  styleUrls: ["./admin-container.component.scss"]
+  styleUrls: ["./admin-container.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminContainerComponent implements OnInit {
   constructor(public ms: SideNavService) { }

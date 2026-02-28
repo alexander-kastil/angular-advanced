@@ -8,8 +8,6 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
-import * as demoEffects from './demos/state/demos.effects';
-import { demoState } from './demos/state/demos.state';
 import { loadingInterceptor } from './shared/loading/loading-interceptor';
 
 import { SkillsDataService } from './skills/skills-data.service';
@@ -24,9 +22,6 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         //NgRx
         provideStore(),
-        provideEffects(demoEffects),
-        // State Slices
-        provideState(demoState),
         // NgRx Data
         provideEntityData(skillsEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: skillsDataServiceConfig },
