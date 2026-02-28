@@ -35,13 +35,13 @@
           </mat-toolbar>
         </div>
         <div class="gdMain">
-          <as-split direction="vertical" unit="pixel">
-            <as-split-area [size]="'*'">
-              <div class="split-content">
+          <as-split direction="vertical" unit="pixel" (dragEnd)="onSplitDragEnd($event)">
+            <as-split-area #paneDemo [size]="demoPaneSize()" [visible]="hasDemoContent()">
+              <div class="split-content" #demoPaneContent>
                 <router-outlet />
               </div>
             </as-split-area>
-            <as-split-area [size]="300" [visible]="markdownPaneVisible()">
+            <as-split-area #paneMarkdown [size]="'*'" [visible]="showMarkdownPane()">
               <div class="split-content">
                 @if (markdownMode() === 'guide') {
                   @if (currentMd()) {

@@ -9,11 +9,24 @@ type LayoutState = {
     markdownMode: MarkdownMode;
     sidenavVisible: boolean;
     sidenavPosition: MatDrawerMode;
+    demoPaneSize: number;
+    hasMarkdownContent: boolean;
 };
+
+const defaults: LayoutState = {
+    markdownPaneVisible: false,
+    markdownMode: 'guide',
+    sidenavVisible: true,
+    sidenavPosition: 'side',
+    demoPaneSize: 500,
+    hasMarkdownContent: false,
+};
+
+type PersistedState = Omit<LayoutState, 'hasMarkdownContent'>;
 
 const STORAGE_KEY = 'layout-state';
 
-function loadFromStorage(): Partial<LayoutState> {
+function loadFromStorage(): Partial<PersistedState> {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
         return raw ? JSON.parse(raw) : {};
@@ -22,19 +35,13 @@ function loadFromStorage(): Partial<LayoutState> {
     }
 }
 
-const defaults: LayoutState = {
-    markdownPaneVisible: true,
-    markdownMode: 'guide',
-    sidenavVisible: true,
-    sidenavPosition: 'side',
-};
-
 export const LayoutStore = signalStore(
     { providedIn: 'root', protectedState: false },
     withState(defaults),
-    withComputed(({ markdownPaneVisible, markdownMode }) => ({
+    withComputed(({ markdownPaneVisible, markdownMode, hasMarkdownContent }) => ({
         isGuideActive: computed(() => markdownPaneVisible() && markdownMode() === 'guide'),
         isEditorActive: computed(() => markdownPaneVisible() && markdownMode() === 'editor'),
+        showMarkdownPane: computed(() => markdownPaneVisible() && hasMarkdownContent()),
     })),
     withMethods((store) => ({
         showGuide() {
@@ -56,6 +63,12 @@ export const LayoutStore = signalStore(
         setSidenavPosition(position: MatDrawerMode) {
             patchState(store, { sidenavPosition: position });
         },
+        setDemoPaneSize(size: number) {
+            patchState(store, { demoPaneSize: size });
+        },
+        setHasMarkdownContent(value: boolean) {
+            patchState(store, { hasMarkdownContent: value });
+        },
     })),
     withHooks({
         onInit(store) {
@@ -64,8 +77,8 @@ export const LayoutStore = signalStore(
                 patchState(store, saved);
             }
             effect(() => {
-                const state = getState(store);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+                const { hasMarkdownContent, ...persisted } = getState(store);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(persisted));
             });
         },
     }),

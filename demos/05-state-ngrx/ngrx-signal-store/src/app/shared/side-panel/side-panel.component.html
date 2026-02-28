@@ -3,13 +3,16 @@
     <button mat-mini-fab matTooltip="Toggle the SideNav" (click)="toggleSideNav()">
       <mat-icon>menu</mat-icon>
     </button>
-    <button mat-mini-fab matTooltip="Toggle Markdown Guide" (click)="showGuide()">
-      <mat-icon>description</mat-icon>
-    </button>
-    @if (markdownPaneVisible()) {
-      <button mat-mini-fab matTooltip="Switch to Editor" (click)="showEditor()">
-        <mat-icon>edit_note</mat-icon>
+    @if (layout.hasMarkdownContent()) {
+      <button mat-mini-fab matTooltip="Toggle Markdown Guide" (click)="showGuide()">
+        <mat-icon>help_clinic</mat-icon>
       </button>
+      @if (markdownPaneVisible()) {
+        <button mat-mini-fab matTooltip="Switch to Editor" (click)="showEditor()">
+          <mat-icon>edit_square</mat-icon>
+        </button>
+        <span class="pane-size">{{ layout.demoPaneSize() }}</span>
+      }
     }
   </mat-toolbar-row>
 </mat-toolbar>
