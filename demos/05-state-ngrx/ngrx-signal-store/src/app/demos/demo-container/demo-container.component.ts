@@ -105,6 +105,7 @@ export class DemoContainerComponent {
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       takeUntilDestroyed()
     ).subscribe((event) => {
+      this.layout.resetToGuide();
       const rootRoute = this.getRootRoute(this.route);
       if (rootRoute.outlet === 'primary' && rootRoute.component != null) {
         const name = rootRoute.component.name.replace(/^_/, '');

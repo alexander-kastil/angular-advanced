@@ -76,6 +76,9 @@ export const LayoutStore = signalStore(
         setHasMarkdownContent(value: boolean) {
             patchState(store, { hasMarkdownContent: value });
         },
+        resetToGuide() {
+            patchState(store, { markdownPaneVisible: true, markdownMode: 'guide' });
+        },
     })),
     withHooks({
         onInit(store) {
