@@ -1,15 +1,10 @@
-import { Component, HostListener, ChangeDetectionStrategy, inject, signal } from '@angular/core';
-import { SnackbarService } from '../snackbar/snackbar.service';
-import { SidebarActions } from './sidebar.actions';
-import { SidePanelService } from './sidepanel.service';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { LayoutStore } from '../layout/layout.store';
 import { SideNavService } from '../sidenav/sidenav.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { RendererStateService } from '../markdown-renderer/renderer-state.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-
 
 @Component({
   selector: 'app-side-panel',
@@ -25,37 +20,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidePanelComponent {
-  sns = inject(SnackbarService);
-  eb = inject(SidePanelService);
+  layout = inject(LayoutStore);
   sidenav = inject(SideNavService);
-  rendererState = inject(RendererStateService);
-  readonly editorDisplayed = signal(false);
-  readonly icon = signal("create");
 
-  toggleEditor() {
-    if (this.editorDisplayed()) {
-      this.eb.triggerCmd(SidebarActions.HIDE_MARKDOWN);
-    } else {
-      this.eb.triggerCmd(SidebarActions.SHOW_MARKDOWN);
-    }
-    this.editorDisplayed.set(!this.editorDisplayed());
-    this.icon.set(this.editorDisplayed() ? "close" : "create");
-  }
+  markdownPaneVisible = this.layout.markdownPaneVisible;
 
   toggleSideNav() {
     this.sidenav.toggleMenuVisibility();
   }
 
-  toggleInfo() {
-    this.rendererState.toggleVisibility();
+  showGuide() {
+    this.layout.showGuide();
   }
 
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key === 'i') {
-      this.toggleInfo();
-      event.preventDefault();
-    }
+  showEditor() {
+    this.layout.showEditor();
   }
-
 }

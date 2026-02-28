@@ -1,18 +1,20 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, resource } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, resource, DestroyRef } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
-import { SidebarActions } from '../../shared/side-panel/sidebar.actions';
-import { SidePanelService } from '../../shared/side-panel/sidepanel.service';
+import { filter, lastValueFrom } from 'rxjs';
+import { LayoutStore } from '../../shared/layout/layout.store';
 import { environment } from '../../../environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { SideNavService } from '../../shared/sidenav/sidenav.service';
 import { DemoItem } from './demo-item.model';
 import { SidePanelComponent } from '../../shared/side-panel/side-panel.component';
 import { MarkdownEditorContainerComponent } from '../../shared/markdown-editor/components/markdown-editor-container/markdown-editor-container.component';
+import { MarkdownRendererComponent } from '../../shared/markdown-renderer/markdown-renderer.component';
 import { MatNavList, MatListItem } from '@angular/material/list';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import { SplitComponent, SplitAreaComponent } from 'angular-split';
 
 @Component({
   selector: 'app-demo-container',
@@ -29,7 +31,10 @@ import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/mat
     MatSidenavContent,
     RouterOutlet,
     MarkdownEditorContainerComponent,
+    MarkdownRendererComponent,
     SidePanelComponent,
+    SplitComponent,
+    SplitAreaComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -39,7 +44,7 @@ export class DemoContainerComponent {
   http = inject(HttpClient);
   nav = inject(SideNavService);
   ls = inject(LoadingService);
-  eb = inject(SidePanelService);
+  layout = inject(LayoutStore);
 
   hoveredItem = signal<DemoItem | null>(null);
   popupTop = signal(0);
@@ -62,23 +67,31 @@ export class DemoContainerComponent {
   isLoading = this.ls.getLoading();
 
   header = signal('Please select a demo');
+  currentUrl = signal('');
 
-  showMdEditor = computed(() =>
-    (this.eb.getCommands() as any)() === SidebarActions.SHOW_MARKDOWN
-  );
+  currentMd = computed(() => {
+    const url = this.currentUrl();
+    if (!url) return '';
+    const demo = this.demos().find(d => d.url === url);
+    return demo?.md ?? '';
+  });
+
+  markdownPaneVisible = this.layout.markdownPaneVisible;
+  markdownMode = this.layout.markdownMode;
 
   constructor() {
-    effect(() => {
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          const rootRoute = this.getRootRoute(this.route);
-          if (rootRoute.outlet === 'primary' && rootRoute.component != null) {
-            const name = rootRoute.component.name.replace(/^_/, '');
-            this.header.set(`Component: ${name}`);
-          }
-        }
-      });
-    }, { allowSignalWrites: true });
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      takeUntilDestroyed()
+    ).subscribe((event) => {
+      const rootRoute = this.getRootRoute(this.route);
+      if (rootRoute.outlet === 'primary' && rootRoute.component != null) {
+        const name = rootRoute.component.name.replace(/^_/, '');
+        this.header.set(`Component: ${name}`);
+      }
+      const url = event.urlAfterRedirects.split('/').pop() ?? '';
+      this.currentUrl.set(url);
+    });
   }
 
   showPopup(item: DemoItem, event: MouseEvent): void {

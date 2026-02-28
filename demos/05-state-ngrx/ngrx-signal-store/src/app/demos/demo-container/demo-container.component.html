@@ -34,17 +34,26 @@
             </mat-toolbar-row>
           </mat-toolbar>
         </div>
-        <!-- <div class="gdLoading">
-        <app-loading *ngIf="isLoading()"></app-loading>
-      </div> -->
-        <div class="gdWorkbench">
-          <router-outlet />
+        <div class="gdMain">
+          <as-split direction="vertical" unit="pixel">
+            <as-split-area [size]="'*'">
+              <div class="split-content">
+                <router-outlet />
+              </div>
+            </as-split-area>
+            <as-split-area [size]="300" [visible]="markdownPaneVisible()">
+              <div class="split-content">
+                @if (markdownMode() === 'guide') {
+                  @if (currentMd()) {
+                    <app-markdown-renderer [md]="currentMd()" />
+                  }
+                } @else {
+                  <app-markdown-editor-container />
+                }
+              </div>
+            </as-split-area>
+          </as-split>
         </div>
-        @if (showMdEditor()) {
-          <div class="gdEditor">
-            <app-markdown-editor-container />
-          </div>
-        }
         <div class="gdSidebar">
           <app-side-panel />
         </div>

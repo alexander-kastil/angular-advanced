@@ -1,38 +1,37 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable, inject } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { sideNavStore } from './sidenav.store';
+import { LayoutStore } from '../layout/layout.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SideNavService {
-  navStore = inject(sideNavStore);
-  breakpointObserver = inject(BreakpointObserver);
+  private layoutStore = inject(LayoutStore);
+  private breakpointObserver = inject(BreakpointObserver);
 
   constructor() {
     this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .pipe(
-        tap((matchesBreakpoints) => {
-          console.log("matchesBreakpoint: ", matchesBreakpoints.matches);
-          const position = matchesBreakpoints.matches ? 'over' : 'side';
-          const visible = matchesBreakpoints.matches ? false : true;
-          this.navStore.changeSideNavVisible(visible);
-          this.navStore.changeSideNavPosition(position);
+        tap((result) => {
+          const position = result.matches ? 'over' : 'side';
+          const visible = !result.matches;
+          this.layoutStore.setSidenavVisible(visible);
+          this.layoutStore.setSidenavPosition(position);
         })
       ).subscribe();
   }
 
   getSideNavVisible() {
-    return this.navStore.sideNavVisible;
+    return this.layoutStore.sidenavVisible;
   }
 
   getSideNavPosition() {
-    return this.navStore.sideNavPosition;
+    return this.layoutStore.sidenavPosition;
   }
 
   toggleMenuVisibility() {
-    this.navStore.toggleSideNavVisible();
+    this.layoutStore.toggleSidenavVisible();
   }
 }
