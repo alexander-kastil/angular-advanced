@@ -32,7 +32,7 @@ describe('ComponentEventsComponent', () => {
     fixture.detectChanges();
 
     const divResult = fixture.debugElement.query(By.css('[data-testid=result]'));
-    expect(divResult.nativeElement.innerText).toContain('1');
+    expect(divResult.nativeElement.textContent).toContain('1');
   });
 
   it('should increment the count - native Api', () => {
@@ -44,6 +44,6 @@ describe('ComponentEventsComponent', () => {
     fixture.autoDetectChanges();
 
     const divResult = fixture.debugElement.query(By.css('[data-testid=result]'));
-    expect(divResult.nativeElement.innerText).toContain('2');
+    expect(divResult.nativeElement.textContent).toContain('2');
   });
 });

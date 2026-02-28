@@ -1,5 +1,5 @@
 import { AsyncPipe, NgStyle } from '@angular/common';
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, OnInit, effect, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
@@ -18,6 +18,7 @@ import { DemoFacade } from '../state/demo.facade';
 
 @Component({
     selector: 'app-demo-container',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './demo-container.component.html',
     styleUrls: ['./demo-container.component.scss'],
     imports: [

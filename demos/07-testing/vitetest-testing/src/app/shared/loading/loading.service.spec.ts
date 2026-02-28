@@ -15,14 +15,14 @@ describe('LoadingService', () => {
 
   it('should return the initial loading state as false', () => {
     service.getLoading().subscribe((loading) => {
-      expect(loading).toBeFalse();
+      expect(loading).toBe(false);
     });
   });
 
   it('should set loading state to true', () => {
     service.setLoading(true);
     service.getLoading().subscribe((loading) => {
-      expect(loading).toBeTrue();
+      expect(loading).toBe(true);
     });
   });
 
@@ -30,7 +30,7 @@ describe('LoadingService', () => {
     service.setLoading(true); // First set it to true
     service.setLoading(false); // Then set it to false
     service.getLoading().subscribe((loading) => {
-      expect(loading).toBeFalse();
+      expect(loading).toBe(false);
     });
   });
 });

@@ -15,8 +15,8 @@ describe('MaterialAsyncComponent', () => {
   let spy: any;
 
   beforeEach(() => {
-    spy = jasmine.createSpyObj('PersonService', ['getPersons']);
-    spy.getPersons.and.returnValue(of(EMPTY));
+    spy = { getPersons: vi.fn() };
+    spy.getPersons.mockReturnValue(of(EMPTY));
     testScheduler = new TestScheduler((actual, expected) => {
       expect(actual).toEqual(expected);
     });
@@ -45,7 +45,7 @@ describe('MaterialAsyncComponent', () => {
     testScheduler.run((helpers) => {
       const { cold, expectObservable } = helpers;
       const source$ = cold('a--b-c|', { a: 'Soi', b: 'Giro', c: 'Cleo' });
-      spy.getPersons.and.returnValue(source$);
+      spy.getPersons.mockReturnValue(source$);
       component.ngOnInit();
       fixture.detectChanges();
       const boxes = fixture.debugElement.queryAll(By.css('.box'));

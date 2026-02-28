@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 
 @Component({
     selector: 'app-demo-filter',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './demo-filter.component.html',
     styleUrls: ['./demo-filter.component.scss'],
     standalone: true,

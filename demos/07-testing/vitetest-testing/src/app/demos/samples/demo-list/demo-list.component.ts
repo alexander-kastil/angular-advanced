@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DemoItem } from '../../demo-base/demo-item.model';
@@ -12,6 +12,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 
 @Component({
     selector: 'app-demo-list',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './demo-list.component.html',
     styleUrls: ['./demo-list.component.scss'],
     standalone: true,

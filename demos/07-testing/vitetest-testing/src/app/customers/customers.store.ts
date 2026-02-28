@@ -37,10 +37,7 @@ export const customersStore = signalStore(
                     );
                 })
             )),
-        getById: (id: number) => {
-            console.log("store.customers(): ", store.customers());
-            return store.customers().find(c => c.id === id)
-        },
+        getById: (id: number) => store.customers().find(c => c.id === id),
         updateCustomer: rxMethod<Customer>(
             pipe(
                 switchMap((customer) => {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommentItem } from '../../comment.model';
 import { FormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
@@ -7,6 +7,7 @@ import { ColumnDirective } from '../../../formatting/formatting-directives';
 
 @Component({
     selector: 'app-comment-edit',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './comment-edit.component.html',
     styleUrls: ['./comment-edit.component.scss'],
     imports: [

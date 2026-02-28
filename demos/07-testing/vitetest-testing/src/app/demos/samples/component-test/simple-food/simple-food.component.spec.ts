@@ -12,13 +12,13 @@ describe('Component - Spy - FoodComponent:', () => {
   let fixture: ComponentFixture<SimpleFoodComponent>;
 
   beforeEach(() => {
-    spy = jasmine.createSpyObj(['getFood', 'deleteFood']);
-    spy.getFood.and.returnValue(of(foodData))
+    spy = { getFood: vi.fn(), deleteFood: vi.fn() };
+    spy.getFood.mockReturnValue(of(foodData))
 
     TestBed.configureTestingModule({
-    imports: [MatCardModule, NoopAnimationsModule, SimpleFoodComponent],
-    providers: [{ provide: FoodService, useValue: spy }],
-});
+      imports: [MatCardModule, NoopAnimationsModule, SimpleFoodComponent],
+      providers: [{ provide: FoodService, useValue: spy }],
+    });
 
     fixture = TestBed.createComponent(SimpleFoodComponent);
     component = fixture.componentInstance;
@@ -41,7 +41,7 @@ describe('Component - Spy - FoodComponent:', () => {
   });
 
   it('removes the item from the list', () => {
-    spy.deleteFood.and.returnValue(of(serviceResult));
+    spy.deleteFood.mockReturnValue(of(serviceResult));
     const deletedFood = foodData[3];
     component.deleteFood(deletedFood);
     expect(component.food.length).toBe(3);

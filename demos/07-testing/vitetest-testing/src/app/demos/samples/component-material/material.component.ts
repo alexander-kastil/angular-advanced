@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 
 @Component({
     selector: 'app-material',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './material.component.html',
     styleUrls: ['./material.component.scss'],
     imports: [

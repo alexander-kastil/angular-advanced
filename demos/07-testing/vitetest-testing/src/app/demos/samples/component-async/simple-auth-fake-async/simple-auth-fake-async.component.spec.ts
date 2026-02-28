@@ -1,8 +1,6 @@
 import {
   ComponentFixture,
-  fakeAsync,
   TestBed,
-  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -25,29 +23,26 @@ describe('Component - AsyncTest - FakeAsync', () => {
     service = TestBed.inject(SimpleAuthService);
   });
 
-  it('component has been created', fakeAsync(() => {
+  it('component has been created', () => {
     expect(component.needsLogin).toBeTruthy();
-  }));
+  });
 
-  it('returns false when the user is not authenticated', fakeAsync(() => {
+  it('returns false when the user is not authenticated', () => {
+    vi.useFakeTimers();
     fixture.detectChanges();
-    tick();
-    component.ngOnInit();
-    tick(300);
+    vi.advanceTimersByTime(300);
     fixture.detectChanges();
     expect(
       fixture.debugElement
         .query(By.css('span'))
         .nativeElement.textContent.trim()
     ).toBe('NotAuthenticated');
-  }));
+    vi.useRealTimers();
+  });
 
-  it('returns true when the user is authenticated', fakeAsync(() => {
-    fixture.detectChanges();
-    spyOn(service, 'isAuthenticated').and.returnValue(of(true));
-    tick(400);
+  it('returns true when the user is authenticated', () => {
+    vi.spyOn(service, 'isAuthenticated').mockReturnValue(of(true));
     component.ngOnInit();
-    tick();
     fixture.detectChanges();
 
     expect(
@@ -55,7 +50,7 @@ describe('Component - AsyncTest - FakeAsync', () => {
         .query(By.css('span'))
         .nativeElement.textContent.trim()
     ).toBe('Authenticated');
-  }));
+  });
 
   afterEach(() => {
     localStorage.removeItem('token');

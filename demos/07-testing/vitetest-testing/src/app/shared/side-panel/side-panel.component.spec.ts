@@ -53,27 +53,27 @@ describe('SidePanelComponent', () => {
         component.editorDisplayed = false;
         component.icon = 'create';
         component.toggleEditor();
-        expect(component.editorDisplayed).toBeTrue();
+        expect(component.editorDisplayed).toBe(true);
         expect(component.icon).toBe('close');
         component.toggleEditor();
-        expect(component.editorDisplayed).toBeFalse();
+        expect(component.editorDisplayed).toBe(false);
         expect(component.icon).toBe('create');
     });
 
     it('should call toggleMenuVisibility on SideNavService', () => {
-        const toggleMenuVisibilitySpy = spyOn(sideNavService, 'toggleMenuVisibility');
+        const toggleMenuVisibilitySpy = vi.spyOn(sideNavService, 'toggleMenuVisibility');
         component.toggleSideNav();
         expect(toggleMenuVisibilitySpy).toHaveBeenCalled();
     });
 
     it('should call toggleVisibility on RendererStateService', () => {
-        const toggleVisibilitySpy = spyOn(rendererStateService, 'toggleVisibility');
+        const toggleVisibilitySpy = vi.spyOn(rendererStateService, 'toggleVisibility');
         component.toggleInfo();
         expect(toggleVisibilitySpy).toHaveBeenCalled();
     });
 
     it('should handle keyboard event to toggle info', () => {
-        const toggleInfoSpy = spyOn(component, 'toggleInfo');
+        const toggleInfoSpy = vi.spyOn(component, 'toggleInfo');
         const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'i' });
         component.handleKeyboardEvent(event);
         expect(toggleInfoSpy).toHaveBeenCalled();

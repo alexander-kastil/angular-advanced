@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SimpleAuthService } from '../simple-auth.service';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
     selector: 'app-simple-auth-when-stable',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './simple-auth-when-stable.component.html',
     styleUrls: ['./simple-auth-when-stable.component.scss'],
     imports: [

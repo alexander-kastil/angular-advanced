@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SideNavService } from '../sidenav/sidenav.service';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { NavbarService } from './navbar.service';
@@ -10,6 +10,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-navbar',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
     imports: [

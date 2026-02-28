@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { User } from './user-model';
 import { usersdata } from './users-data';
 import { DatePipe } from '@angular/common';
@@ -8,6 +8,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 
 @Component({
     selector: 'app-material-async',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './material-async.component.html',
     styleUrls: ['./material-async.component.scss'],
     imports: [

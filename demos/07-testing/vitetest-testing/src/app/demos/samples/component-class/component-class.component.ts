@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +7,7 @@ import { FoodItem } from '../food/food.model';
 
 @Component({
     selector: 'app-component-class',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `<app-markdown-renderer [md]="'component-class'"
        />
       <mat-card appearance="outlined">

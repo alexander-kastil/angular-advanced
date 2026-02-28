@@ -3,7 +3,7 @@ import { IntroComponent } from './intro.component';
 import { By } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 describe('IntroComponent', () => {
     let component: IntroComponent;
@@ -14,9 +14,9 @@ describe('IntroComponent', () => {
             imports: [
                 MatCardModule,
                 MatButtonModule,
-                RouterTestingModule,
                 IntroComponent
-            ]
+            ],
+            providers: [provideRouter([])]
         }).compileComponents();
     });
 

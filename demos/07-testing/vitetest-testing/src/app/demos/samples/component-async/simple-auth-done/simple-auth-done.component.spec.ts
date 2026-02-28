@@ -24,30 +24,24 @@ describe('Component - AsyncTest - done', () => {
     expect(component.needsLogin).toBeTruthy();
   });
 
-  it('returns false when the user is not authenticated', (done: DoneFn) => {
+  it('returns false when the user is not authenticated', () => {
     fixture.detectChanges();
     expect(
       fixture.debugElement
         .query(By.css('span'))
         .nativeElement.textContent.trim()
     ).toBe('NotAuthenticated');
-    done();
   });
 
-  it('returns true when the user is authenticated', (done: DoneFn) => {
-    fixture.detectChanges();
-    const spy = spyOn(service, 'isAuthenticated').and.returnValue(of(true));
+  it('returns true when the user is authenticated', () => {
+    vi.spyOn(service, 'isAuthenticated').mockReturnValue(of(true));
     component.ngOnInit();
-
-    spy.calls.mostRecent().returnValue.subscribe(() => {
-      fixture.detectChanges();
-      expect(
-        fixture.debugElement
-          .query(By.css('span'))
-          .nativeElement.textContent.trim()
-      ).toBe('Authenticated');
-      done();
-    });
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement
+        .query(By.css('span'))
+        .nativeElement.textContent.trim()
+    ).toBe('Authenticated');
   });
 
   afterEach(() => {

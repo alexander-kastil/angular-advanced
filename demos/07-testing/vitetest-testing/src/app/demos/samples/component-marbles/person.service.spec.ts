@@ -14,19 +14,21 @@ describe('PersonService', () => {
         expect(service).toBeTruthy();
     });
 
-    it('should return persons in sequence', (done) => {
+    it('should return persons in sequence', () => {
         const expectedPersons = ['Cleo', 'Giro', 'Soi', 'Flora'];
         const persons$ = service.getPersons();
         const receivedPersons: string[] = [];
 
-        persons$.subscribe({
-            next: (person) => {
-                receivedPersons.push(person);
-            },
-            complete: () => {
-                expect(receivedPersons).toEqual(expectedPersons);
-                done();
-            }
+        return new Promise<void>((resolve) => {
+            persons$.subscribe({
+                next: (person) => {
+                    receivedPersons.push(person);
+                },
+                complete: () => {
+                    expect(receivedPersons).toEqual(expectedPersons);
+                    resolve();
+                }
+            });
         });
     });
 });

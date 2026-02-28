@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FoodItem } from '../food/food.model';
 import { FoodListComponent } from './food-list/food-list.component';
 import { FoodRowComponent } from './food-row/food-row.component';
@@ -7,6 +7,7 @@ import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/mar
 
 @Component({
     selector: 'app-integration-test',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './integration-test.component.html',
     styleUrls: ['./integration-test.component.scss'],
     imports: [

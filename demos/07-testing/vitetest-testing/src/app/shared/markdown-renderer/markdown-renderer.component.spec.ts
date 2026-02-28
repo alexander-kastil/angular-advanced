@@ -52,7 +52,7 @@ describe('MarkdownRendererComponent', () => {
     });
 
     it('should toggle panel visibility', () => {
-        spyOn(rendererStateService, 'toggleVisibility');
+        vi.spyOn(rendererStateService, 'toggleVisibility');
         component.togglePanel();
         expect(rendererStateService.toggleVisibility).toHaveBeenCalled();
     });

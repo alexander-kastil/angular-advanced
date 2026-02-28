@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FoodMenuComponent } from './food-menu.component';
 
@@ -15,31 +15,34 @@ describe('FoodMenuComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should have a list of 3 food items (using fakeAsync)', fakeAsync(() => {
+  it('should have a list of 3 food items (using fake timers)', () => {
+    vi.useFakeTimers();
     fixture.detectChanges();
-    tick(200);
+    vi.advanceTimersByTime(200);
     fixture.detectChanges();
     console.log(fixture.debugElement.nativeElement.innerHTML);
     let items = fixture.debugElement.queryAll(By.css('.underlined'));
     expect(items.length).toBe(3);
-  }));
+    vi.useRealTimers();
+  });
 
-  it('should have a list of 3 food items (using autoDetectChanges)', fakeAsync(() => {
+  it('should have a list of 3 food items (using autoDetectChanges)', () => {
+    vi.useFakeTimers();
     fixture.autoDetectChanges();
-    tick(200);
+    vi.advanceTimersByTime(200);
+    fixture.detectChanges();
     console.log(fixture.debugElement.nativeElement.innerHTML);
     let items = fixture.debugElement.queryAll(By.css('.underlined'));
     expect(items.length).toBe(3);
-  }));
+    vi.useRealTimers();
+  });
 
-
-  it('should have a list of 3 food items (using waitForAsync)', waitForAsync(() => {
+  it('should have a list of 3 food items (using whenStable)', async () => {
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      let items = fixture.debugElement.queryAll(By.css('.underlined'));
-      console.log(fixture.debugElement.nativeElement.innerHTML);
-      expect(items.length).toBe(3);
-    });
-  }));
+    await new Promise(resolve => setTimeout(resolve, 250));
+    fixture.detectChanges();
+    let items = fixture.debugElement.queryAll(By.css('.underlined'));
+    console.log(fixture.debugElement.nativeElement.innerHTML);
+    expect(items.length).toBe(3);
+  });
 });

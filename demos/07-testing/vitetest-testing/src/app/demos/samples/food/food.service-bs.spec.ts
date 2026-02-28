@@ -63,12 +63,14 @@ describe('Service - HttpTest -FoodService', () => {
     });
   });
 
-  it('should have the correct number of items after delete', (done) => {
+  it('should have the correct number of items after delete', () => {
     service.deleteFood({ id: 1, name: 'Pad Thai', rating: 5 });
-    service.getFood().subscribe((items) => {
-      expect(items.length).toEqual(1);
-      expect(items).toEqual([{ id: 2, name: 'Butter Chicken', rating: 5 }]);
-      done();
+    return new Promise<void>((resolve) => {
+      service.getFood().subscribe((items) => {
+        expect(items.length).toEqual(1);
+        expect(items).toEqual([{ id: 2, name: 'Butter Chicken', rating: 5 }]);
+        resolve();
+      });
     });
   });
 });

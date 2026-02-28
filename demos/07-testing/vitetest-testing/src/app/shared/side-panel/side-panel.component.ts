@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
@@ -13,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-side-panel',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './side-panel.component.html',
     styleUrls: ['./side-panel.component.scss'],
     imports: [

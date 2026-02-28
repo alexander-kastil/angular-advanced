@@ -47,13 +47,13 @@ describe('NavbarComponent', () => {
     });
 
     it('should toggle menu visibility', () => {
-        spyOn(sideNavService, 'toggleMenuVisibility');
+        vi.spyOn(sideNavService, 'toggleMenuVisibility');
         component.toggleMenu();
         expect(sideNavService.toggleMenuVisibility).toHaveBeenCalled();
     });
 
     it('should display alert when toggling apps', () => {
-        spyOn(snackbarService, 'displayAlert');
+        vi.spyOn(snackbarService, 'displayAlert');
         component.toggleApps();
         expect(snackbarService.displayAlert).toHaveBeenCalledWith('Apps', 'Not implemented - just a mock');
     });

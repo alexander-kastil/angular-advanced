@@ -1,19 +1,21 @@
-import { fakeAsync, flush, flushMicrotasks, tick } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 describe('Async Testing Examples', () => {
-  it('Asynchronous test example with Jasmine done()', (done: DoneFn) => {
-    let test = false;
-    setTimeout(() => {
-      console.log('running assertions');
-      test = true;
-      expect(test).toBeTruthy();
-      done();
-    }, 1000);
+  it('Asynchronous test example with done()', () => {
+    return new Promise<void>((resolve) => {
+      let test = false;
+      setTimeout(() => {
+        console.log('running assertions');
+        test = true;
+        expect(test).toBeTruthy();
+        resolve();
+      }, 1000);
+    });
   });
 
-  it('fakeAsync Makrotask', fakeAsync(() => {
+  it('Vitest fake timers - Macrotask', () => {
+    vi.useFakeTimers();
     let test = false;
     setTimeout(() => {
     });
@@ -21,13 +23,14 @@ describe('Async Testing Examples', () => {
       console.log('running assertions setTimeout()');
       test = true;
     }, 1000);
-    flush();
+    vi.runAllTimers();
     expect(test).toBeTruthy();
-  }));
+    vi.useRealTimers();
+  });
 
-  it('fake Async - Promise (Microtask)', fakeAsync(() => {
+  it('Microtask - Promise', async () => {
     let test = false;
-    Promise.resolve().then(() => {
+    await Promise.resolve().then(() => {
       console.log('Promise then() evaluated successfully');
       return Promise.resolve();
     })
@@ -35,14 +38,14 @@ describe('Async Testing Examples', () => {
         console.log('Nested Promise then() evaluated successfully');
         test = true;
       });
-    flushMicrotasks();
     console.log('Running test assertions');
     expect(test).toBeTruthy();
-  }));
+  });
 
-  it('fake Async - Promises & Makrotasks', fakeAsync(() => {
+  it('Promises & Macrotasks', async () => {
+    vi.useFakeTimers();
     let counter = 0;
-    Promise.resolve()
+    await Promise.resolve()
       .then(() => {
         counter += 10;
         setTimeout(() => {
@@ -50,21 +53,23 @@ describe('Async Testing Examples', () => {
         }, 1000);
       });
 
-    flushMicrotasks();
     expect(counter).toBe(10);
-    tick(1000);
+    vi.advanceTimersByTime(1000);
     expect(counter).toBe(11);
-  }));
+    vi.useRealTimers();
+  });
 
-  it('fakeAsync - Observables', fakeAsync(() => {
+  it('Vitest fake timers - Observables', () => {
+    vi.useFakeTimers();
     let test = false;
     const test$ = of(test).pipe(delay(1000));
     test$.subscribe(() => {
       test = true;
     });
 
-    tick(1000);
+    vi.advanceTimersByTime(1000);
     console.log('Running test assertions');
     expect(test).toBe(true);
-  }));
+    vi.useRealTimers();
+  });
 });

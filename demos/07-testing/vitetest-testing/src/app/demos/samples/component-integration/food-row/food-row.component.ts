@@ -1,9 +1,10 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { FoodItem } from '../../food/food.model';
 
 @Component({
   selector: 'app-food-row',
+    changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './food-row.component.html',
   styleUrls: ['./food-row.component.scss'],
   imports: [MatIcon]

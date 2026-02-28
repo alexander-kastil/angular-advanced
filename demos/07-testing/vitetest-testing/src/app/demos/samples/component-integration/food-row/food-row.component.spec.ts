@@ -50,7 +50,7 @@ describe('Component -Integration Test - Food Row', () => {
   it('should trigger delete', () => {
     expect(deleteFld).toBeTruthy();
 
-    spyOn(component.delete, 'emit');
+    vi.spyOn(component.delete, 'emit');
     deleteFld.nativeElement.click();
     expect(component.delete.emit).toHaveBeenCalled();
   });
@@ -58,7 +58,7 @@ describe('Component -Integration Test - Food Row', () => {
   it('should trigger edit', () => {
     expect(editFld).toBeTruthy();
 
-    spyOn(component.edit, 'emit');
+    vi.spyOn(component.edit, 'emit');
     component.editFood();
     expect(component.edit.emit).toHaveBeenCalledWith(food);
   });

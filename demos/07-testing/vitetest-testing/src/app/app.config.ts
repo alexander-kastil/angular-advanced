@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, provideAppInitializer } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { ApplicationConfig, importProvidersFrom, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
 import { provideEffects } from '@ngrx/effects';
@@ -18,9 +18,10 @@ import { editorState } from './shared/markdown-editor/state/editor.state';
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        provideZonelessChangeDetection(),
         provideHttpClient(),
         provideRouter(appRoutes, withComponentInputBinding()),
-        provideAnimations(),
+        provideAnimationsAsync(),
         importProvidersFrom(
             MarkdownModule.forRoot(),
         ),

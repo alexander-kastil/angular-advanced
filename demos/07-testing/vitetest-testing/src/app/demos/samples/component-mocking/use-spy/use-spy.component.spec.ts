@@ -8,10 +8,8 @@ describe('UseMockComponent with MockAuth Service', () => {
   let fixture: ComponentFixture<UseSpyComponent>;
 
   beforeEach(() => {
-    // class to mock | method array | property array
-    spy = jasmine.createSpyObj('AuthService', ['isAuthenticated'], ['useAzureAD']);
-    spy.isAuthenticated.and.returnValue(true);
-    spy.useAzureAD = true;
+    spy = { isAuthenticated: vi.fn(), useAzureAD: true };
+    spy.isAuthenticated.mockReturnValue(true);
 
     TestBed.configureTestingModule({
       imports: [UseSpyComponent],

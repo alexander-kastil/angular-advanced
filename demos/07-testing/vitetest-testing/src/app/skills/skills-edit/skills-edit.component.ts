@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
@@ -12,6 +12,7 @@ import { SkillsEntityService } from '../skills-entity.service';
 
 @Component({
   selector: 'app-skills-edit',
+    changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './skills-edit.component.html',
   styleUrls: ['./skills-edit.component.scss'],
   imports: [

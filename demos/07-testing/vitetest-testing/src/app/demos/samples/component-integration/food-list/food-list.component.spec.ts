@@ -1,5 +1,5 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FoodServiceBS } from '../../food/food.service-bs';
@@ -27,7 +27,7 @@ describe('Component - Integration Test', () => {
   let de: DebugElement;
 
   beforeEach(() => {
-    foodServiceSpy = jasmine.createSpyObj(['getFood', 'deleteFood']);
+    foodServiceSpy = { getFood: vi.fn(), deleteFood: vi.fn() };
 
     const module = {
       providers: [{ provide: FoodServiceBS, useValue: foodServiceSpy }],
@@ -41,7 +41,7 @@ describe('Component - Integration Test', () => {
   });
 
   it('should render each FoodItem as FoodItemRow', () => {
-    foodServiceSpy.getFood.and.returnValue(of(foodData));
+    foodServiceSpy.getFood.mockReturnValue(of(foodData));
     fixture.autoDetectChanges();
 
     const rows = fixture.debugElement.queryAll(By.directive(FoodRowComponent));
@@ -49,16 +49,16 @@ describe('Component - Integration Test', () => {
     expect(rows[0].componentInstance.food().name).toEqual('Pad Thai');
   });
 
-  it('should have three rows when an item is deleted', fakeAsync(() => {
-    foodServiceSpy.getFood.and.returnValue(of(foodData));
+  it('should have three rows when an item is deleted', () => {
+    foodServiceSpy.getFood.mockReturnValue(of(foodData));
     fixture.autoDetectChanges();
 
-    spyOn(comp, 'deleteFood');
+    vi.spyOn(comp, 'deleteFood');
     const deRow = de.query(By.directive(FoodRowComponent));
     const row = deRow.componentInstance;
     row.delete.emit(deleteItem);
 
-    foodServiceSpy.deleteFood.and.returnValue(of(serviceResult));
+    foodServiceSpy.deleteFood.mockReturnValue(of(serviceResult));
     expect(comp.deleteFood).toHaveBeenCalledWith(deleteItem);
-  }));
+  });
 });

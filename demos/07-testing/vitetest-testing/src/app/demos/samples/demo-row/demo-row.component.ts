@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { DemoItem } from '../../demo-base/demo-item.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
@@ -6,6 +6,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
     selector: 'app-demo-row',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './demo-row.component.html',
     styleUrls: ['./demo-row.component.scss'],
     standalone: true,

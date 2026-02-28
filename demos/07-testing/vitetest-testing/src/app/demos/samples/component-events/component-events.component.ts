@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
     selector: 'app-component-events',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './component-events.component.html',
     styleUrls: ['./component-events.component.scss'],
     imports: [

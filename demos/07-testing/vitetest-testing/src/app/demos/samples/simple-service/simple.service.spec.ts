@@ -28,9 +28,7 @@ describe('Service - No Injection - SimpleMessageService', () => {
     service.messages = msgs;
     service.delete('Hello World');
     expect(service.messages.length).toBe(2);
-    expect(service.messages).toContain(
-      'Szia World',
-      'Servus Welt'
-    );
+    expect(service.messages).toContain('Szia World');
+    expect(service.messages).toContain('Servus Welt');
   });
 });

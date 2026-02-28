@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MarkdownRendererComponent } from '../../../shared/markdown-renderer/markdown-renderer.component';
 
 @Component({
     selector: 'app-cypress',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './cypress.component.html',
     styleUrls: ['./cypress.component.scss'],
     imports: [MarkdownRendererComponent]

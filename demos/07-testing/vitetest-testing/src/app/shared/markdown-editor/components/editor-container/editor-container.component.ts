@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommentItem } from '../../comment.model';
 import { EditorFacade } from '../../state/editor.facade';
 import { AsyncPipe } from '@angular/common';
@@ -10,6 +10,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } 
 
 @Component({
     selector: 'app-editor-container',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './editor-container.component.html',
     styleUrls: ['./editor-container.component.scss'],
     imports: [

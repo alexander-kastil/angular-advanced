@@ -31,13 +31,14 @@ describe('customersStore', () => {
         });
     });
 
-    it('should verify that three customers are available', (done) => {
+    it('should verify that three customers are available', () => {
         const store = TestBed.inject(customersStore);
-        // Wait for the microtask queue to flush (simulate async fetch)
-        setTimeout(() => {
-            expect(store.customers()).toHaveSize(3);
-            done();
-        }, 0);
+        return new Promise<void>((resolve) => {
+            setTimeout(() => {
+                expect(store.customers()).toHaveLength(3);
+                resolve();
+            }, 0);
+        });
     });
 
 

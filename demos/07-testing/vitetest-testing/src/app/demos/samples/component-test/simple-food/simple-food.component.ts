@@ -1,10 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FoodItem } from '../../food/food.model';
 import { FoodService } from '../../food/food.service';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 @Component({
     selector: 'app-simple-food',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './simple-food.component.html',
     styleUrls: ['./simple-food.component.scss'],
     imports: [

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { SkillsKpiComponent } from '../skills-kpi/skills-kpi.component';
 
 @Component({
   selector: 'app-skills-container',
+    changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './skills-container.component.html',
   styleUrls: ['./skills-container.component.scss'],
   imports: [

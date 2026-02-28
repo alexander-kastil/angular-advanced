@@ -1,27 +1,23 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MarkdownModule } from 'ngx-markdown';
 import { MaterialAsyncComponent } from './material-async.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('MaterialAsyncComponent', () => {
   let fixture: ComponentFixture<MaterialAsyncComponent>;
   let component: MaterialAsyncComponent;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          NoopAnimationsModule,
-          MaterialAsyncComponent,
-          HttpClientModule,
-          MarkdownModule.forRoot(),
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        NoopAnimationsModule,
+        MaterialAsyncComponent,
+        MarkdownModule.forRoot(),
+      ],
+      providers: [provideHttpClient()]
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(MaterialAsyncComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

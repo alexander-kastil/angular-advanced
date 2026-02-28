@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, effect, inject, input, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -8,6 +8,7 @@ import { customersStore } from '../customers.store';
 
 @Component({
     selector: 'app-customer-edit',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './customer-edit.component.html',
     styleUrls: ['./customer-edit.component.scss'],
     imports: [

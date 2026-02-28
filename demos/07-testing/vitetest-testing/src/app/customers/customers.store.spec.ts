@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { customersStore } from './customers.store';
 import { CustomersService } from './customers.service';
 import { Customer } from './customer.model';
@@ -8,7 +8,7 @@ import { delay } from 'rxjs/operators';
 
 describe('CustomersStore', () => {
     let store: InstanceType<typeof customersStore>;
-    let customersService: jasmine.SpyObj<CustomersService>;
+    let customersService: { getCustomers: ReturnType<typeof vi.fn>; updateCustomer: ReturnType<typeof vi.fn> };
     let mockCustomers: Customer[];
 
     beforeEach(() => {
@@ -17,7 +17,7 @@ describe('CustomersStore', () => {
             { id: 2, name: 'Jane Smith' },
         ];
 
-        const spy = jasmine.createSpyObj('CustomersService', ['getCustomers', 'updateCustomer']);
+        const spy = { getCustomers: vi.fn().mockReturnValue(of([])), updateCustomer: vi.fn() };
 
         TestBed.resetTestingModule();
         TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('CustomersStore', () => {
             ]
         });
 
-        customersService = TestBed.inject(CustomersService) as jasmine.SpyObj<CustomersService>;
+        customersService = TestBed.inject(CustomersService) as any;
         store = TestBed.inject(customersStore);
     });
 
@@ -57,35 +57,32 @@ describe('CustomersStore', () => {
         expect(customer).toBeUndefined();
     });
 
-    it('should update customer successfully', fakeAsync(() => {
+    it('should update customer successfully', () => {
         const updatedCustomer = { id: 1, name: 'John Updated' };
-        customersService.updateCustomer.and.returnValue(of(updatedCustomer));
+        customersService.updateCustomer.mockReturnValue(of(updatedCustomer));
 
-        // Set initial state
         patchState(store, { customers: mockCustomers });
 
         store.updateCustomer(updatedCustomer);
-        tick();
 
         const customers = store.customers();
         expect(customers[0]).toEqual(updatedCustomer);
         expect(store.loading()).toBe(false);
-    }));
+    });
 
-    it('should handle update customer error', fakeAsync(() => {
+    it('should handle update customer error', () => {
         const error = new Error('Update failed');
         const customerToUpdate = mockCustomers[0];
-        customersService.updateCustomer.and.returnValue(throwError(() => error));
-        spyOn(console, 'error');
+        customersService.updateCustomer.mockReturnValue(throwError(() => error));
+        vi.spyOn(console, 'error').mockImplementation(() => { });
 
         patchState(store, { customers: mockCustomers });
 
         store.updateCustomer(customerToUpdate);
-        tick();
 
         expect(store.loading()).toBe(false);
         expect(console.error).toHaveBeenCalledWith('error: ', error);
-    }));
+    });
 
     it('should compute next id correctly', () => {
         patchState(store, { customers: mockCustomers });
